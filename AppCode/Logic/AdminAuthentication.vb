@@ -81,10 +81,10 @@ Namespace BusinessLogic
                             AdminAuthenticationDB.InsertSession(LoginID, myUser.fldID, "A", sessionID, UtilityManager.GetPublicIpAddress, myConnection)
                             myUser = AdminDB.GetAdmin(myUser.fldID, myConnection)
                             Dim userdata As String = ConcatString(",", sessionID, "A", myUser.fldID, myUser.fldCode, myUser.fldLanguage, myUser.fldLevel)
-                            Dim ticket As FormsAuthenticationTicket = New FormsAuthenticationTicket(1, LoginID, DateTime.Now, DateTime.Now.AddMinutes(60), True, userdata)
+                            Dim ticket As FormsAuthenticationTicket = New FormsAuthenticationTicket(1, LoginID, DateTime.Now, DateTime.MaxValue, True, userdata)
                             Dim hashTicket As String = FormsAuthentication.Encrypt(ticket)
                             Dim ticketCookie As HttpCookie = New HttpCookie(FormsAuthentication.FormsCookieName, hashTicket)
-                            'ticketCookie.Expires = DateTime.Now.AddMinutes(15)
+                            ticketCookie.Expires = ticket.Expiration
                             HttpContext.Current.Response.Cookies.Add(ticketCookie)
                             'UserCookie(myUser.fldID, "A", myUser.fldLevel, myUser.fldLanguage, sessionID, myConnection)
                             result = 1
