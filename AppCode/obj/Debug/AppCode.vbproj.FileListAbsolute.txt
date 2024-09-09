@@ -1,0 +1,12 @@
+C:\Users\DELL\source\repos\PDRMProject\AppCode\bin\Debug\AppCode.dll
+C:\Users\DELL\source\repos\PDRMProject\AppCode\bin\Debug\AppCode.pdb
+C:\Users\DELL\source\repos\PDRMProject\AppCode\bin\Debug\AppCode.xml
+C:\Users\DELL\source\repos\PDRMProject\AppCode\bin\Debug\MySql.Data.dll
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.Resources.resources
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.vbproj.GenerateResource.cache
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.vbproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.vbproj.CopyComplete
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.dll
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.xml
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.pdb
+C:\Users\DELL\source\repos\PDRMProject\AppCode\obj\Debug\AppCode.vbprojAssemblyReference.cache

@@ -1,0 +1,631 @@
+﻿.input-inline + .select2-container--bootstrap {
+    display: inline-block;
+}
+
+@media print {
+    .printDisplay {
+        display: none !important;
+    }
+
+    .page-content {
+        border-left: 0 !important;
+        border-bottom: 0 !important;
+    }
+
+    .print-body {
+        background-color: #fff !important;
+    }
+}
+
+.cart-item {
+    position: absolute;
+    background: red;
+    color: #fff;
+    top: 0px;
+    font-weight: 400;
+    right: 5px;
+    text-align: center;
+    border: 3px solid red;
+    font-size: 13px;
+    min-width: 14px;
+    line-height: 14px;
+}
+
+.view-less {
+    height: 700px;
+    overflow-y: hidden;
+}
+
+    .view-less::after {
+        content: "";
+        height: 200px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        background: linear-gradient(-180deg,hsla(0,0%,100%,0) 6%,#fff 83%);
+    }
+
+.view-more {
+    height: auto;
+}
+
+/*---Product box----*/
+.product-box-wrapper {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.product-box{
+/*    background:none !important;*/
+    text-align:center;
+}
+
+.product-box:hover {
+    box-shadow: 0px 0px 10px #909090;
+    -moz-box-shadow: 0px 0px 10px #909090;
+    -webkit-box-shadow: 0px 0px 10px #909090;
+    transition: all .3s;
+}
+
+.product-box .product-detail .product-title {
+    min-height: 32px;
+    line-height: 16px;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+    text-align:center;
+}
+
+    .product-box .product-detail .product-title a {
+        text-decoration: none;
+        color: #404040;
+        font-size: 14px;
+    }
+
+    .product-box .product-detail .product-price{
+        text-align:center;
+    }
+
+    .product-box .product-btn{
+        border-top:1px solid #ccc;
+    }
+
+    .product-box .product-btn .btn{
+        margin-top:10px;
+        text-transform:uppercase;
+    }
+
+.cart-product img {
+    float: left;
+    margin-right: 10px;
+    width: 100%;
+}
+
+.cart-product a {
+    text-decoration: none;
+    color: #404040;
+}
+
+.cart-product .product-title {
+    min-height: 0;
+}
+
+    .cart-product .product-title .form-control {
+        max-width: 100%
+    }
+
+.cart-product .product-price {
+    display: block;
+}
+
+.cart-product.form-group {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .input-lg {
+        width: 100% !important;
+    }
+}
+
+
+/* New color */
+/*Pink*/
+.font-pink{
+    color: #fcbbbb !important;
+}
+.bg-pink{
+    background: #fcbbbb !important;
+}
+.border-after-pink:after, .border-before-pink:before, .border-pink{
+    border-color: #fcbbbb !important;
+}
+.btn.pink:not(.btn-outline){
+    color: #e7505a;
+    background-color: #fcbbbb ;
+    border-color: #fcbbbb;
+}
+.btn.pink:not(.btn-outline).focus, .btn.pink:not(.btn-outline):focus{
+    color: #0026ff;
+    background-color: #E87D7D;
+    border-color: #B95959;
+}
+.btn.pink:not(.btn-outline).active, .btn.pink:not(.btn-outline):active, .btn.pink:not(.btn-outline):hover, .open>.btn.pink:not(.btn-outline).dropdown-toggle{
+    color: #0026ff;
+    background-color: #E87D7D;
+    border-color: #D27575;
+}
+.btn.pink:not(.btn-outline).active, .btn.pink:not(.btn-outline):active, .open>.btn.pink:not(.btn-outline).dropdown-toggle {
+    background-image: none;
+}
+.btn.pink:not(.btn-outline).active.focus, .btn.pink:not(.btn-outline).active:focus, .btn.pink:not(.btn-outline).active:hover, .btn.pink:not(.btn-outline):active.focus, .btn.pink:not(.btn-outline):active:focus, .btn.pink:not(.btn-outline):active:hover, .open>.btn.pink:not(.btn-outline).dropdown-toggle.focus, .open>.btn.pink:not(.btn-outline).dropdown-toggle:focus, .open>.btn.pink:not(.btn-outline).dropdown-toggle:hover {
+    color: #0026ff;
+    background-color: #E87D7D;
+    border-color: #B95959;
+}
+.btn.btn-outline.pink{
+    border-color: #fcbbbb;
+    color: #e7505a;
+    background: 0 0;
+}
+.btn.btn-outline.pink.active, .btn.btn-outline.pink:active, .btn.btn-outline.pink:active:focus, .btn.btn-outline.pink:active:hover, .btn.btn-outline.pink:focus, .btn.btn-outline.pink:hover {
+    border-color: #fcbbbb;
+    color: #e7505a;
+    background-color: #fcbbbb;
+}
+.dashboard-stat.pink{
+    background-color: #fcbbbb;
+}
+.dashboard-stat.pink .more{
+    color: #fff;
+    background-color: #E87D7D;
+}
+.dashboard-stat.pink .visual>i {
+    color: #fff;
+    opacity: .1;
+    filter: alpha(opacity=10);
+}
+.dashboard-stat.pink .details .number {
+    color: #fff;
+}
+ .dashboard-stat.pink .details .desc {
+    color: #fff;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+ 
+/*light-gold*/
+.font-light-gold{
+    color: #e8cc6a!important;
+}
+.bg-light-gold{
+    background: #e8cc6a!important;
+}
+.border-after-light-gold:after, .border-before-light-gold:before, .border-light-gold{
+    border-color: #e8cc6a!important;
+}
+.btn.light-gold:not(.btn-outline){
+    color: #fff;
+    background-color: #e8cc6a;
+    border-color: #e8cc6a;
+}
+.btn.light-gold:not(.btn-outline).focus, .btn.light-gold:not(.btn-outline):focus{
+    color: #fff;
+    background-color: #C2A954;
+    border-color: #B69A39;
+}
+.btn.light-gold:not(.btn-outline).active, .btn.light-gold:not(.btn-outline):active, .btn.light-gold:not(.btn-outline):hover, .open>.btn.light-gold:not(.btn-outline).dropdown-toggle{
+    color: #fff;
+    background-color: #C2A954;
+    border-color: #9B8432;
+}
+.btn.light-gold:not(.btn-outline).active, .btn.light-gold:not(.btn-outline):active, .open>.btn.light-gold:not(.btn-outline).dropdown-toggle {
+    background-image: none;
+}
+.btn.light-gold:not(.btn-outline).active.focus, .btn.light-gold:not(.btn-outline).active:focus, .btn.light-gold:not(.btn-outline).active:hover, .btn.light-gold:not(.btn-outline):active.focus, .btn.light-gold:not(.btn-outline):active:focus, .btn.light-gold:not(.btn-outline):active:hover, .open>.btn.light-gold:not(.btn-outline).dropdown-toggle.focus, .open>.btn.light-gold:not(.btn-outline).dropdown-toggle:focus, .open>.btn.light-gold:not(.btn-outline).dropdown-toggle:hover {
+    color: #fff;
+    background-color: #C2A954;
+    border-color: #B69A39;
+}
+.btn.btn-outline.light-gold{
+    border-color: #e8cc6a;
+    color: #e8cc6a;
+    background: 0 0;
+}
+.btn.btn-outline.light-gold.active, .btn.btn-outline.light-gold:active, .btn.btn-outline.light-gold:active:focus, .btn.btn-outline.light-gold:active:hover, .btn.btn-outline.light-gold:focus, .btn.btn-outline.light-gold:hover {
+    border-color: #e8cc6a;
+    color: #fff;
+    background-color: #e8cc6a;
+}
+.dashboard-stat.light-gold{
+    background-color: #e8cc6a;
+}
+.dashboard-stat.light-gold .more{
+    color: #fff;
+    background-color: #C2A954;
+}
+.dashboard-stat.light-gold .visual>i {
+    color: #fff;
+    opacity: .1;
+    filter: alpha(opacity=10);
+}
+.dashboard-stat.light-gold .details .number {
+    color: #fff;
+}
+ .dashboard-stat.light-gold .details .desc {
+    color: #fff;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+ 
+/*custom-color*/
+.font-custom-color{
+    color: #0026ff !important;
+}
+.bg-custom-color{
+    background: #0026ff!important;
+}
+.border-after-custom-color:after, .border-before-custom-color:before, .border-custom-color{
+    border-color: #0026ff!important;
+}
+.btn.custom-color:not(.btn-outline){
+    color: #fff;
+    background-color: #0026ff;
+    border-color: #0026ff;
+}
+.btn.custom-color:not(.btn-outline).focus, .btn.custom-color:not(.btn-outline):focus{
+    color: #fff;
+    background-color: #1f1d59;
+    border-color: #1f1d59;
+}
+.btn.custom-color:not(.btn-outline).active, .btn.custom-color:not(.btn-outline):active, .btn.custom-color:not(.btn-outline):hover, .open>.btn.custom-color:not(.btn-outline).dropdown-toggle{
+    color: #fff;
+    background-color: #1f1d59;
+    border-color: #1f1d59;
+}
+.btn.custom-color:not(.btn-outline).active, .btn.custom-color:not(.btn-outline):active, .open>.btn.custom-color:not(.btn-outline).dropdown-toggle {
+    background-image: none;
+}
+.btn.custom-color:not(.btn-outline).active.focus, .btn.custom-color:not(.btn-outline).active:focus, .btn.custom-color:not(.btn-outline).active:hover, .btn.custom-color:not(.btn-outline):active.focus, .btn.custom-color:not(.btn-outline):active:focus, .btn.custom-color:not(.btn-outline):active:hover, .open>.btn.custom-color:not(.btn-outline).dropdown-toggle.focus, .open>.btn.custom-color:not(.btn-outline).dropdown-toggle:focus, .open>.btn.custom-color:not(.btn-outline).dropdown-toggle:hover {
+    color: #fff;
+    background-color: #1f1d59;
+    border-color: #1f1d59;
+}
+.btn.btn-outline.custom-color{
+    border-color: #0026ff;
+    color: #0026ff;
+    background: 0 0;
+}
+.btn.btn-outline.custom-color.active, .btn.btn-outline.custom-color:active, .btn.btn-outline.custom-color:active:focus, .btn.btn-outline.custom-color:active:hover, .btn.btn-outline.custom-color:focus, .btn.btn-outline.custom-color:hover {
+    border-color: #0026ff;
+    color: #fff;
+    background-color: #0026ff;
+}
+.dashboard-stat.custom-color{
+    background-color: #0026ff;
+}
+.dashboard-stat.custom-color .more{
+    color: #fff;
+    background-color: #1f1d59;
+}
+.dashboard-stat.custom-color .visual>i {
+    color: #fff;
+    opacity: .1;
+    filter: alpha(opacity=10);
+}
+.dashboard-stat.custom-color .details .number {
+    color: #fff;
+}
+ .dashboard-stat.custom-color .details .desc {
+    color: #fff;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+/*======================LOGIN PAGE======================*/
+.login {
+    background-color: #fff !important;
+    /*background: url(../../../../assets/img/wxtbg.jpg) #404040 !important;*/
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+    .login .logo {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+.login .logo img{
+    width:250px;
+}
+
+    .login .content {
+        margin: 20px auto 20px auto;
+        background-color: rgba(255, 255, 255, 1) !important;
+    }
+
+    .login .form-title {
+        margin: 0;
+        text-align: center;
+    }
+        .login .form-title .login-title {
+            display: block;
+            color: #000;
+            font-size: 19px;
+            font-weight: bold !important;
+        }
+        .login .form-title .login-caption {
+            display:block;
+            color: #ccc;
+            font-size: 12px;
+            font-weight: bold !important;
+        }
+
+    .login .content .form-control:active, .login .content .form-control:focus {
+        border: 1px solid #ccc;
+    }
+
+    .login .content .form-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        height: 43px;
+        color: #000;
+    }
+
+        .login .content .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #ccc !important;
+            opacity: 1; /* Firefox */
+        }
+
+        .login .content .form-control:-ms-input-placeholder, /* Internet Explorer 10-11 */
+        .login .content .form-control::-ms-input-placeholder { /* Microsoft Edge */
+            color: #ccc !important;
+        }
+
+/*======================LOGIN PAGE======================*/
+/*-------Custom Interface For All Layout--------*/
+/*static label*/
+.form-control-static {
+    padding-left: 10px;
+}
+
+/*textbox*/
+.form-control {
+    /*border: 1px solid #808080 !important;*/
+}
+
+    /*readonly input*/
+    .form-control[readonly] {
+        cursor: default !important;
+        /*color: #808080 !important;
+        background-color: #fff !important;*/
+    }
+
+/*Statistic block button*/
+.more {
+    color: #FFFFFF !important;
+    background-color: rgba(0,0,0,0.5) !important;
+}
+
+/*Table Header*/
+.table-scrollable > .table > thead > tr > th, .table-scrollable > .table > tbody > tr > th, .table-scrollable > .table > tfoot > tr > th, .table-scrollable > .table > tfoot > tr > th, .table-scrollable > .table > tfoot > tr > td {
+    white-space: normal !important;
+}
+
+.portlet.light{
+    background-color: #fdfdfd;
+}
+
+/*--------Privilege Tree--------*/
+.privilegeTree a {
+    cursor: pointer;
+    color: #111;
+    text-decoration: none !important;
+}
+
+.privilegeTree ul {
+    list-style: none outside none;
+}
+
+.privilegeTree li a {
+    line-height: 25px;
+}
+
+.privilegeTree > ul > li > a {
+    color: #3B4C56;
+    display: inline-block;
+    font-weight: normal;
+    position: relative;
+    text-decoration: none;
+}
+
+.privilegeTree li.parent > a.expand > a:before {
+    background-position: 25px center;
+    content: "";
+    display: inline-block;
+    height: 21px;
+    left: 0;
+    position: absolute;
+    top: 2px;
+    vertical-align: middle;
+    width: 23px;
+}
+
+.privilegeTree ul li.active > a.expand:before {
+    background-position: 0 center;
+}
+
+.privilegeTree ul li ul {
+    border-left: 1px solid #ccc;
+    display: none;
+    margin: 0 0 0 12px;
+    overflow: hidden;
+    padding: 0 0 0 25px;
+}
+
+    .privilegeTree ul li ul li {
+        position: relative;
+    }
+
+        .privilegeTree ul li ul li:before {
+            border-bottom: 1px dashed #ccc;
+            content: "";
+            left: -20px;
+            position: absolute;
+            top: 12px;
+            width: 15px;
+        }
+
+        .privilegeTree ul li ul li input[type=checkbox]:after {
+            border-bottom: 1px dashed #ccc;
+            content: "";
+            left: -20px;
+            position: absolute;
+            top: 12px;
+            width: 15px;
+        }
+
+/*--------Gridview--------*/
+.gridStyle {
+    /**/
+}
+
+    .gridStyle tr th {
+        padding: 8px;
+        border: 1px solid #dddddd;
+        background: #f9f9f9;
+        color: #000;
+        text-align: center;
+    }
+
+    .gridStyle.horizontalGridLine tr th, .gridStyle.horizontalGridLine td {
+        border: 1px solid #dddddd;
+        border-left: none;
+        border-right: none;
+    }
+
+    .gridStyle.padding12px td {
+        padding: 12px;
+    }
+
+    .gridStyle.horizontalGridLine td:first-child {
+        border: 1px solid #dddddd;
+        border-right: none;
+    }
+
+    .gridStyle.horizontalGridLine td:last-child {
+        border: 1px solid #dddddd;
+        border-left: none;
+    }
+
+    .gridStyle tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    .gridStyle tr:nth-child(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .gridStyle td {
+        border: solid 1px #dddddd;
+        padding: 4px; /*border:1px solid yellow; Use when you want to hide last row border (before it make ShowGridlines=None*/
+    }
+
+    .gridStyle tr:last-child td {
+    }
+/*--------Gridview--------*/
+
+/*--------Pager--------*/
+.formPager {
+    padding: 5px 0 5px 0;
+    text-align: center;
+}
+
+.buttonPager {
+    min-width: 30px !important;
+    width: auto !important;
+    height: 25px;
+    background: #fff;
+    color: #000;
+    border: 0;
+    border-right: solid 1px #cccccc;
+    border-left: solid 1px #cccccc;
+    border-bottom: solid 2px #fff;
+}
+
+    .buttonPager:hover {
+        background: #e5e5e5;
+        font-weight: bold;
+    }
+
+    .buttonPager:disabled {
+        border-bottom: solid 2px #852b99;
+    }
+
+/*--------Pager--------*/
+
+.popupTable {
+    background: #ffffff;
+    box-shadow: 0 0 4px #888888;
+    font-size: 12px;
+    width: 200px;
+}
+
+    .popupTable tr td {
+        padding: 0 1px;
+    }
+
+.treeTable {
+    background: #ffffff;
+    font-size: 12px;
+}
+
+    .treeTable tr td {
+        padding: 0 1px;
+    }
+
+/*--------Loading--------*/
+
+.loadingPage {
+    opacity: 0.8;
+    background-color: #ccc;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 99999;
+    text-align: center;
+}
+
+    .loadingPage img {
+        top: 40%;
+        position: relative;
+    }
+
+.boxShadow {
+    /*box-shadow: 0px 5px 10px #ccc;
+    -moz-box-shadow: 0px 5px 10px #ccc;
+    -webkit-box-shadow: 0px 5px 10px #ccc;*/
+}
+
+.boxShadow-dark {
+    /*box-shadow: 0px 5px 10px #404040;
+    -moz-box-shadow: 0px 5px 10px #404040;
+    -webkit-box-shadow: 0px 5px 10px #404040;*/
+}
+
+.transparentBG {
+    background-color: rgba(255,255,255,0.95) !important;
+}
+
+.remarkOverflow {
+    height: 50px;
+    overflow: scroll;
+    overflow-x: hidden;
+}

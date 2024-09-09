@@ -1,0 +1,340 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Admin.master.vb" Inherits="PDRM_SPE.Admin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <!-- BEGIN PRIOIRITY PLUGINS -->
+    <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../assets/js/modalpopup.js"></script>
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/select2/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <link href="../assets/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/global/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet" type="text/css" />
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="../assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME GLOBAL STYLES -->
+    <!-- BEGIN THEME LAYOUT STYLES -->
+    <link href="../assets/layouts/layout3/css/layout.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/layouts/layout3/css/themes/default.min.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="../assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
+    <!-- END THEME LAYOUT STYLES -->
+    <!-- NON TEMPLATE-->
+    <link href="../assets/css/general.css?v=1" rel="stylesheet" />
+    <link href="../assets/css/layout3.css" rel="stylesheet" />
+    <link href="../assets/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet" />
+    <!-- NON TEMPLATE-->
+    <link rel="shortcut icon" href="../assets/img/favicon.ico" />
+    <link href="../assets/img/companylogo.png" rel="icon" sizes="32x32" />
+    <link href="../assets/img/companylogo.png" rel="icon" sizes="192x192" />
+    <link href="../assets/img/companylogo.png" rel="apple-touch-icon-precomposed" />
+    <meta content="../assets/img/companylogo.png" name="msapplication-TileImage" />
+</head>
+
+<!-- BODY -->
+<!-- DOC: Apply "page-header-fixed-mobile" and "page-footer-fixed-mobile" class to body element to force fixed header or footer in mobile devices -->
+<!-- DOC: Apply "page-sidebar-closed" class to the body and "page-sidebar-menu-closed" class to the sidebar menu element to hide the sidebar by default -->
+<!-- DOC: Apply "page-sidebar-hide" class to the body to make the sidebar completely hidden on toggle -->
+<!-- DOC: Apply "page-sidebar-closed-hide-logo" class to the body element to make the logo hidden on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-hide" class to body element to completely hide the sidebar on sidebar toggle -->
+<!-- DOC: Apply "page-sidebar-fixed" class to have fixed sidebar -->
+<!-- DOC: Apply "page-footer-fixed" class to the body element to have fixed footer -->
+<!-- DOC: Apply "page-sidebar-reversed" class to put the sidebar on the right side -->
+<!-- DOC: Apply "page-full-width" class to the body element to have full width page without the sidebar menu -->
+<body class="print-body page-header-top">
+    <form class="page-wrapper" id="form1" runat="server">
+        <asp:ScriptManager runat="server" ID="ScriptManager1"></asp:ScriptManager>
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-top">
+                <!-- BEGIN HEADER -->
+                <div class="page-header">
+                    <!-- BEGIN HEADER TOP -->
+                    <div class="page-header-top">
+                        <div class="container">
+                            <!-- BEGIN LOGO -->
+                            <div class="page-logo">
+                                <a href="#">
+                                    <img src="../assets/img/companylogo.png" />
+                                </a>
+                            </div>
+                            <!-- END LOGO -->
+                            <div class="welcome-header">
+                                <div class="welcome-content">
+                                    <asp:Label runat="server" Font-Bold="true" ID="lblCompanyName"></asp:Label>
+                                </div>
+                            </div>
+                            <!-- BEGIN TOP NAVIGATION MENU -->
+                            <div class="top-menu">
+                                <ul class="nav navbar-nav pull-right">
+                                    <li runat="server" visible="false">
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                            <i class="fa fa-globe"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-default">
+                                            <li>
+                                                <asp:LinkButton runat="server" Text="中文(简体)" CommandArgument="ZH-CN" OnClick="btnLanguage_Click" CausesValidation="false"></asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton runat="server" Text="English(US)" CommandArgument="EN-US" OnClick="btnLanguage_Click" CausesValidation="false"></asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton runat="server" Text="Bahasa Malaysia" CommandArgument="MS-MY" OnClick="btnLanguage_Click" CausesValidation="false"></asp:LinkButton>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                            <asp:Label runat="server" ID="lblUserType"></asp:Label>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-default">
+                                            <li>
+                                                <a href="#">
+                                                    <asp:Label runat="server" ID="lblUsername"></asp:Label></a>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton runat="server" CssClass="dropdown-toggle" href="#">
+                                                    <i class="fa fa-user"></i>
+                                                    <asp:Label runat="server" ID="lblProfile"></asp:Label>
+                                                </asp:LinkButton>
+                                            </li>
+                                            <li>
+                                                <asp:LinkButton runat="server" CssClass="dropdown-toggle" OnClick="lbtLogout_Click">
+                                                    <i class="fa fa-sign-out"></i>
+                                                    <asp:Label runat="server" ID="lblLogout"></asp:Label>
+                                                </asp:LinkButton>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+                                        <asp:LinkButton runat="server" ID="lbtMenuToggler" href="javascript:;" class="dropdown-toggle menu-toggler">
+                                                <i class="fa fa-ellipsis-v fw"></i>
+                                        </asp:LinkButton>
+                                        <!-- END RESPONSIVE MENU TOGGLER -->
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- END TOP NAVIGATION MENU -->
+                        </div>
+                    </div>
+                    <!-- END HEADER TOP -->
+                    <!-- BEGIN HEADER MENU -->
+                    <div class="page-header-menu">
+                        <div class="container">
+                            <!-- BEGIN MEGA MENU -->
+                            <!-- DOC: Apply "hor-menu-light" class after the "hor-menu" class below to have a horizontal menu with white background -->
+                            <!-- DOC: Remove data-hover="dropdown" and data-close-others="true" attributes below to disable the dropdown opening on mouse hover -->
+                            <div class="hor-menu  ">
+                                <ul class="nav navbar-nav">
+                                    <asp:Repeater ID="rpMainMenu" runat="server">
+                                        <ItemTemplate>
+                                            <li runat="server" id="liMainMenu" aria-haspopup="true">
+                                                <asp:LinkButton runat="server" ID="lbtMainMenu" href='<%#Eval("fldMenuPath")%>'>
+                                                    <i class='<%#"fa " & Eval("fldIcon")%>'></i>
+                                                    <asp:Label runat="server" ID="lblMainMenuTitle" Text='<%#gettext(Eval("fldMenuTitleText"))%>'></asp:Label>
+                                                    <asp:Label ID="lblMenuID" runat="server" Text='<%#Eval("fldMenuID")%>' Visible="false"></asp:Label>
+                                                    <asp:Label ID="lblIcon" runat="server" CssClass="arrow" Style="float: right" Visible="false"></asp:Label>
+                                                </asp:LinkButton>
+                                                <asp:Repeater ID="rpSubMenu" runat="server">
+                                                    <HeaderTemplate>
+                                                        <%--<ul class="sub-menu" style="display: block">--%>
+                                                        <ul class="dropdown-menu pull-left">
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                        <li runat="server" id="liSubMenu" aria-haspopup="true">
+                                                            <asp:LinkButton runat="server" ID="lbtSubMenu" CssClass="nav-link" Text='<%#gettext(Eval("fldMenuTitleText"))%>' href='<%#Eval("fldMenuPath")%>' target='<%#Eval("fldMenuTarget")%>' OnClientClick='<%#Eval("fldOnclick")%>'></asp:LinkButton>
+                                                        </li>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        </ul>
+                                                    </FooterTemplate>
+                                                </asp:Repeater>
+                                            </li>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </ul>
+                            </div>
+                            <!-- END MEGA MENU -->
+                            <div class="hor-menu top-menu">
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
+                                        <ul class="nav navbar-nav">
+                                            <li>
+                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                                    <i class="fa fa-globe fa-lg"></i>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-default">
+                                                    <li>
+                                                        <a href="#">
+                                                            <asp:Label runat="server" ID="lblUsername2"></asp:Label></a>
+                                                    </li>
+                                                    <li>
+                                                        <asp:LinkButton runat="server" Text="中文(简体)" CommandArgument="ZH-CN" OnClick="btnLanguage_Click" CausesValidation="false"></asp:LinkButton>
+                                                    </li>
+                                                    <li>
+                                                        <asp:LinkButton runat="server" Text="English(US)" CommandArgument="EN-US" OnClick="btnLanguage_Click" CausesValidation="false"></asp:LinkButton>
+                                                    </li>
+                                                    <li>
+                                                        <asp:LinkButton runat="server" Text="Bahasa Malaysia" CommandArgument="MS-MY" OnClick="btnLanguage_Click" CausesValidation="false"></asp:LinkButton>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true">
+                                                    <asp:Label runat="server" ID="lblUserType2"></asp:Label>
+                                                </a>
+                                                <ul class="dropdown-menu dropdown-menu-default">
+                                                    <li>
+                                                        <asp:LinkButton runat="server" CssClass="dropdown-toggle" href="../admins/profile.aspx">
+                                                            <i class="fa fa-user"></i>
+                                                            <asp:Label runat="server" ID="lblProfile2"></asp:Label>
+                                                        </asp:LinkButton>
+                                                    </li>
+                                                    <li>
+                                                        <asp:LinkButton runat="server" CssClass="dropdown-toggle" OnClick="lbtLogout_Click">
+                                                            <i class="fa fa-sign-out"></i>
+                                                            <asp:Label runat="server" ID="lblLogout2"></asp:Label>
+                                                        </asp:LinkButton>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END HEADER MENU -->
+                </div>
+                <!-- END HEADER -->
+            </div>
+        </div>
+        <div class="page-wrapper-row full-height">
+            <div class="page-wrapper-middle">
+                <!-- CONTAINER -->
+                <div class="page-container">
+                    <!-- CONTENT -->
+                    <asp:Panel class="page-content-wrapper" runat="server" ID="Panel1">
+                        <div class="page-content">
+                            <div class="container-fluid">
+                                <div class="page-content-inner">
+                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                    <!-- CONTENT -->
+                </div>
+                <!-- CONTAINER -->
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="page-wrapper-row">
+            <div class="page-wrapper-bottom">
+                <!-- BEGIN FOOTER -->
+                <!-- BEGIN INNER FOOTER -->
+                <div class="page-footer">
+                    <div class="container" style="text-align: center">
+                        <asp:Label runat="server" ID="lblFooter"></asp:Label>
+                    </div>
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+                <!-- END INNER FOOTER -->
+                <!-- END FOOTER -->
+            </div>
+        </div>
+        <!-- FOOTER -->
+    </form>
+
+    <!--[if lt IE 9]>
+<script src="../assets/global/plugins/respond.min.js"></script>
+<script src="../assets/global/plugins/excanvas.min.js"></script> 
+<script src="../assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN GLOBAL PLUGINS -->
+    <script src="../assets/global/scripts/datatable.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+    <script src="../assets/global/plugins/bootstrap-toastr/toastr.min.js" type="text/javascript"></script>
+    <script src="../assets/pages/scripts/ui-toastr.min.js" type="text/javascript"></script>
+    <!-- END GLOBAL PLUGINS -->
+    <!-- BEGIN THEME GLOBAL SCRIPTS -->
+    <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+    <script src="../assets/pages/scripts/table-datatables-managed.min.js" type="text/javascript"></script>
+    <!-- END THEME GLOBAL SCRIPTS -->
+    <!-- BEGIN THEME LAYOUT SCRIPTS -->
+    <script src="../assets/layouts/layout3/scripts/layout.min.js" type="text/javascript"></script>
+    <script src="../assets/layouts/layout3/scripts/demo.min.js" type="text/javascript"></script>
+    <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+    <script src="../assets/layouts/global/scripts/quick-nav.min.js" type="text/javascript"></script>
+    <!-- END THEME LAYOUT SCRIPTS -->
+    <!-- NON TEMPLATE-->
+    <script src="../assets/tinymce3.x/jscripts/tiny_mce/tiny_mce.js"></script>
+    <script src="../assets/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+    <script src="../assets/jquery-ui-1.11.1/jquery-ui.js"></script>
+    <script src="../assets/js/moment.min.js"></script>
+    <script src="../assets/js/moment.js"></script>
+    <script src="../assets/js/JQueryDialog.js"></script>
+    <script src="../assets/js/validate.js"></script>
+    <script src="../assets/js/browserPopup.js"></script>
+    <script src="../assets/js/datepicker.js?v=1.1"></script>
+    <script src="../assets/js/datatable.js?v=1"></script>
+    <!-- NON TEMPLATE-->
+    <script>
+        jQuery(document).ready(function () {
+            $('#clickmewow').click(function () {
+                $('#radio1003').attr('checked', 'checked');
+            });
+            $.datepicker.setDefaults($.datepicker.regional[getLanguage()]);
+        });
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1);
+                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+
+        function getLanguage() {
+            var language = getCookie("LanguageCookie")
+            if (language == 'ZH-CN') {
+                return "zh-CN";
+            }
+            else {
+                return "";
+            }
+        }
+    </script>
+</body>
+</html>

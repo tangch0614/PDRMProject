@@ -1,0 +1,182 @@
+﻿/*======================Custom Interface For Layout 1======================*/
+body {
+    background-color: #505050 !important;
+}
+
+/*Page logo*/
+.page-logo {
+    height: auto !important;
+}
+
+/*page content holder*/
+.page-content {
+    /*border-left: 1px solid #cccccc;*/
+    /*border-bottom: 1px solid #cccccc;*/
+}
+
+
+/*======================TOP NAVI BAR======================*/
+.page-header.navbar {
+    background-color: #f1f1f1 !important;
+    /*background-color: rgba(21, 21, 21, 0.9) !important;*/
+    /*background-color: #404040 !important;*/
+    -moz-box-shadow: 3px 3px 10px 6px rgba(36, 36, 36, 0.5) !important;
+    -webkit-box-shadow: 3px 3px 10px 6px rgba(36, 36, 36, 0.5) !important;
+    box-shadow: 3px 3px 10px 6px rgba(36, 36, 36, 0.5) !important;
+}
+
+    .page-header.navbar.navbar-fixed-top {
+        color: #404040;
+    }
+
+    .page-header.navbar .page-logo {
+        width: auto !important;
+    }
+
+        .page-header.navbar .page-logo img {
+            height: 46px !important;
+            padding: 3px !important;
+        }
+
+    .page-header.navbar .menu-toggler > span,
+    .page-header.navbar .menu-toggler > span:after,
+    .page-header.navbar .menu-toggler > span:before {
+        width: inherit;
+        height: inherit;
+        position: inherit;
+        top: inherit;
+        background: none;
+    }
+
+    .welcome-header {
+        display:inline-block; 
+        margin:5px;
+    }
+    
+    .welcome-header .welcome-content {
+        display:block; 
+    }
+
+@media (max-width: 991px) { /*top menu toggler button layout1*/
+    body {
+        background-color: #f1f1f1 !important;
+    }
+
+    .page-header.navbar {
+        height: auto;
+    }
+
+        .page-header.navbar .menu-toggler {
+            opacity: inherit !important;
+            filter: inherit !important;
+            width: inherit !important;
+            height: inherit !important;
+        }
+
+            /*top menu toggler button position*/
+            .page-header.navbar .menu-toggler.responsive-toggler {
+                margin: 0 5px !important;
+            }
+            
+    .page-header.navbar .page-logo {
+        width: 100% !important;
+        text-align: center;
+        display: block;
+        float:none;
+    }
+
+    .page-header.navbar .page-logo>.logo-image, .page-header.navbar .page-logo>a{
+        float:none;
+    }
+    
+}
+
+@media (max-width: 767px) {
+    .welcome-header {
+        width: 100% !important;
+        display:block; 
+        text-align: center;
+        margin:10px;
+    }
+}
+
+@media (max-width: 480px) { /*top menu*/
+    .page-header.navbar .top-menu {
+        background: none !important;
+    }
+    
+    .page-header.navbar .page-logo {
+        width: 100% !important;
+        text-align: center;
+    }
+    
+}
+/*======================TOP NAVI BAR======================*/
+
+/*======================SIDE MENU BAR======================*/
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover, .page-sidebar {
+    background-color: #505050 !important;
+}
+
+    /*closed main menu*/
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li > a, .page-sidebar .page-sidebar-menu > li > a {
+        border-top: 1px solid #303030 !important;
+        color: #fff !important;
+    }
+
+    /*activated main menu*/
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.active.open > a, .page-sidebar .page-sidebar-menu > li.active > a, .page-sidebar .page-sidebar-menu > li.active.open > a {
+        background: #e35f25 !important;
+        border-top-color: #e35f25 !important;
+        color: #fff !important;
+    }
+
+    /*inactive main menu*/
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li.open > a, .page-sidebar .page-sidebar-menu > li.open > a {
+        background: #303030 !important;
+        border-top-color: #303030 !important;
+        color: #fff !important;
+    }
+
+    /*inactive main menu hover*/
+    .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu > li:hover > a {
+        /*background: #4db3a4 !important;*/
+        color: #fff !important;
+    }
+
+    /*inactive main menu hover*/
+    .page-sidebar .page-sidebar-menu > li:hover > a {
+        /*background: #e35f25 !important;*/
+        /*color: #fff !important;*/
+        border-top-color: #e35f25 !important;
+    }
+
+/*sub menu*/
+ul.sub-menu {
+    background: none !important;
+}
+
+/*sub menu link hover/active*/
+.page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li:hover > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.open > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li.active > a, .page-sidebar .page-sidebar-menu .sub-menu > li:hover > a, .page-sidebar .page-sidebar-menu .sub-menu > li.open > a, .page-sidebar .page-sidebar-menu .sub-menu > li.active > a {
+    background: #82827e !important;
+    color: #fff !important;
+}
+
+/*sub menu link inactive*/
+.page-sidebar .page-sidebar-menu .sub-menu > li > a, .page-sidebar-closed.page-sidebar-fixed .page-sidebar:hover .page-sidebar-menu .sub-menu > li > a {
+    background: none !important;
+    color: #fff !important;
+}
+
+@media (max-width: 991px) { /*top menu bar*/
+    .page-sidebar {
+        background-color: #505050 !important;
+    }
+
+        /*top sub menu link inactive*/
+        .page-sidebar .page-sidebar-menu > li .sub-menu {
+            background: none !important;
+        }
+}
+/*======================SIDE MENU BAR======================*/
+/*======================Custom Interface For Layout 1======================*/
