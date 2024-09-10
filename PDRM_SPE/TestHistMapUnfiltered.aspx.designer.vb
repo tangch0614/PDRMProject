@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AHistoryMap
+Partial Public Class TestHistMapUnfiltered
 
     '''<summary>
     '''style_components control.
@@ -111,15 +111,6 @@ Partial Public Class AHistoryMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnSearch As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''btnpdf control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnpdf As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''plOPPInfo control.

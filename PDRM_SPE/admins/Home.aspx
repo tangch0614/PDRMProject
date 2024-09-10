@@ -431,21 +431,21 @@
                             if (img == '') {
                                 img = "../assets/img/No_Image.png";
                             };
-                            var tableHTML = '<div align="center"><img src="' + img + '" style="width:100px;height:100px;"/></div>';
-                            tableHTML += '<table style="width: 100%;" class="dataTable table-bordered table-striped">';
-                            tableHTML += '<tr><td><%=GetText("IMEI")%></td><td class="bold">' + notification.fldIMEI + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("Name")%></td><td class="bold">' + notification.fldOPPName + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("ICNum")%></td><td class="bold">' + notification.fldOPPICNo + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("ContactNum")%></td><td class="bold">' + notification.fldOPPContactNo + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("OfficerItem").Replace("vITEM", GetText("Name"))%></td><td class="bold">' + notification.fldOverseerName + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("PoliceIDNo")%></td><td class="bold">' + notification.fldOverseerPoliceNo + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("OfficerItem").Replace("vITEM", GetText("ContactNum"))%></td><td class="bold">' + notification.fldOverseerContactNo + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("PoliceStation")%></td><td class="bold">' + notification.fldPSName + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("Department")%></td><td class="bold">' + notification.fldDepartment + '</td></tr>';
-                            tableHTML += '<tr><td><%=GetText("DateTime")%></td><td class="bold">' + notification.fldDatetime.replace('T', ' ') + '</td></tr>';
-                            tableHTML += '</table>';
-                            tableHTML += '<div align="center"><button class="btn default" id="btnAcknowledge">Acknowledge</button></div>';
-                            //tableHTML += '<button class="btn default" onclick="SetMapCenter(' + notification.fldRLat + ',' + notification.fldRLong + ');return false;" > Show Location</button > '
+                            var tableHTML = "<div align='center'><img src='" + img + "' style='width:100px;height:100px;'/></div>";
+                            tableHTML += "<table style='width: 100%;' class='dataTable table-bordered table-striped'>";
+                            tableHTML += "<tr><td><%=GetText("IMEI")%></td><td class='bold'>" + notification.fldIMEI + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("Name")%></td><td class='bold'>" + notification.fldOPPName + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("ICNum")%></td><td class='bold'>" + notification.fldOPPICNo + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("ContactNum")%></td><td class='bold'>" + notification.fldOPPContactNo + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("OfficerItem").Replace("vITEM", GetText("Name"))%></td><td class='bold'>" + notification.fldOverseerName + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("PoliceIDNo")%></td><td class='bold'>" + notification.fldOverseerPoliceNo + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("OfficerItem").Replace("vITEM", GetText("ContactNum"))%></td><td class='bold'>" + notification.fldOverseerContactNo + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("PoliceStation")%></td><td class='bold'>" + notification.fldPSName + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("Department")%></td><td class='bold'>" + notification.fldDepartment + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("DateTime")%></td><td class='bold'>" + notification.fldDatetime.replace("T", " ") + "</td></tr>";
+                            tableHTML += "</table>";
+                            tableHTML += "<div align='center'><button class='btn default' id='btnAcknowledge'>Acknowledge</button></div>";
+                            //tableHTML += "<button class='btn default' onclick='SetMapCenter(" + notification.fldRLat + "," + notification.fldRLong + ");return false;" > Show Location</button > "
 
                             var toastrclass;
                             if (notification.fldSeverity == "low") {

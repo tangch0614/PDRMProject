@@ -99,6 +99,20 @@ Public Class AEMDList
             If Not device Is Nothing Then
                 GetDeviceData(device)
             End If
+        ElseIf e.CommandName.Equals("lock") Then
+            Dim result As Boolean = EMDDeviceManager.InsertGPRSCommand_Lock(e.CommandArgument)
+            If result Then
+                ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("MsgCommandSendSuccess") & "');", True)
+            Else
+                ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("ErrorCommandSendFailed") & "');", True)
+            End If
+        ElseIf e.CommandName.Equals("unlock") Then
+            Dim result As Boolean = EMDDeviceManager.InsertGPRSCommand_Unlock(e.CommandArgument, "221088")
+            If result Then
+                ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("MsgCommandSendSuccess") & "');", True)
+            Else
+                ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("ErrorCommandSendFailed") & "');", True)
+            End If
         Else
             plUpdate.Visible = False
             plTable.Visible = True

@@ -136,6 +136,7 @@
     <Content Include="admins\HistoryMap.aspx" />
     <Content Include="admins\EMDInstallationRequestList.aspx" />
     <Content Include="admins\PoliceStationList.aspx" />
+    <Content Include="admins\TrackingHistoryReport.aspx" />
     <Content Include="admins\TrackingMap.aspx" />
     <Content Include="admins\MainMap.aspx" />
     <Content Include="admins\TrackingMap_old.aspx" />
@@ -145,6 +146,8 @@
     <Content Include="assets\alertsound.mp3" />
     <Content Include="assets\alertsound2.mp3" />
     <Content Include="assets\alertsound3.mp3" />
+    <Content Include="TestHistMapFiltered2.aspx" />
+    <Content Include="TestHistMapUnfiltered.aspx" />
     <Content Include="TestHistMapFiltered.aspx" />
     <Content Include="TestMap.aspx" />
     <Content Include="admins\IPDList.aspx" />
@@ -6294,6 +6297,13 @@
       <DependentUpon>PoliceStationList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admins\TrackingHistoryReport.aspx.designer.vb">
+      <DependentUpon>TrackingHistoryReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admins\TrackingHistoryReport.aspx.vb">
+      <DependentUpon>TrackingHistoryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="admins\TrackingMap.aspx.designer.vb">
       <DependentUpon>TrackingMap.aspx</DependentUpon>
     </Compile>
@@ -6327,6 +6337,20 @@
     </Compile>
     <Compile Include="admins\OfficerList.aspx.vb">
       <DependentUpon>OfficerList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestHistMapFiltered2.aspx.designer.vb">
+      <DependentUpon>TestHistMapFiltered2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestHistMapFiltered2.aspx.vb">
+      <DependentUpon>TestHistMapFiltered2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestHistMapUnfiltered.aspx.designer.vb">
+      <DependentUpon>TestHistMapUnfiltered.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TestHistMapUnfiltered.aspx.vb">
+      <DependentUpon>TestHistMapUnfiltered.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="TestHistMapFiltered.aspx.designer.vb">

@@ -196,6 +196,9 @@
   <data name="AdminTypeAccessControl" xml:space="preserve">
     <value>User Access Control</value>
   </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
   <data name="AlertNotificationList" xml:space="preserve">
     <value>Alert List</value>
   </data>
@@ -225,6 +228,9 @@
   </data>
   <data name="Banner" xml:space="preserve">
     <value>Banner</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Battery</value>
   </data>
   <data name="BeltStatus" xml:space="preserve">
     <value>Belt Status</value>
@@ -296,7 +302,7 @@
     <value>Creator</value>
   </data>
   <data name="CreatorName" xml:space="preserve">
-    <value>Creator's Name</value>
+    <value>Creator Name</value>
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
@@ -355,6 +361,9 @@
   <data name="EMDList" xml:space="preserve">
     <value>EMD List</value>
   </data>
+  <data name="EMDReport" xml:space="preserve">
+    <value>EMD Report</value>
+  </data>
   <data name="EnterItem" xml:space="preserve">
     <value>Enter vITEM</value>
   </data>
@@ -387,6 +396,9 @@
   </data>
   <data name="ErrorChangePasswordFailed" xml:space="preserve">
     <value>*Change password failed!</value>
+  </data>
+  <data name="ErrorCommandSendFailed" xml:space="preserve">
+    <value>*GPRS command sent failed!</value>
   </data>
   <data name="ErrorConfirmPasswordCompare" xml:space="preserve">
     <value>*Passwords do not match!</value>
@@ -589,14 +601,26 @@
   <data name="GeneratedDateTime" xml:space="preserve">
     <value>Generated Date Time</value>
   </data>
+  <data name="GenerateReport" xml:space="preserve">
+    <value>Generate Report</value>
+  </data>
   <data name="Geofence" xml:space="preserve">
     <value>Geofence</value>
   </data>
   <data name="GeofenceStatus" xml:space="preserve">
     <value>Geofence Status</value>
   </data>
+  <data name="GPSStatus" xml:space="preserve">
+    <value>GPS Status</value>
+  </data>
   <data name="Group" xml:space="preserve">
     <value>Group</value>
+  </data>
+  <data name="GSMSignal" xml:space="preserve">
+    <value>GSM Signal</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
   </data>
   <data name="HistoryMap" xml:space="preserve">
     <value>Location History Map</value>
@@ -839,6 +863,9 @@
   <data name="MsgChangePasswordSuccess" xml:space="preserve">
     <value>Password changed!</value>
   </data>
+  <data name="MsgCommandSendSuccess" xml:space="preserve">
+    <value>GPRS command sent successfully!</value>
+  </data>
   <data name="MsgComputerGenerated" xml:space="preserve">
     <value>This is a computer generated vTYPE and does not require a signature.</value>
   </data>
@@ -963,7 +990,7 @@
     <value>Officer-In Charge Station Information</value>
   </data>
   <data name="OCSItem" xml:space="preserve">
-    <value>OCS's vITEM</value>
+    <value>OCS vITEM</value>
   </data>
   <data name="Off" xml:space="preserve">
     <value>Off</value>
@@ -978,7 +1005,7 @@
     <value>Officer Information</value>
   </data>
   <data name="OfficerItem" xml:space="preserve">
-    <value>Officer's vITEM</value>
+    <value>Officer vITEM</value>
   </data>
   <data name="OfficerList" xml:space="preserve">
     <value>Officer List</value>
@@ -993,7 +1020,7 @@
     <value>Operator Online</value>
   </data>
   <data name="OPPItem" xml:space="preserve">
-    <value>OPP's vITEM</value>
+    <value>OPP vITEM</value>
   </data>
   <data name="OPPList" xml:space="preserve">
     <value>OPP List</value>
@@ -1089,7 +1116,7 @@
     <value>Police Station Details</value>
   </data>
   <data name="PoliceStationItem" xml:space="preserve">
-    <value>Police Station's vITEM</value>
+    <value>Police Station vITEM</value>
   </data>
   <data name="PoliceStationList" xml:space="preserve">
     <value>Police Station List</value>
@@ -1111,6 +1138,9 @@
   </data>
   <data name="Print" xml:space="preserve">
     <value>Print</value>
+  </data>
+  <data name="PrintPDF" xml:space="preserve">
+    <value>Save PDF/Print</value>
   </data>
   <data name="ProcessBy" xml:space="preserve">
     <value>Process By</value>
@@ -1242,7 +1272,7 @@
     <value>Subject Details</value>
   </data>
   <data name="SubjectItem" xml:space="preserve">
-    <value>Subject's vITEM</value>
+    <value>Subject vITEM</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>

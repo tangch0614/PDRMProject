@@ -8,7 +8,7 @@ Public Class GetData
     Inherits System.Web.UI.Page
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-
+        GetEMDHistoryFilter(-1, 1, "", "", 0)
     End Sub
 
 #Region "Notification"
@@ -72,11 +72,11 @@ Public Class GetData
                 .lng = dataTable.Rows(i)("fldLong"),
                 .locstatus = If(dataTable.Rows(i)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
                 .datastatus = base.GetText("Real-time"),
-                .gsm = GetGSMSignalImg(CInt(dataTable.Rows(i)("fldGSMSignal"))),
+                .gsm = GetGSMSignalImg(CInt(dataTable.Rows(i)("fldGSMSignalPercent"))),
                 .battery = String.Format("{0}%{1}", CDec(dataTable.Rows(i)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
                 .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
                 .alarm = dataTable.Rows(i)("fldAlarmEvent"),
-                .speed = (CDec(dataTable.Rows(i)("fldSpeed")) * 1.852).ToString("N2") & "km/h",
+                .speed = CDec(dataTable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
                 .geofence = dataTable.Rows(i)("fldGeofence1"),
                 .pincolor = "blue",
                 .pinglyphcolor = "black"
@@ -88,9 +88,16 @@ Public Class GetData
 
     <WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
-    Public Shared Function GetEMDHistoryFiltered(ByVal deviceid As Long, ByVal oppid As Long, ByVal frdatetime As String, ByVal todatetime As String) As List(Of EMDDeviceInfo)
+    Public Shared Function GetEMDHistoryFilter(ByVal deviceid As Long, ByVal oppid As Long, ByVal frdatetime As String, ByVal todatetime As String, ByVal filtertype As Integer) As List(Of EMDDeviceInfo)
         Dim markers As New List(Of EMDDeviceInfo)()
-        Dim dataTable As DataTable = EMDDeviceManager.GetDeviceHistoryFiltered(deviceid, oppid, "", frdatetime, todatetime)
+        Dim dataTable As DataTable = New DataTable
+        If filtertype = 0 Then
+            dataTable = EMDDeviceManager.GetDeviceHistoryRAW(deviceid, oppid, "", frdatetime, todatetime)
+        ElseIf filtertype = 1 Then
+            dataTable = EMDDeviceManager.GetDeviceHistory(deviceid, oppid, "", frdatetime, todatetime, 180)
+        ElseIf filtertype = 2 Then
+            dataTable = EMDDeviceManager.GetDeviceHistoryFiltered(deviceid, oppid, "", frdatetime, todatetime)
+        End If
         ' Convert the DataTable to JSON
         Dim base As New Base
         For i As Integer = 0 To dataTable.Rows.Count - 1
@@ -104,11 +111,11 @@ Public Class GetData
                 .lng = dataTable.Rows(i)("fldLong"),
                 .locstatus = If(dataTable.Rows(i)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
                 .datastatus = base.GetText("Real-time"),
-                .gsm = GetGSMSignalImg(CInt(dataTable.Rows(i)("fldGSMSignal"))),
+                .gsm = GetGSMSignalImg(CInt(dataTable.Rows(i)("fldGSMSignalPercent"))),
                 .battery = String.Format("{0}%{1}", CDec(dataTable.Rows(i)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
                 .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
                 .alarm = dataTable.Rows(i)("fldAlarmEvent"),
-                .speed = (CDec(dataTable.Rows(i)("fldSpeed")) * 1.852).ToString("N2") & "km/h",
+                .speed = CDec(dataTable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
                 .geofence = dataTable.Rows(i)("fldGeofence1"),
                 .pincolor = "blue",
                 .pinglyphcolor = "black"
@@ -134,13 +141,13 @@ Public Class GetData
                 .lng = If(String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLong")), ConvertPos(datatable.Rows(0)("fldLong"), datatable.Rows(0)("fldWE"), "long"), datatable.Rows(0)("fldRLong")),
                 .locstatus = If(datatable.Rows(0)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
                 .datastatus = base.GetText("Real-time"),
-                .gsm = GetGSMSignalImg(CInt(datatable.Rows(0)("fldGSMSignal"))),
+                .gsm = GetGSMSignalImg(CInt(datatable.Rows(0)("fldGSMSignalPercent"))),
                 .gps = CInt(datatable.Rows(0)("fldGPSSat")),
                 .bds = CInt(datatable.Rows(0)("fldBDSat")),
                 .battery = String.Format("{0}%{1}", CDec(datatable.Rows(0)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
                 .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
                 .alarm = datatable.Rows(0)("fldAlarmEvent"),
-                .speed = (CDec(datatable.Rows(0)("fldSpeed")) * 1.852).ToString("N2") & "km/h",
+                .speed = CDec(datatable.Rows(0)("fldSpeedkmh")).ToString("N2") & "km/h",
                 .geofence = datatable.Rows(0)("fldGeofence1"),
                 .pincolor = datatable.Rows(0)("fldDeptColor"),
                 .pinglyphcolor = "black"
@@ -168,13 +175,13 @@ Public Class GetData
                 .lng = If(String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLong")), ConvertPos(datatable.Rows(i)("fldLong"), datatable.Rows(i)("fldWE"), "long"), datatable.Rows(i)("fldRLong")),
                 .locstatus = If(datatable.Rows(i)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
                 .datastatus = base.GetText("Real-time"),
-                .gsm = GetGSMSignalImg(CInt(datatable.Rows(i)("fldGSMSignal"))),
+                .gsm = GetGSMSignalImg(CInt(datatable.Rows(i)("fldGSMSignalPercent"))),
                 .gps = CInt(datatable.Rows(i)("fldGPSSat")),
                 .bds = CInt(datatable.Rows(i)("fldBDSat")),
                 .battery = String.Format("{0}%{1}", CDec(datatable.Rows(i)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
                 .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
                 .alarm = datatable.Rows(i)("fldAlarmEvent"),
-                .speed = CDec(datatable.Rows(i)("fldSpeed")) * 1.852 & "km/h",
+                .speed = CDec(datatable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
                 .geofence = datatable.Rows(i)("fldGeofence1"),
                 .pincolor = datatable.Rows(i)("fldDeptColor"),
                 .pinglyphcolor = "black",
@@ -222,8 +229,8 @@ Public Class GetData
         Return convert
     End Function
 
-    Private Shared Function GetGSMSignalImg(ByVal gsm As Integer) As String
-        Dim percent As Decimal = gsm / 31 * 100
+    Private Shared Function GetGSMSignalImg(ByVal gsm As Decimal) As String
+        Dim percent As Decimal = gsm 'If(gsm > 0, gsm / 31 * 100, 0)
         If percent >= 80 Then
             Return "signal_1.png"
         ElseIf percent >= 60 Then

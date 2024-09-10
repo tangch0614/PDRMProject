@@ -195,6 +195,9 @@
   <data name="AdminTypeAccessControl" xml:space="preserve">
     <value>Kawalan Akses Pengguna</value>
   </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Makluman</value>
+  </data>
   <data name="AlertNotificationList" xml:space="preserve">
     <value>Senarai Makluman</value>
   </data>
@@ -224,6 +227,9 @@
   </data>
   <data name="Banner" xml:space="preserve">
     <value>Banner</value>
+  </data>
+  <data name="Battery" xml:space="preserve">
+    <value>Bateri</value>
   </data>
   <data name="BeltStatus" xml:space="preserve">
     <value>Belt Status</value>
@@ -354,6 +360,9 @@
   <data name="EMDList" xml:space="preserve">
     <value>Senarai EMD</value>
   </data>
+  <data name="EMDReport" xml:space="preserve">
+    <value>Laporan EMD</value>
+  </data>
   <data name="EnterItem" xml:space="preserve">
     <value>Masukkan vITEM</value>
   </data>
@@ -386,6 +395,9 @@
   </data>
   <data name="ErrorChangePasswordFailed" xml:space="preserve">
     <value>*Pertukaran kata laluan gagal!</value>
+  </data>
+  <data name="ErrorCommandSendFailed" xml:space="preserve">
+    <value>*Gagal menghantar arahan GPRS!</value>
   </data>
   <data name="ErrorConfirmPasswordCompare" xml:space="preserve">
     <value>*Kata laluan tidak sepadan!</value>
@@ -588,14 +600,26 @@
   <data name="GeneratedDateTime" xml:space="preserve">
     <value>Tarikh Masa Dijana</value>
   </data>
+  <data name="GenerateReport" xml:space="preserve">
+    <value>Hasilkan Laporan</value>
+  </data>
   <data name="Geofence" xml:space="preserve">
     <value>Geo Pagar</value>
   </data>
   <data name="GeofenceStatus" xml:space="preserve">
     <value>Status Geo Pagar</value>
   </data>
+  <data name="GPSStatus" xml:space="preserve">
+    <value>Status GPS</value>
+  </data>
   <data name="Group" xml:space="preserve">
     <value>Kumpulan</value>
+  </data>
+  <data name="GSMSignal" xml:space="preserve">
+    <value>Isyarat GSM</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>Sejarah</value>
   </data>
   <data name="HistoryMap" xml:space="preserve">
     <value>Peta Sejarah Lokasi</value>
@@ -837,6 +861,9 @@
   </data>
   <data name="MsgChangePasswordSuccess" xml:space="preserve">
     <value>Kata laluan berjaya ditukar!</value>
+  </data>
+  <data name="MsgCommandSendSuccess" xml:space="preserve">
+    <value>Arahan GPRS berjaya dihantar!</value>
   </data>
   <data name="MsgComputerGenerated" xml:space="preserve">
     <value>Ini adalah vTYPE yang dijana komputer dan tidak memerlukan tandatangan.</value>
@@ -1110,6 +1137,9 @@
   </data>
   <data name="Print" xml:space="preserve">
     <value>Cetak</value>
+  </data>
+  <data name="PrintPDF" xml:space="preserve">
+    <value>Simpan PDF/Cetak</value>
   </data>
   <data name="ProcessBy" xml:space="preserve">
     <value>Proses Oleh</value>

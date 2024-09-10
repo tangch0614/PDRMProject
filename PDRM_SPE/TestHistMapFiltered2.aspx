@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="HistoryMap.aspx.vb" Inherits="PDRM_SPE.AHistoryMap" %>
+﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="TestHistMapFiltered2.aspx.vb" Inherits="PDRM_SPE.TestHistMapFiltered2" %>
 
 <!DOCTYPE html>
 
@@ -110,9 +110,10 @@
                         oppid: oppid,
                         imei: "",
                         frdatetime: frdatetime,
-                        todatetime: todatetime
+                        todatetime: todatetime,
+                        filtertype: 2
                     };
-                    const response = await fetch('../GetData.aspx/GetEMDHistory', {
+                    const response = await fetch('../GetData.aspx/GetEMDHistoryFilter', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -137,7 +138,7 @@
             var content = "<div><table>" +
                 "<tr><td>IMEI</td><td>: " + location.imei + "</td></tr>" +
                 "<tr><td>DateTime</td><td>: " + location.datetime + "</td></tr>" +
-                "<tr><td>GPS Status</td><td>: " + location.locstatus + "</td></tr>" +
+                "<tr><td>Loc Status</td><td>: " + location.locstatus + "</td></tr>" +
                 "<tr><td>GSM</td><td>: <img src='../assets/img/" + location.gsm + "'/></td></tr>" +
                 "<tr><td>Battery</td><td>: " + location.battery + "</td></tr>" +
                 "<tr><td>Belt Status</td><td>: " + location.beltstatus + "</td></tr>" +
@@ -153,7 +154,7 @@
             const { InfoWindow } = await google.maps.importLibrary("maps");
 
             // Loop through the new data and create markers
-            locations.forEach((location, index) => {
+            locations.forEach((location,index) => {
                 createMarker(location, InfoWindow, AdvancedMarkerElement, PinElement, index + 1, locations.length);
             });
 
@@ -225,8 +226,8 @@
                 pinColor = "red";  // First marker is blue
             } else if (index === totalmarkers) {
                 pinColor = "red";  // Last marker white
-                glyph = "🏁";
-            }
+                glyph = "🏁";  
+            } 
 
             const pinElement = new PinElement({
                 background: pinColor,
@@ -240,7 +241,7 @@
                 position: { lat: location.lat, lng: location.lng },
                 content: pinElement.element,
                 title: location.fldID,
-                zIndex: index === totalmarkers ? totalmarkers : -index
+                zIndex: index === totalmarkers ? totalmarkers:-index
             });
 
             marker.addListener("click", () => {
@@ -293,7 +294,7 @@
             $('#ddlToTime').select2();
         }
     </script>
-
+    
 </head>
 <body style="background-color: #f1f1f1 !important;">
     <form id="form1" runat="server">
@@ -371,7 +372,6 @@
                                                 <tr>
                                                     <td colspan="2" align="right">
                                                         <asp:Button runat="server" CssClass="btn blue" ID="btnSearch" Text='Search' OnClick="btnSearch_Click" />
-                                                        <asp:Button runat="server" CssClass="btn blue" ID="btnpdf" Text='Pdf' OnClick="btnpdf_Click" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -402,7 +402,7 @@
                                                         <asp:Label runat="server" ID="txtOPPICNo"></asp:Label>
                                                     </td>
                                                 </tr>
-
+                                                
                                                 <tr>
                                                     <td><%=GetText("OverseerItem").Replace("vITEM", GetText("Name"))%></td>
                                                     <td class="bold">

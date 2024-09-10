@@ -9,6 +9,141 @@ NameSpace BusinessLogic
 
     Public Class EMDDeviceManager
 
+#Region "Command"
+
+        Public Shared Function InsertGPRSCommand(ByVal DeviceID As Long, ByVal MsgType As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = False
+                    Dim MsgContent As String = ""
+                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
+                    If DeviceID > 0 AndAlso Not String.IsNullOrEmpty(IMEI) Then
+                        Dim ConnectionID As Long = EMDDeviceDB.GetConnectionID(IMEI, myConnection)
+                        If ConnectionID > 0 Then
+                            If MsgType.Equals("alarmon") Then
+                                MsgContent = "$GPRS," & IMEI & ";W043,1,1,1;!"
+                            ElseIf MsgType.Equals("alarmoff") Then
+                                MsgContent = "$GPRS," & IMEI & ";W043,1,1,0;!"
+                            ElseIf MsgType.Equals("unlock") Then
+                                MsgContent = "$,unlock;221088;!"
+                            ElseIf MsgType.Equals("lock") Then
+                                MsgContent = "$,lock;000000;!"
+                            ElseIf MsgType.Equals("vibrate") Then
+                                MsgContent = "$GPRS," & IMEI & ";W036,20;!"
+                            End If
+                            result = EMDDeviceDB.InsertGPRSCommand(ConnectionID, IMEI, MsgContent, myConnection)
+                        End If
+                    End If
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function InsertGPRSCommand_Unlock(ByVal DeviceID As Long, ByVal password As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = False
+                    Dim MsgContent As String = ""
+                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
+                    If DeviceID > 0 AndAlso Not String.IsNullOrEmpty(password) AndAlso Not String.IsNullOrEmpty(IMEI) Then
+                        Dim ConnectionID As Long = EMDDeviceDB.GetConnectionID(IMEI, myConnection)
+                        If ConnectionID > 0 Then
+                            result = EMDDeviceDB.InsertGPRSCommand(ConnectionID, IMEI, "$,unlock;" & password & ";!", myConnection)
+                        End If
+                    End If
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function InsertGPRSCommand_Lock(ByVal DeviceID As Long) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = False
+                    Dim MsgContent As String = ""
+                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
+                    If DeviceID > 0 AndAlso Not String.IsNullOrEmpty(IMEI) Then
+                        Dim ConnectionID As Long = EMDDeviceDB.GetConnectionID(IMEI, myConnection)
+                        If ConnectionID > 0 Then
+                            result = EMDDeviceDB.InsertGPRSCommand(ConnectionID, IMEI, "$,lock;000000;!", myConnection)
+                        End If
+                    End If
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function InsertGPRSCommand_Vibrate(ByVal DeviceID As Long, ByVal VibrateCount As Integer) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = False
+                    Dim MsgContent As String = ""
+                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
+                    If DeviceID > 0 AndAlso Not String.IsNullOrEmpty(IMEI) Then
+                        Dim ConnectionID As Long = EMDDeviceDB.GetConnectionID(IMEI, myConnection)
+                        If ConnectionID > 0 Then
+                            result = EMDDeviceDB.InsertGPRSCommand(ConnectionID, IMEI, "$GPRS," & IMEI & ";W036," & VibrateCount & ";!", myConnection)
+                        End If
+                    End If
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function InsertGPRSCommand_Alarm(ByVal DeviceID As Long, ByVal OthersAlarm As Integer, ByVal BeltAlarm As Integer, ByVal PlayAlarm As Integer) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = False
+                    Dim MsgContent As String = ""
+                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
+                    If DeviceID > 0 AndAlso Not String.IsNullOrEmpty(IMEI) Then
+                        Dim ConnectionID As Long = EMDDeviceDB.GetConnectionID(IMEI, myConnection)
+                        If ConnectionID > 0 Then
+                            result = EMDDeviceDB.InsertGPRSCommand(ConnectionID, IMEI, "$GPRS," & IMEI & ";W043," & OthersAlarm & "," & BeltAlarm & "," & PlayAlarm & ";!", myConnection)
+                        End If
+                    End If
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function InsertNotification(ByVal DeviceID As Long, ByVal MsgType As String, ByVal Level As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = False
+                    Dim MsgContent As String = ""
+                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
+                    Dim oppid As String = EMDDeviceDB.GetOPPID(DeviceID, myConnection)
+                    If Not String.IsNullOrEmpty(IMEI) Then
+                        result = EMDDeviceDB.InsertNotification(IMEI, oppid, DeviceID, MsgType, Level, myConnection)
+                    End If
+                    myConnection.Close()
+                    If result Then
+                        myTransactionScope.Complete()
+                    End If
+                    Return result
+                End Using
+            End Using
+        End Function
+
+#End Region
+
 #Region "Notification"
 
         Public Shared Function CountNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal processstatus As Integer) As Integer
@@ -44,6 +179,15 @@ NameSpace BusinessLogic
             End Using
         End Function
 
+        Public Shared Function GetAlertNotificationList(ByVal emdID As Long, ByVal oppID As Long, ByVal dateFrom As String, ByVal dateTo As String) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotificationList(emdID, oppID, dateFrom, dateTo, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
         Public Shared Function UpdateProcessStatus(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String) As Boolean
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
@@ -60,6 +204,15 @@ NameSpace BusinessLogic
 
 #Region "EMD History"
 
+        Public Shared Function GetDeviceHistoryRAW(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal frdatetime As String, ByVal todatetime As String) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceHistoryRAW(deviceid, oppid, imei, frdatetime, todatetime, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
         Public Shared Function GetDeviceHistory(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal frdatetime As String, ByVal todatetime As String, ByVal intervalsec As Integer) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
@@ -73,6 +226,15 @@ NameSpace BusinessLogic
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
                 Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceHistoryFiltered(deviceid, oppid, imei, frdatetime, todatetime, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
+        Public Shared Function GetDeviceHistory_PDF(ByVal deviceid As Long, ByVal oppid As Long, ByVal frdatetime As String, ByVal todatetime As String, ByVal intervalsec As Integer) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceHistory_PDF(deviceid, oppid, frdatetime, todatetime, intervalsec, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using

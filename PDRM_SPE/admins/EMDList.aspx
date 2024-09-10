@@ -70,10 +70,10 @@
                                                             <th style="width: 10% !important">
                                                                 <%#GetText("Imei")%>
                                                             </th>
-                                                            <th style="width: 10% !important; display:none;">
+                                                            <th style="width: 10% !important; display: none;">
                                                                 <%#GetText("SIMNo")%>
                                                             </th>
-                                                            <th style="width: 10% !important; display:none;">
+                                                            <th style="width: 10% !important; display: none;">
                                                                 <%#GetText("SIMNo") & " 2"%>
                                                             </th>
                                                             <th style="width: 10% !important">
@@ -98,10 +98,10 @@
                                                     <td style="text-align: left">
                                                         <%#Eval("fldImei")%>
                                                     </td>
-                                                    <td style="text-align: left; display:none;">
+                                                    <td style="text-align: left; display: none;">
                                                         <%#Eval("fldSImNo")%>
                                                     </td>
-                                                    <td style="text-align: left; display:none;">
+                                                    <td style="text-align: left; display: none;">
                                                         <%#Eval("fldSImNo2")%>
                                                     </td>
                                                     <td style="text-align: left">
@@ -114,6 +114,8 @@
                                                         <asp:Label runat="server" ID="txtStatus" Text='<%#If(Eval("fldStatus").Equals("Y"), GetText("Active"), GetText("Inactive"))%>' CssClass='<%#If(Eval("fldStatus").Equals("Y"), "label label-success", "label label-danger")%>'></asp:Label>
                                                     </td>
                                                     <td style="text-align: center">
+                                                        <asp:Button runat="server" ID="btnLockEMD" Text='<%#GetText("Lock")%>' CommandName="lock" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
+                                                        <asp:Button runat="server" ID="btnUnlockEMD" Text='<%#GetText("Unlock")%>' CommandName="unlock" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
                                                         <asp:Button runat="server" ID="btnEdit" Text='<%#GetText("Update")%>' CommandName="update" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
                                                     </td>
                                                 </tr>

@@ -300,6 +300,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Alert.
+        '''</summary>
+        Friend Shared ReadOnly Property Alert() As String
+            Get
+                Return ResourceManager.GetString("Alert", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Alert List.
         '''</summary>
         Friend Shared ReadOnly Property AlertNotificationList() As String
@@ -386,6 +395,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Banner() As String
             Get
                 Return ResourceManager.GetString("Banner", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Battery.
+        '''</summary>
+        Friend Shared ReadOnly Property Battery() As String
+            Get
+                Return ResourceManager.GetString("Battery", resourceCulture)
             End Get
         End Property
         
@@ -597,7 +615,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Creator&apos;s Name.
+        '''  Looks up a localized string similar to Creator Name.
         '''</summary>
         Friend Shared ReadOnly Property CreatorName() As String
             Get
@@ -777,6 +795,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to EMD Report.
+        '''</summary>
+        Friend Shared ReadOnly Property EMDReport() As String
+            Get
+                Return ResourceManager.GetString("EMDReport", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Enter vITEM.
         '''</summary>
         Friend Shared ReadOnly Property EnterItem() As String
@@ -872,6 +899,15 @@ Namespace Resources
         Friend Shared ReadOnly Property ErrorChangePasswordFailed() As String
             Get
                 Return ResourceManager.GetString("ErrorChangePasswordFailed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to *GPRS command sent failed!.
+        '''</summary>
+        Friend Shared ReadOnly Property ErrorCommandSendFailed() As String
+            Get
+                Return ResourceManager.GetString("ErrorCommandSendFailed", resourceCulture)
             End Get
         End Property
         
@@ -1479,6 +1515,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Generate Report.
+        '''</summary>
+        Friend Shared ReadOnly Property GenerateReport() As String
+            Get
+                Return ResourceManager.GetString("GenerateReport", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Geofence.
         '''</summary>
         Friend Shared ReadOnly Property Geofence() As String
@@ -1497,11 +1542,38 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to GPS Status.
+        '''</summary>
+        Friend Shared ReadOnly Property GPSStatus() As String
+            Get
+                Return ResourceManager.GetString("GPSStatus", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Group.
         '''</summary>
         Friend Shared ReadOnly Property Group() As String
             Get
                 Return ResourceManager.GetString("Group", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to GSM Signal.
+        '''</summary>
+        Friend Shared ReadOnly Property GSMSignal() As String
+            Get
+                Return ResourceManager.GetString("GSMSignal", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to History.
+        '''</summary>
+        Friend Shared ReadOnly Property History() As String
+            Get
+                Return ResourceManager.GetString("History", resourceCulture)
             End Get
         End Property
         
@@ -2190,6 +2262,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to GPRS command sent successfully!.
+        '''</summary>
+        Friend Shared ReadOnly Property MsgCommandSendSuccess() As String
+            Get
+                Return ResourceManager.GetString("MsgCommandSendSuccess", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to This is a computer generated vTYPE and does not require a signature..
         '''</summary>
         Friend Shared ReadOnly Property MsgComputerGenerated() As String
@@ -2559,7 +2640,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to OCS&apos;s vITEM.
+        '''  Looks up a localized string similar to OCS vITEM.
         '''</summary>
         Friend Shared ReadOnly Property OCSItem() As String
             Get
@@ -2604,7 +2685,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Officer&apos;s vITEM.
+        '''  Looks up a localized string similar to Officer vITEM.
         '''</summary>
         Friend Shared ReadOnly Property OfficerItem() As String
             Get
@@ -2640,7 +2721,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to OPP&apos;s vITEM.
+        '''  Looks up a localized string similar to OPP vITEM.
         '''</summary>
         Friend Shared ReadOnly Property OPPItem() As String
             Get
@@ -2928,7 +3009,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Police Station&apos;s vITEM.
+        '''  Looks up a localized string similar to Police Station vITEM.
         '''</summary>
         Friend Shared ReadOnly Property PoliceStationItem() As String
             Get
@@ -2996,6 +3077,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Print() As String
             Get
                 Return ResourceManager.GetString("Print", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Save PDF/Print.
+        '''</summary>
+        Friend Shared ReadOnly Property PrintPDF() As String
+            Get
+                Return ResourceManager.GetString("PrintPDF", resourceCulture)
             End Get
         End Property
         
@@ -3387,7 +3477,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Subject&apos;s vITEM.
+        '''  Looks up a localized string similar to Subject vITEM.
         '''</summary>
         Friend Shared ReadOnly Property SubjectItem() As String
             Get

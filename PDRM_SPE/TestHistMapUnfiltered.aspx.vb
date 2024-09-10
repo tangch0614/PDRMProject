@@ -1,8 +1,8 @@
 ﻿Imports AppCode.BusinessLogic
 Imports AppCode.BusinessObject
 
-Public Class AHistoryMap
-    Inherits ABase
+Public Class TestHistMapUnfiltered
+    Inherits Base
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
@@ -35,7 +35,6 @@ Public Class AHistoryMap
 
     Private Sub SetText()
         btnSearch.Text = GetText("Search")
-        btnpdf.Text = GetText("GenerateReport")
         hfNoResult.Value = GetText("ErrorNoResult")
     End Sub
 
@@ -101,16 +100,6 @@ Public Class AHistoryMap
                 txtIMEI.Text = myDataTable.Rows(0)("fldIMEI")
                 plOPPInfo.Visible = True
             End If
-        End If
-    End Sub
-
-    Protected Sub btnpdf_Click(sender As Object, e As EventArgs)
-        If ddlEMD.SelectedValue = -1 Or ddlOPP.SelectedValue = -1 Then
-            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("ErrorNoResult") & "');", True)
-        Else
-            Dim frdatetime As String = hfFrDate.Text & " " & ddlFrTime.SelectedValue
-            Dim todatetime As String = hfToDate.Text & " " & ddlToTime.SelectedValue
-            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "OpenPopupWindow('../admins/TrackingHistoryReport.aspx?opp=" & ddlOPP.SelectedValue & "&emd=" & ddlEMD.SelectedValue & "&fr=" & frdatetime & "&to=" & todatetime & "&i=" & UtilityManager.MD5Encrypt(ddlOPP.SelectedValue & ddlEMD.SelectedValue & frdatetime & todatetime & "historyreport") & "',1280,800);", True)
         End If
     End Sub
 

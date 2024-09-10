@@ -110,9 +110,10 @@
                         oppid: oppid,
                         imei: "",
                         frdatetime: frdatetime,
-                        todatetime: todatetime
+                        todatetime: todatetime,
+                        filtertype: 1
                     };
-                    const response = await fetch('../GetData.aspx/GetEMDHistoryFiltered', {
+                    const response = await fetch('../GetData.aspx/GetEMDHistoryFilter', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -217,7 +218,7 @@
             glyphLabel.className = 'glyphLabel';
             glyphLabel.textContent = index;
 
-            let pinColor = location.pincolor;
+            let pinColor = "blue";
             let glyph = glyphLabel; // Default to showing the index number
 
             // Customize the first and last markers
