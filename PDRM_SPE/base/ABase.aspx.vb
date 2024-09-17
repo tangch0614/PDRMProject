@@ -4,8 +4,22 @@ Public Class ABase
     Inherits Base
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-
+        If Not IsPostBack Then
+            If Not Authorization() Then
+                Response.Redirect("~/AccessDenied.aspx")
+            End If
+        End If
     End Sub
+
+    Private Function Authorization() As Boolean
+        Dim result As Boolean = False
+        If Not Page.Request.Url.AbsolutePath.ToLower.EndsWith("AccessDenied.aspx") AndAlso Page.Request.Url.AbsolutePath.ToLower.StartsWith("/admins") Then
+            result = RoleManager.Authorization(CLng(AdminAuthentication.GetUserData(5)), "A", ".." & Page.Request.Url.AbsolutePath) AndAlso UserMenuManager.Authorization(CLng(AdminAuthentication.GetUserData(2)), "A", ".." & Page.Request.Url.AbsolutePath)
+        Else
+            result = True
+        End If
+        Return result
+    End Function
 
     Public Sub UserIsAuthenticated()
         Dim result As Boolean = Page.Request.IsAuthenticated AndAlso AdminAuthentication.ValidateSession(CLng(AdminAuthentication.GetUserData(2)), CStr(AdminAuthentication.GetUserData(0)))

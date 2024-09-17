@@ -43,6 +43,9 @@ Public Class AddGeofence
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
+            Dim base As New Base
+            btnReset.Text = base.GetText("Reset")
+            btnSubmit.Text = base.GetText("Update")
             If Not Request("id") Is Nothing AndAlso Not Request("i") Is Nothing AndAlso Request("i").Equals(UtilityManager.MD5Encrypt(Request("id") & "geopagar")) Then
                 OPPID = Request("id")
                 Dim opp As OPPObj = OPPManager.GetOPP(OPPID)

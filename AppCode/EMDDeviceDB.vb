@@ -60,10 +60,11 @@ NameSpace DataAccess
             Return myCommand.ExecuteScalar
         End Function
 
-        Public Shared Function GetAlertNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal page As String, ByVal intervalminute As Integer, ByVal myConnection As MySqlConnection) As DataTable
+        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal page As String, ByVal intervalminute As Integer, ByVal myConnection As MySqlConnection) As DataTable
             Dim myDataTable As DataTable = New DataTable()
             Dim query As String = ""
             If Not intervalminute < 0 Then query &= " a.fldDateTime >= Date_add(NOW(), interval @intervalminute Minute) And "
+            If Not alertid <= 0 Then query &= " a.fldID = @alertid And "
             If Not deviceid <= 0 Then query &= " a.fldEMDDeviceID = @deviceid And "
             If Not oppid <= 0 Then query &= " a.fldOPPID = @oppid And "
             If Not String.IsNullOrEmpty(imei) Then query &= " a.fldimei = @imei And "
@@ -74,17 +75,20 @@ NameSpace DataAccess
             End If
             Dim myCommand As MySqlCommand = New MySqlCommand("SELECT a.*, b.fldimei AS fldemdimei, b.fldRLat, b.fldRLong, b.fldGPSStatus, b.fldBatteryLvl, b.fldDeviceStatus,
                                                                 c.fldPhoto1,c.fldPhoto2, c.fldname AS fldOPPName, c.fldicno AS fldOPPICNo, c.fldcontactno AS fldOPPContactNo, ifnull(g.fldName,'') As fldDepartment,
-                                                                IFNULL(d.fldName,'') AS fldPSName, IFNULL(d.fldContactNo,'') AS fldPSCOntactNo, 
-                                                                IFNULL(e.fldName,'') AS fldOverseerName, IFNULL(e.fldcontactno,'') AS fldOverseerContactNo, IFNULL(e.fldPoliceNo,'') AS fldOverseerPoliceNo
+                                                                IFNULL(d.fldName,'') AS fldPSName, IFNULL(d.fldContactNo,'') AS fldPSContactNo, 
+                                                                IFNULL(e.fldName,'') AS fldOverseerName, IFNULL(e.fldcontactno,'') AS fldOverseerContactNo, IFNULL(e.fldPoliceNo,'') AS fldOverseerPoliceNo,
+                                                                IFNULL(h.fldName,'') As fldProcessByName                                                                
                                                                 FROM tblpdrmnotification a 
                                                                 JOIN tblemddevice b ON b.fldid=a.fldemddeviceid 
                                                                 JOIN tblopp c ON c.fldid=a.fldoppid 
                                                                 LEFT JOIN tblpolicestation d ON d.fldID=c.fldPoliceStationID
                                                                 LEFT JOIN tbladmin e ON e.fldID=c.fldoverseerid 
                                                                 LEFT JOIN tblpdrmnotification_seen f ON f.fldNoticeID=a.fldID and f.fldUserID=@userid and f.fldPage=@page
-                                                                LEFT JOIN tbldepartment g ON g.fldID=c.fldDeptID " _
+                                                                LEFT JOIN tbldepartment g ON g.fldID=c.fldDeptID 
+                                                                LEFT JOIN tbladmin h ON h.fldID=a.fldProcessUserID and a.fldProcessUserID>0 " _
                                                                 & query & " Order by fldSeverity Desc, fldID Desc", myConnection)
             myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@alertid", alertid)
             myCommand.Parameters.AddWithValue("@deviceid", deviceid)
             myCommand.Parameters.AddWithValue("@oppid", oppid)
             myCommand.Parameters.AddWithValue("@imei", imei)
@@ -96,11 +100,12 @@ NameSpace DataAccess
             Return myDataTable
         End Function
 
-        Public Shared Function GetAlertNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal limit As Integer, ByVal myConnection As MySqlConnection) As DataTable
+        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal limit As Integer, ByVal myConnection As MySqlConnection) As DataTable
             Dim myDataTable As DataTable = New DataTable()
             Dim query As String = ""
             Dim limitstr As String = ""
             If Not intervalminute < 0 Then query &= " a.fldDateTime >= Date_add(NOW(), interval @intervalminute Minute) And "
+            If Not alertid <= 0 Then query &= " a.fldID = @alertid And "
             If Not deviceid <= 0 Then query &= " a.fldEMDDeviceID = @deviceid And "
             If Not oppid <= 0 Then query &= " a.fldOPPID = @oppid And "
             If Not String.IsNullOrEmpty(imei) Then query &= " a.fldimei = @imei And "
@@ -113,16 +118,19 @@ NameSpace DataAccess
             If Not limit <= 0 Then limitstr = " Limit @limit "
             Dim myCommand As MySqlCommand = New MySqlCommand("SELECT a.*, b.fldimei AS fldemdimei, b.fldRLat, b.fldRLong, b.fldGPSStatus, b.fldBatteryLvl, b.fldDeviceStatus,
                                                                 c.fldPhoto1,c.fldPhoto2, c.fldname AS fldOPPName, c.fldicno AS fldOPPICNo, c.fldcontactno AS fldOPPContactNo, ifnull(f.fldName,'') As fldDepartment,
-                                                                IFNULL(d.fldName,'') AS fldPSName, IFNULL(d.fldContactNo,'') AS fldPSCOntactNo, 
-                                                                IFNULL(e.fldName,'') AS fldOverseerName, IFNULL(e.fldcontactno,'') AS fldOverseerContactNo, IFNULL(e.fldPoliceNo,'') AS fldOverseerPoliceNo
+                                                                IFNULL(d.fldName,'') AS fldPSName, IFNULL(d.fldContactNo,'') AS fldPSContactNo, 
+                                                                IFNULL(e.fldName,'') AS fldOverseerName, IFNULL(e.fldcontactno,'') AS fldOverseerContactNo, IFNULL(e.fldPoliceNo,'') AS fldOverseerPoliceNo,
+                                                                IFNULL(g.fldName,'') As fldProcessByName                                                                
                                                                 FROM tblpdrmnotification a 
                                                                 JOIN tblemddevice b ON b.fldid=a.fldemddeviceid 
                                                                 JOIN tblopp c ON c.fldid=a.fldoppid 
                                                                 LEFT JOIN tblpolicestation d ON d.fldID=c.fldPoliceStationID
                                                                 LEFT JOIN tbladmin e ON e.fldID=c.fldoverseerid 
-                                                                LEFT JOIN tbldepartment f ON f.fldID=c.fldDeptID " _
+                                                                LEFT JOIN tbldepartment f ON f.fldID=c.fldDeptID 
+                                                                Left JOIN tbladmin g ON g.fldID=a.fldProcessUserID and a.fldProcessUserID>0 " _
                                                                 & query & " Order by fldSeverity Desc, fldID Desc" & limitstr, myConnection)
             myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@alertid", alertid)
             myCommand.Parameters.AddWithValue("@deviceid", deviceid)
             myCommand.Parameters.AddWithValue("@oppid", oppid)
             myCommand.Parameters.AddWithValue("@imei", imei)
@@ -172,7 +180,7 @@ NameSpace DataAccess
             Return result
         End Function
 
-        Public Shared Function UpdateProcessStatus(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String, ByVal myConnection As MySqlConnection) As Boolean
+        Public Shared Function AcknowledgeAlertNotification(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String, ByVal myConnection As MySqlConnection) As Boolean
             Dim myCommand As MySqlCommand = New MySqlCommand
             myCommand.CommandText = "Update tblpdrmnotification Set fldProcess=1, fldProcessUserID=@creatorid, fldremark=@remark, fldProcessDateTime=Now() Where fldID = @id"
             myCommand.Connection = myConnection
@@ -351,7 +359,7 @@ NameSpace DataAccess
             End If
             Dim myCommand As MySqlCommand = New MySqlCommand("Select a.*, a.fldSpeed*1.852 as fldSpeedKmh, if(a.fldGSMSignal>0,a.fldGSMSignal/31*100,0) As fldGSMSignalPercent, if(a.flddevicestatus IN ('10', '11'),'Yes','No') AS fldChargingStatus, if(a.flddevicestatus IN ('01', '11'),'BeltOn','BeltOff') AS fldBeltStatus, 
                                                                 ifnull(f.fldgeofence,'') As fldGeofenceMk, ifnull(b.fldGeofence1,'') As fldGeofence1, ifnull(b.fldName,'') As fldOPPName, ifnull(b.fldICNo,'') As fldOPPICNo, ifnull(b.fldContactNo,'') As fldOPPContactNo, 
-                                                                ifnull(c.fldColor,'grey') as fldDeptColor, ifnull(c.fldName,'') As fldDepartment, ifnull(d.fldName,'') As fldPSName, 
+                                                                ifnull(c.fldColor,'grey') as fldDeptColor, ifnull(c.fldName,'') As fldDepartment, ifnull(d.fldName,'') As fldPSName, ifnull(d.fldContactNo,'') As fldPSContactNo, 
                                                                 ifnull(e.fldName,'') As fldOverseerName, ifnull(e.fldContactNo,'') as fldOverseerContactNo, ifnull(e.fldPoliceNo,'') as fldOverseerPoliceNo
                                                                 From tblemddevice a 
                                                                 Left Join tblopp b ON b.fldID=a.fldOppID 

@@ -21,3 +21,4 @@ C:\Users\DELL\source\repos\_sourcetree\PDRMProject\AppCode\obj\Debug\AppCode.vbp
 C:\Users\DELL\source\repos\_sourcetree\PDRMProject\AppCode\obj\Debug\AppCode.dll
 C:\Users\DELL\source\repos\_sourcetree\PDRMProject\AppCode\obj\Debug\AppCode.xml
 C:\Users\DELL\source\repos\_sourcetree\PDRMProject\AppCode\obj\Debug\AppCode.pdb
+C:\Users\DELL\source\repos\_sourcetree\PDRMProject\AppCode\obj\Debug\AppCode.vbprojAssemblyReference.cache

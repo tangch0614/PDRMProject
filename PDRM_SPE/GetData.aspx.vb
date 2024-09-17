@@ -3,6 +3,7 @@ Imports System.Web.Services
 Imports System.Web.Script.Services
 Imports AppCode.BusinessLogic
 Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 
 Public Class GetData
     Inherits System.Web.UI.Page
@@ -30,10 +31,35 @@ Public Class GetData
 
     <WebMethod()>
     Public Shared Function GetNotificationData(ByVal deviceid As Long, ByVal oppid As Long, ByVal userid As Long, ByVal page As String) As String 'Notify opp page
-        Dim dataTable As DataTable = EMDDeviceManager.GetAlertNotification(deviceid, oppid, "", userid, page, 5, True)
+        Dim dataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, deviceid, oppid, "", userid, page, 5, True)
         ' Convert the DataTable to JSON
         Dim json As String = JsonConvert.SerializeObject(dataTable)
-        Return json
+        Dim jArray As JArray = JArray.Parse(json)
+        Dim newArray As JArray = New JArray()
+        For Each jObject As JObject In jArray
+            Dim newJObject As New JObject()
+            For Each prop As JProperty In jObject.Properties()
+                newJObject.Add(prop.Name.ToLower(), prop.Value)
+            Next
+            newArray.Add(newJObject)
+        Next
+        Return newArray.ToString
+    End Function
+
+    <WebMethod()>
+    Public Shared Function GetNotificationDetail(ByVal alertid As Long) As String
+        Dim alert As DataTable = EMDDeviceManager.GetAlertNotification(alertid, -1, -1, "", -1, "", -1, -1)
+        Dim json As String = JsonConvert.SerializeObject(alert)
+        Dim jArray As JArray = JArray.Parse(json)
+        Dim newArray As JArray = New JArray()
+        For Each jObject As JObject In jArray
+            Dim newJObject As New JObject()
+            For Each prop As JProperty In jObject.Properties()
+                newJObject.Add(prop.Name.ToLower(), prop.Value)
+            Next
+            newArray.Add(newJObject)
+        Next
+        Return newArray.ToString
     End Function
 
     Public Class DashboardData
@@ -190,6 +216,7 @@ Public Class GetData
                 .oppcontactno = datatable.Rows(i)("fldOPPContactNo"),
                 .department = datatable.Rows(i)("fldDepartment"),
                 .psname = datatable.Rows(i)("fldPSName"),
+                .pscontactno = datatable.Rows(i)("fldPSContactNo"),
                 .offname = datatable.Rows(i)("fldOverseerName"),
                 .offcontactno = datatable.Rows(i)("fldOverseerContactNo"),
                 .offpoliceno = datatable.Rows(i)("fldOverseerPoliceNo")
@@ -269,6 +296,7 @@ Public Class GetData
         Public Property oppcontactno As String
         Public Property department As String
         Public Property psname As String
+        Public Property pscontactno As String
         Public Property offname As String
         Public Property offcontactno As String
         Public Property offpoliceno As String

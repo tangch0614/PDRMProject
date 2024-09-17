@@ -418,11 +418,17 @@ Public Class AAddOPP
         UserIsAuthenticated()
         If PageValid() Then
             Dim opp As OPPObj = New OPPObj
-            If UploadDocument(fuPhoto1, "OPPA", "opp", opp.fldPhoto1) _
-                AndAlso UploadDocument(fuPhoto2, "OPPB", "opp", opp.fldPhoto2) _
-                AndAlso UploadDocument(fuAttachment1, "Lampiran1", "attachment", opp.fldAttachment1) _
-                AndAlso UploadDocument(fuAttachment2, "Lampiran2", "attachment", opp.fldAttachment2) Then
+            Dim attachment1 As String = ""
+            Dim attachment2 As String = ""
+            Dim attactment As List(Of String) = New List(Of String)
+            If UploadDocument(fuPhoto1, "OPPA_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), "opp", True, opp.fldPhoto1) _
+                AndAlso UploadDocument(fuPhoto2, "OPPB_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), "opp", True, opp.fldPhoto2) _
+                AndAlso UploadDocument(fuAttachment1, "", "_" & txtSubjectName.Text, "attachment", False, attachment1) _
+                AndAlso UploadDocument(fuAttachment2, "", "_" & txtSubjectName.Text, "attachment", False, attachment2) Then
                 Dim datetime As DateTime = UtilityManager.GetServerDateTime()
+                If Not String.IsNullOrWhiteSpace(attachment1) Then attactment.Add(attachment1)
+                If Not String.IsNullOrWhiteSpace(attachment2) Then attactment.Add(attachment2)
+                opp.fldAttachment1 = String.Join(",", attactment)
                 opp.fldName = txtSubjectName.Text
                 opp.fldICNo = txtSubjectICNo.Text
                 opp.fldContactNo = txtSubjectContactNo.Text
@@ -490,14 +496,18 @@ Public Class AAddOPP
         Return CDate(orderdate).AddYears(years).AddMonths(months).AddDays(days)
     End Function
 
-    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByVal folder As String, ByRef FilePath As String) As Boolean
+    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByVal suffix As String, ByVal folder As String, ByVal genfilename As Boolean, ByRef FilePath As String) As Boolean
         Dim result As Boolean = True
         Dim oldFilePath As String = ""
         Dim datetime As DateTime = UtilityManager.GetServerDateTime
         'Dim newSize As New System.Drawing.Size(500, 500)
         Try
             If Not fuFile.PostedFile Is Nothing AndAlso fuFile.PostedFile.ContentLength > 0 Then
-                FilePath = "../" & ValidateFilePath("upload/" & folder & "/", prefix & "_" & datetime.ToString("yyMMddHHmmss") & "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                If genfilename Then
+                    FilePath = ValidateFilePath("../" & "upload/" & folder & "/", UtilityManager.EscapeFileName(prefix & datetime.ToString("yyMMddHHmmss") & suffix).Replace(" ", "_"), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                Else
+                    FilePath = ValidateFilePath("../" & "upload/" & folder & "/", UtilityManager.EscapeFileName(prefix & Path.GetFileNameWithoutExtension(fuFile.PostedFile.FileName) & suffix).Replace(" ", "_"), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                End If
                 If Path.GetExtension(fuFile.PostedFile.FileName).ToLower() <> ".pdf" Then
                     Dim oriImage As System.Drawing.Image = System.Drawing.Image.FromStream(fuFile.PostedFile.InputStream)
                     'newSize = UtilityManager.AspectRatioSize(oriImage.Size, newSize)

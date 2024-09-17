@@ -155,11 +155,11 @@ NameSpace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function GetAlertNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal page As String, ByVal intervalminute As Integer, ByVal updatestatus As Boolean) As DataTable
+        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal page As String, ByVal intervalminute As Integer, ByVal updatestatus As Boolean) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
                 Dim result As Boolean = False
-                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(deviceid, oppid, imei, userid, page, intervalminute, myConnection)
+                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(alertid, deviceid, oppid, imei, userid, page, intervalminute, myConnection)
                 If updatestatus AndAlso Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
                     Dim ids As List(Of Long) = myDataTable.AsEnumerable().Select(Function(row) row.Field(Of Long)("fldID")).ToList()
                     result = EMDDeviceDB.UpdateAlertNotificationSeenUser(ids, userid, page, myConnection)
@@ -169,11 +169,11 @@ NameSpace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function GetAlertNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal limit As Integer) As DataTable
+        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal limit As Integer) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
                 Dim result As Boolean = False
-                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(deviceid, oppid, imei, processstatus, severity, intervalminute, limit, myConnection)
+                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(alertid, deviceid, oppid, imei, processstatus, severity, intervalminute, limit, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using
@@ -188,11 +188,11 @@ NameSpace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function UpdateProcessStatus(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String) As Boolean
+        Public Shared Function AcknowledgeAlertNotification(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String) As Boolean
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
-                    Dim result As Boolean = EMDDeviceDB.UpdateProcessStatus(id, creatorid, remark, myConnection)
+                    Dim result As Boolean = EMDDeviceDB.AcknowledgeAlertNotification(id, creatorid, remark, myConnection)
                     myConnection.Close()
                     If result Then myTransactionScope.Complete()
                     Return result

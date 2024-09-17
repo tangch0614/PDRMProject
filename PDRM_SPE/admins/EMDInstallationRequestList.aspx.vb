@@ -468,7 +468,7 @@ Public Class AEMDInstallationRequestList
         'Dim newSize As New System.Drawing.Size(500, 500)
         Try
             If Not fuFile.PostedFile Is Nothing AndAlso fuFile.PostedFile.ContentLength > 0 Then
-                FilePath = "../" & ValidateFilePath("upload/attachment/", prefix & "_" & datetime.ToString("yyMMddHHmmss") & "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                FilePath = ValidateFilePath("../" & "upload/attachment/", prefix & "_" & datetime.ToString("yyMMddHHmmss") & "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
                 If Path.GetExtension(fuFile.PostedFile.FileName).ToLower() <> ".pdf" Then
                     Dim oriImage As System.Drawing.Image = System.Drawing.Image.FromStream(fuFile.PostedFile.InputStream)
                     'newSize = UtilityManager.AspectRatioSize(oriImage.Size, newSize)

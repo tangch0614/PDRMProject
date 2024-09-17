@@ -137,15 +137,17 @@
     <Content Include="admins\EMDInstallationRequestList.aspx" />
     <Content Include="admins\PoliceStationList.aspx" />
     <Content Include="admins\TrackingHistoryReport.aspx" />
+    <Content Include="admins\GeofenceMukim.aspx" />
     <Content Include="admins\TrackingMap.aspx" />
     <Content Include="admins\MainMap.aspx" />
     <Content Include="admins\TrackingMap_old.aspx" />
-    <Content Include="AddGeofence.aspx" />
+    <Content Include="admins\AddGeofence.aspx" />
     <Content Include="admins\OfficerList.aspx" />
     <Content Include="assets\alertsound4.mp3" />
     <Content Include="assets\alertsound.mp3" />
     <Content Include="assets\alertsound2.mp3" />
     <Content Include="assets\alertsound3.mp3" />
+    <Content Include="assets\js\oms.min.js" />
     <Content Include="TestHistMapFiltered2.aspx" />
     <Content Include="TestHistMapUnfiltered.aspx" />
     <Content Include="TestHistMapFiltered.aspx" />
@@ -6304,6 +6306,13 @@
       <DependentUpon>TrackingHistoryReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admins\GeofenceMukim.aspx.designer.vb">
+      <DependentUpon>GeofenceMukim.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admins\GeofenceMukim.aspx.vb">
+      <DependentUpon>GeofenceMukim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="admins\TrackingMap.aspx.designer.vb">
       <DependentUpon>TrackingMap.aspx</DependentUpon>
     </Compile>
@@ -6325,10 +6334,10 @@
       <DependentUpon>TrackingMap_old.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddGeofence.aspx.designer.vb">
+    <Compile Include="admins\AddGeofence.aspx.designer.vb">
       <DependentUpon>AddGeofence.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddGeofence.aspx.vb">
+    <Compile Include="admins\AddGeofence.aspx.vb">
       <DependentUpon>AddGeofence.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>

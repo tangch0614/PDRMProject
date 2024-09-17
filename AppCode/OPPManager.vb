@@ -168,6 +168,18 @@ Namespace BusinessLogic
             End Using
         End Function
 
+        Public Shared Function UpdateAttachment(ByVal oppid As Long, ByVal attachment As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = OPPDB.UpdateAttachment(oppid, attachment, myConnection)
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
         Public Shared Function UpdateStatus(ByVal oppid As Long, ByVal oldstatus As String, ByVal newstatus As String, ByVal creatorid As Long) As Boolean
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
@@ -206,7 +218,6 @@ Namespace BusinessLogic
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
                     Dim result As Boolean = OPPDB.Save(myopp, myConnection) > 0
-                    If result Then result = OPPDB.SaveOPPStatusHist(myopp.fldID, myopp.fldStatus, "P", "Update OPP detail", creatorid, myConnection)
                     myConnection.Close()
                     If result Then myTransactionScope.Complete()
                     Return result

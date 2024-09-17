@@ -2703,6 +2703,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Open.
+        '''</summary>
+        Friend Shared ReadOnly Property Open() As String
+            Get
+                Return ResourceManager.GetString("Open", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Operation.
         '''</summary>
         Friend Shared ReadOnly Property Operation() As String

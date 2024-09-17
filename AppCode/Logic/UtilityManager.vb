@@ -345,6 +345,14 @@ Namespace BusinessLogic
             Return sb.ToString()
         End Function
 
+        Public Shared Function EscapeFileName(ByVal fileName As String) As String
+            ' Define a pattern for invalid characters
+            Dim invalidCharsPattern As String = "[" & Regex.Escape("\/:*?""'<>|") & "]"
+
+            ' Replace invalid characters with underscores
+            Return Regex.Replace(fileName, invalidCharsPattern, "_")
+        End Function
+
         Public Shared Function GetCountryList() As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()

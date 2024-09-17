@@ -540,49 +540,27 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Upload Document -->
+                            <!-- Remarks -->
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <asp:Label runat="server" ID="lblFileInfo" CssClass="caption-subject uppercase">Upload File</asp:Label>
+                                    <asp:Label runat="server" ID="lblOthersInfo" CssClass="caption-subject uppercase">Oversight Info</asp:Label>
                                 </div>
                             </div>
                             <div class="portlet-body form">
                                 <div class="form-horizontal">
                                     <div class="form-body">
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblAttachment1" CssClass="col-md-4 control-label" Text="Lampiran 1"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:LinkButton runat="server" ID="lbtAttachment1" Text="Lampiran"></asp:LinkButton>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <asp:TextBox runat="server" ID="txtAttachment1" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                                <asp:Button runat="server" ID="btnAttachment1" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment1.click();return false;" />
-                                                <asp:Label runat="server" ID="lblAttachment1Validate" ForeColor="red" Visible="false"></asp:Label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblAttachment2" CssClass="col-md-4 control-label" Text="Lampiran 2"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:LinkButton runat="server" ID="lbtAttachment2" Text="Lampiran"></asp:LinkButton>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <asp:TextBox runat="server" ID="txtAttachment2" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                                <asp:Button runat="server" ID="btnAttachment2" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment2.click();return false;" />
-                                                <asp:Label runat="server" ID="lblAttachment2Validate" ForeColor="red" Visible="false"></asp:Label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <asp:Label runat="server" ID="lblRemark" CssClass="col-md-4 control-label" Text="Catatan"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:TextBox runat="server" ID="txtRemark" TextMode="MultiLine" Rows="5" Style="resize: none;" CssClass="form-control input-inline input-large"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <div class="pull-right">
-                                            <asp:Button runat="server" CssClass="btn blue " ID="btnSubmitOPP" Text="Update" UseSubmitBehavior="false" OnClientClick='if(!validate2(this,"hfConfirm","opp")){return false};' OnClick="btnSubmitOPP_Click" ClientIDMode="static" />
-                                            <asp:Button runat="server" CssClass="btn blue " ID="btnResetOPP" Text="Update" OnClick="btnResetOPP_Click" ClientIDMode="static" />
-                                            <asp:Button runat="server" CssClass="btn default " ID="btnBack1" Text="Kembali" OnClick="btnBack_Click" ClientIDMode="static" />
+                                        <div class="form-actions">
+                                            <div class="pull-right">
+                                                <asp:Button runat="server" CssClass="btn blue " ID="btnSubmitOPP" Text="Update" UseSubmitBehavior="false" OnClientClick='if(!validate2(this,"hfConfirm","opp")){return false};' OnClick="btnSubmitOPP_Click" ClientIDMode="static" />
+                                                <asp:Button runat="server" CssClass="btn blue " ID="btnResetOPP" Text="Update" OnClick="btnResetOPP_Click" ClientIDMode="static" />
+                                                <asp:Button runat="server" CssClass="btn default " ID="btnBack1" Text="Kembali" OnClick="btnBack_Click" ClientIDMode="static" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -591,10 +569,77 @@
                     </ContentTemplate>
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="btnResetOPP" />
-                        <asp:PostBackTrigger ControlID="btnSubmitOPP" />
+                        <asp:AsyncPostBackTrigger ControlID="btnSubmitOPP" />
                         <asp:PostBackTrigger ControlID="btnBack1" />
                     </Triggers>
                 </asp:UpdatePanel>
+                <!-- Upload Document -->
+                <div class="portlet light">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <asp:Label runat="server" ID="lblFileInfo" CssClass="caption-subject uppercase">Upload File</asp:Label>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
+                                        <div class="form-group">
+                                            <asp:Label runat="server" ID="lblAttachment1" CssClass="col-md-4 control-label" Text="Lampiran 1"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:TextBox runat="server" ID="txtAttachment1" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
+                                                <asp:Button runat="server" ID="btnAttachment1" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment1.click();return false;" />
+                                                <asp:Button runat="server" CssClass="btn blue " ID="btnSubmitAttachment" Text="Update" OnClientClick='return confirm(hfConfirm.value);' OnClick="btnSubmitAttachment_Click" ClientIDMode="static" />
+                                                <asp:Label runat="server" ID="lblAttachment1Validate" ForeColor="red" Visible="false"></asp:Label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-8 col-md-offset-4">
+                                                <table class="table table-bordered table-striped" style="width: auto;">
+                                                    <asp:Repeater runat="server" ID="rptAttachment1" OnItemCommand="rptAttachment1_ItemCommand" OnItemCreated="rptAttachment1_ItemCreated">
+                                                        <ItemTemplate>
+                                                            <tr>
+                                                                <td><%# Eval("FileName") %></td>
+                                                                <td>
+                                                                    <a href="#" class="btn blue btn-xs" onclick="OpenPopupWindow('<%#Eval("FilePath")%>', 1280, 800); return false;"><%#GetText("Open")%></a>
+                                                                    <asp:Button runat="server" ID="btnDelete" CssClass="btn red btn-xs" Text='<%#GetText("Delete")%>' OnClientClick='return confirm(hfConfirm.value);' CommandName="deletefile" CommandArgument='<%#Container.ItemIndex%>' />
+                                                                </td>
+                                                            </tr>
+                                                        </ItemTemplate>
+                                                    </asp:Repeater>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <%--<div class="form-group">
+                                    <asp:Label runat="server" ID="lblAttachment2" CssClass="col-md-4 control-label" Text="Lampiran 2"></asp:Label>
+                                    <div class="col-md-8">
+                                        <asp:LinkButton runat="server" ID="lbtAttachment2" Text="Lampiran"></asp:LinkButton>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <asp:TextBox runat="server" ID="txtAttachment2" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
+                                        <asp:Button runat="server" ID="btnAttachment2" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment2.click();return false;" />
+                                        <asp:Label runat="server" ID="lblAttachment2Validate" ForeColor="red" Visible="false"></asp:Label>
+                                    </div>
+                                </div>--%>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="rptAttachment1" EventName="ItemCommand" />
+                                        <asp:AsyncPostBackTrigger ControlID="btnResetFile" />
+                                        <asp:PostBackTrigger ControlID="btnSubmitAttachment" />
+                                        <asp:PostBackTrigger ControlID="btnBack5" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+                            </div>
+                            <div class="form-actions">
+                                <div class="pull-right">
+                                    <asp:Button runat="server" CssClass="btn blue " ID="btnResetFile" Text="Update" OnClick="btnResetFile_Click" ClientIDMode="static" />
+                                    <asp:Button runat="server" CssClass="btn default " ID="btnBack5" Text="Kembali" OnClick="btnBack_Click" ClientIDMode="static" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Overseer -->
                 <div class="portlet light">
                     <div class="portlet-title">
@@ -644,6 +689,7 @@
                                     <Triggers>
                                         <asp:AsyncPostBackTrigger ControlID="ddlOverseer" />
                                         <asp:AsyncPostBackTrigger ControlID="btnResetOverseer" />
+                                        <asp:PostBackTrigger ControlID="btnBack2" />
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </div>
@@ -770,7 +816,9 @@
                                         </div>
                                     </ContentTemplate>
                                     <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="btnSubmitEMD" />
                                         <asp:AsyncPostBackTrigger ControlID="btnResetEMD" />
+                                        <asp:PostBackTrigger ControlID="btnBack4" />
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </div>
@@ -793,7 +841,7 @@
     <asp:FileUpload runat="server" ID="fuPhoto1" Style="display: none" ClientIDMode="static" accept=".jpg, .jpeg, .png, .gif, .bmp" onchange="txtPhoto1.value = filename(this);previewimg(event,'imgPhoto1Preview','hfPhoto1Ori');" />
     <asp:FileUpload runat="server" ID="fuPhoto2" Style="display: none" ClientIDMode="static" accept=".jpg, .jpeg, .png, .gif, .bmp" onchange="txtPhoto2.value = filename(this);previewimg(event,'imgPhoto2Preview','hfPhoto2Ori');" />
     <asp:FileUpload runat="server" ID="fuAttachment1" Style="display: none" ClientIDMode="static" onchange="txtAttachment1.value = filename(this);" />
-    <asp:FileUpload runat="server" ID="fuAttachment2" Style="display: none" ClientIDMode="static" onchange="txtAttachment2.value = filename(this);" />
+    <%--<asp:FileUpload runat="server" ID="fuAttachment2" Style="display: none" ClientIDMode="static" onchange="txtAttachment2.value = filename(this);" />--%>
     <asp:HiddenField runat="server" ID="hfConfirm" Value="Confirm update details?" ClientIDMode="Static" />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="opp" DisplayMode="BulletList" HeaderText="Please make sure all field are entered correctly" ShowMessageBox="true" ShowValidationErrors="true" ShowSummary="false" />
     <asp:ValidationSummary ID="ValidationSummary2" runat="server" ValidationGroup="officer" DisplayMode="BulletList" HeaderText="Please make sure all field are entered correctly" ShowMessageBox="true" ShowValidationErrors="true" ShowSummary="false" />
@@ -974,7 +1022,7 @@
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPRptPSContactNo" CssClass="col-md-4 control-label" Text="No. Tel. Balai Polis"></asp:Label>
                                                 <div class="col-md-8">
-                                                    <asp:Label runat="server" ID="txtPRptPSContactNo" CssClass="form-control input-inline input-large"/>
+                                                    <asp:Label runat="server" ID="txtPRptPSContactNo" CssClass="form-control input-inline input-large" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1039,7 +1087,7 @@
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPOverseerIDNo" CssClass="col-md-4 control-label" Text="No. Polis"></asp:Label>
                                                 <div class="col-md-8">
-                                                    <asp:Label runat="server" ID="txtPOverseerIDNo" CssClass="form-control input-inline input-large"/>
+                                                    <asp:Label runat="server" ID="txtPOverseerIDNo" CssClass="form-control input-inline input-large" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1057,7 +1105,7 @@
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPOverseerContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
                                                 <div class="col-md-8">
-                                                    <asp:Label runat="server" ID="txtPOverseerContactNo" CssClass="form-control input-inline input-large"/>
+                                                    <asp:Label runat="server" ID="txtPOverseerContactNo" CssClass="form-control input-inline input-large" />
                                                 </div>
                                             </div>
                                         </div>
@@ -1183,15 +1231,24 @@
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPAttachment1" CssClass="col-md-4 control-label" Text="Perintah Pengawasan"></asp:Label>
                                                 <div class="col-md-8">
-                                                    <asp:LinkButton runat="server" ID="lbtPAttachment1" CssClass="form-control-static" Text="Perintah Pegawasan"></asp:LinkButton>
+                                                    <table class="table table-bordered table-striped" style="width: auto;">
+                                                        <asp:Repeater runat="server" ID="rptPAttachment1">
+                                                            <ItemTemplate>
+                                                                <tr>
+                                                                    <td><%# Eval("FileName") %></td>
+                                                                    <td><a href="#" class="btn blue btn-xs" onclick="OpenPopupWindow('<%#Eval("FilePath")%>', 1280, 800); return false;"><%#GetText("Open")%></a></td>
+                                                                </tr>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </table>
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <%--<div class="form-group">
                                                 <asp:Label runat="server" ID="lblPAttachment2" CssClass="col-md-4 control-label" Text="Lampiran"></asp:Label>
                                                 <div class="col-md-8">
                                                     <asp:LinkButton runat="server" ID="lbtPAttachment2" CssClass="form-control-static" Text="Lampiran"></asp:LinkButton>
                                                 </div>
-                                            </div>
+                                            </div>--%>
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPRemark" CssClass="col-md-4 control-label" Text="Catatan"></asp:Label>
                                                 <div class="col-md-8">

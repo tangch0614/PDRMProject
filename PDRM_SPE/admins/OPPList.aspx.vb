@@ -118,15 +118,16 @@ Public Class AOPPList
         chkCable.Text = GetText("Cable")
         'lblStatus.Text = GetText("Status")
         'file upload
-        lblFileInfo.Text = GetText("OthersInfo")
+        lblFileInfo.Text = GetText("Attachment")
         lblPhoto1.Text = GetText("Picture") & " (" & GetText("Face") & ")"
         btnPhoto1.Text = GetText("SelectItem").Replace("vITEM", GetText("Picture"))
         lblPhoto2.Text = GetText("Picture") & " (" & GetText("FullBody") & ")"
         btnPhoto2.Text = GetText("SelectItem").Replace("vITEM", GetText("Picture"))
-        lblAttachment1.Text = GetText("Attachment") & " 1"
+        lblAttachment1.Text = GetText("Attachment")
         btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("File"))
-        lblAttachment2.Text = GetText("Attachment") & " 2"
-        btnAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("File"))
+        'lblAttachment2.Text = GetText("Attachment") & " 2"
+        'btnAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("File"))
+        lblOthersInfo.Text = GetText("OthersInfo")
         lblRemark.Text = GetText("Remark")
         'popup subject
         lblPSubject.Text = GetText("SubjectInfo")
@@ -184,8 +185,8 @@ Public Class AOPPList
         lblPFileInfo.Text = GetText("OthersInfo")
         lblPPhoto1.Text = GetText("Picture") & " (" & GetText("Face") & ")"
         lblPPhoto2.Text = GetText("Picture") & " (" & GetText("FullBody") & ")"
-        lblPAttachment1.Text = GetText("Attachment") & " 1"
-        lblPAttachment2.Text = GetText("Attachment") & " 2"
+        lblPAttachment1.Text = GetText("Attachment")
+        'lblPAttachment2.Text = GetText("Attachment") & " 2"
         lblPRemark.Text = GetText("Remark")
         lblPStatus.Text = GetText("Status")
         'Buttons/Message
@@ -196,8 +197,11 @@ Public Class AOPPList
         btnBack2.Text = GetText("Back")
         btnBack3.Text = GetText("Back")
         btnBack4.Text = GetText("Back")
+        btnBack5.Text = GetText("Back")
         btnResetOPP.Text = GetText("Reset")
         btnSubmitOPP.Text = GetText("Update")
+        btnResetFile.Text = GetText("Reset")
+        btnSubmitAttachment.Text = GetText("Submit")
         btnResetOverseer.Text = GetText("Reset")
         btnSubmitOverseer.Text = GetText("Update")
         btnResetGeofence.Text = GetText("Reset")
@@ -432,7 +436,7 @@ Public Class AOPPList
         ddlEMD.DataValueField = "fldID"
         ddlEMD.DataBind()
         If Not opp Is Nothing AndAlso opp.fldEMDDeviceID > 0 Then
-            Dim imei As Long = EMDDeviceManager.GetIMEI(opp.fldEMDDeviceID)
+            Dim imei As String = EMDDeviceManager.GetIMEI(opp.fldEMDDeviceID)
             ddlEMD.Items.Add(New ListItem(imei & " (" & GetText("Current") & ")", opp.fldEMDDeviceID))
         End If
         ddlEMD.Items.Insert(0, New ListItem(GetText("Unassign"), 0, True))
@@ -516,6 +520,7 @@ Public Class AOPPList
             If Not opp Is Nothing Then
                 GetOverseer()
                 GetSubjectData(opp)
+                GetFileData(opp)
                 GetOverseerData(opp)
                 GetGeofenceData(opp)
                 GetEMDData(opp)
@@ -533,7 +538,7 @@ Public Class AOPPList
 
     Protected Function GetLink(ByVal id As Long, ByVal type As String) As String
         If type.Equals("geofence") Then
-            Return "OpenPopupWindow('../AddGeofence.aspx?id=" & id & "&i=" & UtilityManager.MD5Encrypt(id & "geopagar") & "',1024,768);"
+            Return "OpenPopupWindow('../admins/AddGeofence.aspx?id=" & id & "&i=" & UtilityManager.MD5Encrypt(id & "geopagar") & "',1024,768);"
         ElseIf type.Equals("showmap") Then
             'Return "OpenTabWindow('../admins/TrackingMap.aspx?imei=" & imei & "&i=" & UtilityManager.MD5Encrypt(imei & "trackingmap") & "');"
             Return "OpenTabWindow('../admins/TrackingMap.aspx?opp=" & id & "&i=" & UtilityManager.MD5Encrypt(id & "trackingmap") & "');"
@@ -628,19 +633,28 @@ Public Class AOPPList
             chkPStrap.Checked = opp.fldStrap = 1
             chkPCable.Checked = opp.fldCable = 1
             If Not String.IsNullOrWhiteSpace(opp.fldAttachment1) Then
-                lbtPAttachment1.Text = GetText("ClickToView")
-                lbtPAttachment1.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment1 & "',1280,800);return false;"
+                Dim fileList As String() = opp.fldAttachment1.Split(",")
+                Dim fileDetails As New List(Of Object)
+                For Each filePath As String In fileList
+                    fileDetails.Add(New With {
+                        .FileName = Path.GetFileName(filePath),
+                        .FileType = Path.GetExtension(filePath).Replace(".", "").ToLower(),
+                        .FilePath = filePath
+                        })
+                Next
+                rptPAttachment1.DataSource = fileDetails
+                rptPAttachment1.DataBind()
             Else
-                lbtPAttachment1.Text = GetText("None")
-                lbtPAttachment1.OnClientClick = "return false;"
+                rptPAttachment1.DataSource = ""
+                rptPAttachment1.DataBind()
             End If
-            If Not String.IsNullOrWhiteSpace(opp.fldAttachment2) Then
-                lbtPAttachment2.Text = GetText("ClickToView")
-                lbtPAttachment2.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment2 & "',1280,800);return false;"
-            Else
-                lbtPAttachment2.Text = GetText("None")
-                lbtPAttachment2.OnClientClick = "return false;"
-            End If
+            'If Not String.IsNullOrWhiteSpace(opp.fldAttachment2) Then
+            '    lbtPAttachment2.Text = GetText("ClickToView")
+            '    lbtPAttachment2.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment2 & "',1280,800);return false;"
+            'Else
+            '    lbtPAttachment2.Text = GetText("None")
+            '    lbtPAttachment2.OnClientClick = "return false;"
+            'End If
             txtPRemark.Text = opp.fldRemark
             txtPStatus.Text = If(opp.fldStatus.Equals("Y"), GetText("Active"), If(opp.fldStatus.Equals("N"), GetText("Inactive"), GetText("Pending")))
             txtPStatus.CssClass = If(opp.fldStatus.Equals("Y"), "label label-success", If(opp.fldStatus.Equals("N"), "label label-danger", "label label-warning"))
@@ -690,14 +704,30 @@ Public Class AOPPList
             chkPCharger.Checked = False
             chkPStrap.Checked = False
             chkPCable.Checked = False
-            lbtPAttachment1.Text = GetText("None")
-            lbtPAttachment1.OnClientClick = "return false;"
-            lbtPAttachment2.Text = GetText("None")
-            lbtPAttachment2.OnClientClick = "return false;"
+            rptAttachment1.DataSource = ""
+            rptAttachment1.DataBind()
             txtPRemark.Text = ""
             txtPStatus.Text = ""
             txtPStatus.CssClass = ""
             btnPApprove.Visible = False
+        End If
+    End Sub
+
+    Private Sub GetFileData(ByVal opp As OPPObj)
+        rptAttachment1.DataSource = ""
+        rptAttachment1.DataBind()
+        If Not String.IsNullOrWhiteSpace(opp.fldAttachment1) Then
+            Dim fileList As String() = opp.fldAttachment1.Split(",")
+            Dim fileDetails As New List(Of Object)
+            For Each filePath As String In fileList
+                fileDetails.Add(New With {
+                    .FileName = Path.GetFileName(filePath),
+                    .FileType = Path.GetExtension(filePath).Replace(".", "").ToLower(),
+                    .FilePath = filePath
+                })
+            Next
+            rptAttachment1.DataSource = fileDetails
+            rptAttachment1.DataBind()
         End If
     End Sub
 
@@ -783,20 +813,20 @@ Public Class AOPPList
         ddlReportToTime.SelectedValue = opp.fldRptToTime
         ddlRestrictFrTime.SelectedValue = opp.fldRestrictFrTime
         ddlRestrictToTime.SelectedValue = opp.fldRestrictToTime
-        If Not String.IsNullOrWhiteSpace(opp.fldAttachment1) Then
-            lbtAttachment1.Text = GetText("ClickToView")
-            lbtAttachment1.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment1 & "',1280,800);return false;"
-        Else
-            lbtAttachment1.Text = GetText("None")
-            lbtAttachment1.OnClientClick = "return false;"
-        End If
-        If Not String.IsNullOrWhiteSpace(opp.fldAttachment2) Then
-            lbtAttachment2.Text = GetText("ClickToView")
-            lbtAttachment2.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment2 & "',1280,800);return false;"
-        Else
-            lbtAttachment2.Text = GetText("None")
-            lbtAttachment2.OnClientClick = "return false;"
-        End If
+        'If Not String.IsNullOrWhiteSpace(opp.fldAttachment1) Then
+        '    lbtAttachment1.Text = GetText("ClickToView")
+        '    lbtAttachment1.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment1 & "',1280,800);return false;"
+        'Else
+        '    lbtAttachment1.Text = GetText("None")
+        '    lbtAttachment1.OnClientClick = "return false;"
+        'End If
+        'If Not String.IsNullOrWhiteSpace(opp.fldAttachment2) Then
+        '    lbtAttachment2.Text = GetText("ClickToView")
+        '    lbtAttachment2.OnClientClick = "OpenPopupWindow('" & opp.fldAttachment2 & "',1280,800);return false;"
+        'Else
+        '    lbtAttachment2.Text = GetText("None")
+        '    lbtAttachment2.OnClientClick = "return false;"
+        'End If
         txtRemark.Text = opp.fldRemark
     End Sub
 
@@ -865,24 +895,24 @@ Public Class AOPPList
         Dim errorMsg As String = ""
         Dim returnMsg As String = ""
         If group.Equals("opp") Then
-            If Not ValidateFileType(fuPhoto1, {".png", ".jpeg", ".jpg", ".bmp"}, 10, False, False, returnMsg) Then
+            If Not ValidateFileType(fuPhoto1, {".png", ".jpeg", ".jpg", ".bmp"}, 10, True, False, returnMsg) Then
                 result = False
                 errorMsg &= GetText("ErrorItemRequired").Replace("vITEM", GetText("Picture") & " (" & GetText("Face") & ")") & "\n"
             End If
-            If Not ValidateFileType(fuPhoto2, {".png", ".jpeg", ".jpg", ".bmp"}, 10, False, False, returnMsg) Then
+            If Not ValidateFileType(fuPhoto2, {".png", ".jpeg", ".jpg", ".bmp"}, 10, True, False, returnMsg) Then
                 result = False
                 errorMsg &= GetText("ErrorItemRequired").Replace("vITEM", GetText("Picture") & " (" & GetText("FullBody") & ")") & "\n"
             End If
         End If
         If group.Equals("attachment") Then
-            If Not ValidateFileType(fuAttachment1, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, True, False, returnMsg) Then
+            If Not ValidateFileType(fuAttachment1, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, False, False, returnMsg) Then
                 result = False
                 errorMsg &= returnMsg & "\n"
             End If
-            If Not ValidateFileType(fuAttachment2, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, True, False, returnMsg) Then
-                result = False
-                errorMsg &= returnMsg & "\n"
-            End If
+            'If Not ValidateFileType(fuAttachment2, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, True, False, returnMsg) Then
+            '    result = False
+            '    errorMsg &= returnMsg & "\n"
+            'End If
         End If
         If Not result Then
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorPageInvalid") & "\n" & errorMsg & "');", True)
@@ -906,97 +936,157 @@ Public Class AOPPList
 
     Protected Sub btnSubmitOPP_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
-        Dim opp As OPPObj = OPPManager.GetOPP(OPPID)
-        If Not opp Is Nothing Then
-            Dim result As Boolean = True
-            opp.fldName = txtSubjectName.Text
-            opp.fldICNo = txtSubjectICNo.Text
-            opp.fldContactNo = txtSubjectContactNo.Text
-            opp.fldAddress = txtAddress.Text
-            opp.fldCountryID = "MY"
-            opp.fldState = ddlState.SelectedValue
-            opp.fldDistrict = ddlDistrict.SelectedValue
-            opp.fldMukim = ddlMukim.SelectedValue
-            opp.fldPoliceStationID = ddlPoliceStation.SelectedValue
-            opp.fldDeptID = ddlDepartment.SelectedValue
-            opp.fldOffenceDesc = txtOffenceDesc.Text
-            opp.fldActsID = ddlActs.SelectedValue
-            opp.fldActsSectionID = ddlActsSection.SelectedValue
-            opp.fldOrdParty = ddlOrderIssuedBy.SelectedValue
-            opp.fldOrdIssuedDate = hfOrderIssuedDate.Text
-            opp.fldOrdRefNo = txtOrderRefNo.Text
-            opp.fldOrdFrDate = hfOrderDate.Text
-            opp.fldOrdToDate = GetExpDate(hfOrderDate.Text, txtOrderPeriod.Text, ddlOrderPeriodUnit.SelectedValue)
-            opp.fldOrdDay = 0
-            opp.fldOrdMonth = 0
-            opp.fldOrdYear = 0
-            If ddlOrderPeriodUnit.SelectedValue.Equals("D") Then
-                opp.fldOrdDay = txtOrderPeriod.Text
-            ElseIf ddlOrderPeriodUnit.SelectedValue.Equals("M") Then
-                opp.fldOrdMonth = txtOrderPeriod.Text
-            ElseIf ddlOrderPeriodUnit.SelectedValue.Equals("Y") Then
-                opp.fldOrdYear = txtOrderPeriod.Text
+        If PageValid("opp") Then
+            Dim opp As OPPObj = OPPManager.GetOPP(OPPID)
+            If Not opp Is Nothing Then
+                Dim result As Boolean = True
+                opp.fldName = txtSubjectName.Text
+                opp.fldICNo = txtSubjectICNo.Text
+                opp.fldContactNo = txtSubjectContactNo.Text
+                opp.fldAddress = txtAddress.Text
+                opp.fldCountryID = "MY"
+                opp.fldState = ddlState.SelectedValue
+                opp.fldDistrict = ddlDistrict.SelectedValue
+                opp.fldMukim = ddlMukim.SelectedValue
+                opp.fldPoliceStationID = ddlPoliceStation.SelectedValue
+                opp.fldDeptID = ddlDepartment.SelectedValue
+                opp.fldOffenceDesc = txtOffenceDesc.Text
+                opp.fldActsID = ddlActs.SelectedValue
+                opp.fldActsSectionID = ddlActsSection.SelectedValue
+                opp.fldOrdParty = ddlOrderIssuedBy.SelectedValue
+                opp.fldOrdIssuedDate = hfOrderIssuedDate.Text
+                opp.fldOrdRefNo = txtOrderRefNo.Text
+                opp.fldOrdFrDate = hfOrderDate.Text
+                opp.fldOrdToDate = GetExpDate(hfOrderDate.Text, txtOrderPeriod.Text, ddlOrderPeriodUnit.SelectedValue)
+                opp.fldOrdDay = 0
+                opp.fldOrdMonth = 0
+                opp.fldOrdYear = 0
+                If ddlOrderPeriodUnit.SelectedValue.Equals("D") Then
+                    opp.fldOrdDay = txtOrderPeriod.Text
+                ElseIf ddlOrderPeriodUnit.SelectedValue.Equals("M") Then
+                    opp.fldOrdMonth = txtOrderPeriod.Text
+                ElseIf ddlOrderPeriodUnit.SelectedValue.Equals("Y") Then
+                    opp.fldOrdYear = txtOrderPeriod.Text
+                End If
+                opp.fldRptPoliceStationID = ddlRptPoliceStation.SelectedValue
+                opp.fldSDNo = txtSDNo.Text
+                opp.fldOCSName = txtOCSName.Text
+                opp.fldOCSTelNo = txtOCSContactNo.Text
+                opp.fldRptDay = ddlReportDay.SelectedValue
+                opp.fldRptFrTime = ddlReportFrTime.SelectedValue
+                opp.fldRptToTime = ddlReportToTime.SelectedValue
+                opp.fldRestrictFrTime = ddlRestrictFrTime.SelectedValue
+                opp.fldRestrictToTime = ddlRestrictToTime.SelectedValue
+                opp.fldRemark = txtRemark.Text
+                If result AndAlso Not fuPhoto1.PostedFile Is Nothing AndAlso fuPhoto1.PostedFile.ContentLength > 0 Then
+                    result = UploadDocument(fuPhoto1, "OPPA_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), "opp", True, opp.fldPhoto1)
+                End If
+                If result AndAlso Not fuPhoto2.PostedFile Is Nothing AndAlso fuPhoto2.PostedFile.ContentLength > 0 Then
+                    result = UploadDocument(fuPhoto2, "OPPB_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), "opp", True, opp.fldPhoto2)
+                End If
+                If result Then result = OPPManager.Update(opp, AdminAuthentication.GetUserData(2))
+                If result Then
+                    UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP DETAILS", "OPP ID: " & OPPID, "")
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+                    GetSubjectData(opp)
+                Else
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+                End If
             End If
-            opp.fldRptPoliceStationID = ddlRptPoliceStation.SelectedValue
-            opp.fldSDNo = txtSDNo.Text
-            opp.fldOCSName = txtOCSName.Text
-            opp.fldOCSTelNo = txtOCSContactNo.Text
-            opp.fldRptDay = ddlReportDay.SelectedValue
-            opp.fldRptFrTime = ddlReportFrTime.SelectedValue
-            opp.fldRptToTime = ddlReportToTime.SelectedValue
-            opp.fldRestrictFrTime = ddlRestrictFrTime.SelectedValue
-            opp.fldRestrictToTime = ddlRestrictToTime.SelectedValue
-            opp.fldRemark = txtRemark.Text
-            If result AndAlso Not fuPhoto1.PostedFile Is Nothing AndAlso fuPhoto1.PostedFile.ContentLength > 0 Then
-                result = UploadDocument(fuPhoto1, "OPPA", "opp", opp.fldPhoto1)
+        End If
+    End Sub
+
+    Protected Sub btnSubmitAttachment_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If PageValid("attachment") Then
+            Dim attachment As String = ""
+            Dim opp As OPPObj = OPPManager.GetOPP(OPPID)
+            If Not fuAttachment1.PostedFile Is Nothing AndAlso fuAttachment1.PostedFile.ContentLength > 0 Then
+                If UploadDocument(fuAttachment1, "", "_" & opp.fldName, "attachment", False, attachment) Then
+                    If Not String.IsNullOrWhiteSpace(opp.fldAttachment1) Then attachment = opp.fldAttachment1 & "," & attachment
+                    If OPPManager.UpdateAttachment(OPPID, attachment) Then
+                        UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPLOAD OPP ATTACHMENT", "OPP ID: " & OPPID, "")
+                        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgSubmitSuccess") & "');", True)
+                        GetFileData(OPPManager.GetOPP(OPPID))
+                    Else
+                        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorSubmitFailed") & "');", True)
+                    End If
+                End If
             End If
-            If result AndAlso Not fuPhoto2.PostedFile Is Nothing AndAlso fuPhoto2.PostedFile.ContentLength > 0 Then
-                result = UploadDocument(fuPhoto2, "OPPB", "opp", opp.fldPhoto2)
-            End If
-            If result AndAlso Not fuAttachment1.PostedFile Is Nothing AndAlso fuAttachment1.PostedFile.ContentLength > 0 Then
-                result = UploadDocument(fuAttachment1, "Lampiran1", "attachment", opp.fldAttachment1)
-            End If
-            If result AndAlso Not fuAttachment2.PostedFile Is Nothing AndAlso fuAttachment2.PostedFile.ContentLength > 0 Then
-                result = UploadDocument(fuAttachment2, "Lampiran2", "attachment", opp.fldAttachment2)
-            End If
-            If result Then result = OPPManager.Save(opp, AdminAuthentication.GetUserData(2), 0)
-            If result Then
-                UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP DETAILS", "OPP ID: " & OPPID, "")
+            'If result AndAlso Not fuAttachment2.PostedFile Is Nothing AndAlso fuAttachment2.PostedFile.ContentLength > 0 Then
+            '    result = UploadDocument(fuAttachment2, "Lampiran2", "attachment", opp.fldAttachment2)
+            'End If
+        End If
+    End Sub
+
+    Protected Sub rptAttachment1_ItemCreated(sender As Object, e As RepeaterItemEventArgs)
+        If e.Item.ItemType = ListItemType.Item OrElse e.Item.ItemType = ListItemType.AlternatingItem Then
+            Dim scriptManager As ScriptManager = ScriptManager.GetCurrent(Me)
+            Dim btnDelete As Button = e.Item.FindControl("btnDelete")
+            scriptManager.RegisterAsyncPostBackControl(btnDelete)
+        End If
+    End Sub
+
+    Protected Sub rptAttachment1_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        If e.CommandName.Equals("deletefile") Then
+            Try
+                Dim opp As OPPObj = OPPManager.GetOPP(OPPID)
+                Dim fileList As List(Of String) = opp.fldAttachment1.Split(",").ToList
+                Dim filepath As String = fileList(e.CommandArgument)
+
+                Dim fullServerPath As String = Server.MapPath(filepath)
+                If File.Exists(fullServerPath) Then
+                    File.Delete(fullServerPath)
+                End If
+                fileList.RemoveAt(e.CommandArgument)
+                Dim fileListString As String = ""
+                If fileList.Count > 0 Then fileListString = String.Join(",", fileList)
+                If OPPManager.UpdateAttachment(opp.fldID, fileListString) Then
+                    UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPLOAD OPP ATTACHMENT", "OPP ID: " & OPPID, "")
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgDeleteSuccess") & "');", True)
+                    GetFileData(OPPManager.GetOPP(OPPID))
+                Else
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorDeleteFailed") & "');", True)
+                End If
+            Catch ex As Exception
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorDeleteFailed") & "');", True)
+            End Try
+        End If
+    End Sub
+
+    Protected Sub btnSubmitOverseer_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If PageValid("officer") Then
+            If OPPManager.UpdateOverseerID(OPPID, ddlOverseer.SelectedValue) Then
+                UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP OVERSEER", "OPP ID: " & OPPID & ", Overseer ID: " & ddlOverseer.SelectedValue, "")
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
-                GetSubjectData(opp)
             Else
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
             End If
         End If
     End Sub
 
-    Protected Sub btnSubmitOverseer_Click(sender As Object, e As EventArgs)
-        UserIsAuthenticated()
-        If OPPManager.UpdateOverseerID(OPPID, ddlOverseer.SelectedValue) Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP OVERSEER", "OPP ID: " & OPPID & ", Overseer ID: " & ddlOverseer.SelectedValue, "")
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
-        Else
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
-        End If
-    End Sub
-
     Protected Sub btnSubmitEMD_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
-        If OPPManager.UpdateEMDDevice(OPPID, ddlEMD.SelectedValue, hfEMDInstallDate.Text, txtBeaconCode.Text, If(chkSmartTag.Checked, 1, 0), If(chkOBC.Checked, 1, 0), If(chkBeacon.Checked, 1, 0), If(chkCharger.Checked, 1, 0), If(chkStrap.Checked, 1, 0), If(chkCable.Checked, 1, 0), AdminAuthentication.GetUserData(2)) Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP EMD Device", "OPP ID: " & OPPID & ", Device ID: " & ddlEMD.SelectedValue, "")
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
-        Else
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+        If PageValid("emd") Then
+            If OPPManager.UpdateEMDDevice(OPPID, ddlEMD.SelectedValue, hfEMDInstallDate.Text, txtBeaconCode.Text, If(chkSmartTag.Checked, 1, 0), If(chkOBC.Checked, 1, 0), If(chkBeacon.Checked, 1, 0), If(chkCharger.Checked, 1, 0), If(chkStrap.Checked, 1, 0), If(chkCable.Checked, 1, 0), AdminAuthentication.GetUserData(2)) Then
+                UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP EMD Device", "OPP ID: " & OPPID & ", Device ID: " & ddlEMD.SelectedValue, "")
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+            Else
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+            End If
         End If
     End Sub
 
     Protected Sub btnSubmitGeofence_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
-        If OPPManager.UpdateGeofenceMukim(OPPID, ddlGeofenceMukim.SelectedValue) Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP GEOFENCE MUKIM", "OPP ID: " & OPPID & ", MUKIM: " & ddlGeofenceMukim.SelectedValue, "")
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
-        Else
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+        If PageValid("geofence") Then
+            If OPPManager.UpdateGeofenceMukim(OPPID, ddlGeofenceMukim.SelectedValue) Then
+                UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP GEOFENCE MUKIM", "OPP ID: " & OPPID & ", MUKIM: " & ddlGeofenceMukim.SelectedValue, "")
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+            Else
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+            End If
         End If
     End Sub
 
@@ -1038,14 +1128,18 @@ Public Class AOPPList
         Return CDate(orderdate).AddYears(years).AddMonths(months).AddDays(days)
     End Function
 
-    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByVal folder As String, ByRef FilePath As String) As Boolean
+    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByVal suffix As String, ByVal folder As String, ByVal genfilename As Boolean, ByRef FilePath As String) As Boolean
         Dim result As Boolean = True
         Dim oldFilePath As String = ""
         Dim datetime As DateTime = UtilityManager.GetServerDateTime
         'Dim newSize As New System.Drawing.Size(500, 500)
         Try
             If Not fuFile.PostedFile Is Nothing AndAlso fuFile.PostedFile.ContentLength > 0 Then
-                FilePath = "../" & ValidateFilePath("upload/" & folder & "/", prefix & "_" & datetime.ToString("yyMMddHHmmss") & "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                If genfilename Then
+                    FilePath = ValidateFilePath("../" & "upload/" & folder & "/", UtilityManager.EscapeFileName(prefix & datetime.ToString("yyMMddHHmmss") & suffix).Replace(" ", "_"), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                Else
+                    FilePath = ValidateFilePath("../" & "upload/" & folder & "/", UtilityManager.EscapeFileName(prefix & Path.GetFileNameWithoutExtension(fuFile.PostedFile.FileName) & suffix).Replace(" ", "_"), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
+                End If
                 If Path.GetExtension(fuFile.PostedFile.FileName).ToLower() <> ".pdf" Then
                     Dim oriImage As System.Drawing.Image = System.Drawing.Image.FromStream(fuFile.PostedFile.InputStream)
                     'newSize = UtilityManager.AspectRatioSize(oriImage.Size, newSize)
@@ -1118,6 +1212,11 @@ Public Class AOPPList
     Protected Sub btnPCancel_Click(sender As Object, e As EventArgs)
         GetModalInfo(Nothing)
         ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plVerify').modal('hide');", True)
+    End Sub
+
+    Protected Sub btnResetFile_Click(sender As Object, e As EventArgs)
+        Dim opp As OPPObj = OPPManager.GetOPP(OPPID)
+        GetFileData(opp)
     End Sub
 
 #End Region

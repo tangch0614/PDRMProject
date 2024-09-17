@@ -10,13 +10,13 @@ Public Class Admin
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
-            If Authorization() Then
-                SetText()
+            'If Authorization() Then
+            SetText()
                 GetAdmin()
                 MenuBar()
-            Else
-                Response.Redirect("~/AccessDenied.aspx")
-            End If
+            'Else
+            '    Response.Redirect("~/AccessDenied.aspx")
+            'End If
         End If
     End Sub
 

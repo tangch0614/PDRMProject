@@ -219,4 +219,193 @@ Partial Public Class AMainMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblCawanganKhas_Alert As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''hfAlertID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfAlertID As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfConfirm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfConfirm As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''plAcknowledge control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents plAcknowledge As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''imgPPhoto1Preview control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents imgPPhoto1Preview As Global.System.Web.UI.WebControls.Image
+
+    '''<summary>
+    '''txtPViolateTerms control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPViolateTerms As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPDateTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPDateTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPImei control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPImei As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPSubjectName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPSubjectName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPSubjectICNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPSubjectICNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPSubjectContactNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPSubjectContactNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPPoliceStation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPPoliceStation As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPDepartment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPDepartment As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPPSContactNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPPSContactNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPOverseer control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPOverseer As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPOverseerIDNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPOverseerIDNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPOverseerContactNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPOverseerContactNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPRemark As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txtPAcknowledgeByID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPAcknowledgeByID As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPAcknowledgeDateTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPAcknowledgeDateTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnPAcknowledge control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnPAcknowledge As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnPCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnPCancel As Global.System.Web.UI.WebControls.Button
 End Class

@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .input-inline + .select2-container--bootstrap{
-            display:inline-block;
+        .input-inline + .select2-container--bootstrap {
+            display: inline-block;
         }
     </style>
 </asp:Content>
@@ -124,7 +124,7 @@
                                         </div>
                                     </ContentTemplate>
                                     <Triggers>
-                                        <asp:AsyncPostBackTrigger ControlID="ddlIPK"/>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlIPK" />
                                     </Triggers>
                                 </asp:UpdatePanel>
                             </div>
@@ -207,7 +207,7 @@
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
     </div>
     <!-- PAGE BODY -->
     <asp:FileUpload runat="server" ID="fuAttachment1" Style="display: none" ClientIDMode="static" onchange="txtAttachment1.value = filename(this);" />

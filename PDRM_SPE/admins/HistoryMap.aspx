@@ -25,7 +25,7 @@
     <script src="../assets/global/plugins/select2/js/select2.full.min.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL PLUGINS -->
     <!-- BEGIN THEME GLOBAL STYLES -->
-    <link href="../assets/global/css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+    <link href="../assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
     <link href="../assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
@@ -69,7 +69,7 @@
     </style>
     <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
             ({ key: "AIzaSyA9AQTXBVGEnr8xB2k3chP1Ek5Yxk6gePU", v: "weekly" });</script>
-
+    <script src="../assets/js/oms.min.js"></script>
     <!--MAP-->
     <script type="text/javascript">
         let map;
@@ -151,10 +151,14 @@
         async function updateMarkers(locations) {
             const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
             const { InfoWindow } = await google.maps.importLibrary("maps");
+            // Initialize OverlappingMarkerSpiderfier
+            const oms = new OverlappingMarkerSpiderfier(map, {
+                keepSpiderfied: true // Optional: Keep spiderfied markers expanded when clicked
+            });
 
             // Loop through the new data and create markers
             locations.forEach((location, index) => {
-                createMarker(location, InfoWindow, AdvancedMarkerElement, PinElement, index + 1, locations.length);
+                createMarker(location, InfoWindow, AdvancedMarkerElement, PinElement, index + 1, locations.length, oms);
             });
 
             const arrowSymbol = {
@@ -209,7 +213,7 @@
         }
 
         // Create a new marker with AdvancedMarkerElement
-        function createMarker(location, InfoWindow, AdvancedMarkerElement, PinElement, index, totalmarkers) {
+        function createMarker(location, InfoWindow, AdvancedMarkerElement, PinElement, index, totalmarkers, oms) {
             const infoWindow = new InfoWindow();
 
             // Each PinElement is paired with a MarkerView to demonstrate setting each parameter.
@@ -242,6 +246,9 @@
                 title: location.fldID,
                 zIndex: index === totalmarkers ? totalmarkers : -index
             });
+
+            // Add marker to OverlappingMarkerSpiderfier instance
+            oms.addMarker(marker);
 
             marker.addListener("click", () => {
                 const content = getInfoWindowContent(location);

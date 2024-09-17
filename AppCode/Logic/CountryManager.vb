@@ -11,6 +11,69 @@ NameSpace BusinessLogic
 
 #Region "Public Methods"
 
+        Public Shared Function UpdateMukimGeofence(ByVal mukim As String, ByVal geofence As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = CountryDB.UpdateMukimGeofence(mukim, geofence, myConnection)
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function UpdateDistrictGeofence(ByVal district As String, ByVal geofence As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = CountryDB.UpdateDistrictGeofence(district, geofence, myConnection)
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function UpdateStateGeofence(ByVal state As String, ByVal geofence As String) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = CountryDB.UpdateStateGeofence(state, geofence, myConnection)
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function GetState(ByVal state As String) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = CountryDB.GetState(state, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
+        Public Shared Function GetDistrict(ByVal district As String) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = CountryDB.GetDistrict(district, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
+        Public Shared Function GetMukim(ByVal mukim As String) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = CountryDB.GetMukim(mukim, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
         Public Shared Function GetCurrency(ByVal countryID As String) As String
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()

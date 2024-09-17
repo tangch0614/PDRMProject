@@ -1013,6 +1013,9 @@
   <data name="On" xml:space="preserve">
     <value>On</value>
   </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
   <data name="Operation" xml:space="preserve">
     <value>Operation</value>
   </data>

@@ -8,6 +8,60 @@ NameSpace DataAccess
 
 #Region "Public Methods"
 
+        Public Shared Function UpdateMukimGeofence(ByVal mukim As String, ByVal geofence As String, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblcountrymukim set fldGeofence=@geofence Where fldMukim=@mukim", myConnection)
+            myCommand.Parameters.AddWithValue("@mukim", mukim)
+            myCommand.Parameters.AddWithValue("@geofence", geofence)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
+        Public Shared Function UpdateDistrictGeofence(ByVal district As String, ByVal geofence As String, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblcountrydistrict set fldGeofence=@geofence Where fldDistrict=@district", myConnection)
+            myCommand.Parameters.AddWithValue("@district", district)
+            myCommand.Parameters.AddWithValue("@geofence", geofence)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
+        Public Shared Function UpdateStateGeofence(ByVal state As String, ByVal geofence As String, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblcountrystate set fldGeofence=@geofence Where fldState=@state", myConnection)
+            myCommand.Parameters.AddWithValue("@state", state)
+            myCommand.Parameters.AddWithValue("@geofence", geofence)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
+        Public Shared Function GetState(ByVal state As String, ByVal myConnection As MySqlConnection) As DataTable
+            Dim myDataTable As DataTable = New DataTable()
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select * From tblcountrystate Where fldState = @state", myConnection)
+            myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@state", state)
+            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
+            adapter.Fill(myDataTable)
+            Return myDataTable
+        End Function
+
+        Public Shared Function GetDistrict(ByVal district As String, ByVal myConnection As MySqlConnection) As DataTable
+            Dim myDataTable As DataTable = New DataTable()
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select * From tblcountrydistrict Where fldDistrict = @district", myConnection)
+            myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@district", district)
+            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
+            adapter.Fill(myDataTable)
+            Return myDataTable
+        End Function
+
+        Public Shared Function GetMukim(ByVal mukim As String, ByVal myConnection As MySqlConnection) As DataTable
+            Dim myDataTable As DataTable = New DataTable()
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select * From tblcountrymukim Where fldMukim = @mukim", myConnection)
+            myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@mukim", mukim)
+            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
+            adapter.Fill(myDataTable)
+            Return myDataTable
+        End Function
+
         Public Shared Function GetCurrency(ByVal countryID As String, ByVal myConnection As MySqlConnection) As String
             Dim currency As String = ""
             Dim myCommand As MySqlCommand = New MySqlCommand("Select fldCurrency From tblcountry where fldID = @fldID", myConnection)

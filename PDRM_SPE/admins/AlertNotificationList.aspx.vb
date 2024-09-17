@@ -49,7 +49,7 @@ Public Class AAlertNotificationList
 #Region "Table binding"
 
     Private Sub BindLow()
-        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, -1, "", 0, "low", -1, 10)
+        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, -1, -1, "", 0, "low", -1, 10)
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptLow.DataSource = myDataTable
             rptLow.DataBind()
@@ -60,7 +60,7 @@ Public Class AAlertNotificationList
     End Sub
 
     Private Sub BindMedium()
-        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, -1, "", 0, "medium", -1, 10)
+        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, -1, -1, "", 0, "medium", -1, 10)
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptMedium.DataSource = myDataTable
             rptMedium.DataBind()
@@ -71,7 +71,7 @@ Public Class AAlertNotificationList
     End Sub
 
     Private Sub BindHigh()
-        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, -1, "", 0, "high", -1, 10)
+        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, -1, -1, "", 0, "high", -1, 10)
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptHigh.DataSource = myDataTable
             rptHigh.DataBind()
@@ -83,7 +83,7 @@ Public Class AAlertNotificationList
 
     Protected Sub rptHigh_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If e.CommandName.Equals("acknowledge") Then
-            If EMDDeviceManager.UpdateProcessStatus(e.CommandArgument, AdminAuthentication.GetUserData(2), "") Then
+            If EMDDeviceManager.AcknowledgeAlertNotification(e.CommandArgument, AdminAuthentication.GetUserData(2), "") Then
                 ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
                 BindHigh()
             Else
@@ -94,7 +94,7 @@ Public Class AAlertNotificationList
 
     Protected Sub rptMedium_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If e.CommandName.Equals("acknowledge") Then
-            If EMDDeviceManager.UpdateProcessStatus(e.CommandArgument, AdminAuthentication.GetUserData(2), "") Then
+            If EMDDeviceManager.AcknowledgeAlertNotification(e.CommandArgument, AdminAuthentication.GetUserData(2), "") Then
                 ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
                 BindMedium()
             Else
@@ -105,7 +105,7 @@ Public Class AAlertNotificationList
 
     Protected Sub rptLow_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         If e.CommandName.Equals("acknowledge") Then
-            If EMDDeviceManager.UpdateProcessStatus(e.CommandArgument, AdminAuthentication.GetUserData(2), "") Then
+            If EMDDeviceManager.AcknowledgeAlertNotification(e.CommandArgument, AdminAuthentication.GetUserData(2), "") Then
                 ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
                 BindLow()
             Else
