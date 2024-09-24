@@ -39,17 +39,17 @@ Public Class AEMDInstallationRequestList
         lblSStatus.Text = GetText("Status")
         btnSearch.Text = GetText("Search")
         btnSReset.Text = GetText("Reset")
-        'department
+        'OFFICER department
         lblInfo.Text = GetText("Information").Replace("vINFOTYPE", GetText("InstallationRequest"))
         lblDepartmentInfo.Text = GetText("Department")
         lblDepartment.Text = GetText("Department")
         rfvDepartment.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Department"))
-        'install info
+        'OFFICER install info
         lblInstallInfo.Text = GetText("InstallationInfo")
         lblDate.Text = GetText("Date")
         lblTime.Text = GetText("Time")
         rfvTime.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Time"))
-        'install location
+        'OFFICER install location
         lblInstallLocation.Text = GetText("InstallationLocation")
         lblState.Text = GetText("State")
         'rfvState.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("State"))
@@ -61,47 +61,71 @@ Public Class AEMDInstallationRequestList
         rfvIPK.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Contingent"))
         lblPoliceStation.Text = GetText("PoliceStation")
         rfvPoliceStation.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("PoliceStation"))
-        'ocs info
+        'OFFICER ocs info
         lblOCSInfo.Text = GetText("OCSInfo")
         lblOCSName.Text = GetText("OCSItem").Replace("vITEM", GetText("Name"))
         rfvOCSName.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("OCSItem").Replace("vITEM", GetText("Name")))
         lblOCSContactNo.Text = GetText("OCSItem").Replace("vITEM", GetText("ContactNum"))
         rfvOCSContactNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("OCSItem").Replace("vITEM", GetText("ContactNum")))
-        'file upload
-        lblFileInfo.Text = GetText("UploadDocument")
-        lblAttachment1.Text = GetText("OversightOrder")
-        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("Document"))
-        lblAttachment2.Text = GetText("Attachment")
-        btnAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("Document"))
-        'popup department
+        'OFFICER Others Info
+        lblOtherInfo.Text = GetText("OthersInfo")
+        lblRemark.Text = GetText("Remark")
+        'OFFICER file upload
+        lblFileInfo.Text = GetText("Attachment")
+        lblAttachment1.Text = GetText("Attachment")
+        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("File"))
+        btnSubmitAttachment1.Text = GetText("Submit")
+        'VENDOR department
         lblPInfo.Text = GetText("Information").Replace("vINFOTYPE", GetText("InstallationRequest"))
         lblPDepartmentInfo.Text = GetText("Department")
         lblPDepartment.Text = GetText("Department")
-        'popup install info
+        lblPOfficerName.Text = GetText("OfficerItem").Replace("vITEM", GetText("Name"))
+        lblPOfficerContactNo.Text = GetText("OfficerItem").Replace("vITEM", GetText("ContactNum"))
+        'VENDOR install info
         lblPInstallInfo.Text = GetText("InstallationInfo")
         lblPDate.Text = GetText("Date")
         lblPTime.Text = GetText("Time")
-        'popup install location
+        'VENDOR install location
         lblPInstallLocation.Text = GetText("InstallationLocation")
         lblPMukim.Text = GetText("State") & "/" & GetText("Township")
         lblPIPK.Text = GetText("Contingent")
         lblPPoliceStation.Text = GetText("PoliceStation")
-        'popup ocs info
+        'VENDOR ocs info
         lblPOCSInfo.Text = GetText("OCSInfo")
         lblPOCSName.Text = GetText("OCSItem").Replace("vITEM", GetText("Name"))
         lblPOCSContactNo.Text = GetText("OCSItem").Replace("vITEM", GetText("ContactNum"))
-        'popup file upload
-        lblPFileInfo.Text = GetText("UploadDocument")
-        lblPAttachment1.Text = GetText("OversightOrder")
-        lblPAttachment2.Text = GetText("Attachment")
+        'VENDOR others info
+        lblPOtherInfo.Text = GetText("OthersInfo")
+        lblPAttachment1.Text = GetText("Attachment")
+        'VENDOR emd info
+        lblPEMDDeviceInfo.Text = GetText("EMD")
+        lblPOPP.Text = GetText("OPP")
+        lblPEMD.Text = GetText("EMD")
+        chkPBeacon.Text = GetText("SmartTag")
+        chkPOBC.Text = GetText("OBC")
+        chkPBeacon.Text = GetText("Beacon")
+        chkPCharger.Text = GetText("Charger")
+        chkPStrap.Text = GetText("Strap")
+        chkPCable.Text = GetText("Cable")
+        'VENDOR Status info
+        lblPStatusInfo.Text = GetText("Status")
+        lblPRemark2.Text = GetText("Remark")
         lblPStatus.Text = GetText("Status")
+        'VENDOR file upload
+        lblPAttachment2.Text = GetText("Picture")
+        lblPFileInfo.Text = GetText("Picture")
+        btnPAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("MultipleFile"))
+        btnPSubmitAttachment2.Text = GetText("Submit")
         'Buttons/Message
-        btnPAcknowledge.Text = GetText("Acknowledge")
-        btnPCancel.Text = GetText("Close")
+        btnPUpdateStatus.Text = GetText("Update")
+        btnPUpdateEMD.Text = GetText("Update")
+        btnPBackTop.Text = GetText("Back")
+        btnPBackBottom.Text = GetText("Back")
         btnReset.Text = GetText("Reset")
         btnSubmit.Text = GetText("Update")
         btnBack.Text = GetText("Back")
         hfConfirm.Value = GetText("MsgConfirmItem").Replace("vITEM", GetText("Update").ToLower)
+        hfConfirm2.Value = GetText("MsgConfirm")
         ValidationSummary1.HeaderText = GetText("ErrorPageInvalid")
     End Sub
 
@@ -127,6 +151,7 @@ Public Class AEMDInstallationRequestList
     Private Sub GetStatus()
         ddlSStatus.Items.Add(New ListItem(GetText("All"), "", True))
         ddlSStatus.Items.Add(New ListItem(GetText("Pending"), "P", True))
+        ddlSStatus.Items.Add(New ListItem(GetText("Acknowledge"), "A", True))
         ddlSStatus.Items.Add(New ListItem(GetText("Completed"), "Y", True))
         'ddlSStatus.Items.Add(New ListItem(GetText("Rejected"), "N", True))
         If (AdminAuthentication.GetUserData(5) = 1) Then
@@ -134,6 +159,11 @@ Public Class AEMDInstallationRequestList
         Else
             ddlSStatus.SelectedIndex = 0
         End If
+
+        ddlPStatus.Items.Add(New ListItem(GetText("Pending"), "P", True))
+        ddlPStatus.Items.Add(New ListItem(GetText("Acknowledge"), "A", True))
+        ddlPStatus.Items.Add(New ListItem(GetText("Completed"), "Y", True))
+        ddlPStatus.SelectedIndex = 0
     End Sub
 
     Private Sub GetTime()
@@ -248,6 +278,27 @@ Public Class AEMDInstallationRequestList
         GetMukim(state, "")
     End Sub
 
+    Private Sub GetEMDDevice()
+        ddlPEMD.Items.Clear()
+        ddlPEMD.DataSource = EMDDeviceManager.GetDeviceList(-1, "", "", "Y")
+        ddlPEMD.DataTextField = "fldImei"
+        ddlPEMD.DataValueField = "fldID"
+        ddlPEMD.DataBind()
+        ddlPEMD.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("EMD")), 0))
+        ddlPEMD.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetOPPList()
+        ddlPOPP.Items.Clear()
+        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "Y")
+        datatable.Columns.Add("fldNameIC", GetType(String), "fldName + '-' + fldICNo")
+        ddlPOPP.DataSource = datatable
+        ddlPOPP.DataTextField = "fldNameIC"
+        ddlPOPP.DataValueField = "fldID"
+        ddlPOPP.DataBind()
+        ddlPOPP.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("OPP")), 0))
+    End Sub
+
 #End Region
 
 #Region "Table binding"
@@ -255,7 +306,8 @@ Public Class AEMDInstallationRequestList
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
         BindTable()
-        plUpdate.Visible = False
+        plOfficer.Visible = False
+        plVendor.Visible = False
         plTable.Visible = True
     End Sub
 
@@ -276,18 +328,21 @@ Public Class AEMDInstallationRequestList
 
     Protected Sub rptTable_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
         RequestID = 0
-        If e.CommandName.Equals("updaterequest") AndAlso AdminAuthentication.GetUserData(5) = 3 Then
+        plOfficer.Visible = False
+        plVendor.Visible = False
+        plTable.Visible = True
+        If e.CommandName.Equals("updaterequest") Then 'AndAlso AdminAuthentication.GetUserData(5) = 3 
             RequestID = e.CommandArgument
             Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
-            GetInfo(installrequest)
-        ElseIf e.CommandName.Equals("acknowledge") AndAlso AdminAuthentication.GetUserData(5) = 1 Then
+            GetOfficerFormInfo(installrequest)
+            GetOfficerFileData(installrequest)
+        ElseIf e.CommandName.Equals("processrequest") Then 'AndAlso AdminAuthentication.GetUserData(5) = 1
             RequestID = e.CommandArgument
             Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
-            GetModalInfo(installrequest)
-            If Not installrequest Is Nothing Then ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plAcknowledge').modal('show');", True)
-        Else
-            plUpdate.Visible = False
-            plTable.Visible = True
+            GetEMDDevice()
+            GetOPPList()
+            GetVendorFormInfo(installrequest)
+            GetVendorFileData(installrequest)
         End If
     End Sub
 
@@ -295,10 +350,14 @@ Public Class AEMDInstallationRequestList
         Return AdminAuthentication.GetUserData(5)
     End Function
 
-    Private Sub GetInfo(ByVal installrequest As EMDInstallRequestObj)
+#End Region
+
+#Region "Officer Update Form"
+
+    Private Sub GetOfficerFormInfo(ByVal installrequest As EMDInstallRequestObj)
         If Not installrequest Is Nothing Then
             plTable.Visible = False
-            plUpdate.Visible = True
+            plOfficer.Visible = True
             ddlDepartment.SelectedValue = installrequest.fldDeptID
             hfDate.Text = installrequest.fldInstallDateTime.ToString("yyyy-MM-dd")
             ddlTime.SelectedValue = installrequest.fldInstallDateTime.ToString("HH:mm:ss")
@@ -325,24 +384,12 @@ Public Class AEMDInstallationRequestList
             End Try
             txtOCSName.Text = installrequest.fldOCSName
             txtOCSContactNo.Text = installrequest.fldOCSTelNo
-            If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment1) Then
-                lbtAttachment1.Text = GetText("ClickToView")
-                lbtAttachment1.OnClientClick = "OpenPopupWindow('" & installrequest.fldAttachment1 & "',1280,800);return false;"
-            Else
-                lbtAttachment1.Text = GetText("None")
-                lbtAttachment1.OnClientClick = "return false;"
-            End If
-            If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment2) Then
-                lbtAttachment2.Text = GetText("ClickToView")
-                lbtAttachment2.OnClientClick = "OpenPopupWindow('" & installrequest.fldAttachment2 & "',1280,800);return false;"
-            Else
-                lbtAttachment2.Text = GetText("None")
-                lbtAttachment2.OnClientClick = "return false;"
-            End If
             txtRemark.Text = installrequest.fldRemark
+            btnSubmit.Visible = installrequest.fldStatus.Equals("P")
+            plAttachment1.Visible = installrequest.fldStatus.Equals("P")
         Else
             plTable.Visible = True
-            plUpdate.Visible = False
+            plOfficer.Visible = False
             ddlDepartment.SelectedIndex = 0
             hfDate.Text = UtilityManager.GetServerDateTime.ToString("yyyy-MM-dd")
             ddlTime.SelectedValue = "08:00:00"
@@ -353,75 +400,60 @@ Public Class AEMDInstallationRequestList
             ddlMukim.SelectedIndex = 0
             txtOCSName.Text = ""
             txtOCSContactNo.Text = ""
-            lbtAttachment1.Text = GetText("None")
-            lbtAttachment1.OnClientClick = "return false;"
-            lbtAttachment2.Text = GetText("None")
-            lbtAttachment2.OnClientClick = "return false;"
             txtRemark.Text = ""
         End If
     End Sub
 
-    Private Sub GetModalInfo(ByVal installrequest As EMDInstallRequestObj)
-        If Not installrequest Is Nothing Then
-            txtPDepartment.Text = PoliceStationManager.GetDepartmentName(installrequest.fldDeptID)
-            txtPDate.Text = installrequest.fldInstallDateTime.ToString("yyyy-MM-dd")
-            txtPTime.Text = installrequest.fldInstallDateTime.ToString("HH:mm")
-            txtPIPK.Text = PoliceStationManager.GetPoliceStationName(installrequest.fldIPKID)
-            txtPPoliceStation.Text = PoliceStationManager.GetPoliceStationName(installrequest.fldPSID)
-            txtPMukim.Text = installrequest.fldState & " / " & installrequest.fldMukim
-            txtPOCSName.Text = installrequest.fldOCSName
-            txtPOCSContactNo.Text = installrequest.fldOCSTelNo
-            If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment1) Then
-                lbtPAttachment1.Text = GetText("ClickToView")
-                lbtPAttachment1.OnClientClick = "OpenPopupWindow('" & installrequest.fldAttachment1 & "',1280,800);return false;"
-            Else
-                lbtPAttachment1.Text = GetText("None")
-                lbtPAttachment1.OnClientClick = "return false;"
-            End If
-            If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment2) Then
-                lbtPAttachment2.Text = GetText("ClickToView")
-                lbtPAttachment2.OnClientClick = "OpenPopupWindow('" & installrequest.fldAttachment2 & "',1280,800);return false;"
-            Else
-                lbtPAttachment2.Text = GetText("None")
-                lbtPAttachment2.OnClientClick = "return false;"
-            End If
-            txtPRemark.Text = installrequest.fldRemark
-            txtPStatus.Text = If(installrequest.fldStatus.Equals("Y"), GetText("Completed"), If(installrequest.fldStatus.Equals("N"), GetText("Rejected"), GetText("Pending")))
-            txtPStatus.CssClass = If(installrequest.fldStatus.Equals("Y"), "label label-success", If(installrequest.fldStatus.Equals("N"), "label label-danger", "label label-warning"))
-            Dim officer As AdminObj = AdminManager.GetAdmin(installrequest.fldCreatorID)
-            txtPOfficerName.Text = officer.fldName
-            txtPOfficerContactNo.Text = officer.fldContactNo
-            btnPAcknowledge.Visible = installrequest.fldStatus.Equals("P")
-        Else
-            txtPDepartment.Text = ""
-            txtPDate.Text = ""
-            txtPTime.Text = ""
-            txtPIPK.Text = ""
-            txtPPoliceStation.Text = ""
-            txtPMukim.Text = ""
-            txtPOCSName.Text = ""
-            txtPOCSContactNo.Text = ""
-            lbtPAttachment2.Text = GetText("NotAvailable")
-            lbtPAttachment2.OnClientClick = "return false;"
-            txtPRemark.Text = ""
-            txtPStatus.Text = ""
-            txtPOfficerName.Text = ""
-            txtPOfficerContactNo.Text = ""
-            btnPAcknowledge.Visible = False
+    Private Sub GetOfficerFileData(ByVal installrequest As EMDInstallRequestObj)
+        rptAttachment1.DataSource = ""
+        rptAttachment1.DataBind()
+        If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment1) Then
+            Dim fileList As String() = installrequest.fldAttachment1.Split(",")
+            Dim fileDetails As New List(Of Object)
+            For Each filePath As String In fileList
+                fileDetails.Add(New With {
+                    .FileName = Path.GetFileName(filePath),
+                    .FileType = Path.GetExtension(filePath).Replace(".", "").ToLower(),
+                    .FilePath = filePath
+                })
+            Next
+            rptAttachment1.DataSource = fileDetails
+            rptAttachment1.DataBind()
         End If
     End Sub
 
-#End Region
+    Protected Sub rptAttachment1_ItemCreated(sender As Object, e As RepeaterItemEventArgs)
+        If e.Item.ItemType = ListItemType.Item OrElse e.Item.ItemType = ListItemType.AlternatingItem Then
+            Dim scriptManager As ScriptManager = ScriptManager.GetCurrent(Me)
+            Dim btnDelete As LinkButton = e.Item.FindControl("btnDelete")
+            scriptManager.RegisterAsyncPostBackControl(btnDelete)
+        End If
+    End Sub
 
-#Region "Save To DB"
+    Protected Sub rptAttachment1_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        If e.CommandName.Equals("deletefile") Then
+            Try
+                Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
+                Dim fileList As List(Of String) = installrequest.fldAttachment1.Split(",").ToList
+                Dim filepath As String = fileList(e.CommandArgument)
 
-    Protected Sub btnPAcknowledge_Click(sender As Object, e As EventArgs)
-        UserIsAuthenticated()
-        If EMDInstallRequestManager.UpdateStatus(RequestID, AdminAuthentication.GetUserData(2), "P", "Y", "") Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE EMD INSTALLATION REQUEST", "ID: " & RequestID, "")
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
-            GetModalInfo(EMDInstallRequestManager.GetInstallRequest(RequestID))
-            BindTable()
+                Dim fullServerPath As String = Server.MapPath(filepath)
+                If File.Exists(fullServerPath) Then
+                    File.Delete(fullServerPath)
+                End If
+                fileList.RemoveAt(e.CommandArgument)
+                Dim fileListString As String = ""
+                If fileList.Count > 0 Then fileListString = String.Join(",", fileList)
+                If EMDInstallRequestManager.UpdateAttachment1(installrequest.fldID, fileListString) Then
+                    UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "DELETE EMD INSTALLATION REQUEST ATTACHMENT 1", "Request ID: " & installrequest.fldID & ", Removed Attachment Name: " & Path.GetFileNameWithoutExtension(filepath), "")
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgDeleteSuccess") & "');", True)
+                    GetOfficerFileData(EMDInstallRequestManager.GetInstallRequest(RequestID))
+                Else
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorDeleteFailed") & "');", True)
+                End If
+            Catch ex As Exception
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorDeleteFailed") & "');", True)
+            End Try
         End If
     End Sub
 
@@ -429,10 +461,10 @@ Public Class AEMDInstallationRequestList
         UserIsAuthenticated()
         Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
         If Not installrequest Is Nothing Then
-            If UpdateDetails(installrequest) Then
+            If UpdateOfficerRequestInfo(installrequest) Then
                 UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE EMD INSTALLATION REQUEST", "ID: " & RequestID, "")
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
-                GetInfo(EMDInstallRequestManager.GetInstallRequest(RequestID))
+                GetOfficerFormInfo(EMDInstallRequestManager.GetInstallRequest(RequestID))
                 BindTable()
             Else
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
@@ -440,7 +472,7 @@ Public Class AEMDInstallationRequestList
         End If
     End Sub
 
-    Private Function UpdateDetails(ByVal installrequest As EMDInstallRequestObj) As Boolean
+    Private Function UpdateOfficerRequestInfo(ByVal installrequest As EMDInstallRequestObj) As Boolean
         Dim result As Boolean = True
         installrequest.fldDeptID = ddlDepartment.SelectedValue
         installrequest.fldInstallDateTime = CDate(hfDate.Text & " " & ddlTime.SelectedValue)
@@ -451,49 +483,221 @@ Public Class AEMDInstallationRequestList
         installrequest.fldOCSName = txtOCSName.Text
         installrequest.fldOCSTelNo = txtOCSContactNo.Text
         installrequest.fldRemark = txtRemark.Text
-        If Not fuAttachment1.PostedFile Is Nothing AndAlso fuAttachment1.PostedFile.ContentLength > 0 Then
-            result = UploadDocument(fuAttachment1, "Perintah", installrequest.fldAttachment1)
-        End If
-        If result AndAlso Not fuAttachment2.PostedFile Is Nothing AndAlso fuAttachment2.PostedFile.ContentLength > 0 Then
-            result = UploadDocument(fuAttachment2, "Lampiran", installrequest.fldAttachment2)
-        End If
         If result Then result = EMDInstallRequestManager.Save(installrequest) > 0
         Return result
     End Function
 
-    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByRef FilePath As String) As Boolean
-        Dim result As Boolean = True
-        Dim oldFilePath As String = ""
-        Dim datetime As DateTime = UtilityManager.GetServerDateTime
-        'Dim newSize As New System.Drawing.Size(500, 500)
-        Try
-            If Not fuFile.PostedFile Is Nothing AndAlso fuFile.PostedFile.ContentLength > 0 Then
-                FilePath = ValidateFilePath("../" & "upload/attachment/", prefix & "_" & datetime.ToString("yyMMddHHmmss") & "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
-                If Path.GetExtension(fuFile.PostedFile.FileName).ToLower() <> ".pdf" Then
-                    Dim oriImage As System.Drawing.Image = System.Drawing.Image.FromStream(fuFile.PostedFile.InputStream)
-                    'newSize = UtilityManager.AspectRatioSize(oriImage.Size, newSize)
-                    'Dim resizedImg As System.Drawing.Image = UtilityManager.ResizeImage(oriImage, newSize.Width, newSize.Height)
-                    If File.Exists(Server.MapPath(FilePath)) Then
-                        File.Delete(Server.MapPath(FilePath))
+    Protected Sub btnSubmitAttachment1_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If ValidateFileType(fuAttachment1, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, True, True, "") Then
+            Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
+            If Not installrequest Is Nothing Then
+                Dim attachment As String = ""
+                If fuAttachment1.HasFiles Then
+                    If UploadFile(fuAttachment1, "../upload/attachment/", "Lampiran_", "_" & UtilityManager.GetServerDateTime.ToString("yMd_Hms"), False, attachment) Then
+                        If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment1) Then attachment = installrequest.fldAttachment1 & "," & attachment
+                        If EMDInstallRequestManager.UpdateAttachment1(RequestID, attachment) Then
+                            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE EMD INSTALLATION REQUEST ATTACHMENT 1", "Request ID: " & RequestID, "")
+                            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+                            GetOfficerFileData(EMDInstallRequestManager.GetInstallRequest(RequestID))
+                        Else
+                            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+                        End If
                     End If
-                    'resizedImg.Save(Server.MapPath("../" & FilePath), UtilityManager.GetEncoder(ImageFormat.Jpeg), UtilityManager.GetEncoderParameters(50))
-                    oriImage.Save(Server.MapPath(FilePath), UtilityManager.GetEncoder(ImageFormat.Jpeg), UtilityManager.GetEncoderParameters(50))
-                Else
-                    If File.Exists(Server.MapPath(FilePath)) Then
-                        File.Delete(Server.MapPath(FilePath))
-                    End If
-                    fuFile.PostedFile.SaveAs(Server.MapPath(FilePath))
                 End If
-                'If Not String.IsNullOrEmpty(oldFilePath) AndAlso File.Exists(Server.MapPath("../" & oldFilePath)) Then
-                '    File.Delete(Server.MapPath("../" & oldFilePath))
-                'End If
             End If
-        Catch ex As Exception
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUploadFailed") & "');", True)
-            result = False
-        End Try
-        Return result
-    End Function
+        End If
+    End Sub
+
+#End Region
+
+#Region "Vendor Update Form"
+
+    Private Sub GetVendorFormInfo(ByVal installrequest As EMDInstallRequestObj)
+        If Not installrequest Is Nothing Then
+            plTable.Visible = False
+            plVendor.Visible = True
+            txtPDepartment.Text = PoliceStationManager.GetDepartmentName(installrequest.fldDeptID)
+            txtPDate.Text = installrequest.fldInstallDateTime.ToString("yyyy-MM-dd")
+            txtPTime.Text = installrequest.fldInstallDateTime.ToString("HH:mm")
+            txtPIPK.Text = PoliceStationManager.GetPoliceStationName(installrequest.fldIPKID)
+            txtPPoliceStation.Text = PoliceStationManager.GetPoliceStationName(installrequest.fldPSID)
+            txtPMukim.Text = installrequest.fldState & " / " & installrequest.fldMukim
+            txtPOCSName.Text = installrequest.fldOCSName
+            txtPOCSContactNo.Text = installrequest.fldOCSTelNo
+            If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment1) Then
+                Dim fileList As String() = installrequest.fldAttachment1.Split(",")
+                Dim fileDetails As New List(Of Object)
+                For Each filePath As String In fileList
+                    fileDetails.Add(New With {
+                        .FileName = Path.GetFileName(filePath),
+                        .FileType = Path.GetExtension(filePath).Replace(".", "").ToLower(),
+                        .FilePath = filePath
+                        })
+                Next
+                rptPAttachment1.DataSource = fileDetails
+                rptPAttachment1.DataBind()
+            Else
+                rptPAttachment1.DataSource = ""
+                rptPAttachment1.DataBind()
+            End If
+            txtPRemark.Text = installrequest.fldRemark
+            Dim officer As AdminObj = AdminManager.GetAdmin(installrequest.fldCreatorID)
+            txtPOfficerName.Text = officer.fldName
+            txtPOfficerContactNo.Text = officer.fldContactNo
+            txtPRemark2.Text = installrequest.fldProcessRemark
+            ddlPStatus.SelectedValue = installrequest.fldStatus
+            'emd data
+            Try
+                ddlPOPP.SelectedValue = installrequest.fldOPPID
+            Catch ex As Exception
+                ddlPOPP.SelectedIndex = 0
+            End Try
+            Try
+                ddlPEMD.SelectedValue = installrequest.fldEMDDeviceID
+            Catch ex As Exception
+                ddlPEMD.SelectedIndex = 0
+            End Try
+            chkPSmartTag.Checked = installrequest.fldSmartTag = 1
+            txtPSmartTagCode.Text = installrequest.fldSmartTagCode
+            chkPOBC.Checked = installrequest.fldOBC = 1
+            txtPOBCCode.Text = installrequest.fldOBCCode
+            chkPBeacon.Checked = installrequest.fldBeacon = 1
+            txtPBeaconCode.Text = installrequest.fldBeaconCode
+            chkPCharger.Checked = installrequest.fldCharger = 1
+            txtPChargerCode.Text = installrequest.fldChargerCode
+            chkPStrap.Checked = installrequest.fldStrap = 1
+            txtPStrapCode.Text = installrequest.fldStrapCode
+            chkPCable.Checked = installrequest.fldCable = 1
+            txtPCableCode.Text = installrequest.fldCableCode
+        Else
+            plTable.Visible = True
+            plVendor.Visible = False
+            txtPDepartment.Text = ""
+            txtPDate.Text = ""
+            txtPTime.Text = ""
+            txtPIPK.Text = ""
+            txtPPoliceStation.Text = ""
+            txtPMukim.Text = ""
+            txtPOCSName.Text = ""
+            txtPOCSContactNo.Text = ""
+            rptPAttachment1.DataSource = ""
+            rptPAttachment1.DataBind()
+            txtPRemark.Text = ""
+            txtPOfficerName.Text = ""
+            txtPOfficerContactNo.Text = ""
+            txtPRemark2.Text = ""
+            ddlPStatus.SelectedIndex = 0
+            ddlPOPP.SelectedIndex = 0
+            ddlPEMD.SelectedIndex = 0
+            chkPSmartTag.Checked = False
+            txtPSmartTagCode.Text = ""
+            chkPOBC.Checked = False
+            txtPOBCCode.Text = ""
+            chkPBeacon.Checked = False
+            txtPBeaconCode.Text = ""
+            chkPCharger.Checked = False
+            txtPChargerCode.Text = ""
+            chkPStrap.Checked = False
+            txtPStrapCode.Text = ""
+            chkPCable.Checked = False
+            txtPCableCode.Text = ""
+        End If
+    End Sub
+
+    Private Sub GetVendorFileData(ByVal installrequest As EMDInstallRequestObj)
+        rptPAttachment2.DataSource = ""
+        rptPAttachment2.DataBind()
+        If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment2) Then
+            Dim fileList As String() = installrequest.fldAttachment2.Split(",")
+            Dim fileDetails As New List(Of Object)
+            For Each filePath As String In fileList
+                fileDetails.Add(New With {
+                    .FileName = Path.GetFileName(filePath),
+                    .FileType = Path.GetExtension(filePath).Replace(".", "").ToLower(),
+                    .FilePath = filePath
+                })
+            Next
+            rptPAttachment2.DataSource = fileDetails
+            rptPAttachment2.DataBind()
+        End If
+    End Sub
+
+    Protected Sub rptPAttachment2_ItemCreated(sender As Object, e As RepeaterItemEventArgs)
+        If e.Item.ItemType = ListItemType.Item OrElse e.Item.ItemType = ListItemType.AlternatingItem Then
+            Dim scriptManager As ScriptManager = ScriptManager.GetCurrent(Me)
+            Dim btnDelete As LinkButton = e.Item.FindControl("btnDelete")
+            scriptManager.RegisterAsyncPostBackControl(btnDelete)
+        End If
+    End Sub
+
+    Protected Sub rptPAttachment2_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        If e.CommandName.Equals("deletefile") Then
+            Try
+                Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
+                Dim fileList As List(Of String) = installrequest.fldAttachment2.Split(",").ToList
+                Dim filepath As String = fileList(e.CommandArgument)
+
+                Dim fullServerPath As String = Server.MapPath(filepath)
+                If File.Exists(fullServerPath) Then
+                    File.Delete(fullServerPath)
+                End If
+                fileList.RemoveAt(e.CommandArgument)
+                Dim fileListString As String = ""
+                If fileList.Count > 0 Then fileListString = String.Join(",", fileList)
+                If EMDInstallRequestManager.UpdateAttachment2(installrequest.fldID, fileListString) Then
+                    UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "DELETE EMD INSTALLATION REQUEST ATTACHMENT 2", "Request ID: " & installrequest.fldID & ", Removed Attachment Name: " & Path.GetFileNameWithoutExtension(filepath), "")
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgDeleteSuccess") & "');", True)
+                    GetVendorFileData(EMDInstallRequestManager.GetInstallRequest(RequestID))
+                Else
+                    ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorDeleteFailed") & "');", True)
+                End If
+            Catch ex As Exception
+                ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorDeleteFailed") & "');", True)
+            End Try
+        End If
+    End Sub
+
+    Protected Sub btnPSubmitAttachment2_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If ValidateFileType(fuPAttachment2, {".png", ".jpeg", ".jpg", ".bmp"}, 10, True, True, "") Then
+            Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
+            If Not installrequest Is Nothing Then
+                Dim attachment As String = ""
+                If fuPAttachment2.HasFiles Then
+                    If UploadFile(fuPAttachment2, "../upload/attachment/", "Gambar_", "_" & installrequest.fldRefID.ToLower, True, attachment) Then
+                        If Not String.IsNullOrWhiteSpace(installrequest.fldAttachment2) Then attachment = installrequest.fldAttachment2 & "," & attachment
+                        If EMDInstallRequestManager.UpdateAttachment2(RequestID, attachment) Then
+                            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE EMD INSTALLATION REQUEST ATTACHMENT 2", "Request ID: " & RequestID, "")
+                            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+                            GetVendorFileData(EMDInstallRequestManager.GetInstallRequest(RequestID))
+                        Else
+                            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+                        End If
+                    End If
+                End If
+            End If
+        End If
+    End Sub
+
+    Protected Sub btnPUpdateEMD_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If EMDInstallRequestManager.UpdateEMDAcessories(RequestID, ddlPOPP.SelectedValue, ddlPEMD.SelectedValue, If(chkPSmartTag.Checked, txtPSmartTagCode.Text, ""), If(chkPOBC.Checked, txtPOBCCode.Text, ""), If(chkPBeacon.Checked, txtPBeaconCode.Text, ""), If(chkPCharger.Checked, txtPChargerCode.Text, ""), If(chkPStrap.Checked, txtPStrapCode.Text, ""), If(chkPCable.Checked, txtPCableCode.Text, ""), If(chkPSmartTag.Checked, 1, 0), If(chkPOBC.Checked, 1, 0), If(chkPBeacon.Checked, 1, 0), If(chkPCharger.Checked, 1, 0), If(chkPStrap.Checked, 1, 0), If(chkPCable.Checked, 1, 0)) Then
+            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE EMD INSTALLATION REQUEST ACCESSORIES", "Request ID: " & RequestID, "")
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+            GetVendorFormInfo(EMDInstallRequestManager.GetInstallRequest(RequestID))
+        End If
+    End Sub
+
+    Protected Sub btnPUpdateStatus_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If EMDInstallRequestManager.UpdateStatus(RequestID, AdminAuthentication.GetUserData(2), ddlPStatus.SelectedValue, txtPRemark2.Text) Then
+            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE EMD INSTALLATION REQUEST STATUS", "Request ID: " & RequestID & ", Update Status: " & ddlPStatus.SelectedValue, "")
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+            GetVendorFormInfo(EMDInstallRequestManager.GetInstallRequest(RequestID))
+            BindTable()
+        End If
+    End Sub
 
 #End Region
 
@@ -505,22 +709,22 @@ Public Class AEMDInstallationRequestList
         ddlSStatus.SelectedIndex = 0
         rptTable.DataSource = ""
         rptTable.DataBind()
-        plUpdate.Visible = False
+        plOfficer.Visible = False
+        plVendor.Visible = False
         plTable.Visible = True
     End Sub
 
     Protected Sub btnReset_Click(sender As Object, e As EventArgs)
         Dim installrequest As EMDInstallRequestObj = EMDInstallRequestManager.GetInstallRequest(RequestID)
-        GetInfo(installrequest)
+        GetOfficerFormInfo(installrequest)
     End Sub
 
     Protected Sub btnBack_Click(sender As Object, e As EventArgs)
-        GetInfo(Nothing)
+        GetOfficerFormInfo(Nothing)
     End Sub
 
-    Protected Sub btnPCancel_Click(sender As Object, e As EventArgs)
-        GetModalInfo(Nothing)
-        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plAcknowledge').modal('hide');", True)
+    Protected Sub btnPBack_Click(sender As Object, e As EventArgs)
+        GetVendorFormInfo(Nothing)
     End Sub
 
 #End Region

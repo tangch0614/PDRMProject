@@ -21,14 +21,6 @@ Public Class ABase
         Return result
     End Function
 
-    Public Sub UserIsAuthenticated()
-        Dim result As Boolean = Page.Request.IsAuthenticated AndAlso AdminAuthentication.ValidateSession(CLng(AdminAuthentication.GetUserData(2)), CStr(AdminAuthentication.GetUserData(0)))
-        If Not result Then
-            AdminAuthentication.Logout(CLng(AdminAuthentication.GetUserData(2)), CStr(AdminAuthentication.GetUserData(0)))
-            Response.Redirect("~/secure/Login_a.aspx")
-        End If
-    End Sub
-
     Public Function AuthorizedAdmin(ByVal adminID As Long()) As Boolean
         Dim result As Boolean = False
         If adminID.Contains(AdminAuthentication.GetUserData(2)) Then

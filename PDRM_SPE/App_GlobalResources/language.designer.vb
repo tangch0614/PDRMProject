@@ -128,6 +128,24 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Acknowledged By.
+        '''</summary>
+        Friend Shared ReadOnly Property AcknowledgeBy() As String
+            Get
+                Return ResourceManager.GetString("AcknowledgeBy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Acknowledged Date Time.
+        '''</summary>
+        Friend Shared ReadOnly Property AcknowledgeDateTime() As String
+            Get
+                Return ResourceManager.GetString("AcknowledgeDateTime", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Activate.
         '''</summary>
         Friend Shared ReadOnly Property Activate() As String
@@ -831,7 +849,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to You are not authorized to access this page!.
+        '''  Looks up a localized string similar to You are not authorized to access this page..
         '''</summary>
         Friend Shared ReadOnly Property ErrorAccessDenied() As String
             Get
@@ -840,7 +858,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Failed to add new vITEM!.
+        '''  Looks up a localized string similar to *Failed to add new vITEM..
         '''</summary>
         Friend Shared ReadOnly Property ErrorAddItemFailed() As String
             Get
@@ -849,7 +867,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *vITEM must be alphanumeric characters only!.
+        '''  Looks up a localized string similar to *vITEM must be alphanumeric characters only..
         '''</summary>
         Friend Shared ReadOnly Property ErrorAlphanumericOnly() As String
             Get
@@ -858,7 +876,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Cancelation failed!.
+        '''  Looks up a localized string similar to *Cancelation failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorCancelFailed() As String
             Get
@@ -867,7 +885,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Captcha code expired!.
+        '''  Looks up a localized string similar to *Captcha code expired..
         '''</summary>
         Friend Shared ReadOnly Property ErrorCaptchaExpired() As String
             Get
@@ -876,7 +894,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Incorrect captcha code!.
+        '''  Looks up a localized string similar to *Incorrect captcha code..
         '''</summary>
         Friend Shared ReadOnly Property ErrorCaptchaIncorrect() As String
             Get
@@ -885,7 +903,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Category name already exists!.
+        '''  Looks up a localized string similar to *Category name already exists..
         '''</summary>
         Friend Shared ReadOnly Property ErrorCategoryNameUnavailable() As String
             Get
@@ -894,7 +912,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Change password failed!.
+        '''  Looks up a localized string similar to *Change password failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorChangePasswordFailed() As String
             Get
@@ -903,7 +921,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *GPRS command sent failed!.
+        '''  Looks up a localized string similar to *GPRS command sent failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorCommandSendFailed() As String
             Get
@@ -912,7 +930,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Passwords do not match!.
+        '''  Looks up a localized string similar to *Passwords do not match..
         '''</summary>
         Friend Shared ReadOnly Property ErrorConfirmPasswordCompare() As String
             Get
@@ -921,7 +939,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Delete failed!.
+        '''  Looks up a localized string similar to *Deletion failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorDeleteFailed() As String
             Get
@@ -930,7 +948,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *vITEM must be numeric only!.
+        '''  Looks up a localized string similar to *vITEM must be numeric only..
         '''</summary>
         Friend Shared ReadOnly Property ErrorDigitOnly() As String
             Get
@@ -939,7 +957,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Duplicated entry!.
+        '''  Looks up a localized string similar to *Duplicated entry..
         '''</summary>
         Friend Shared ReadOnly Property ErrorDuplicateEntry() As String
             Get
@@ -948,7 +966,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *vITEM has existed!.
+        '''  Looks up a localized string similar to *vITEM has existed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorDuplicateItem() As String
             Get
@@ -957,7 +975,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *File size cannot larger than vSIZE!.
+        '''  Looks up a localized string similar to *File size cannot larger than vSIZE..
         '''</summary>
         Friend Shared ReadOnly Property ErrorFileSizeLimit() As String
             Get
@@ -966,7 +984,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Image size cannot be larger than vSIZE!.
+        '''  Looks up a localized string similar to *Image size cannot be larger than vSIZE..
         '''</summary>
         Friend Shared ReadOnly Property ErrorImageSizeLimit() As String
             Get
@@ -975,7 +993,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Incorrect current password!.
+        '''  Looks up a localized string similar to *Incorrect current password..
         '''</summary>
         Friend Shared ReadOnly Property ErrorIncorrectCurrentPassword() As String
             Get
@@ -984,7 +1002,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Login ID and e-mail do not match!.
+        '''  Looks up a localized string similar to *Login ID and e-mail do not match..
         '''</summary>
         Friend Shared ReadOnly Property ErrorIncorrectEmail() As String
             Get
@@ -993,7 +1011,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Incorrect login password!.
+        '''  Looks up a localized string similar to *Incorrect login password..
         '''</summary>
         Friend Shared ReadOnly Property ErrorIncorrectPassword() As String
             Get
@@ -1002,7 +1020,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid amount!.
+        '''  Looks up a localized string similar to *Invalid amount..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidAmount() As String
             Get
@@ -1011,7 +1029,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid e-mail address!.
+        '''  Looks up a localized string similar to *Invalid e-mail address..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidEmail() As String
             Get
@@ -1020,7 +1038,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid file format, supported format (vSUPPORT)!.
+        '''  Looks up a localized string similar to *Invalid file format, supported format (vSUPPORT)..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidFileFormat() As String
             Get
@@ -1029,7 +1047,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid image format. Supported format are vSUPPORT!.
+        '''  Looks up a localized string similar to *Invalid image format. Supported format are vSUPPORT..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidImageFormat() As String
             Get
@@ -1038,7 +1056,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid vITEM!.
+        '''  Looks up a localized string similar to *Invalid vITEM..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidInputValue() As String
             Get
@@ -1047,7 +1065,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid introducer!.
+        '''  Looks up a localized string similar to *Invalid introducer..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidIntroducer() As String
             Get
@@ -1056,7 +1074,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid member ID!.
+        '''  Looks up a localized string similar to *Invalid member ID..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidMemberID() As String
             Get
@@ -1065,7 +1083,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid quantity!.
+        '''  Looks up a localized string similar to *Invalid quantity..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidQuantity() As String
             Get
@@ -1074,7 +1092,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Invalid number of unit!.
+        '''  Looks up a localized string similar to *Invalid number of unit..
         '''</summary>
         Friend Shared ReadOnly Property ErrorInvalidUnit() As String
             Get
@@ -1083,7 +1101,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *vITEM cannot be found!.
+        '''  Looks up a localized string similar to *vITEM cannot be found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorItemNotFound() As String
             Get
@@ -1092,7 +1110,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *vITEM required!.
+        '''  Looks up a localized string similar to *vITEM required..
         '''</summary>
         Friend Shared ReadOnly Property ErrorItemRequired() As String
             Get
@@ -1101,7 +1119,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Maximum login attempts reached! Please try again in vTIME minutes!.
+        '''  Looks up a localized string similar to *Maximum login attempts reached. Please try again in vTIME minutes..
         '''</summary>
         Friend Shared ReadOnly Property ErrorLoginAttemptExceeded() As String
             Get
@@ -1110,7 +1128,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Login ID must only contain at least 6 alphanumeric characters!.
+        '''  Looks up a localized string similar to *Login ID must only contain at least 6 alphanumeric characters..
         '''</summary>
         Friend Shared ReadOnly Property ErrorLoginIDSpecialChar() As String
             Get
@@ -1119,7 +1137,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Login ID already exists!.
+        '''  Looks up a localized string similar to *Login ID already exists..
         '''</summary>
         Friend Shared ReadOnly Property ErrorLoginIDUnavailable() As String
             Get
@@ -1128,7 +1146,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Member ID not found!.
+        '''  Looks up a localized string similar to *Member ID not found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorMemberIDNotFound() As String
             Get
@@ -1137,7 +1155,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Member ID must only contain at least 6 alphanumeric characters!.
+        '''  Looks up a localized string similar to *Member ID must only contain at least 6 alphanumeric characters..
         '''</summary>
         Friend Shared ReadOnly Property ErrorMemberIDSpecialChar() As String
             Get
@@ -1146,7 +1164,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Member ID already exists!.
+        '''  Looks up a localized string similar to *Member ID already exists..
         '''</summary>
         Friend Shared ReadOnly Property ErrorMemberIDUnavailable() As String
             Get
@@ -1155,7 +1173,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *This member cannot be found!.
+        '''  Looks up a localized string similar to *This member cannot be found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorMemberNotFound() As String
             Get
@@ -1164,7 +1182,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *New password cannot be the same as your current password!.
+        '''  Looks up a localized string similar to *New password cannot be the same as your current password..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNewCurrentPasswordCompare() As String
             Get
@@ -1173,7 +1191,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Incorrect login ID or password!.
+        '''  Looks up a localized string similar to *Incorrect login ID or password..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoCredentialMatch() As String
             Get
@@ -1182,7 +1200,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Incorrect login ID or password!.
+        '''  Looks up a localized string similar to *Incorrect login ID or password..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoCredentialMatch2() As String
             Get
@@ -1191,7 +1209,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to No data available in table!.
+        '''  Looks up a localized string similar to No data available in table..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoData() As String
             Get
@@ -1200,7 +1218,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *No file selected!.
+        '''  Looks up a localized string similar to *No file selected..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoFileSelected() As String
             Get
@@ -1209,7 +1227,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *No image selected!.
+        '''  Looks up a localized string similar to *No image selected..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoImageSelected() As String
             Get
@@ -1218,7 +1236,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to No matching records found!.
+        '''  Looks up a localized string similar to No matching records found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoMatchFound() As String
             Get
@@ -1227,7 +1245,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *News not found!.
+        '''  Looks up a localized string similar to *News not found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoNewsFound() As String
             Get
@@ -1236,7 +1254,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to No entries found!.
+        '''  Looks up a localized string similar to No entries found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoResult() As String
             Get
@@ -1245,7 +1263,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *No row selected!.
+        '''  Looks up a localized string similar to *No row selected..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoRowSelected() As String
             Get
@@ -1254,7 +1272,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Please enter at least 1 search keyword!.
+        '''  Looks up a localized string similar to *Please enter at least 1 search keyword..
         '''</summary>
         Friend Shared ReadOnly Property ErrorNoSearchValue() As String
             Get
@@ -1263,7 +1281,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Error occurred!.
+        '''  Looks up a localized string similar to *Error occurred..
         '''</summary>
         Friend Shared ReadOnly Property ErrorOccur() As String
             Get
@@ -1272,7 +1290,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Please make sure all fields are entered correctly!.
+        '''  Looks up a localized string similar to *Please make sure all fields are entered correctly..
         '''</summary>
         Friend Shared ReadOnly Property ErrorPageInvalid() As String
             Get
@@ -1281,7 +1299,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Password must be more than 6 characters!.
+        '''  Looks up a localized string similar to *Password must be more than 6 characters..
         '''</summary>
         Friend Shared ReadOnly Property ErrorPasswordLength() As String
             Get
@@ -1290,7 +1308,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *News posting failed!.
+        '''  Looks up a localized string similar to *News posting failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorPostFailed() As String
             Get
@@ -1299,7 +1317,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Reset password failed!.
+        '''  Looks up a localized string similar to *Reset password failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorResetPasswordFailed() As String
             Get
@@ -1308,7 +1326,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Submission failed!!.
+        '''  Looks up a localized string similar to Submission failed...
         '''</summary>
         Friend Shared ReadOnly Property ErrorSubmitFailed() As String
             Get
@@ -1317,7 +1335,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Transaction failed!.
+        '''  Looks up a localized string similar to *Transaction failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorTransactionFailed() As String
             Get
@@ -1326,7 +1344,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Transaction not found!.
+        '''  Looks up a localized string similar to *Transaction not found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorTransactionNoFound() As String
             Get
@@ -1335,7 +1353,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to This page is under construction, please check back later!.
+        '''  Looks up a localized string similar to This page is under construction, please check back later..
         '''</summary>
         Friend Shared ReadOnly Property ErrorUnderConstruction() As String
             Get
@@ -1344,7 +1362,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Update failed!.
+        '''  Looks up a localized string similar to Update failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorUpdateFailed() As String
             Get
@@ -1353,7 +1371,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Failed to upload image!.
+        '''  Looks up a localized string similar to *Upload failed..
         '''</summary>
         Friend Shared ReadOnly Property ErrorUploadFailed() As String
             Get
@@ -1362,7 +1380,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *User ID not found!.
+        '''  Looks up a localized string similar to *User ID not found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorUserIDNotFound() As String
             Get
@@ -1371,7 +1389,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Username not found!.
+        '''  Looks up a localized string similar to *Username not found..
         '''</summary>
         Friend Shared ReadOnly Property ErrorUsernameNotFound() As String
             Get
@@ -1380,7 +1398,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to *Username already exists!.
+        '''  Looks up a localized string similar to *Username already exists..
         '''</summary>
         Friend Shared ReadOnly Property ErrorUsernameUnavailable() As String
             Get
@@ -1533,6 +1551,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Township Geofence.
+        '''</summary>
+        Friend Shared ReadOnly Property GeofenceMukim() As String
+            Get
+                Return ResourceManager.GetString("GeofenceMukim", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Geofence Status.
         '''</summary>
         Friend Shared ReadOnly Property GeofenceStatus() As String
@@ -1565,6 +1592,15 @@ Namespace Resources
         Friend Shared ReadOnly Property GSMSignal() As String
             Get
                 Return ResourceManager.GetString("GSMSignal", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to High.
+        '''</summary>
+        Friend Shared ReadOnly Property High() As String
+            Get
+                Return ResourceManager.GetString("High", resourceCulture)
             End Get
         End Property
         
@@ -1875,6 +1911,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Low.
+        '''</summary>
+        Friend Shared ReadOnly Property Low() As String
+            Get
+                Return ResourceManager.GetString("Low", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to &lt;p&gt;This email is confidential and intended solely for the use of the individual to whom it is addressed. Any views or opinions presented are solely those of the author and do not necessarily represent those of the vCOMPANY or any of its affiliates. If you are not the intended recipient, be advised that you have received this email in error and that any use, dissemination, forwarding, printing, or copying of this email is strictly prohibited. If you have received this email in error please return the message [rest of string was truncated]&quot;;.
         '''</summary>
         Friend Shared ReadOnly Property MailFootNote() As String
@@ -2019,11 +2064,29 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Marking.
+        '''</summary>
+        Friend Shared ReadOnly Property Marking() As String
+            Get
+                Return ResourceManager.GetString("Marking", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Maximum.
         '''</summary>
         Friend Shared ReadOnly Property Max() As String
             Get
                 Return ResourceManager.GetString("Max", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Medium.
+        '''</summary>
+        Friend Shared ReadOnly Property Medium() As String
+            Get
+                Return ResourceManager.GetString("Medium", resourceCulture)
             End Get
         End Property
         
@@ -2226,7 +2289,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to New vITEM added!.
+        '''  Looks up a localized string similar to New vITEM added..
         '''</summary>
         Friend Shared ReadOnly Property MsgAddItemSuccess() As String
             Get
@@ -2235,7 +2298,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to vTYPE approved!!.
+        '''  Looks up a localized string similar to vTYPE approved...
         '''</summary>
         Friend Shared ReadOnly Property MsgApproved() As String
             Get
@@ -2244,7 +2307,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Cancelation successful!.
+        '''  Looks up a localized string similar to Cancelation successful..
         '''</summary>
         Friend Shared ReadOnly Property MsgCancelSuccess() As String
             Get
@@ -2253,7 +2316,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Password changed!.
+        '''  Looks up a localized string similar to Password changed..
         '''</summary>
         Friend Shared ReadOnly Property MsgChangePasswordSuccess() As String
             Get
@@ -2262,7 +2325,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to GPRS command sent successfully!.
+        '''  Looks up a localized string similar to GPRS command sent successfully..
         '''</summary>
         Friend Shared ReadOnly Property MsgCommandSendSuccess() As String
             Get
@@ -2280,7 +2343,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Confirm operation?.
+        '''  Looks up a localized string similar to Confirm action?.
         '''</summary>
         Friend Shared ReadOnly Property MsgConfirm() As String
             Get
@@ -2298,7 +2361,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Deleted!.
+        '''  Looks up a localized string similar to Successfully deleted..
         '''</summary>
         Friend Shared ReadOnly Property MsgDeleteSuccess() As String
             Get
@@ -2307,7 +2370,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Login ID available!.
+        '''  Looks up a localized string similar to Login ID available..
         '''</summary>
         Friend Shared ReadOnly Property MsgLoginIDAvailable() As String
             Get
@@ -2325,7 +2388,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Member detail updated!.
+        '''  Looks up a localized string similar to Member detail updated..
         '''</summary>
         Friend Shared ReadOnly Property MsgMemberDetailUpdated() As String
             Get
@@ -2334,7 +2397,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Member ID available!.
+        '''  Looks up a localized string similar to Member ID available..
         '''</summary>
         Friend Shared ReadOnly Property MsgMemberIDAvailable() As String
             Get
@@ -2343,7 +2406,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to No value changed!.
+        '''  Looks up a localized string similar to No value changed..
         '''</summary>
         Friend Shared ReadOnly Property MsgNoChanges() As String
             Get
@@ -2361,7 +2424,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to News posting successful!.
+        '''  Looks up a localized string similar to News posting successful..
         '''</summary>
         Friend Shared ReadOnly Property MsgPostSuccess() As String
             Get
@@ -2388,7 +2451,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to vTYPE rejected!!.
+        '''  Looks up a localized string similar to vTYPE rejected...
         '''</summary>
         Friend Shared ReadOnly Property MsgRejected() As String
             Get
@@ -2397,7 +2460,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Your password has been reset and a new pasword has been sent to your e-mail!.
+        '''  Looks up a localized string similar to Your password has been reset and a new pasword has been sent to your e-mail..
         '''</summary>
         Friend Shared ReadOnly Property MsgResetPasswordSuccess() As String
             Get
@@ -2406,7 +2469,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Submission successful!!.
+        '''  Looks up a localized string similar to Submission successful...
         '''</summary>
         Friend Shared ReadOnly Property MsgSubmitSuccess() As String
             Get
@@ -2415,7 +2478,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Transaction successful!.
+        '''  Looks up a localized string similar to Transaction successful..
         '''</summary>
         Friend Shared ReadOnly Property MsgTransactionSuccess() As String
             Get
@@ -2424,7 +2487,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Update successful!.
+        '''  Looks up a localized string similar to Update successful..
         '''</summary>
         Friend Shared ReadOnly Property MsgUpdateSuccess() As String
             Get
@@ -2433,7 +2496,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Image uploaded!.
+        '''  Looks up a localized string similar to Image uploaded..
         '''</summary>
         Friend Shared ReadOnly Property MsgUploadSuccess() As String
             Get
@@ -2442,7 +2505,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Username available!.
+        '''  Looks up a localized string similar to Username available..
         '''</summary>
         Friend Shared ReadOnly Property MsgUsernameAvailable() As String
             Get
@@ -2451,7 +2514,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Introducer valid!.
+        '''  Looks up a localized string similar to Introducer valid..
         '''</summary>
         Friend Shared ReadOnly Property MsgValidIntroducer() As String
             Get
@@ -2460,7 +2523,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Valid member ID!.
+        '''  Looks up a localized string similar to Valid member ID..
         '''</summary>
         Friend Shared ReadOnly Property MsgValidMemberID() As String
             Get
@@ -2469,7 +2532,7 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Valid user ID!.
+        '''  Looks up a localized string similar to Valid user ID..
         '''</summary>
         Friend Shared ReadOnly Property MsgValidUserID() As String
             Get
@@ -2478,11 +2541,20 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Valid username!.
+        '''  Looks up a localized string similar to Valid username..
         '''</summary>
         Friend Shared ReadOnly Property MsgValidUsername() As String
             Get
                 Return ResourceManager.GetString("MsgValidUsername", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Multiple Files.
+        '''</summary>
+        Friend Shared ReadOnly Property MultipleFile() As String
+            Get
+                Return ResourceManager.GetString("MultipleFile", resourceCulture)
             End Get
         End Property
         
@@ -3842,6 +3914,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Verify() As String
             Get
                 Return ResourceManager.GetString("Verify", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Verification Status.
+        '''</summary>
+        Friend Shared ReadOnly Property VerifyStatus() As String
+            Get
+                Return ResourceManager.GetString("VerifyStatus", resourceCulture)
             End Get
         End Property
         

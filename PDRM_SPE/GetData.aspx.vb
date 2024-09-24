@@ -9,7 +9,8 @@ Public Class GetData
     Inherits System.Web.UI.Page
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        GetEMDHistoryFilter(-1, 1, "", "", 0)
+        GetEMDHistory(-1, 5, "", "")
+        'GetMarkers(-1, "", "", "Y")
     End Sub
 
 #Region "Notification"
@@ -20,18 +21,22 @@ Public Class GetData
         Dim data As New DashboardData() With {
             .active_emd = EMDDeviceManager.CountEMDStatus("Y"),
             .inactive_emd = EMDDeviceManager.CountEMDStatus("N"),
-            .total_alert = EMDDeviceManager.CountNotification(-1, -1, -1, 0),
-            .jenayah_alert = EMDDeviceManager.CountNotification(-1, -1, 1, 0),
-            .komersil_alert = EMDDeviceManager.CountNotification(-1, -1, 2, 0),
-            .narkotik_alert = EMDDeviceManager.CountNotification(-1, -1, 3, 0),
-            .cawangankhas_alert = EMDDeviceManager.CountNotification(-1, -1, 4, 0)
+            .total_alert = EMDDeviceManager.CountNotification(-1, -1, -1, 0, "", 5),
+            .jenayah_alert = EMDDeviceManager.CountNotification(-1, -1, 1, 0, "", 5),
+            .komersil_alert = EMDDeviceManager.CountNotification(-1, -1, 2, 0, "", 5),
+            .narkotik_alert = EMDDeviceManager.CountNotification(-1, -1, 3, 0, "", 5),
+            .cawangankhas_alert = EMDDeviceManager.CountNotification(-1, -1, 4, 0, "", 5)
             }
         Return data
     End Function
 
     <WebMethod()>
     Public Shared Function GetNotificationData(ByVal deviceid As Long, ByVal oppid As Long, ByVal userid As Long, ByVal page As String) As String 'Notify opp page
-        Dim dataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, deviceid, oppid, "", userid, page, 5, True)
+        Dim dataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, deviceid, oppid, "", userid, 0, page, 5, True)
+        dataTable.Columns.Add("fldMD5", GetType(String))
+        For i As Integer = 0 To dataTable.Rows.Count - 1
+            dataTable.Rows(i)("fldMD5") = UtilityManager.MD5Encrypt(dataTable.Rows(i)("fldID") & "processalert")
+        Next
         ' Convert the DataTable to JSON
         Dim json As String = JsonConvert.SerializeObject(dataTable)
         Dim jArray As JArray = JArray.Parse(json)
@@ -92,6 +97,7 @@ Public Class GetData
             Dim marker As New EMDDeviceInfo() With {
                 .emdid = dataTable.Rows(i)("fldEMDDeviceID"),
                 .datetime = CDate(dataTable.Rows(i)("fldDeviceDateTime")).ToString("yyyy-MM-dd HH:mm:ss"),
+                .datetimeto = If(dataTable.Columns.Contains("fldDeviceDateTimeTo"), CDate(dataTable.Rows(i)("fldDeviceDateTimeTo")).ToString("yyyy-MM-dd HH:mm:ss"), ""),
                 .name = dataTable.Rows(i)("fldName"),
                 .imei = dataTable.Rows(i)("fldImei"),
                 .lat = dataTable.Rows(i)("fldLat"),
@@ -103,7 +109,7 @@ Public Class GetData
                 .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
                 .alarm = dataTable.Rows(i)("fldAlarmEvent"),
                 .speed = CDec(dataTable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
-                .geofence = dataTable.Rows(i)("fldGeofence1"),
+                .geofence = dataTable.Rows(i)("fldGeofenceMk"),'datatable.Rows(i)("fldGeofence1"),
                 .pincolor = "blue",
                 .pinglyphcolor = "black"
             }
@@ -131,6 +137,7 @@ Public Class GetData
             Dim marker As New EMDDeviceInfo() With {
                 .emdid = dataTable.Rows(i)("fldEMDDeviceID"),
                 .datetime = CDate(dataTable.Rows(i)("fldDeviceDateTime")).ToString("yyyy-MM-dd HH:mm:ss"),
+                .datetimeto = If(dataTable.Columns.Contains("fldDeviceDateTimeTo"), CDate(dataTable.Rows(i)("fldDeviceDateTimeTo")).ToString("yyyy-MM-dd HH:mm:ss"), ""),
                 .name = dataTable.Rows(i)("fldName"),
                 .imei = dataTable.Rows(i)("fldImei"),
                 .lat = dataTable.Rows(i)("fldLat"),
@@ -142,7 +149,7 @@ Public Class GetData
                 .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
                 .alarm = dataTable.Rows(i)("fldAlarmEvent"),
                 .speed = CDec(dataTable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
-                .geofence = dataTable.Rows(i)("fldGeofence1"),
+                .geofence = dataTable.Rows(i)("fldGeofenceMk"),'datatable.Rows(i)("fldGeofence1"),
                 .pincolor = "blue",
                 .pinglyphcolor = "black"
             }
@@ -154,74 +161,77 @@ Public Class GetData
     <WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
     Public Shared Function GetEMDDeviceInfo(ByVal deviceid As Long, ByVal oppid As Long) As EMDDeviceInfo
-        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, oppid, "", "", "")
+        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, oppid, "", "", "", "", "")
         Dim base As New Base
         If Not datatable Is Nothing AndAlso datatable.Rows.Count > 0 Then
-            Dim statusarr As Array = CStr(datatable.Rows(0)("fldDeviceStatus")).ToCharArray
-            Dim deviceinfo As New EMDDeviceInfo() With {
-                .emdid = datatable.Rows(0)("fldID"),
-                .datetime = CDate(datatable.Rows(0)("fldLastPing")).ToString("yyyy-MM-dd HH:mm:ss"),
-                .name = If(String.IsNullOrWhiteSpace(datatable.Rows(0)("fldName")), datatable.Rows(0)("fldImei"), datatable.Rows(0)("fldName")),
-                .imei = datatable.Rows(0)("fldImei"),
-                .lat = If(String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLat")), ConvertPos(datatable.Rows(0)("fldLat"), datatable.Rows(0)("fldNS"), "lat"), datatable.Rows(0)("fldRLat")),
-                .lng = If(String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLong")), ConvertPos(datatable.Rows(0)("fldLong"), datatable.Rows(0)("fldWE"), "long"), datatable.Rows(0)("fldRLong")),
-                .locstatus = If(datatable.Rows(0)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
-                .datastatus = base.GetText("Real-time"),
-                .gsm = GetGSMSignalImg(CInt(datatable.Rows(0)("fldGSMSignalPercent"))),
-                .gps = CInt(datatable.Rows(0)("fldGPSSat")),
-                .bds = CInt(datatable.Rows(0)("fldBDSat")),
-                .battery = String.Format("{0}%{1}", CDec(datatable.Rows(0)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
-                .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
-                .alarm = datatable.Rows(0)("fldAlarmEvent"),
-                .speed = CDec(datatable.Rows(0)("fldSpeedkmh")).ToString("N2") & "km/h",
-                .geofence = datatable.Rows(0)("fldGeofence1"),
-                .pincolor = datatable.Rows(0)("fldDeptColor"),
-                .pinglyphcolor = "black"
-            }
-            Return deviceinfo
-        Else
-            Return Nothing
+            If Not String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLat")) AndAlso Not String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLong")) Then
+                Dim statusarr As Array = CStr(datatable.Rows(0)("fldDeviceStatus")).ToCharArray
+                Dim deviceinfo As New EMDDeviceInfo() With {
+                    .emdid = datatable.Rows(0)("fldID"),
+                    .datetime = CDate(datatable.Rows(0)("fldLastPing")).ToString("yyyy-MM-dd HH:mm:ss"),
+                    .name = If(String.IsNullOrWhiteSpace(datatable.Rows(0)("fldName")), datatable.Rows(0)("fldImei"), datatable.Rows(0)("fldName")),
+                    .imei = datatable.Rows(0)("fldImei"),
+                    .lat = datatable.Rows(0)("fldRLat"),
+                    .lng = datatable.Rows(0)("fldRLong"),
+                    .locstatus = If(datatable.Rows(0)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
+                    .datastatus = base.GetText("Real-time"),
+                    .gsm = GetGSMSignalImg(CInt(datatable.Rows(0)("fldGSMSignalPercent"))),
+                    .gps = CInt(datatable.Rows(0)("fldGPSSat")),
+                    .bds = CInt(datatable.Rows(0)("fldBDSat")),
+                    .battery = String.Format("{0}%{1}", CDec(datatable.Rows(0)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
+                    .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
+                    .alarm = datatable.Rows(0)("fldAlarmEvent"),
+                    .speed = CDec(datatable.Rows(0)("fldSpeedkmh")).ToString("N2") & "km/h",
+                    .geofence = datatable.Rows(0)("fldGeofenceMk"),'datatable.Rows(i)("fldGeofence1"),
+                    .pincolor = datatable.Rows(0)("fldDeptColor"),
+                    .pinglyphcolor = "black"
+                }
+                Return deviceinfo
+            End If
         End If
+        Return Nothing
     End Function
 
     <WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
     Public Shared Function GetMarkers(ByVal deviceid As Long, ByVal imei As String, ByVal simno As String, ByVal status As String) As List(Of EMDDeviceInfo)
         Dim markers As New List(Of EMDDeviceInfo)()
-        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, -1, imei, simno, status)
+        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, -1, imei, "", simno, "", status)
         Dim base As New Base
         For i As Integer = 0 To datatable.Rows.Count - 1
-            Dim statusarr As Array = CStr(datatable.Rows(i)("fldDeviceStatus")).ToCharArray
-            Dim marker As New EMDDeviceInfo() With {
-                .emdid = datatable.Rows(i)("fldID"),
-                .datetime = CDate(datatable.Rows(i)("fldLastPing")).ToString("yyyy-MM-dd HH:mm:ss"),
-                .name = If(String.IsNullOrWhiteSpace(datatable.Rows(i)("fldName")), datatable.Rows(i)("fldImei"), datatable.Rows(i)("fldName")),
-                .imei = datatable.Rows(i)("fldImei"),
-                .lat = If(String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLat")), ConvertPos(datatable.Rows(i)("fldLat"), datatable.Rows(i)("fldNS"), "lat"), datatable.Rows(i)("fldRLat")),
-                .lng = If(String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLong")), ConvertPos(datatable.Rows(i)("fldLong"), datatable.Rows(i)("fldWE"), "long"), datatable.Rows(i)("fldRLong")),
-                .locstatus = If(datatable.Rows(i)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
-                .datastatus = base.GetText("Real-time"),
-                .gsm = GetGSMSignalImg(CInt(datatable.Rows(i)("fldGSMSignalPercent"))),
-                .gps = CInt(datatable.Rows(i)("fldGPSSat")),
-                .bds = CInt(datatable.Rows(i)("fldBDSat")),
-                .battery = String.Format("{0}%{1}", CDec(datatable.Rows(i)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
-                .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
-                .alarm = datatable.Rows(i)("fldAlarmEvent"),
-                .speed = CDec(datatable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
-                .geofence = datatable.Rows(i)("fldGeofence1"),
-                .pincolor = datatable.Rows(i)("fldDeptColor"),
-                .pinglyphcolor = "black",
-                .oppname = datatable.Rows(i)("fldOPPName"),
-                .oppicno = datatable.Rows(i)("fldOPPICNo"),
-                .oppcontactno = datatable.Rows(i)("fldOPPContactNo"),
-                .department = datatable.Rows(i)("fldDepartment"),
-                .psname = datatable.Rows(i)("fldPSName"),
-                .pscontactno = datatable.Rows(i)("fldPSContactNo"),
-                .offname = datatable.Rows(i)("fldOverseerName"),
-                .offcontactno = datatable.Rows(i)("fldOverseerContactNo"),
-                .offpoliceno = datatable.Rows(i)("fldOverseerPoliceNo")
-            }
-            markers.Add(marker)
+            If Not String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLat")) AndAlso Not String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLong")) Then
+                Dim statusarr As Array = CStr(datatable.Rows(i)("fldDeviceStatus")).ToCharArray
+                Dim marker As New EMDDeviceInfo() With {
+                    .emdid = datatable.Rows(i)("fldID"),
+                    .datetime = CDate(datatable.Rows(i)("fldLastPing")).ToString("yyyy-MM-dd HH:mm:ss"),
+                    .name = If(String.IsNullOrWhiteSpace(datatable.Rows(i)("fldName")), datatable.Rows(i)("fldImei"), datatable.Rows(i)("fldName")),
+                    .imei = datatable.Rows(i)("fldImei"),
+                    .lat = datatable.Rows(i)("fldRLat"),
+                    .lng = datatable.Rows(i)("fldRLong"),
+                    .locstatus = If(datatable.Rows(i)("fldGPSStatus").Equals("V"), base.GetText("LastGPS"), base.GetText("GPS")),
+                    .datastatus = base.GetText("Real-time"),
+                    .gsm = GetGSMSignalImg(CInt(datatable.Rows(i)("fldGSMSignalPercent"))),
+                    .gps = CInt(datatable.Rows(i)("fldGPSSat")),
+                    .bds = CInt(datatable.Rows(i)("fldBDSat")),
+                    .battery = String.Format("{0}%{1}", CDec(datatable.Rows(i)("fldBatteryLvl")), If(statusarr(0).ToString.Equals("1"), "(" & base.GetText("Charging") & ")", "")),
+                    .beltstatus = If(statusarr(1).ToString.Equals("1"), base.GetText("BeltOn"), base.GetText("BeltOff")),
+                    .alarm = datatable.Rows(i)("fldAlarmEvent"),
+                    .speed = CDec(datatable.Rows(i)("fldSpeedkmh")).ToString("N2") & "km/h",
+                    .geofence = datatable.Rows(i)("fldGeofenceMK"),'datatable.Rows(i)("fldGeofence1"),
+                    .pincolor = datatable.Rows(i)("fldDeptColor"),
+                    .pinglyphcolor = "black",
+                    .oppname = datatable.Rows(i)("fldOPPName"),
+                    .oppicno = datatable.Rows(i)("fldOPPICNo"),
+                    .oppcontactno = datatable.Rows(i)("fldOPPContactNo"),
+                    .department = datatable.Rows(i)("fldDepartment"),
+                    .psname = datatable.Rows(i)("fldPSName"),
+                    .pscontactno = datatable.Rows(i)("fldPSContactNo"),
+                    .offname = datatable.Rows(i)("fldOverseerName"),
+                    .offcontactno = datatable.Rows(i)("fldOverseerContactNo"),
+                    .offpoliceno = datatable.Rows(i)("fldOverseerPoliceNo")
+                }
+                markers.Add(marker)
+            End If
         Next
         Return markers
     End Function
@@ -275,6 +285,7 @@ Public Class GetData
     Public Class EMDDeviceInfo
         Public Property emdid As Integer
         Public Property datetime As String
+        Public Property datetimeto As String
         Public Property name As String
         Public Property imei As String
         Public Property lat As Decimal

@@ -146,20 +146,20 @@ NameSpace BusinessLogic
 
 #Region "Notification"
 
-        Public Shared Function CountNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal processstatus As Integer) As Integer
+        Public Shared Function CountNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer) As Integer
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim result As Integer = EMDDeviceDB.CountNotification(deviceid, oppid, deptid, processstatus, myConnection)
+                Dim result As Integer = EMDDeviceDB.CountNotification(deviceid, oppid, deptid, processstatus, severity, intervalminute, myConnection)
                 myConnection.Close()
                 Return result
             End Using
         End Function
 
-        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal page As String, ByVal intervalminute As Integer, ByVal updatestatus As Boolean) As DataTable
+        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal processstatus As Integer, ByVal page As String, ByVal intervalminute As Integer, ByVal updatestatus As Boolean) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
                 Dim result As Boolean = False
-                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(alertid, deviceid, oppid, imei, userid, page, intervalminute, myConnection)
+                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(alertid, deviceid, oppid, imei, userid, processstatus, page, intervalminute, myConnection)
                 If updatestatus AndAlso Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
                     Dim ids As List(Of Long) = myDataTable.AsEnumerable().Select(Function(row) row.Field(Of Long)("fldID")).ToList()
                     result = EMDDeviceDB.UpdateAlertNotificationSeenUser(ids, userid, page, myConnection)
@@ -280,6 +280,15 @@ NameSpace BusinessLogic
             End Using
         End Function
 
+        Public Shared Function VerifyName(ByVal name As String) As Long
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Long = EMDDeviceDB.VerifyName(name, myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
         Public Shared Function VerifySimNo(ByVal simno As String) As Long
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
@@ -289,10 +298,10 @@ NameSpace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function GetDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal simno As String, ByVal status As String) As DataTable
+        Public Shared Function GetDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal name As String, ByVal simno1 As String, ByVal simno2 As String, ByVal status As String) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceList(deviceid, oppid, imei, simno, status, myConnection)
+                Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceList(deviceid, oppid, imei, name, simno1, simno2, status, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using

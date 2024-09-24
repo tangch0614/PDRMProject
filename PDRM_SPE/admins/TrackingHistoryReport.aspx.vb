@@ -3,7 +3,7 @@ Imports AppCode.BusinessObject
 
 
 Public Class ATrackingHistoryReport
-    Inherits ABase
+    Inherits Base
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
@@ -73,12 +73,12 @@ Public Class ATrackingHistoryReport
         txtbalai.Text = PoliceStationManager.GetPoliceStationName(opp.fldPoliceStationID)
         txtJabatan.Text = PoliceStationManager.GetDepartmentName(opp.fldDeptID)
         txtTelBalai.Text = PoliceStationManager.GetPoliceStationContactNo(opp.fldPoliceStationID)
-        Dim baseUrl As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)
-        logolable.Src = baseUrl & "/assets/img/companylogo.png"
+        'Dim baseUrl As String = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)
+        logolable.Src = "../assets/img/companylogo.png"
         If Not String.IsNullOrEmpty(opp.fldPhoto1) Then
-            imgPhoto.ImageUrl = baseUrl & opp.fldPhoto1
+            imgPhoto.ImageUrl = opp.fldPhoto1
         Else
-            imgPhoto.ImageUrl = baseUrl & "/assets/img/No_Image.png"
+            imgPhoto.ImageUrl = "../assets/img/No_Image.png"
         End If
     End Sub
 

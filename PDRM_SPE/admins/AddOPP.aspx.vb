@@ -118,9 +118,7 @@ Public Class AAddOPP
         lblPhoto2.Text = GetText("Picture") & " (" & GetText("FullBody") & ")"
         btnPhoto2.Text = GetText("SelectItem").Replace("vITEM", GetText("Picture"))
         lblAttachment1.Text = GetText("Attachment") & " 1"
-        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("File"))
-        lblAttachment2.Text = GetText("Attachment") & " 2"
-        btnAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("File"))
+        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("MultipleFile"))
         lblRemark.Text = GetText("Remark")
         'Buttons/Message
         btnSubmit.Text = GetText("Add")
@@ -400,10 +398,6 @@ Public Class AAddOPP
             result = False
             errorMsg &= returnMsg & "\n"
         End If
-        If Not ValidateFileType(fuAttachment2, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, True, False, returnMsg) Then
-            result = False
-            errorMsg &= returnMsg & "\n"
-        End If
         If Not result Then
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorPageInvalid") & "\n" & errorMsg & "');", True)
         End If
@@ -418,17 +412,10 @@ Public Class AAddOPP
         UserIsAuthenticated()
         If PageValid() Then
             Dim opp As OPPObj = New OPPObj
-            Dim attachment1 As String = ""
-            Dim attachment2 As String = ""
-            Dim attactment As List(Of String) = New List(Of String)
-            If UploadDocument(fuPhoto1, "OPPA_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), "opp", True, opp.fldPhoto1) _
-                AndAlso UploadDocument(fuPhoto2, "OPPB_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), "opp", True, opp.fldPhoto2) _
-                AndAlso UploadDocument(fuAttachment1, "", "_" & txtSubjectName.Text, "attachment", False, attachment1) _
-                AndAlso UploadDocument(fuAttachment2, "", "_" & txtSubjectName.Text, "attachment", False, attachment2) Then
+            If UploadFile(fuPhoto1, "../upload/opp/", "OPPA_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), True, opp.fldPhoto1) _
+                AndAlso UploadFile(fuPhoto2, "../upload/opp/", "OPPB_", "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), True, opp.fldPhoto2) _
+                AndAlso UploadFile(fuAttachment1, "../upload/attachment/", "Lampiran_", "_" & txtSubjectName.Text, False, opp.fldAttachment1) Then
                 Dim datetime As DateTime = UtilityManager.GetServerDateTime()
-                If Not String.IsNullOrWhiteSpace(attachment1) Then attactment.Add(attachment1)
-                If Not String.IsNullOrWhiteSpace(attachment2) Then attactment.Add(attachment2)
-                opp.fldAttachment1 = String.Join(",", attactment)
                 opp.fldName = txtSubjectName.Text
                 opp.fldICNo = txtSubjectICNo.Text
                 opp.fldContactNo = txtSubjectContactNo.Text
@@ -468,14 +455,19 @@ Public Class AAddOPP
                 opp.fldEMDInstallDate = hfEMDInstallDate.Text
                 opp.fldEMDDeviceID = ddlEMD.SelectedValue
                 opp.fldSmartTag = If(chkSmartTag.Checked, 1, 0)
+                opp.fldSmartTagCode = If(chkSmartTag.Checked, txtSmartTagCode.Text, "")
                 opp.fldOBC = If(chkOBC.Checked, 1, 0)
+                opp.fldOBCCode = If(chkOBC.Checked, txtOBCCode.Text, "")
                 opp.fldBeacon = If(chkBeacon.Checked, 1, 0)
                 opp.fldBeaconCode = If(chkBeacon.Checked, txtBeaconCode.Text, "")
                 opp.fldCharger = If(chkCharger.Checked, 1, 0)
+                opp.fldChargerCode = If(chkCharger.Checked, txtChargerCode.Text, "")
                 opp.fldStrap = If(chkStrap.Checked, 1, 0)
+                opp.fldStrapCode = If(chkStrap.Checked, txtStrapCode.Text, "")
                 opp.fldCable = If(chkCable.Checked, 1, 0)
+                opp.fldCableCode = If(chkCable.Checked, txtCableCode.Text, "")
                 opp.fldRemark = txtRemark.Text
-                opp.fldStatus = "P"
+                opp.fldStatus = "N"
                 If OPPManager.Save(opp, AdminAuthentication.GetUserData(2), opp.fldID) Then
                     UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ADD OPP", "OPP ID: " & opp.fldID & ", OPP Name: " & opp.fldName, "")
                     ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgSubmitSuccess") & "');window.location.href='../admins/OPPList.aspx'", True)
@@ -494,44 +486,6 @@ Public Class AAddOPP
         If unit.Equals("M") Then months = period
         If unit.Equals("Y") Then years = period
         Return CDate(orderdate).AddYears(years).AddMonths(months).AddDays(days)
-    End Function
-
-    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByVal suffix As String, ByVal folder As String, ByVal genfilename As Boolean, ByRef FilePath As String) As Boolean
-        Dim result As Boolean = True
-        Dim oldFilePath As String = ""
-        Dim datetime As DateTime = UtilityManager.GetServerDateTime
-        'Dim newSize As New System.Drawing.Size(500, 500)
-        Try
-            If Not fuFile.PostedFile Is Nothing AndAlso fuFile.PostedFile.ContentLength > 0 Then
-                If genfilename Then
-                    FilePath = ValidateFilePath("../" & "upload/" & folder & "/", UtilityManager.EscapeFileName(prefix & datetime.ToString("yyMMddHHmmss") & suffix).Replace(" ", "_"), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
-                Else
-                    FilePath = ValidateFilePath("../" & "upload/" & folder & "/", UtilityManager.EscapeFileName(prefix & Path.GetFileNameWithoutExtension(fuFile.PostedFile.FileName) & suffix).Replace(" ", "_"), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
-                End If
-                If Path.GetExtension(fuFile.PostedFile.FileName).ToLower() <> ".pdf" Then
-                    Dim oriImage As System.Drawing.Image = System.Drawing.Image.FromStream(fuFile.PostedFile.InputStream)
-                    'newSize = UtilityManager.AspectRatioSize(oriImage.Size, newSize)
-                    'Dim resizedImg As System.Drawing.Image = UtilityManager.ResizeImage(oriImage, newSize.Width, newSize.Height)
-                    If File.Exists(Server.MapPath(FilePath)) Then
-                        File.Delete(Server.MapPath(FilePath))
-                    End If
-                    'resizedImg.Save(Server.MapPath("../" & FilePath), UtilityManager.GetEncoder(ImageFormat.Jpeg), UtilityManager.GetEncoderParameters(50))
-                    oriImage.Save(Server.MapPath(FilePath), UtilityManager.GetEncoder(ImageFormat.Jpeg), UtilityManager.GetEncoderParameters(50))
-                Else
-                    If File.Exists(Server.MapPath(FilePath)) Then
-                        File.Delete(Server.MapPath(FilePath))
-                    End If
-                    fuFile.PostedFile.SaveAs(Server.MapPath(FilePath))
-                End If
-                'If Not String.IsNullOrEmpty(oldFilePath) AndAlso File.Exists(Server.MapPath("../" & oldFilePath)) Then
-                '    File.Delete(Server.MapPath("../" & oldFilePath))
-                'End If
-            End If
-        Catch ex As Exception
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUploadFailed") & "');", True)
-            result = False
-        End Try
-        Return result
     End Function
 
 #End Region

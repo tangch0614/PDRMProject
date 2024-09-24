@@ -293,85 +293,13 @@ Partial Public Class AEMDInstallationRequest
     Protected WithEvents rfvOCSContactNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
-    '''lblFileInfo control.
+    '''lblOtherInfo control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lblFileInfo As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAttachment1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAttachment1 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtAttachment1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAttachment1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnAttachment1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAttachment1 As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lblAttachment1Validate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAttachment1Validate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAttachment2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAttachment2 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAttachment2 As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lblAttachment2Validate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAttachment2Validate As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lblOtherInfo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblRemark control.
@@ -392,6 +320,42 @@ Partial Public Class AEMDInstallationRequest
     Protected WithEvents txtRemark As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblFileInfo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFileInfo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lblAttachment1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAttachment1 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''btnAttachment1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAttachment1 As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''lblAttachment1Validate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblAttachment1Validate As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnSubmit control.
     '''</summary>
     '''<remarks>
@@ -408,15 +372,6 @@ Partial Public Class AEMDInstallationRequest
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents fuAttachment1 As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
-    '''fuAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents fuAttachment2 As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
     '''hfConfirm control.

@@ -24,6 +24,14 @@ Public Class Base
 
 #Region "Language"
 
+    Public Sub UserIsAuthenticated()
+        Dim result As Boolean = Page.Request.IsAuthenticated AndAlso AdminAuthentication.ValidateSession(CLng(AdminAuthentication.GetUserData(2)), CStr(AdminAuthentication.GetUserData(0)))
+        If Not result Then
+            AdminAuthentication.Logout(CLng(AdminAuthentication.GetUserData(2)), CStr(AdminAuthentication.GetUserData(0)))
+            Response.Redirect("~/secure/Login_a.aspx")
+        End If
+    End Sub
+
     'Public Function GetText(ByVal text As String) As String
     '    If Not Session("Language") Is Nothing Then
     '        Dim dtTexts As DataTable = CType(Session("Language"), DataTable)
@@ -114,18 +122,54 @@ Public Class Base
         Return True
     End Function
 
-    Public Function ValidateFileType(ByVal fileUpload As FileUpload, ByVal supportExt As String(), ByVal maxSizeMB As Integer, ByVal allowempty As Boolean, ByVal errorMessage As Boolean, ByRef msg As String) As Boolean
-        If Not fileUpload.PostedFile Is Nothing AndAlso fileUpload.PostedFile.ContentLength > 0 Then
-            Dim maxbyte As Long = maxSizeMB * 1024 * 1024
-            If fileUpload.PostedFile.ContentLength > maxbyte Then
-                msg = GetText("ErrorFileSizeLimit").Replace("vSIZE", maxSizeMB & "MB")
-                If errorMessage Then ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & msg & "');", True)
-                Return False
-            ElseIf Not supportExt.Contains(IO.Path.GetExtension(fileUpload.PostedFile.FileName.ToLower)) Then
-                msg = GetText("ErrorInvalidFileFormat").Replace("vSUPPORT", String.Join(", ", supportExt))
-                If errorMessage Then ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & msg & "');", True)
-                Return False
+#End Region
+
+#Region "File Upload"
+
+    Public Function UploadFile(ByVal fuFile As FileUpload, ByVal location As String, ByVal prefix As String, ByVal suffix As String, ByVal genfilename As Boolean, ByRef FilePath As String) As Boolean
+        Try
+            If fuFile.HasFiles Then
+                Dim FilePathList As List(Of String) = New List(Of String)
+                For Each postedfile As HttpPostedFile In fuFile.PostedFiles
+                    If postedfile.ContentLength > 0 Then
+                        Dim datetime As DateTime = UtilityManager.GetServerDateTime
+                        Dim SavePath As String = ""
+                        If genfilename Then
+                            SavePath = ValidateFilePath(location, UtilityManager.EscapeFileName(prefix & datetime.ToString("yMd_Hms") & suffix), Path.GetExtension(postedfile.FileName).ToLower())
+                        Else
+                            SavePath = ValidateFilePath(location, UtilityManager.EscapeFileName(prefix & Path.GetFileNameWithoutExtension(postedfile.FileName) & suffix), Path.GetExtension(postedfile.FileName).ToLower())
+                        End If
+                        If File.Exists(Server.MapPath(SavePath)) Then
+                            File.Delete(Server.MapPath(SavePath))
+                        End If
+                        postedfile.SaveAs(Server.MapPath(SavePath))
+                        FilePathList.Add(SavePath)
+                    End If
+                Next
+                FilePath = String.Join(",", FilePathList)
             End If
+        Catch ex As Exception
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUploadFailed") & "');", True)
+            Return False
+        End Try
+        Return True
+    End Function
+
+    Public Function ValidateFileType(ByVal fileUpload As FileUpload, ByVal supportExt As String(), ByVal maxSizeMB As Integer, ByVal allowempty As Boolean, ByVal errorMessage As Boolean, ByRef msg As String) As Boolean
+        If fileUpload.HasFiles Then
+            For i As Integer = 0 To fileUpload.PostedFiles.Count - 1
+                Dim postedfile As HttpPostedFile = fileUpload.PostedFiles(i)
+                Dim maxbyte As Long = maxSizeMB * 1024 * 1024
+                If postedfile.ContentLength > maxbyte Then
+                    msg = GetText("ErrorFileSizeLimit").Replace("vSIZE", maxSizeMB & "MB")
+                    If errorMessage Then ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & msg & "');", True)
+                    Return False
+                ElseIf Not supportExt.Contains(IO.Path.GetExtension(postedfile.FileName.ToLower)) Then
+                    msg = GetText("ErrorInvalidFileFormat").Replace("vSUPPORT", String.Join(", ", supportExt))
+                    If errorMessage Then ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & msg & "');", True)
+                    Return False
+                End If
+            Next
         Else
             If Not allowempty Then
                 msg = GetText("ErrorNoFileSelected")

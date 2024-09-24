@@ -320,15 +320,6 @@ Partial Public Class AAddOPP
     Protected WithEvents lblPhoto1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPhoto1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPhoto1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''btnPhoto1 control.
     '''</summary>
     '''<remarks>
@@ -363,15 +354,6 @@ Partial Public Class AAddOPP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblPhoto2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtPhoto2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPhoto2 As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btnPhoto2 control.
@@ -824,6 +806,24 @@ Partial Public Class AAddOPP
     Protected WithEvents txtOverseerIDNo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblOverseerContactNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblOverseerContactNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtOverseerContactNo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOverseerContactNo As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblOverseerIPK control.
     '''</summary>
     '''<remarks>
@@ -858,24 +858,6 @@ Partial Public Class AAddOPP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtOverseerDept As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblOverseerContactNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblOverseerContactNo As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtOverseerContactNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtOverseerContactNo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lblOversightInfo control.
@@ -1013,6 +995,15 @@ Partial Public Class AAddOPP
     Protected WithEvents chkSmartTag As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''txtSmartTagCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSmartTagCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''chkOBC control.
     '''</summary>
     '''<remarks>
@@ -1022,6 +1013,15 @@ Partial Public Class AAddOPP
     Protected WithEvents chkOBC As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''txtOBCCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtOBCCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''chkBeacon control.
     '''</summary>
     '''<remarks>
@@ -1029,15 +1029,6 @@ Partial Public Class AAddOPP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkBeacon As Global.System.Web.UI.WebControls.CheckBox
-
-    '''<summary>
-    '''lblBeaconCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblBeaconCode As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtBeaconCode control.
@@ -1058,6 +1049,15 @@ Partial Public Class AAddOPP
     Protected WithEvents chkCharger As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''txtChargerCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtChargerCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''chkStrap control.
     '''</summary>
     '''<remarks>
@@ -1067,6 +1067,15 @@ Partial Public Class AAddOPP
     Protected WithEvents chkStrap As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
+    '''txtStrapCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtStrapCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''chkCable control.
     '''</summary>
     '''<remarks>
@@ -1074,6 +1083,15 @@ Partial Public Class AAddOPP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents chkCable As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''txtCableCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCableCode As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''lblFileInfo control.
@@ -1094,15 +1112,6 @@ Partial Public Class AAddOPP
     Protected WithEvents lblAttachment1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtAttachment1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAttachment1 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
     '''btnAttachment1 control.
     '''</summary>
     '''<remarks>
@@ -1119,42 +1128,6 @@ Partial Public Class AAddOPP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblAttachment1Validate As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lblAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAttachment2 As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''txtAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtAttachment2 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''btnAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btnAttachment2 As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''lblAttachment2Validate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblAttachment2Validate As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''lblRemark control.
@@ -1209,15 +1182,6 @@ Partial Public Class AAddOPP
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents fuAttachment1 As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
-    '''fuAttachment2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents fuAttachment2 As Global.System.Web.UI.WebControls.FileUpload
 
     '''<summary>
     '''hfConfirm control.

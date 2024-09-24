@@ -26,7 +26,7 @@
     <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <!-- NON TEMPLATE-->
-    <link href="../assets/css/general.css?v=1" rel="stylesheet" />
+    <link href="../assets/css/general.css?v=1.1" rel="stylesheet" />
     <link href="../assets/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet" />
     <!-- NON TEMPLATE-->
     <link rel="shortcut icon" href="../assets/img/favicon.ico" />

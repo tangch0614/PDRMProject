@@ -17,7 +17,7 @@ Public Class MBase
         Return SettingManager.GetSettingValue("Maintenance") = 1
     End Function
 
-    Public Sub UserIsAuthenticated()
+    Public Overloads Sub UserIsAuthenticated()
         Dim result As Boolean = Page.Request.IsAuthenticated AndAlso MemberAuthentication.ValidateSession(CLng(MemberAuthentication.GetUserData(2)), CStr(MemberAuthentication.GetUserData(0)))
         If Not result Then
             MemberAuthentication.Logout(CLng(MemberAuthentication.GetUserData(2)), CStr(MemberAuthentication.GetUserData(0)))

@@ -59,7 +59,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-md-7">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblSubjectName" CssClass="col-md-4 control-label" Text="Name Subjek"></asp:Label>
                                             <div class="col-md-8">
@@ -166,25 +166,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblPhoto1" CssClass="col-md-3 control-label" Text="Gambar Subjek (Muka)"></asp:Label>
-                                            <div class="col-md-9">
-                                                <asp:TextBox runat="server" ID="txtPhoto1" CssClass="form-control input-inline input-small" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                                <label style="color: red">*</label>
+                                            <asp:Label runat="server" ID="lblPhoto1" CssClass="col-md-4 control-label" Text="Gambar Subjek (Muka)"></asp:Label>
+                                            <div class="col-md-8">
                                                 <asp:Button runat="server" ID="btnPhoto1" Text="Select File" CssClass="btn blue " OnClientClick="fuPhoto1.click();return false;" />
+                                                <label style="color: red">*</label>
                                                 <asp:Label runat="server" ID="lblPhoto1Validate" ForeColor="red" Visible="false"></asp:Label>
-                                                <asp:Image runat="server" ID="imgPhoto1Preview" src="../assets/img/No_Image.png" ClientIDMode="Static" Style="height: 250px; display: block;" />
+                                                <asp:Image runat="server" ID="imgPhoto1Preview" src="../assets/img/No_Image.png" ClientIDMode="Static" Style="height: 150px; display: block; margin-top: 10px;" />
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblPhoto2" CssClass="col-md-3 control-label" Text="Gambar Subjek (Badan)"></asp:Label>
-                                            <div class="col-md-9">
-                                                <asp:TextBox runat="server" ID="txtPhoto2" CssClass="form-control input-inline input-small" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                                <label style="color: red">*</label>
+                                            <asp:Label runat="server" ID="lblPhoto2" CssClass="col-md-4 control-label" Text="Gambar Subjek (Badan)"></asp:Label>
+                                            <div class="col-md-8">
                                                 <asp:Button runat="server" ID="btnPhoto2" Text="Select File" CssClass="btn blue " OnClientClick="fuPhoto2.click();return false;" />
+                                                <label style="color: red">*</label>
                                                 <asp:Label runat="server" ID="lblPhoto2Validate" ForeColor="red" Visible="false"></asp:Label>
-                                                <asp:Image runat="server" ID="imgPhoto2Preview" src="../assets/img/No_Image.png" ClientIDMode="Static" Style="height: 250px; display: block;" />
+                                                <asp:Image runat="server" ID="imgPhoto2Preview" src="../assets/img/No_Image.png" ClientIDMode="Static" Style="height: 150px; display: block; margin-top: 10px;" />
                                             </div>
                                         </div>
                                     </div>
@@ -202,7 +200,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class=" col-md-7">
+                                    <div class=" col-md-6">
                                         <asp:UpdatePanel runat="server">
                                             <ContentTemplate>
                                                 <div class="form-group">
@@ -244,6 +242,8 @@
                                             </div>
                                             <asp:TextBox runat="server" ID="hfOrderIssuedDate" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <%--<div class="form-group">
                                     <div class="col-md-8 col-md-offset-3">
                                         <asp:TextBox runat="server" ID="txtOrderIssuedByName" CssClass="form-control input-inline input-large margin-top-10" />
@@ -293,7 +293,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class=" col-md-7">
+                                    <div class=" col-md-6">
                                         <asp:UpdatePanel runat="server">
                                             <ContentTemplate>
                                                 <div class="form-group">
@@ -343,6 +343,8 @@
                                                 <asp:AsyncPostBackTrigger ControlID="ddlRptPoliceStation" />
                                             </Triggers>
                                         </asp:UpdatePanel>
+                                    </div>
+                                    <div class=" col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblReportDay" CssClass="col-md-4 control-label" Text="Hari Lapor Diri"></asp:Label>
                                             <div class="col-md-8">
@@ -380,10 +382,10 @@
                     <div class="portlet-body form">
                         <div class="form-horizontal">
                             <div class="form-body">
-                                <div class="row">
-                                    <div class=" col-md-7">
-                                        <asp:UpdatePanel runat="server">
-                                            <ContentTemplate>
+                                <asp:UpdatePanel runat="server">
+                                    <ContentTemplate>
+                                        <div class="row">
+                                            <div class=" col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label runat="server" ID="lblOverseer" CssClass="col-md-4 control-label" Text="Nama Pegawai"></asp:Label>
                                                     <div class="col-md-8">
@@ -400,6 +402,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblOverseerContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:TextBox runat="server" ID="txtOverseerContactNo" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class=" col-md-6">
+                                                <div class="form-group">
                                                     <asp:Label runat="server" ID="lblOverseerIPK" CssClass="col-md-4 control-label" Text="Kontinjen"></asp:Label>
                                                     <div class="col-md-8">
                                                         <asp:TextBox runat="server" ID="txtOverseerIPK" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true"></asp:TextBox>
@@ -411,19 +421,13 @@
                                                         <asp:TextBox runat="server" ID="txtOverseerDept" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblOverseerContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="txtOverseerContactNo" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true" />
-                                                    </div>
-                                                </div>
-                                            </ContentTemplate>
-                                            <Triggers>
-                                                <asp:AsyncPostBackTrigger ControlID="ddlOverseer" />
-                                            </Triggers>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                </div>
+                                            </div>
+                                        </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="ddlOverseer" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
                             </div>
                         </div>
                     </div>
@@ -437,7 +441,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class=" col-md-7">
+                                    <div class=" col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblRestrictTime" CssClass="col-md-4 control-label" Text="Masa Sekatan Kediaman"></asp:Label>
                                             <div class="col-md-8">
@@ -470,7 +474,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class=" col-md-7">
+                                    <div class=" col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblGeofenceMukim" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
                                             <div class="col-md-8">
@@ -495,7 +499,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class=" col-md-7">
+                                    <div class=" col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblEMDInstallDate" CssClass="col-md-4 control-label" Text="Tarikh Perintah"></asp:Label>
                                             <div class="col-md-8">
@@ -513,39 +517,46 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class=" col-md-6">
                                         <div class="form-group">
                                             <div class="col-md-8 col-lg-offset-4">
                                                 <table>
                                                     <tr>
-                                                        <td style="padding: 0 10px;">
+                                                        <td style="padding: 1px 10px;">
                                                             <asp:CheckBox runat="server" ID="chkSmartTag" CssClass="checkbox" Style="margin-left: 20px" Text="SmartTag" /></td>
-                                                        <td style="padding: 0 10px;"></td>
+                                                        <td style="padding: 1px 10px;">
+                                                            <asp:Label runat="server" Style="margin-right: 5px;" Text="S/N"></asp:Label><asp:TextBox runat="server" ID="txtSmartTagCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 10px;">
+                                                        <td style="padding: 1px 10px;">
                                                             <asp:CheckBox runat="server" ID="chkOBC" CssClass="checkbox" Style="margin-left: 20px" Text="OBC" /></td>
-                                                        <td style="padding: 0 10px;"></td>
+                                                        <td style="padding: 1px 10px;">
+                                                            <asp:Label runat="server" Style="margin-right: 5px;" Text="S/N"></asp:Label><asp:TextBox runat="server" ID="txtOBCCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 10px;">
+                                                        <td style="padding: 1px 10px;">
                                                             <asp:CheckBox runat="server" ID="chkBeacon" CssClass="checkbox" Style="margin-left: 20px;" Text="Beacon" /></td>
-                                                        <td style="padding: 0 10px;">
-                                                            <asp:Label runat="server" ID="lblBeaconCode" Style="margin-right: 5px;" Text="IMEI"></asp:Label><asp:TextBox runat="server" ID="txtBeaconCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
+                                                        <td style="padding: 1px 10px;">
+                                                            <asp:Label runat="server" Style="margin-right: 5px;" Text="S/N"></asp:Label><asp:TextBox runat="server" ID="txtBeaconCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 10px;">
+                                                        <td style="padding: 1px 10px;">
                                                             <asp:CheckBox runat="server" ID="chkCharger" CssClass="checkbox" Style="margin-left: 20px" Text="Charger" /></td>
-                                                        <td style="padding: 0 10px;"></td>
+                                                        <td style="padding: 1px 10px;">
+                                                            <asp:Label runat="server" Style="margin-right: 5px;" Text="S/N"></asp:Label><asp:TextBox runat="server" ID="txtChargerCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 10px;">
+                                                        <td style="padding: 1px 10px;">
                                                             <asp:CheckBox runat="server" ID="chkStrap" CssClass="checkbox" Style="margin-left: 20px" Text="Strap" /></td>
-                                                        <td style="padding: 0 10px;"></td>
+                                                        <td style="padding: 1px 10px;">
+                                                            <asp:Label runat="server" Style="margin-right: 5px;" Text="S/N"></asp:Label><asp:TextBox runat="server" ID="txtStrapCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="padding: 0 10px;">
+                                                        <td style="padding: 1px 10px;">
                                                             <asp:CheckBox runat="server" ID="chkCable" CssClass="checkbox" Style="margin-left: 20px" Text="Cable" /></td>
-                                                        <td style="padding: 0 10px;"></td>
+                                                        <td style="padding: 1px 10px;">
+                                                            <asp:Label runat="server" Style="margin-right: 5px;" Text="S/N"></asp:Label><asp:TextBox runat="server" ID="txtCableCode" CssClass="form-control input-inline input-small"></asp:TextBox></td>
                                                     </tr>
                                                 </table>
                                             </div>
@@ -565,23 +576,23 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="row">
-                                    <div class=" col-md-7">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblAttachment1" CssClass="col-md-4 control-label" Text="Lampiran 1"></asp:Label>
                                             <div class="col-md-8">
-                                                <asp:TextBox runat="server" ID="txtAttachment1" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
                                                 <asp:Button runat="server" ID="btnAttachment1" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment1.click();return false;" />
                                                 <asp:Label runat="server" ID="lblAttachment1Validate" ForeColor="red" Visible="false"></asp:Label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblAttachment2" CssClass="col-md-4 control-label" Text="Lampiran 2"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:TextBox runat="server" ID="txtAttachment2" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                                <asp:Button runat="server" ID="btnAttachment2" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment2.click();return false;" />
-                                                <asp:Label runat="server" ID="lblAttachment2Validate" ForeColor="red" Visible="false"></asp:Label>
+                                            <div class="col-md-offset-4 col-md-8">
+                                                <table class="table table-bordered" style="width: auto">
+                                                    <tbody id="dvAttachment1Preview"></tbody>
+                                                </table>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class=" col-md-6">
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblRemark" CssClass="col-md-4 control-label" Text="Catatan"></asp:Label>
                                             <div class="col-md-8">
@@ -609,10 +620,9 @@
         </div>
     </div>
     <!-- PAGE BODY -->
-    <asp:FileUpload runat="server" ID="fuPhoto1" Style="display: none" ClientIDMode="static" accept=".jpg, .jpeg, .png, .gif, .bmp" onchange="txtPhoto1.value = filename(this);previewimg(event,'imgPhoto1Preview');" />
-    <asp:FileUpload runat="server" ID="fuPhoto2" Style="display: none" ClientIDMode="static" accept=".jpg, .jpeg, .png, .gif, .bmp" onchange="txtPhoto2.value = filename(this);previewimg(event,'imgPhoto2Preview');" />
-    <asp:FileUpload runat="server" ID="fuAttachment1" Style="display: none" ClientIDMode="static" onchange="txtAttachment1.value = filename(this);" />
-    <asp:FileUpload runat="server" ID="fuAttachment2" Style="display: none" ClientIDMode="static" onchange="txtAttachment2.value = filename(this);" />
+    <asp:FileUpload runat="server" ID="fuPhoto1" Style="display: none" ClientIDMode="static" accept=".jpg, .jpeg, .png, .gif, .bmp" onchange="previewimg(event,'imgPhoto1Preview');" />
+    <asp:FileUpload runat="server" ID="fuPhoto2" Style="display: none" ClientIDMode="static" accept=".jpg, .jpeg, .png, .gif, .bmp" onchange="previewimg(event,'imgPhoto2Preview');" />
+    <asp:FileUpload runat="server" ID="fuAttachment1" multiple="multiple" Style="display: none" ClientIDMode="static" onchange="listSelectedFile(this,'dvAttachment1Preview');" />
     <asp:HiddenField runat="server" ID="hfConfirm" Value="Confirm update details?" ClientIDMode="Static" />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="opp" DisplayMode="BulletList" HeaderText="Please make sure all field are entered correctly" ShowMessageBox="true" ShowValidationErrors="true" ShowSummary="false" />
 
@@ -632,23 +642,57 @@
             $('#ddlOverseer').select2();
             $('#ddlGeofenceMukim').select2();
             $('#ddlEMD').select2();
-            if (document.getElementById("txtPhoto1") != null) {
-                document.getElementById("txtPhoto1").value = filename(document.getElementById("fuPhoto1"));
-            };
-            if (document.getElementById("txtPhoto2") != null) {
-                document.getElementById("txtPhoto2").value = filename(document.getElementById("fuPhoto2"));
-            };
-            if (document.getElementById("txtAttachment1") != null) {
-                document.getElementById("txtAttachment1").value = filename(document.getElementById("fuAttachment1"));
-            };
-            if (document.getElementById("txtAttachment2") != null) {
-                document.getElementById("txtAttachment2").value = filename(document.getElementById("fuAttachment2"));
-            };
         }
 
-        function filename(fileupload) {
-            if (fileupload.value != "") { return fileupload.files[0].name; }
-            else { return ""; };
+    </script>
+
+    <script type="text/javascript">
+
+        function listSelectedFile(input, previewid) {
+            var selectedFiles = [];
+            var files = input.files;
+            for (var i = 0; i < files.length; i++) {
+                selectedFiles.push(files[i]);
+            }
+
+            var fileList = document.getElementById(previewid);
+            fileList.innerHTML = ""; // Clear the list
+
+            // Display each file with a remove button
+            selectedFiles.forEach(function (file, index) {
+                var tr = document.createElement("tr");
+
+                //var tdPreview = document.createElement("td");
+                //if (file.type.startsWith("image/")) {
+                //    var img = document.createElement("img");
+                //    img.src = URL.createObjectURL(file);
+                //    //img.style.width = "50px";
+                //    img.style.height = "50px";
+                //    img.onload = function () {
+                //        URL.revokeObjectURL(img.src); // Free memory
+                //    };
+                //    tdPreview.appendChild(img);
+                //} else {
+                //    var icon = document.createElement("img");
+                //    icon.src = "../assets/img/textfile.png";
+                //    icon.style.width = "50px";
+                //    icon.style.height = "50px";
+                //    tdPreview.appendChild(icon);
+                //}
+                //tr.appendChild(tdPreview);
+
+                // Create a cell for the file name
+                var tdFileName = document.createElement("td");
+                tdFileName.textContent = file.name;
+                tr.appendChild(tdFileName);
+
+                // Create a cell for the file size
+                var trfileSize = document.createElement("td");
+                trfileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + " MB";
+                tr.appendChild(trfileSize);
+
+                fileList.appendChild(tr);
+            });
         }
 
         function previewimg(event, desimg) {

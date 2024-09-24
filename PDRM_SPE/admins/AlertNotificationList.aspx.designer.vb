@@ -32,60 +32,6 @@ Partial Public Class AAlertNotificationList
     Protected WithEvents upTable As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
-    '''lblHighList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblHighList As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rptHigh control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rptHigh As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
-    '''lblMediumList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblMediumList As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rptMedium control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rptMedium As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
-    '''lblLowList control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblLowList As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''rptLow control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rptLow As Global.System.Web.UI.WebControls.Repeater
-
-    '''<summary>
     '''hfConfirm control.
     '''</summary>
     '''<remarks>
@@ -93,22 +39,4 @@ Partial Public Class AAlertNotificationList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfConfirm As Global.System.Web.UI.WebControls.HiddenField
-
-    '''<summary>
-    '''ValidationSummary1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ValidationSummary1 As Global.System.Web.UI.WebControls.ValidationSummary
-
-    '''<summary>
-    '''upPopup control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents upPopup As Global.System.Web.UI.UpdateProgress
 End Class

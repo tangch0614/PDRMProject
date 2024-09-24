@@ -133,6 +133,7 @@
     <Content Include="admins\AddEMD.aspx" />
     <Content Include="admins\AlertNotificationList.aspx" />
     <Content Include="admins\EMDMap.aspx" />
+    <Content Include="admins\AlertInfo.aspx" />
     <Content Include="admins\HistoryMap.aspx" />
     <Content Include="admins\EMDInstallationRequestList.aspx" />
     <Content Include="admins\PoliceStationList.aspx" />
@@ -147,6 +148,8 @@
     <Content Include="assets\alertsound.mp3" />
     <Content Include="assets\alertsound2.mp3" />
     <Content Include="assets\alertsound3.mp3" />
+    <Content Include="assets\img\textfile.png" />
+    <Content Include="assets\js\gmapapi.js" />
     <Content Include="assets\js\oms.min.js" />
     <Content Include="TestHistMapFiltered2.aspx" />
     <Content Include="TestHistMapUnfiltered.aspx" />
@@ -6276,6 +6279,13 @@
     </Compile>
     <Compile Include="admins\EMDMap.aspx.vb">
       <DependentUpon>EMDMap.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admins\AlertInfo.aspx.designer.vb">
+      <DependentUpon>AlertInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admins\AlertInfo.aspx.vb">
+      <DependentUpon>AlertInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admins\HistoryMap.aspx.designer.vb">

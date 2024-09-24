@@ -45,12 +45,13 @@ Public Class AEMDInstallationRequest
         rfvOCSName.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("OCSItem").Replace("vITEM", GetText("Name")))
         lblOCSContactNo.Text = GetText("OCSItem").Replace("vITEM", GetText("ContactNum"))
         rfvOCSContactNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("OCSItem").Replace("vITEM", GetText("ContactNum")))
+        'other info
+        lblOtherInfo.Text = GetText("OthersInfo")
+        lblRemark.Text = GetText("Remark")
         'file upload
-        lblFileInfo.Text = GetText("UploadDocument")
-        lblAttachment1.Text = GetText("OversightOrder")
-        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("Document"))
-        lblAttachment2.Text = GetText("Attachment")
-        btnAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("Document"))
+        lblFileInfo.Text = GetText("Attachment")
+        lblAttachment1.Text = GetText("Attachment")
+        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("MultipleFile"))
         'Buttons/Message
         btnSubmit.Text = GetText("Submit")
         hfConfirm.Value = GetText("MsgConfirmItem").Replace("vITEM", GetText("Submit").ToLower)
@@ -178,10 +179,6 @@ Public Class AEMDInstallationRequest
             result = False
             errorMsg = returnMsg & "\n"
         End If
-        If Not ValidateFileType(fuAttachment2, {".png", ".jpeg", ".jpg", ".bmp", ".pdf"}, 10, True, False, returnMsg) Then
-            result = False
-            errorMsg = returnMsg & "\n"
-        End If
         If Not result Then
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorPageInvalid") & "\n" & errorMsg & "');", True)
         End If
@@ -197,7 +194,7 @@ Public Class AEMDInstallationRequest
         If PageValid() Then
             Dim datetime As DateTime = UtilityManager.GetServerDateTime()
             Dim installrequest As EMDInstallRequestObj = New EMDInstallRequestObj
-            If UploadDocument(fuAttachment1, "Perintah", installrequest.fldAttachment1) AndAlso UploadDocument(fuAttachment2, "Lampiran", installrequest.fldAttachment2) Then
+            If UploadFile(fuAttachment1, "../upload/attachment/", "Lampiran_", "_" & datetime.ToString("yMd_Hms"), False, installrequest.fldAttachment1) Then
                 installrequest.fldDateTime = datetime
                 installrequest.fldDeptID = ddlDepartment.SelectedValue
                 installrequest.fldInstallDateTime = CDate(hfDate.Text & " " & ddlTime.SelectedValue)
@@ -222,40 +219,6 @@ Public Class AEMDInstallationRequest
             End If
         End If
     End Sub
-
-    Private Function UploadDocument(ByVal fuFile As FileUpload, ByVal prefix As String, ByRef FilePath As String) As Boolean
-        Dim result As Boolean = True
-        Dim oldFilePath As String = ""
-        Dim datetime As DateTime = UtilityManager.GetServerDateTime
-        'Dim newSize As New System.Drawing.Size(500, 500)
-        Try
-            If Not fuFile.PostedFile Is Nothing AndAlso fuFile.PostedFile.ContentLength > 0 Then
-                FilePath = ValidateFilePath("../" & "upload/attachment/", prefix & "_" & datetime.ToString("yyMMddHHmmss") & "_" & AdminAuthentication.GetUserData(2) & UtilityManager.GenerateRandomNumber(3), Path.GetExtension(fuFile.PostedFile.FileName).ToLower())
-                If Path.GetExtension(fuFile.PostedFile.FileName).ToLower() <> ".pdf" Then
-                    Dim oriImage As System.Drawing.Image = System.Drawing.Image.FromStream(fuFile.PostedFile.InputStream)
-                    'newSize = UtilityManager.AspectRatioSize(oriImage.Size, newSize)
-                    'Dim resizedImg As System.Drawing.Image = UtilityManager.ResizeImage(oriImage, newSize.Width, newSize.Height)
-                    If File.Exists(Server.MapPath(FilePath)) Then
-                        File.Delete(Server.MapPath(FilePath))
-                    End If
-                    'resizedImg.Save(Server.MapPath("../" & FilePath), UtilityManager.GetEncoder(ImageFormat.Jpeg), UtilityManager.GetEncoderParameters(50))
-                    oriImage.Save(Server.MapPath(FilePath), UtilityManager.GetEncoder(ImageFormat.Jpeg), UtilityManager.GetEncoderParameters(50))
-                Else
-                    If File.Exists(Server.MapPath(FilePath)) Then
-                        File.Delete(Server.MapPath(FilePath))
-                    End If
-                    fuFile.PostedFile.SaveAs(Server.MapPath(FilePath))
-                End If
-                'If Not String.IsNullOrEmpty(oldFilePath) AndAlso File.Exists(Server.MapPath("../" & oldFilePath)) Then
-                '    File.Delete(Server.MapPath("../" & oldFilePath))
-                'End If
-            End If
-        Catch ex As Exception
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUploadFailed") & "');", True)
-            result = False
-        End Try
-        Return result
-    End Function
 
 #End Region
 End Class

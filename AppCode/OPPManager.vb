@@ -38,10 +38,10 @@ Namespace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function GetOPPList(ByVal id As Long, ByVal name As String, ByVal icno As String, ByVal deviceid As Long, ByVal deptid As Long, ByVal policestationid As Long, ByVal orderrefno As String, ByVal status As String) As DataTable
+        Public Shared Function GetOPPList(ByVal id As Long, ByVal name As String, ByVal icno As String, ByVal deviceid As Long, ByVal deptid As Long, ByVal policestationid As Long, ByVal orderrefno As String, ByVal status As String, ByVal verifystatus As String) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim myDataTable As DataTable = OPPDB.GetOPPList(id, name, icno, deviceid, deptid, policestationid, orderrefno, status, myConnection)
+                Dim myDataTable As DataTable = OPPDB.GetOPPList(id, name, icno, deviceid, deptid, policestationid, orderrefno, status, verifystatus, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using
@@ -91,7 +91,7 @@ Namespace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function UpdateEMDDevice(ByVal oppid As Long, ByVal deviceid As Long, ByVal installdate As String, ByVal beaconcode As String, ByVal smarttag As Integer, ByVal obc As Integer, ByVal beacon As Integer, ByVal charger As Integer, ByVal strap As Integer, ByVal cable As Integer, ByVal creatorid As Long) As Boolean
+        Public Shared Function UpdateEMDDevice(ByVal oppid As Long, ByVal deviceid As Long, ByVal installdate As String, ByVal smarttagcode As String, ByVal obccode As String, ByVal beaconcode As String, ByVal chargercode As String, ByVal strapcode As String, ByVal cablecode As String, ByVal smarttag As Integer, ByVal obc As Integer, ByVal beacon As Integer, ByVal charger As Integer, ByVal strap As Integer, ByVal cable As Integer, ByVal creatorid As Long) As Boolean
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
@@ -111,7 +111,7 @@ Namespace BusinessLogic
                         End If
                     End If
                     If Date.Compare(opp.fldEMDInstallDate, CDate(installdate)) <> 0 AndAlso result Then result = OPPDB.UpdateEMDInstallDate(oppid, installdate, myConnection)
-                    If result Then OPPDB.UpdateEMDAccessories(oppid, beaconcode, smarttag, obc, beacon, charger, strap, cable, myConnection)
+                    If result Then OPPDB.UpdateEMDAccessories(oppid, smarttagcode, obccode, beaconcode, chargercode, strapcode, cablecode, smarttag, obc, beacon, charger, strap, cable, myConnection)
                     myConnection.Close()
                     If result Then myTransactionScope.Complete()
                     Return result
@@ -180,12 +180,37 @@ Namespace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function UpdateStatus(ByVal oppid As Long, ByVal oldstatus As String, ByVal newstatus As String, ByVal creatorid As Long) As Boolean
+        Public Shared Function UpdateVerifyStatus(ByVal oppid As Long, ByVal oldstatus As String, ByVal newstatus As String) As Boolean
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
-                    Dim result As Boolean = OPPDB.UpdateStatus(oppid, oldstatus, newstatus, myConnection)
-                    If result Then result = OPPDB.SaveOPPStatusHist(oppid, oldstatus, newstatus, "Verify OPP", creatorid, myConnection)
+                    Dim result As Boolean = OPPDB.UpdateVerifyStatus(oppid, oldstatus, newstatus, myConnection)
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function UpdateVerifyStatus(ByVal oppid As Long, ByVal oldstatus As String, ByVal newstatus As String, ByVal creatorid As Long) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim result As Boolean = OPPDB.UpdateVerifyStatus(oppid, oldstatus, newstatus, creatorid, myConnection)
+                    myConnection.Close()
+                    If result Then myTransactionScope.Complete()
+                    Return result
+                End Using
+            End Using
+        End Function
+
+        Public Shared Function UpdateStatus(ByVal oppid As Long, ByVal newstatus As String, ByVal creatorid As Long) As Boolean
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                Using myTransactionScope As TransactionScope = New TransactionScope()
+                    myConnection.Open()
+                    Dim curstatus As String = OPPDB.GetStatus(oppid, myConnection)
+                    Dim result As Boolean = OPPDB.UpdateStatus(oppid, curstatus, newstatus, myConnection)
+                    If result Then result = OPPDB.SaveOPPStatusHist(oppid, curstatus, newstatus, "Update OPP Status", creatorid, myConnection)
                     myConnection.Close()
                     If result Then myTransactionScope.Complete()
                     Return result
@@ -200,7 +225,7 @@ Namespace BusinessLogic
                     myopp.fldRefID = StoredProcDB.spGenerateCode("OPP", "", myConnection)
                     oppid = OPPDB.Save(myopp, myConnection)
                     Dim result As Boolean = oppid > 0
-                    If result Then result = OPPDB.SaveOPPStatusHist(oppid, "P", "P", "Add new OPP", creatorid, myConnection)
+                    If result Then result = OPPDB.SaveOPPStatusHist(oppid, "N", myopp.fldStatus, "Add new OPP", creatorid, myConnection)
                     If myopp.fldEMDDeviceID > 0 Then
                         If result Then result = EMDDeviceDB.UpdateOPPID(myopp.fldEMDDeviceID, oppid, myConnection)
                         If result Then result = EMDDeviceDB.UpdateStatus(myopp.fldEMDDeviceID, "Y", myConnection)

@@ -2,6 +2,10 @@
     display: inline-block;
 }
 
+.form-control:not(.input-large):not(.input-small):not(.input-xlarge):not(.input-xsmall):not(.input-medium) + .select2-container {
+    width: 100% !important;
+}
+
 @media print {
     .printDisplay {
         display: none !important;
@@ -131,8 +135,14 @@
         width: 100% !important;
     }
 }
+/*
+@media (max-width: 1200px) {
+    .input-large, .input-large + .select2-container {
+        width: 100% !important;
+    }
+}
 
-
+*/
 /* New color */
 /*Pink*/
 .font-pink{

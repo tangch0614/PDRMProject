@@ -34,7 +34,7 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <asp:Label runat="server" ID="lblDepartment" CssClass="col-md-3 control-label" Text="Department"></asp:Label>
+                                    <asp:Label runat="server" ID="lblDepartment" CssClass="col-md-4 control-label" Text="Department"></asp:Label>
                                     <div class="col-md-8">
                                         <asp:DropDownList runat="server" ID="ddlDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                         <label style="color: red">*</label>
@@ -54,14 +54,14 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <asp:Label runat="server" ID="lblDate" CssClass="col-md-3 control-label" Text="Tarikh"></asp:Label>
+                                    <asp:Label runat="server" ID="lblDate" CssClass="col-md-4 control-label" Text="Tarikh"></asp:Label>
                                     <div class="col-md-8">
                                         <input id="txtDate" name="txtDate" class="DateFrom form-control input-inline input-large" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
                                     </div>
                                     <asp:TextBox runat="server" ID="hfDate" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
                                 </div>
                                 <div class="form-group">
-                                    <asp:Label runat="server" ID="lblTime" CssClass="col-md-3 control-label" Text="Masa"></asp:Label>
+                                    <asp:Label runat="server" ID="lblTime" CssClass="col-md-4 control-label" Text="Masa"></asp:Label>
                                     <div class="col-md-8">
                                         <asp:DropDownList runat="server" ID="ddlTime" class="form-control input-inline input-large" ClientIDMode="Static"></asp:DropDownList>
                                         <label style="color: red">*</label>
@@ -83,7 +83,7 @@
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblIPK" CssClass="col-md-3 control-label" Text="Kontinjen"></asp:Label>
+                                            <asp:Label runat="server" ID="lblIPK" CssClass="col-md-4 control-label" Text="Kontinjen"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlIPK" CssClass="form-control input-inline input-large" ClientIDMode="Static" AutoPostBack="true" OnSelectedIndexChanged="ddlIPK_SelectedIndexChanged"></asp:DropDownList>
                                                 <label style="color: red">*</label>
@@ -91,7 +91,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblPoliceStation" CssClass="col-md-3 control-label" Text="Balai Police"></asp:Label>
+                                            <asp:Label runat="server" ID="lblPoliceStation" CssClass="col-md-4 control-label" Text="Balai Police"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                                 <label style="color: red">*</label>
@@ -99,7 +99,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group" runat="server" visible="false">
-                                            <asp:Label runat="server" ID="lblState" CssClass="col-md-3 control-label" Text="State"></asp:Label>
+                                            <asp:Label runat="server" ID="lblState" CssClass="col-md-4 control-label" Text="State"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlState" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                                 <%--<label style="color: red">*</label>--%>
@@ -107,7 +107,7 @@
                                             </div>
                                         </div>
                                         <%--<div class="form-group">
-                                            <asp:Label runat="server" ID="lblDistrict" CssClass="col-md-3 control-label" Text="District"></asp:Label>
+                                            <asp:Label runat="server" ID="lblDistrict" CssClass="col-md-4 control-label" Text="District"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlDistrict" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged"></asp:DropDownList>
                                                 <label style="color: red">*</label>
@@ -115,7 +115,7 @@
                                             </div>
                                         </div>--%>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblMukim" CssClass="col-md-3 control-label" Text="Sub-District"></asp:Label>
+                                            <asp:Label runat="server" ID="lblMukim" CssClass="col-md-4 control-label" Text="Sub-District"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlMukim" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                                 <label style="color: red">*</label>
@@ -142,7 +142,7 @@
                                 <asp:UpdatePanel runat="server">
                                     <ContentTemplate>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblOCSName" CssClass="col-md-3 control-label" Text="Nama KPB"></asp:Label>
+                                            <asp:Label runat="server" ID="lblOCSName" CssClass="col-md-4 control-label" Text="Nama KPB"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:TextBox runat="server" ID="txtOCSName" CssClass="form-control input-inline input-large" />
                                                 <label style="color: red">*</label>
@@ -150,7 +150,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <asp:Label runat="server" ID="lblOCSContactNo" CssClass="col-md-3 control-label" Text="No. Tel. KBP"></asp:Label>
+                                            <asp:Label runat="server" ID="lblOCSContactNo" CssClass="col-md-4 control-label" Text="No. Tel. KBP"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:TextBox runat="server" ID="txtOCSContactNo" CssClass="form-control input-inline input-large" />
                                                 <label style="color: red">*</label>
@@ -159,6 +159,24 @@
                                         </div>
                                     </ContentTemplate>
                                 </asp:UpdatePanel>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Other info -->
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <asp:Label runat="server" ID="lblOtherInfo" CssClass="caption-subject uppercase" Text="Muat Naik Dokumen"></asp:Label>
+                        </div>
+                    </div>
+                    <div class="portlet-body form">
+                        <div class="form-horizontal">
+                            <div class="form-body">
+                                <div class="form-group">
+                                    <asp:Label runat="server" ID="lblRemark" CssClass="col-md-4 control-label" Text="Catatan"></asp:Label>
+                                    <div class="col-md-8">
+                                        <asp:TextBox runat="server" ID="txtRemark" TextMode="MultiLine" Rows="5" Style="resize: none;" CssClass="form-control input-inline input-large" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -172,27 +190,17 @@
                         <div class="form-horizontal">
                             <div class="form-body">
                                 <div class="form-group">
-                                    <asp:Label runat="server" ID="lblAttachment1" CssClass="col-md-3 control-label" Text="Perintah Pengawasan"></asp:Label>
+                                    <asp:Label runat="server" ID="lblAttachment1" CssClass="col-md-4 control-label" Text="Perintah Pengawasan"></asp:Label>
                                     <div class="col-md-8">
-                                        <asp:TextBox runat="server" ID="txtAttachment1" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                        <%--<label style="color: red">*</label>--%>
                                         <asp:Button runat="server" ID="btnAttachment1" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment1.click();return false;" />
                                         <asp:Label runat="server" ID="lblAttachment1Validate" ForeColor="red" Visible="false"></asp:Label>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <asp:Label runat="server" ID="lblAttachment2" CssClass="col-md-3 control-label" Text="Lampiran"></asp:Label>
-                                    <div class="col-md-8">
-                                        <asp:TextBox runat="server" ID="txtAttachment2" CssClass="form-control input-inline input-large" onkeydown="return false;" onpaste="return false;" autocomplete="off" ClientIDMode="static"></asp:TextBox>
-                                        <%--<label style="color: red">*</label>--%>
-                                        <asp:Button runat="server" ID="btnAttachment2" Text="Select File" CssClass="btn blue " OnClientClick="fuAttachment2.click();return false;" />
-                                        <asp:Label runat="server" ID="lblAttachment2Validate" ForeColor="red" Visible="false"></asp:Label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <asp:Label runat="server" ID="lblRemark" CssClass="col-md-3 control-label" Text="Catatan"></asp:Label>
-                                    <div class="col-md-8">
-                                        <asp:TextBox runat="server" ID="txtRemark" TextMode="MultiLine" Rows="5" Style="resize: none;" CssClass="form-control input-inline input-large" />
+                                    <div class="col-md-offset-4 col-md-8">
+                                        <table class="table table-bordered" style="width: auto">
+                                            <tbody id="dvAttachment1Preview"></tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -210,8 +218,7 @@
         </div>
     </div>
     <!-- PAGE BODY -->
-    <asp:FileUpload runat="server" ID="fuAttachment1" Style="display: none" ClientIDMode="static" onchange="txtAttachment1.value = filename(this);" />
-    <asp:FileUpload runat="server" ID="fuAttachment2" Style="display: none" ClientIDMode="static" onchange="txtAttachment2.value = filename(this);" />
+    <asp:FileUpload runat="server" ID="fuAttachment1" multiple="multiple" Style="display: none" ClientIDMode="static" onchange="listSelectedFile(this,'dvAttachment1Preview');" />
     <asp:HiddenField runat="server" ID="hfConfirm" Value="Confirm update details?" ClientIDMode="Static" />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="apply" DisplayMode="BulletList" HeaderText="Please make sure all field are entered correctly" ShowMessageBox="true" ShowValidationErrors="true" ShowSummary="false" />
 
@@ -223,10 +230,7 @@
             $('#ddlPoliceStation').select2();
             $('#ddlMukim').select2();
             if (document.getElementById("txtAttachment1") != null) {
-                document.getElementById("txtAttachment1").value = filename(document.getElementById("fuAttachment1"));
-            };
-            if (document.getElementById("txtAttachment2") != null) {
-                document.getElementById("txtAttachment2").value = filename(document.getElementById("fuAttachment2"));
+                document.getElementById("txtAttachment1").value = filename_multi(document.getElementById("fuAttachment1"));
             };
         }
 
@@ -243,6 +247,56 @@
             }
         };
 
+    </script>
+
+    <script type="text/javascript">
+
+        function listSelectedFile(input, previewid) {
+            var selectedFiles = [];
+            var files = input.files;
+            for (var i = 0; i < files.length; i++) {
+                selectedFiles.push(files[i]);
+            }
+
+            var fileList = document.getElementById(previewid);
+            fileList.innerHTML = ""; // Clear the list
+
+            // Display each file with a remove button
+            selectedFiles.forEach(function (file, index) {
+                var tr = document.createElement("tr");
+
+                //var tdPreview = document.createElement("td");
+                //if (file.type.startsWith("image/")) {
+                //    var img = document.createElement("img");
+                //    img.src = URL.createObjectURL(file);
+                //    //img.style.width = "50px";
+                //    img.style.height = "50px";
+                //    img.onload = function () {
+                //        URL.revokeObjectURL(img.src); // Free memory
+                //    };
+                //    tdPreview.appendChild(img);
+                //} else {
+                //    var icon = document.createElement("img");
+                //    icon.src = "../assets/img/textfile.png";
+                //    icon.style.width = "50px";
+                //    icon.style.height = "50px";
+                //    tdPreview.appendChild(icon);
+                //}
+                //tr.appendChild(tdPreview);
+
+                // Create a cell for the file name
+                var tdFileName = document.createElement("td");
+                tdFileName.textContent = file.name;
+                tr.appendChild(tdFileName);
+
+                // Create a cell for the file size
+                var trfileSize = document.createElement("td");
+                trfileSize.textContent = (file.size / 1024 / 1024).toFixed(2) + " MB";
+                tr.appendChild(trfileSize);
+
+                fileList.appendChild(tr);
+            });
+        }
     </script>
     <!--Javascript-->
 </asp:Content>

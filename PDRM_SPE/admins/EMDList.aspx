@@ -32,6 +32,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <asp:Label runat="server" ID="lblSName" CssClass="col-md-3 control-label" Text="User ID"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:TextBox runat="server" ID="txtSName" CssClass="form-control input-inline input-large"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <asp:Label runat="server" ID="lblSStatus" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlSStatus" CssClass="form-control input-inline input-large"></asp:DropDownList>
@@ -70,6 +76,9 @@
                                                             <th style="width: 10% !important">
                                                                 <%#GetText("Imei")%>
                                                             </th>
+                                                            <th style="width: 10% !important">
+                                                                <%#GetText("Marking")%>
+                                                            </th>
                                                             <th style="width: 10% !important; display: none;">
                                                                 <%#GetText("SIMNo")%>
                                                             </th>
@@ -97,6 +106,9 @@
                                                     </td>
                                                     <td style="text-align: left">
                                                         <%#Eval("fldImei")%>
+                                                    </td>
+                                                    <td style="text-align: left">
+                                                        <%#Eval("fldName")%>
                                                     </td>
                                                     <td style="text-align: left; display: none;">
                                                         <%#Eval("fldSImNo")%>
@@ -150,14 +162,14 @@
                                                 <asp:TextBox runat="server" ID="txtImei" data-temp="1" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true"></asp:TextBox>
                                             </div>
                                         </div>
-                                        <%--<div class="form-group">
+                                        <div class="form-group">
                                             <asp:Label runat="server" ID="lblName" CssClass="col-md-3 control-label" Text="Current Login ID"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:TextBox runat="server" ID="txtName" data-temp="1" CssClass="form-control input-inline input-large"></asp:TextBox>
-                                                <label style="color: red">*</label>
-                                                <asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtName" ErrorMessage="*Name cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="update"></asp:RequiredFieldValidator>
+                                                <%--<label style="color: red">*</label>--%>
+                                                <%--<asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtName" ErrorMessage="*Name cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="update"></asp:RequiredFieldValidator>--%>
                                             </div>
-                                        </div>--%>
+                                        </div>
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblSimNo" CssClass="col-md-3 control-label" Text="Name"></asp:Label>
                                             <div class="col-md-8">

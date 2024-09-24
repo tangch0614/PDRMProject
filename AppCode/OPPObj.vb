@@ -47,6 +47,11 @@ NameSpace BusinessObject
 		Private _fldOverseerID As Long
 		Private _fldEMDDeviceID As Long
 		Private _fldEMDInstallDate As DateTime = DateTime.MinValue
+		Private _fldSmartTagCode As String = String.Empty
+		Private _fldOBCCode As String = String.Empty
+		Private _fldChargerCode As String = String.Empty
+		Private _fldStrapCode As String = String.Empty
+		Private _fldCableCode As String = String.Empty
 		Private _fldBeaconCode As String = String.Empty
 		Private _fldSmartTag As Integer = 0
 		Private _fldOBC As Integer = 0
@@ -66,7 +71,11 @@ NameSpace BusinessObject
 		Private _fldAttachment1 As String = String.Empty
 		Private _fldAttachment2 As String = String.Empty
 		Private _fldRemark As String = String.Empty
-		Private _fldStatus As String = String.Empty
+		Private _fldStatus As String = "Y"
+		Private _fldVerifyStatus As String = "P"
+		Private _fldVerifyDateTime As DateTime = DateTime.MinValue
+		Private _fldVerifyBy As Long = 0
+		Private _fldGeoFenceActive As Integer = 0
 
 #End Region
 
@@ -541,6 +550,87 @@ NameSpace BusinessObject
 			End Get
 			Set(value As String)
 				_fldContactNo = value
+			End Set
+		End Property
+
+		Public Property fldSmartTagCode As String
+			Get
+				Return _fldSmartTagCode
+			End Get
+			Set(value As String)
+				_fldSmartTagCode = value
+			End Set
+		End Property
+
+		Public Property fldOBCCode As String
+			Get
+				Return _fldOBCCode
+			End Get
+			Set(value As String)
+				_fldOBCCode = value
+			End Set
+		End Property
+
+		Public Property fldChargerCode As String
+			Get
+				Return _fldChargerCode
+			End Get
+			Set(value As String)
+				_fldChargerCode = value
+			End Set
+		End Property
+
+		Public Property fldStrapCode As String
+			Get
+				Return _fldStrapCode
+			End Get
+			Set(value As String)
+				_fldStrapCode = value
+			End Set
+		End Property
+
+		Public Property fldCableCode As String
+			Get
+				Return _fldCableCode
+			End Get
+			Set(value As String)
+				_fldCableCode = value
+			End Set
+		End Property
+
+		Public Property fldVerifyStatus As String
+			Get
+				Return _fldVerifyStatus
+			End Get
+			Set(value As String)
+				_fldVerifyStatus = value
+			End Set
+		End Property
+
+		Public Property fldVerifyDateTime As Date
+			Get
+				Return _fldVerifyDateTime
+			End Get
+			Set(value As Date)
+				_fldVerifyDateTime = value
+			End Set
+		End Property
+
+		Public Property fldVerifyBy As Long
+			Get
+				Return _fldVerifyBy
+			End Get
+			Set(value As Long)
+				_fldVerifyBy = value
+			End Set
+		End Property
+
+		Public Property fldGeoFenceActive As Integer
+			Get
+				Return _fldGeoFenceActive
+			End Get
+			Set(value As Integer)
+				_fldGeoFenceActive = value
 			End Set
 		End Property
 

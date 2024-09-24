@@ -61,6 +61,43 @@ NameSpace DataAccess
             Return myDataTable
         End Function
 
+        Public Shared Function UpdateAttachment1(ByVal requestid As Long, ByVal attachment As String, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblemdinstallrequest set fldAttachment1=@attachment Where fldID=@requestid", myConnection)
+            myCommand.Parameters.AddWithValue("@requestid", requestid)
+            myCommand.Parameters.AddWithValue("@attachment", attachment)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
+        Public Shared Function UpdateAttachment2(ByVal requestid As Long, ByVal attachment As String, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblemdinstallrequest set fldAttachment2=@attachment Where fldID=@requestid", myConnection)
+            myCommand.Parameters.AddWithValue("@requestid", requestid)
+            myCommand.Parameters.AddWithValue("@attachment", attachment)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
+        Public Shared Function UpdateEMDAccessories(ByVal requestid As Long, ByVal OPPID As Long, ByVal EMDDeviceID As Long, ByVal SmartTagCode As String, ByVal OBCCode As String, ByVal BeaconCode As String, ByVal ChargerCode As String, ByVal StrapCode As String, ByVal CableCode As String, ByVal SmartTag As Integer, ByVal OBC As Integer, ByVal Beacon As Integer, ByVal Charger As Integer, ByVal Strap As Integer, ByVal Cable As Integer, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblemdinstallrequest set fldOPPID=@OPPID, fldEMDDeviceID=@EMDDeviceID, fldSmartTagCode=@SmartTagCode, fldOBCCode=@OBCCode, fldBeaconCode=@BeaconCode, fldChargerCode=@ChargerCode, fldStrapCode=@StrapCode, fldCableCode=@CableCode, fldSmartTag=@SmartTag, fldOBC=@OBC, fldBeacon=@Beacon, fldCharger=@Charger, fldStrap=@Strap, fldCable=@Cable Where fldID=@requestid", myConnection)
+            myCommand.Parameters.AddWithValue("@requestid", requestid)
+            myCommand.Parameters.AddWithValue("@OPPID", OPPID)
+            myCommand.Parameters.AddWithValue("@EMDDeviceID", EMDDeviceID)
+            myCommand.Parameters.AddWithValue("@SmartTagCode", SmartTagCode)
+            myCommand.Parameters.AddWithValue("@OBCCode", OBCCode)
+            myCommand.Parameters.AddWithValue("@BeaconCode", BeaconCode)
+            myCommand.Parameters.AddWithValue("@ChargerCode", ChargerCode)
+            myCommand.Parameters.AddWithValue("@StrapCode", StrapCode)
+            myCommand.Parameters.AddWithValue("@CableCode", CableCode)
+            myCommand.Parameters.AddWithValue("@SmartTag", SmartTag)
+            myCommand.Parameters.AddWithValue("@OBC", OBC)
+            myCommand.Parameters.AddWithValue("@Beacon", Beacon)
+            myCommand.Parameters.AddWithValue("@Charger", Charger)
+            myCommand.Parameters.AddWithValue("@Strap", Strap)
+            myCommand.Parameters.AddWithValue("@Cable", Cable)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
         Public Shared Function Save(ByVal installrequest As EMDInstallRequestObj, ByVal myConnection As MySqlConnection) As Integer
             Dim result As Long = 0
             Dim processExe As String = ""
@@ -107,13 +144,12 @@ NameSpace DataAccess
             Return result
         End Function
 
-        Public Shared Function UpdateStatus(ByVal id As Long, ByVal creatorid As Long, ByVal oldstatus As String, ByVal newstatus As String, ByVal remark As String, ByVal myConnection As MySqlConnection) As Boolean
+        Public Shared Function UpdateStatus(ByVal id As Long, ByVal creatorid As Long, ByVal newstatus As String, ByVal remark As String, ByVal myConnection As MySqlConnection) As Boolean
             Dim result As Long = 0
-            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblemdinstallrequest Set fldStatus=@newstatus, fldProcessByID=@creatorid, fldProcessDateTime=Now(), fldProcessRemark=@remark Where fldID = @id and fldStatus=@oldstatus", myConnection)
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblemdinstallrequest Set fldStatus=@newstatus, fldProcessByID=@creatorid, fldProcessDateTime=Now(), fldProcessRemark=@remark Where fldID = @id", myConnection)
             myCommand.CommandType = CommandType.Text
             myCommand.Parameters.AddWithValue("@id", id)
             myCommand.Parameters.AddWithValue("@newstatus", newstatus)
-            myCommand.Parameters.AddWithValue("@oldstatus", oldstatus)
             myCommand.Parameters.AddWithValue("@creatorid", creatorid)
             myCommand.Parameters.AddWithValue("@remark", remark)
             result = myCommand.ExecuteNonQuery()
@@ -162,6 +198,48 @@ NameSpace DataAccess
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldOCSTelNo"))) Then
                 installrequest.fldOCSTelNo = myDataRecord.GetString(myDataRecord.GetOrdinal("fldOCSTelNo"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldEMDDeviceID"))) Then
+                installrequest.fldEMDDeviceID = myDataRecord.GetInt64(myDataRecord.GetOrdinal("fldEMDDeviceID"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldOPPID"))) Then
+                installrequest.fldOPPID = myDataRecord.GetInt64(myDataRecord.GetOrdinal("fldOPPID"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldSmartTagCode"))) Then
+                installrequest.fldSmartTagCode = myDataRecord.GetString(myDataRecord.GetOrdinal("fldSmartTagCode"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldOBCCode"))) Then
+                installrequest.fldOBCCode = myDataRecord.GetString(myDataRecord.GetOrdinal("fldOBCCode"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldBeaconCode"))) Then
+                installrequest.fldBeaconCode = myDataRecord.GetString(myDataRecord.GetOrdinal("fldBeaconCode"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldChargerCode"))) Then
+                installrequest.fldChargerCode = myDataRecord.GetString(myDataRecord.GetOrdinal("fldChargerCode"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldStrapCode"))) Then
+                installrequest.fldStrapCode = myDataRecord.GetString(myDataRecord.GetOrdinal("fldStrapCode"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldCableCode"))) Then
+                installrequest.fldCableCode = myDataRecord.GetString(myDataRecord.GetOrdinal("fldCableCode"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldSmartTag"))) Then
+                installrequest.fldSmartTag = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldSmartTag"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldOBC"))) Then
+                installrequest.fldOBC = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldOBC"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldBeacon"))) Then
+                installrequest.fldBeacon = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldBeacon"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldCharger"))) Then
+                installrequest.fldCharger = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldCharger"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldStrap"))) Then
+                installrequest.fldStrap = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldStrap"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldCable"))) Then
+                installrequest.fldCable = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldCable"))
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldAttachment1"))) Then
                 installrequest.fldAttachment1 = myDataRecord.GetString(myDataRecord.GetOrdinal("fldAttachment1"))

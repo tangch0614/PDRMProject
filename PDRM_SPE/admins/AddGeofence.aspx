@@ -47,7 +47,7 @@
     <link href="../assets/layouts/layout3/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <!-- NON TEMPLATE-->
-    <link href="../assets/css/general.css?v=1" rel="stylesheet" />
+    <link href="../assets/css/general.css?v=1.1" rel="stylesheet" />
     <link href="../assets/css/layout3.css" rel="stylesheet" />
     <link href="../assets/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet" />
     <!-- NON TEMPLATE-->
@@ -56,9 +56,7 @@
     <link href="../assets/img/companylogo.png" rel="icon" sizes="192x192" />
     <link href="../assets/img/companylogo.png" rel="apple-touch-icon-precomposed" />
     <meta content="../assets/img/companylogo.png" name="msapplication-TileImage" />
-    <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9AQTXBVGEnr8xB2k3chP1Ek5Yxk6gePU&loading=async&libraries=marker&v=beta&solution_channel=GMP_CCS_complexmarkers_v3" defer></script>--%>
-    <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-            ({ key: "AIzaSyA9AQTXBVGEnr8xB2k3chP1Ek5Yxk6gePU", v: "weekly" });</script>
+    <script src="../assets/js/gmapapi.js"></script>
     <script type="text/javascript">
 
         let map;

@@ -86,7 +86,7 @@ Public Class TestHistMapFiltered2
         txtIMEI.Text = ""
         plOPPInfo.Visible = False
         If id > 0 Then
-            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, "", "")
+            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, "", "", "")
             If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
                 imgPhoto.ImageUrl = If(Not String.IsNullOrEmpty(myDataTable.Rows(0)("fldPhoto1")), myDataTable.Rows(0)("fldPhoto1"), "../assets/img/No_Image.png")
                 txtOPPName.Text = myDataTable.Rows(0)("fldName")

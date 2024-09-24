@@ -4,7 +4,7 @@
 
     <style type="text/css">
         #map {
-            height: 100%;
+            height: 400px !important;
         }
 
         .map-container {
@@ -72,9 +72,7 @@
                 opacity: 1 !important;
             }
     </style>
-    <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-            ({ key: "AIzaSyA9AQTXBVGEnr8xB2k3chP1Ek5Yxk6gePU", v: "weekly" });</script>
-
+    <script src="../assets/js/gmapapi.js"></script>
     <!--MAP-->
     <script type="text/javascript">
         let map;
@@ -398,7 +396,10 @@
             map.setZoom(20);
         }
 
-        //------------------------Notification---------------------//
+    </script>
+
+    <!--Notification-->
+    <script type="text/javascript">
         var priorityMap = {
             'high': 3,
             'medium': 2,
@@ -444,6 +445,7 @@
                             tableHTML += "<tr><td><%=GetText("Department")%></td><td class='bold'>" + notification.fldDepartment + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></td><td class='bold'>" + notification.fldpscontactno + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("DateTime")%></td><td class='bold'>" + notification.flddatetime.replace("T", " ") + "</td></tr>";
+                            tableHTML += "<tr><td colspan='2' align='center'><button class='btn blue btn-xs' id='btnAcknowledge' onclick=\"OpenPopupWindow('../admins/AlertInfo.aspx?id=" + notification.fldid + "&i=" + notification.fldmd5 + "',1280,800);return false;\"><%=GetText("Acknowledge")%></button></td></tr>"
                             tableHTML += "</table>";
                             //tableHTML += "<div align='center'><button class='btn default' id='btnAcknowledge'><%=GetText("Acknowledge")%></button></div>";
                             //tableHTML += "<button class='btn default' onclick='SetMapCenter(" + notification.fldRLat + "," + notification.fldRLong + ");return false;" > Show Location</button > "
@@ -470,15 +472,13 @@
                                 "tapToDismiss": false,
                             };
 
-                            var $toast = toastr.warning(tableHTML, notification.fldmsg);
+                            var $toast = toastr.warning(tableHTML, notification.fldmsg).attr('id', "toastr" + notification.fldid);
                             $('#toast-container').appendTo('#notification');
 
                             if ($toast && $toast.find('#btnAcknowledge').length) {
                                 $toast.find('#btnAcknowledge').on('click', function () {
                                     event.preventDefault(); // Prevent any default action when clicking the button
-                                    $toast.fadeOut(300, function () { // Fade out the specific toast
-                                        $(this).remove(); // Remove it from the DOM
-                                    });
+                                    CloseToastr(notification.fldid);
                                 });
                             }
                         });
@@ -502,11 +502,21 @@
             currentAudio.play();
         }
 
+        function CloseToastr(alertid) {
+            if (document.getElementById('toastr' + alertid)) {
+                $("#toastr" + alertid).fadeOut(300, function () {
+                    $(this).remove();
+                });
+            }
+        }
+
         function initNotifications() {
             fetchNotifications();
             setInterval(fetchNotifications, 5000); // 10 seconds
         }
     </script>
+
+    <!--Dashboard-->
     <script type="text/javascript">
         function getdashboardata() {
             $.ajax({
@@ -550,136 +560,134 @@
     </div>
     <!-- PAGE HEADER -->
     <!-- PAGE BODY -->
-    <div class="map-container">
-        <div style="display: flex; flex-direction: row; height: 100%">
-            <div style="width: 80%; height: 100%; padding: 10px; display: flex; flex-direction: column;">
-                <div class="col-md-12" style="height: 70%; padding: 10px;">
-                    <asp:UpdatePanel runat="server">
-                        <ContentTemplate>
-                            <div>
-                                <asp:DropDownList runat="server" ID="ddlEMD" Style="display: none; position: absolute; z-index: 100; top: 20px; left: 200px; padding: 10px;" ClientIDMode="Static" AutoPostBack="true" OnSelectedIndexChanged="ddlEMD_SelectedIndexChanged"></asp:DropDownList>
+    <div style="display: flex; flex-direction: row; height: 100%">
+        <div style="width: 80%; height: 100%; padding: 10px; display: flex; flex-direction: column;">
+            <div class="col-md-12" style="height: 70%; padding: 10px;">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div>
+                            <asp:DropDownList runat="server" ID="ddlEMD" Style="display: none; position: absolute; z-index: 100; top: 20px; left: 200px; padding: 10px;" ClientIDMode="Static" AutoPostBack="true" OnSelectedIndexChanged="ddlEMD_SelectedIndexChanged"></asp:DropDownList>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <div id="map" style="width: 100%; height: 100%; padding: 10px;"></div>
+            </div>
+            <div class="row" style="height: 30%; padding: 10px;">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtActiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
-                    <div id="map" style="width: 100%; height: 100%; padding: 10px;"></div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblActiveEMD" ClientIDMode="Static" Text="EMD Aktif"><%=GetText("ActiveEMD")%></asp:Label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row" style="height: 30%; padding: 10px;">
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                            <div class="visual">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtInactiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtActiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblActiveEMD" ClientIDMode="Static" Text="EMD Aktif"><%=GetText("ActiveEMD")%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblInactiveEMD" ClientIDMode="Static" Text="EMD Tidak Aktif"><%=GetText("InactiveEMD")%></asp:Label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                            <div class="visual">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtTotal_Alert" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtInactiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblInactiveEMD" ClientIDMode="Static" Text="EMD Tidak Aktif"><%=GetText("InactiveEMD")%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblTotal_Alert" ClientIDMode="Static" Text="OPP Langgar Syarat"><%=GetText("OPPViolateTerms")%></asp:Label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                            <div class="visual">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtOnlineCount" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtTotal_Alert" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblTotal_Alert" ClientIDMode="Static" Text="OPP Langgar Syarat"><%=GetText("OPPViolateTerms")%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblOnlineCount" ClientIDMode="Static" Text="Operator Dlm.Talian"><%=GetText("OperatorOnline")%></asp:Label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                            <div class="visual">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" runat="server" id="dvJenayah">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtJenayah_Alert" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtOnlineCount" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblOnlineCount" ClientIDMode="Static" Text="Operator Dlm.Talian"><%=GetText("OperatorOnline")%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblJenayah_Alert" ClientIDMode="Static" Text="Langgar Syarat (Jenayah)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Jenayah"))%></asp:Label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" runat="server" id="dvJenayah">
-                            <div class="visual">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" runat="server" id="dvNarkotik">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtNarkotik_Alert" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtJenayah_Alert" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblJenayah_Alert" ClientIDMode="Static" Text="Langgar Syarat (Jenayah)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Jenayah"))%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblNarkotik_Alert" ClientIDMode="Static" Text="Langgar Syarat (Narkotik)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Narkotik"))%></asp:Label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" runat="server" id="dvNarkotik">
-                            <div class="visual">
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" runat="server" id="dvKomersil">
+                        <div class="visual">
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtKomersil_Alert" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtNarkotik_Alert" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblNarkotik_Alert" ClientIDMode="Static" Text="Langgar Syarat (Narkotik)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Narkotik"))%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblKomersil_Alert" ClientIDMode="Static" Text="Langgar Syarat (Komersil)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Komersil"))%></asp:Label>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" runat="server" id="dvKomersil">
-                            <div class="visual">
-                            </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtKomersil_Alert" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblKomersil_Alert" ClientIDMode="Static" Text="Langgar Syarat (Komersil)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Komersil"))%></asp:Label>
-                                </div>
-                            </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
+                    <div class="dashboard-stat custom-color" runat="server" id="dvCawanganKhas">
+                        <div class="visual">
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                        <div class="dashboard-stat custom-color" runat="server" id="dvCawanganKhas">
-                            <div class="visual">
+                        <div class="details">
+                            <div class="number">
+                                <asp:Label runat="server" ID="txtCawanganKhas_Alert" ClientIDMode="Static" Text="0"></asp:Label>
                             </div>
-                            <div class="details">
-                                <div class="number">
-                                    <asp:Label runat="server" ID="txtCawanganKhas_Alert" ClientIDMode="Static" Text="0"></asp:Label>
-                                </div>
-                                <div class="desc">
-                                    <asp:Label runat="server" ID="lblCawanganKhas_Alert" ClientIDMode="Static" Text="Langgar Syarat (Cawangan Khas)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Cawangan Khas"))%></asp:Label>
-                                </div>
+                            <div class="desc">
+                                <asp:Label runat="server" ID="lblCawanganKhas_Alert" ClientIDMode="Static" Text="Langgar Syarat (Cawangan Khas)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Cawangan Khas"))%></asp:Label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="notification" style="overflow-y: hidden; height: 100%; width: 20%; padding: 10px;">
-            </div>
+        </div>
+        <div id="notification" style="overflow-y: hidden; height: 100%; width: 20%; padding: 10px;">
         </div>
     </div>
     <!-- PAGE BODY -->

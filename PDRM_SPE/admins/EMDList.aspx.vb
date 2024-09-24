@@ -33,12 +33,13 @@ Public Class AEMDList
         lblInfo.Text = GetText("Information").Replace("vINFOTYPE", GetText("EMD"))
         'Search
         lblSImei.Text = GetText("Imei")
+        lblSName.Text = GetText("Marking")
         lblSStatus.Text = GetText("Status")
         btnSearch.Text = GetText("Search")
         btnSReset.Text = GetText("Reset")
         'details
         lblImei.Text = GetText("Imei")
-        'lblName.Text = GetText("Name")
+        lblName.Text = GetText("Marking")
         'rfvName.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Name"))
         lblSimNo.Text = GetText("SIMNo")
         'rfvSimNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("SIMNo"))
@@ -79,7 +80,7 @@ Public Class AEMDList
 #Region "Table binding"
 
     Private Sub BindTable()
-        Dim myDataTable As DataTable = EMDDeviceManager.GetDeviceList(-1, -1, txtSImei.Text, "", ddlSStatus.SelectedValue)
+        Dim myDataTable As DataTable = EMDDeviceManager.GetDeviceList(-1, -1, txtSImei.Text, txtSName.Text, "", "", ddlSStatus.SelectedValue)
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptTable.DataSource = myDataTable
             rptTable.DataBind()
@@ -123,7 +124,7 @@ Public Class AEMDList
         txtImei.Text = device.fldImei
         txtSimNo.Text = device.fldSimNo
         txtSimNo2.Text = device.fldSimNo2
-        'txtName.Text = device.fldName
+        txtName.Text = device.fldName
         'ddlStatus.SelectedValue = device.fldStatus
     End Sub
 #End Region
@@ -150,6 +151,15 @@ Public Class AEMDList
         Return True
     End Function
 
+    Private Function VerifyName(ByVal device As EMDDeviceObj, ByVal name As String, ByVal errormsg As Boolean, ByRef msg As String)
+        If Not String.IsNullOrWhiteSpace(name) AndAlso Not device.fldName.Equals(name) AndAlso EMDDeviceManager.VerifyName(name) > 0 Then
+            msg = GetText("ErrorDuplicateItem").Replace("vITEM", GetText("Marking"))
+            If errormsg Then ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & msg & "');", True)
+            Return False
+        End If
+        Return True
+    End Function
+
     Private Function VerifySIMNo(ByVal device As EMDDeviceObj, ByVal simno As String, ByVal errormsg As Boolean, ByRef msg As String)
         If Not String.IsNullOrWhiteSpace(simno) AndAlso Not device.fldSimNo.Equals(simno) AndAlso EMDDeviceManager.VerifySimNo(simno) > 0 Then
             msg = GetText("ErrorDuplicateItem").Replace("vITEM", GetText("SIMNo"))
@@ -167,6 +177,10 @@ Public Class AEMDList
         '    result = False
         '    errorMsg &= msg & "\n"
         'End If
+        If Not VerifyName(device, txtName.Text, False, msg) Then
+            result = False
+            errorMsg &= msg & "\n"
+        End If
         'If Not VerifySIMNo(device, txtSimNo.Text, False, msg) Then
         '    result = False
         '    errorMsg &= msg & "\n"
@@ -187,7 +201,7 @@ Public Class AEMDList
         If Not device Is Nothing AndAlso PageValid(device) Then
             device.fldSimNo = txtSimNo.Text
             device.fldSimNo2 = txtSimNo2.Text
-            'device.fldName = txtName.Text
+            device.fldName = txtName.Text
             'device.fldStatus = ddlStatus.SelectedValue
             If EMDDeviceManager.Save(device) > 0 Then
                 UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE EMD DEVICE", "Device ID: " & device.fldID, "")

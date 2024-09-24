@@ -80,7 +80,7 @@ Public Class AGeofenceMukim
 
     Private Sub GetMukim(ByVal state As String, ByVal district As String)
         ddlMukim.Items.Clear()
-        If Not String.IsNullOrWhiteSpace(state) AndAlso Not String.IsNullOrWhiteSpace(district) Then
+        If Not String.IsNullOrWhiteSpace(state) Then
             ddlMukim.DataSource = CountryManager.GetMukimList(state, district)
             ddlMukim.DataTextField = "fldMukim"
             ddlMukim.DataValueField = "fldMukim"

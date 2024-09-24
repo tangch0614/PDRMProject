@@ -21,6 +21,20 @@ NameSpace BusinessObject
 		Private _fldPSID As Long
 		Private _fldOCSName As String = String.Empty
 		Private _fldOCSTelNo As String = String.Empty
+		Private _fldEMDDeviceID As Long
+		Private _fldOPPID As Long
+		Private _fldSmartTagCode As String = String.Empty
+		Private _fldOBCCode As String = String.Empty
+		Private _fldChargerCode As String = String.Empty
+		Private _fldStrapCode As String = String.Empty
+		Private _fldCableCode As String = String.Empty
+		Private _fldBeaconCode As String = String.Empty
+		Private _fldSmartTag As Integer = 0
+		Private _fldOBC As Integer = 0
+		Private _fldBeacon As Integer = 0
+		Private _fldCharger As Integer = 0
+		Private _fldStrap As Integer = 0
+		Private _fldCable As Integer = 0
 		Private _fldAttachment1 As String = String.Empty
 		Private _fldAttachment2 As String = String.Empty
 		Private _fldRemark As String = String.Empty
@@ -202,25 +216,131 @@ NameSpace BusinessObject
 			End Set
 		End Property
 
+		Public Property fldEMDDeviceID As Long
+			Get
+				Return _fldEMDDeviceID
+			End Get
+			Set(value As Long)
+				_fldEMDDeviceID = value
+			End Set
+		End Property
 
+		Public Property fldOPPID As Long
+			Get
+				Return _fldOPPID
+			End Get
+			Set(value As Long)
+				_fldOPPID = value
+			End Set
+		End Property
 
+		Public Property fldSmartTagCode As String
+			Get
+				Return _fldSmartTagCode
+			End Get
+			Set(value As String)
+				_fldSmartTagCode = value
+			End Set
+		End Property
 
+		Public Property fldOBCCode As String
+			Get
+				Return _fldOBCCode
+			End Get
+			Set(value As String)
+				_fldOBCCode = value
+			End Set
+		End Property
 
+		Public Property fldChargerCode As String
+			Get
+				Return _fldChargerCode
+			End Get
+			Set(value As String)
+				_fldChargerCode = value
+			End Set
+		End Property
 
+		Public Property fldStrapCode As String
+			Get
+				Return _fldStrapCode
+			End Get
+			Set(value As String)
+				_fldStrapCode = value
+			End Set
+		End Property
 
+		Public Property fldCableCode As String
+			Get
+				Return _fldCableCode
+			End Get
+			Set(value As String)
+				_fldCableCode = value
+			End Set
+		End Property
 
+		Public Property fldBeaconCode As String
+			Get
+				Return _fldBeaconCode
+			End Get
+			Set(value As String)
+				_fldBeaconCode = value
+			End Set
+		End Property
 
+		Public Property fldSmartTag As Integer
+			Get
+				Return _fldSmartTag
+			End Get
+			Set(value As Integer)
+				_fldSmartTag = value
+			End Set
+		End Property
 
+		Public Property fldOBC As Integer
+			Get
+				Return _fldOBC
+			End Get
+			Set(value As Integer)
+				_fldOBC = value
+			End Set
+		End Property
 
+		Public Property fldBeacon As Integer
+			Get
+				Return _fldBeacon
+			End Get
+			Set(value As Integer)
+				_fldBeacon = value
+			End Set
+		End Property
 
+		Public Property fldCharger As Integer
+			Get
+				Return _fldCharger
+			End Get
+			Set(value As Integer)
+				_fldCharger = value
+			End Set
+		End Property
 
+		Public Property fldStrap As Integer
+			Get
+				Return _fldStrap
+			End Get
+			Set(value As Integer)
+				_fldStrap = value
+			End Set
+		End Property
 
-
-
-
-
-
-
+		Public Property fldCable As Integer
+			Get
+				Return _fldCable
+			End Get
+			Set(value As Integer)
+				_fldCable = value
+			End Set
+		End Property
 
 #End Region
 

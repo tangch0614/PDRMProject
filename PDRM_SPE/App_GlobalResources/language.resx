@@ -138,6 +138,12 @@
   <data name="Acknowledge" xml:space="preserve">
     <value>Acknowledge</value>
   </data>
+  <data name="AcknowledgeBy" xml:space="preserve">
+    <value>Acknowledged By</value>
+  </data>
+  <data name="AcknowledgeDateTime" xml:space="preserve">
+    <value>Acknowledged Date Time</value>
+  </data>
   <data name="Activate" xml:space="preserve">
     <value>Activate</value>
   </data>
@@ -374,190 +380,190 @@
     <value>Entries</value>
   </data>
   <data name="ErrorAccessDenied" xml:space="preserve">
-    <value>You are not authorized to access this page!</value>
+    <value>You are not authorized to access this page.</value>
   </data>
   <data name="ErrorAddItemFailed" xml:space="preserve">
-    <value>*Failed to add new vITEM!</value>
+    <value>*Failed to add new vITEM.</value>
   </data>
   <data name="ErrorAlphanumericOnly" xml:space="preserve">
-    <value>*vITEM must be alphanumeric characters only!</value>
+    <value>*vITEM must be alphanumeric characters only.</value>
   </data>
   <data name="ErrorCancelFailed" xml:space="preserve">
-    <value>*Cancelation failed!</value>
+    <value>*Cancelation failed.</value>
   </data>
   <data name="ErrorCaptchaExpired" xml:space="preserve">
-    <value>*Captcha code expired!</value>
+    <value>*Captcha code expired.</value>
   </data>
   <data name="ErrorCaptchaIncorrect" xml:space="preserve">
-    <value>*Incorrect captcha code!</value>
+    <value>*Incorrect captcha code.</value>
   </data>
   <data name="ErrorCategoryNameUnavailable" xml:space="preserve">
-    <value>*Category name already exists!</value>
+    <value>*Category name already exists.</value>
   </data>
   <data name="ErrorChangePasswordFailed" xml:space="preserve">
-    <value>*Change password failed!</value>
+    <value>*Change password failed.</value>
   </data>
   <data name="ErrorCommandSendFailed" xml:space="preserve">
-    <value>*GPRS command sent failed!</value>
+    <value>*GPRS command sent failed.</value>
   </data>
   <data name="ErrorConfirmPasswordCompare" xml:space="preserve">
-    <value>*Passwords do not match!</value>
+    <value>*Passwords do not match.</value>
   </data>
   <data name="ErrorDeleteFailed" xml:space="preserve">
-    <value>*Delete failed!</value>
+    <value>*Deletion failed.</value>
   </data>
   <data name="ErrorDigitOnly" xml:space="preserve">
-    <value>*vITEM must be numeric only!</value>
+    <value>*vITEM must be numeric only.</value>
   </data>
   <data name="ErrorDuplicateEntry" xml:space="preserve">
-    <value>*Duplicated entry!</value>
+    <value>*Duplicated entry.</value>
   </data>
   <data name="ErrorDuplicateItem" xml:space="preserve">
-    <value>*vITEM has existed!</value>
+    <value>*vITEM has existed.</value>
   </data>
   <data name="ErrorFileSizeLimit" xml:space="preserve">
-    <value>*File size cannot larger than vSIZE!</value>
+    <value>*File size cannot larger than vSIZE.</value>
   </data>
   <data name="ErrorImageSizeLimit" xml:space="preserve">
-    <value>*Image size cannot be larger than vSIZE!</value>
+    <value>*Image size cannot be larger than vSIZE.</value>
   </data>
   <data name="ErrorIncorrectCurrentPassword" xml:space="preserve">
-    <value>*Incorrect current password!</value>
+    <value>*Incorrect current password.</value>
   </data>
   <data name="ErrorIncorrectEmail" xml:space="preserve">
-    <value>*Login ID and e-mail do not match!</value>
+    <value>*Login ID and e-mail do not match.</value>
   </data>
   <data name="ErrorIncorrectPassword" xml:space="preserve">
-    <value>*Incorrect login password!</value>
+    <value>*Incorrect login password.</value>
   </data>
   <data name="ErrorInvalidAmount" xml:space="preserve">
-    <value>*Invalid amount!</value>
+    <value>*Invalid amount.</value>
   </data>
   <data name="ErrorInvalidEmail" xml:space="preserve">
-    <value>*Invalid e-mail address!</value>
+    <value>*Invalid e-mail address.</value>
   </data>
   <data name="ErrorInvalidFileFormat" xml:space="preserve">
-    <value>*Invalid file format, supported format (vSUPPORT)!</value>
+    <value>*Invalid file format, supported format (vSUPPORT).</value>
   </data>
   <data name="ErrorInvalidImageFormat" xml:space="preserve">
-    <value>*Invalid image format. Supported format are vSUPPORT!</value>
+    <value>*Invalid image format. Supported format are vSUPPORT.</value>
   </data>
   <data name="ErrorInvalidInputValue" xml:space="preserve">
-    <value>*Invalid vITEM!</value>
+    <value>*Invalid vITEM.</value>
   </data>
   <data name="ErrorInvalidIntroducer" xml:space="preserve">
-    <value>*Invalid introducer!</value>
+    <value>*Invalid introducer.</value>
   </data>
   <data name="ErrorInvalidMemberID" xml:space="preserve">
-    <value>*Invalid member ID!</value>
+    <value>*Invalid member ID.</value>
   </data>
   <data name="ErrorInvalidQuantity" xml:space="preserve">
-    <value>*Invalid quantity!</value>
+    <value>*Invalid quantity.</value>
   </data>
   <data name="ErrorInvalidUnit" xml:space="preserve">
-    <value>*Invalid number of unit!</value>
+    <value>*Invalid number of unit.</value>
   </data>
   <data name="ErrorItemNotFound" xml:space="preserve">
-    <value>*vITEM cannot be found!</value>
+    <value>*vITEM cannot be found.</value>
   </data>
   <data name="ErrorItemRequired" xml:space="preserve">
-    <value>*vITEM required!</value>
+    <value>*vITEM required.</value>
   </data>
   <data name="ErrorLoginAttemptExceeded" xml:space="preserve">
-    <value>*Maximum login attempts reached! Please try again in vTIME minutes!</value>
+    <value>*Maximum login attempts reached. Please try again in vTIME minutes.</value>
   </data>
   <data name="ErrorLoginIDSpecialChar" xml:space="preserve">
-    <value>*Login ID must only contain at least 6 alphanumeric characters!</value>
+    <value>*Login ID must only contain at least 6 alphanumeric characters.</value>
   </data>
   <data name="ErrorLoginIDUnavailable" xml:space="preserve">
-    <value>*Login ID already exists!</value>
+    <value>*Login ID already exists.</value>
   </data>
   <data name="ErrorMemberIDNotFound" xml:space="preserve">
-    <value>*Member ID not found!</value>
+    <value>*Member ID not found.</value>
   </data>
   <data name="ErrorMemberIDSpecialChar" xml:space="preserve">
-    <value>*Member ID must only contain at least 6 alphanumeric characters!</value>
+    <value>*Member ID must only contain at least 6 alphanumeric characters.</value>
   </data>
   <data name="ErrorMemberIDUnavailable" xml:space="preserve">
-    <value>*Member ID already exists!</value>
+    <value>*Member ID already exists.</value>
   </data>
   <data name="ErrorMemberNotFound" xml:space="preserve">
-    <value>*This member cannot be found!</value>
+    <value>*This member cannot be found.</value>
   </data>
   <data name="ErrorNewCurrentPasswordCompare" xml:space="preserve">
-    <value>*New password cannot be the same as your current password!</value>
+    <value>*New password cannot be the same as your current password.</value>
   </data>
   <data name="ErrorNoCredentialMatch" xml:space="preserve">
-    <value>*Incorrect login ID or password!</value>
+    <value>*Incorrect login ID or password.</value>
   </data>
   <data name="ErrorNoCredentialMatch2" xml:space="preserve">
-    <value>*Incorrect login ID or password!</value>
+    <value>*Incorrect login ID or password.</value>
   </data>
   <data name="ErrorNoData" xml:space="preserve">
-    <value>No data available in table!</value>
+    <value>No data available in table.</value>
   </data>
   <data name="ErrorNoFileSelected" xml:space="preserve">
-    <value>*No file selected!</value>
+    <value>*No file selected.</value>
   </data>
   <data name="ErrorNoImageSelected" xml:space="preserve">
-    <value>*No image selected!</value>
+    <value>*No image selected.</value>
   </data>
   <data name="ErrorNoMatchFound" xml:space="preserve">
-    <value>No matching records found!</value>
+    <value>No matching records found.</value>
   </data>
   <data name="ErrorNoNewsFound" xml:space="preserve">
-    <value>*News not found!</value>
+    <value>*News not found.</value>
   </data>
   <data name="ErrorNoResult" xml:space="preserve">
-    <value>No entries found!</value>
+    <value>No entries found.</value>
   </data>
   <data name="ErrorNoRowSelected" xml:space="preserve">
-    <value>*No row selected!</value>
+    <value>*No row selected.</value>
   </data>
   <data name="ErrorNoSearchValue" xml:space="preserve">
-    <value>*Please enter at least 1 search keyword!</value>
+    <value>*Please enter at least 1 search keyword.</value>
   </data>
   <data name="ErrorOccur" xml:space="preserve">
-    <value>*Error occurred!</value>
+    <value>*Error occurred.</value>
   </data>
   <data name="ErrorPageInvalid" xml:space="preserve">
-    <value>*Please make sure all fields are entered correctly!</value>
+    <value>*Please make sure all fields are entered correctly.</value>
   </data>
   <data name="ErrorPasswordLength" xml:space="preserve">
-    <value>*Password must be more than 6 characters!</value>
+    <value>*Password must be more than 6 characters.</value>
   </data>
   <data name="ErrorPostFailed" xml:space="preserve">
-    <value>*News posting failed!</value>
+    <value>*News posting failed.</value>
   </data>
   <data name="ErrorResetPasswordFailed" xml:space="preserve">
-    <value>*Reset password failed!</value>
+    <value>*Reset password failed.</value>
   </data>
   <data name="ErrorSubmitFailed" xml:space="preserve">
-    <value>Submission failed!!</value>
+    <value>Submission failed..</value>
   </data>
   <data name="ErrorTransactionFailed" xml:space="preserve">
-    <value>*Transaction failed!</value>
+    <value>*Transaction failed.</value>
   </data>
   <data name="ErrorTransactionNoFound" xml:space="preserve">
-    <value>*Transaction not found!</value>
+    <value>*Transaction not found.</value>
   </data>
   <data name="ErrorUnderConstruction" xml:space="preserve">
-    <value>This page is under construction, please check back later!</value>
+    <value>This page is under construction, please check back later.</value>
   </data>
   <data name="ErrorUpdateFailed" xml:space="preserve">
-    <value>Update failed!</value>
+    <value>Update failed.</value>
   </data>
   <data name="ErrorUploadFailed" xml:space="preserve">
-    <value>*Failed to upload image!</value>
+    <value>*Upload failed.</value>
   </data>
   <data name="ErrorUserIDNotFound" xml:space="preserve">
-    <value>*User ID not found!</value>
+    <value>*User ID not found.</value>
   </data>
   <data name="ErrorUsernameNotFound" xml:space="preserve">
-    <value>*Username not found!</value>
+    <value>*Username not found.</value>
   </data>
   <data name="ErrorUsernameUnavailable" xml:space="preserve">
-    <value>*Username already exists!</value>
+    <value>*Username already exists.</value>
   </data>
   <data name="Excel" xml:space="preserve">
     <value>Excel</value>
@@ -607,6 +613,9 @@
   <data name="Geofence" xml:space="preserve">
     <value>Geofence</value>
   </data>
+  <data name="GeofenceMukim" xml:space="preserve">
+    <value>Township Geofence</value>
+  </data>
   <data name="GeofenceStatus" xml:space="preserve">
     <value>Geofence Status</value>
   </data>
@@ -618,6 +627,9 @@
   </data>
   <data name="GSMSignal" xml:space="preserve">
     <value>GSM Signal</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>High</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>History</value>
@@ -721,6 +733,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
   </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
   <data name="MailFootNote" xml:space="preserve">
     <value>&lt;p&gt;This email is confidential and intended solely for the use of the individual to whom it is addressed. Any views or opinions presented are solely those of the author and do not necessarily represent those of the vCOMPANY or any of its affiliates. If you are not the intended recipient, be advised that you have received this email in error and that any use, dissemination, forwarding, printing, or copying of this email is strictly prohibited. If you have received this email in error please return the message to the sender by replying to it and then delete the message from your computer.&lt;/p&gt;
 &lt;p&gt;This footnote also confirms that this email message has been checked by anti-virus software for the presence of computer viruses. However, vCOMPANY or any of its affiliates accepts no responsibility for any virus or defect that might arise from opening this e-mail or attachments.&lt;/p&gt;</value>
@@ -782,8 +797,14 @@
   <data name="Map" xml:space="preserve">
     <value>Map</value>
   </data>
+  <data name="Marking" xml:space="preserve">
+    <value>Marking</value>
+  </data>
   <data name="Max" xml:space="preserve">
     <value>Maximum</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Medium</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Member</value>
@@ -852,52 +873,52 @@
     <value>More News</value>
   </data>
   <data name="MsgAddItemSuccess" xml:space="preserve">
-    <value>New vITEM added!</value>
+    <value>New vITEM added.</value>
   </data>
   <data name="MsgApproved" xml:space="preserve">
-    <value>vTYPE approved!!</value>
+    <value>vTYPE approved..</value>
   </data>
   <data name="MsgCancelSuccess" xml:space="preserve">
-    <value>Cancelation successful!</value>
+    <value>Cancelation successful.</value>
   </data>
   <data name="MsgChangePasswordSuccess" xml:space="preserve">
-    <value>Password changed!</value>
+    <value>Password changed.</value>
   </data>
   <data name="MsgCommandSendSuccess" xml:space="preserve">
-    <value>GPRS command sent successfully!</value>
+    <value>GPRS command sent successfully.</value>
   </data>
   <data name="MsgComputerGenerated" xml:space="preserve">
     <value>This is a computer generated vTYPE and does not require a signature.</value>
   </data>
   <data name="MsgConfirm" xml:space="preserve">
-    <value>Confirm operation?</value>
+    <value>Confirm action?</value>
   </data>
   <data name="MsgConfirmItem" xml:space="preserve">
     <value>Confirm vITEM?</value>
   </data>
   <data name="MsgDeleteSuccess" xml:space="preserve">
-    <value>Deleted!</value>
+    <value>Successfully deleted.</value>
   </data>
   <data name="MsgLoginIDAvailable" xml:space="preserve">
-    <value>Login ID available!</value>
+    <value>Login ID available.</value>
   </data>
   <data name="MsgLoginToProceed" xml:space="preserve">
     <value>Please Login to proceed.</value>
   </data>
   <data name="MsgMemberDetailUpdated" xml:space="preserve">
-    <value>Member detail updated!</value>
+    <value>Member detail updated.</value>
   </data>
   <data name="MsgMemberIDAvailable" xml:space="preserve">
-    <value>Member ID available!</value>
+    <value>Member ID available.</value>
   </data>
   <data name="MsgNoChanges" xml:space="preserve">
-    <value>No value changed!</value>
+    <value>No value changed.</value>
   </data>
   <data name="MsgPostBy" xml:space="preserve">
     <value>Posted by vCREATOR on vDATE</value>
   </data>
   <data name="MsgPostSuccess" xml:space="preserve">
-    <value>News posting successful!</value>
+    <value>News posting successful.</value>
   </data>
   <data name="MsgPrintInstruction" xml:space="preserve">
     <value>Please press "CTR+P" to print or "ESC" to quit</value>
@@ -906,37 +927,40 @@
     <value>Recommended Image Size, Width: vWSIZE, Height: vHSIZE.</value>
   </data>
   <data name="MsgRejected" xml:space="preserve">
-    <value>vTYPE rejected!!</value>
+    <value>vTYPE rejected..</value>
   </data>
   <data name="MsgResetPasswordSuccess" xml:space="preserve">
-    <value>Your password has been reset and a new pasword has been sent to your e-mail!</value>
+    <value>Your password has been reset and a new pasword has been sent to your e-mail.</value>
   </data>
   <data name="MsgSubmitSuccess" xml:space="preserve">
-    <value>Submission successful!!</value>
+    <value>Submission successful..</value>
   </data>
   <data name="MsgTransactionSuccess" xml:space="preserve">
-    <value>Transaction successful!</value>
+    <value>Transaction successful.</value>
   </data>
   <data name="MsgUpdateSuccess" xml:space="preserve">
-    <value>Update successful!</value>
+    <value>Update successful.</value>
   </data>
   <data name="MsgUploadSuccess" xml:space="preserve">
-    <value>Image uploaded!</value>
+    <value>Image uploaded.</value>
   </data>
   <data name="MsgUsernameAvailable" xml:space="preserve">
-    <value>Username available!</value>
+    <value>Username available.</value>
   </data>
   <data name="MsgValidIntroducer" xml:space="preserve">
-    <value>Introducer valid!</value>
+    <value>Introducer valid.</value>
   </data>
   <data name="MsgValidMemberID" xml:space="preserve">
-    <value>Valid member ID!</value>
+    <value>Valid member ID.</value>
   </data>
   <data name="MsgValidUserID" xml:space="preserve">
-    <value>Valid user ID!</value>
+    <value>Valid user ID.</value>
   </data>
   <data name="MsgValidUsername" xml:space="preserve">
-    <value>Valid username!</value>
+    <value>Valid username.</value>
+  </data>
+  <data name="MultipleFile" xml:space="preserve">
+    <value>Multiple Files</value>
   </data>
   <data name="MyMemberID" xml:space="preserve">
     <value>My Member ID</value>
@@ -1393,6 +1417,9 @@
   </data>
   <data name="Verify" xml:space="preserve">
     <value>Verify</value>
+  </data>
+  <data name="VerifyStatus" xml:space="preserve">
+    <value>Verification Status</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>View</value>

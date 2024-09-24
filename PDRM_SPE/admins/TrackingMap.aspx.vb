@@ -45,8 +45,6 @@ Public Class ATrackingMap
 
     Private Sub SetText()
         btnSearch.Text = GetText("Search")
-        btnPAcknowledge.Text = GetText("Acknowledge")
-        btnPCancel.Text = GetText("Close")
         hfNoResult.Value = GetText("ErrorNoResult")
         hfConfirm.Value = GetText("MsgConfirm")
     End Sub
@@ -81,7 +79,7 @@ Public Class ATrackingMap
         txtDepartment.Text = ""
         txtPSContactNo.Text = ""
         If id > 0 Then
-            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, "", "")
+            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, "", "", "")
             If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
                 imgPhoto.ImageUrl = If(Not String.IsNullOrEmpty(myDataTable.Rows(0)("fldPhoto1")), myDataTable.Rows(0)("fldPhoto1"), "../assets/img/No_Image.png")
                 txtOPPName.Text = myDataTable.Rows(0)("fldName")
@@ -133,20 +131,6 @@ Public Class ATrackingMap
                 ddlOPP.SelectedIndex = 0
             End Try
         End If
-    End Sub
-
-    Protected Sub btnPAcknowledge_Click(sender As Object, e As EventArgs)
-        UserIsAuthenticated()
-        If EMDDeviceManager.AcknowledgeAlertNotification(hfAlertID.Value, AdminAuthentication.GetUserData(2), txtPRemark.Text) Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE VIOLATION ALERT", "Alert ID: " & hfAlertID.Value, "")
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');getModalData(" & hfAlertID.Value & ");CloseToastr(" & hfAlertID.Value & ");", True)
-        Else
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("ErrorUpdateFailed") & "');getModalData(" & hfAlertID.Value & ");", True)
-        End If
-    End Sub
-
-    Protected Sub btnPCancel_Click(sender As Object, e As EventArgs)
-        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plAcknowledge').modal('hide');", True)
     End Sub
 
 End Class

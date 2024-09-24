@@ -30,7 +30,7 @@
     <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <!-- NON TEMPLATE-->
-    <link href="../assets/css/general.css?v=1" rel="stylesheet" />
+    <link href="../assets/css/general.css?v=1.1" rel="stylesheet" />
     <link href="../assets/css/layout1.css" rel="stylesheet" />
     <link href="../assets/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet" />
     <!-- NON TEMPLATE-->
@@ -109,9 +109,7 @@
             vertical-align: top;
         }
     </style>
-    <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-            ({ key: "AIzaSyA9AQTXBVGEnr8xB2k3chP1Ek5Yxk6gePU", v: "weekly" });</script>
-
+    <script src="../assets/js/gmapapi.js"></script>
     <!--MAP-->
     <script type="text/javascript">
         let map;
@@ -351,77 +349,6 @@
             });
         }
 
-        async function initMarkers(locations, setcenter = false) {
-            const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-            const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
-            const infoWindow = new google.maps.InfoWindow();
-            if (markers.length > 0) {
-                clearMarkers();
-            }
-
-            locations.forEach(property => {
-
-                var content = "<table>" +
-                    "<tr><td>Name</td><td>: " + property.name + "</td></tr>" +
-                    "<tr><td>IMEI</td><td>: " + property.imei + "</td></tr>" +
-                    "<tr><td>DateTime</td><td>: " + property.datetime + "</td></tr>" +
-                    "<tr><td>GPS Status</td><td>: " + property.locstatus + "</td></tr>" +
-                    "<tr><td>Data Status</td><td>: " + property.datastatus + "</td></tr>" +
-                    "<tr><td>GSM</td><td>: <img src='../assets/img/" + property.gsm + "'/></td></tr>" +
-                    "<tr><td>GPS Sat</td><td>: " + property.gps + "</td></tr>" +
-                    "<tr><td>Bds Sat</td><td>: " + property.bds + "</td></tr>" +
-                    "<tr><td>Battery</td><td>: " + property.battery + "</td></tr>" +
-                    "<tr><td>Belt Status</td><td>: " + property.beltstatus + "</td></tr>" +
-                    "<tr><td>Alarm</td><td>: " + property.alarm + "</td></tr>" +
-                    "<tr><td>Speed</td><td>: " + property.speed +
-                    "</table>"
-
-                let glyphLabel = document.createElement("div");
-                // set style and classes as needed
-                glyphLabel.className = 'glyphLabel';
-                glyphLabel.textContent = property.name;
-
-                // Each PinElement is paired with a MarkerView to demonstrate setting each parameter.
-                const pinelement = new PinElement({
-                    background: property.pincolor,
-                    glyphColor: property.pinglyphcolor,
-                    borderColor: "black",
-                    glyph: glyphLabel,
-                });
-                const marker = new google.maps.marker.AdvancedMarkerElement({
-                    map,
-                    position: { lat: property.lat, lng: property.long },
-                    content: pinelement.element,
-                    title: property.imei
-                });
-
-                // markers can only be keyboard focusable when they have click listeners
-                // open info window when marker is clicked
-                marker.addListener("click", () => {
-                    infoWindow.setContent(content);
-                    infoWindow.open(map, marker);
-                });
-
-                markers.push(marker);
-            });
-
-            // Add a marker clusterer to manage the markers.
-            //markercluster = new markerClusterer.MarkerClusterer({ map, markers });
-
-            //if (setcenter == true) {
-            //    if (markers.length == 1) {
-            //        map.setCenter(markers[0].position);
-            //    } else {
-            //        const bounds = new google.maps.LatLngBounds();
-            //        markers.forEach((marker) => {
-            //            bounds.extend(marker.position)
-            //        })
-            //        map.fitBounds(bounds)
-            //    }
-            //}
-
-        }
-
         function clearMarkers() {
             markers.forEach(marker => {
                 marker.setMap(null);
@@ -483,8 +410,9 @@
                             tableHTML += "<tr><td><%=GetText("Department")%></td><td class='bold'>" + notification.fldDepartment + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></td><td class='bold'>" + notification.fldpscontactno + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("DateTime")%></td><td class='bold'>" + notification.flddatetime.replace("T", " ") + "</td></tr>";
+                            tableHTML += "<tr><td colspan='2' align='center'><button class='btn blue btn-xs' id='btnAcknowledge' onclick=\"OpenPopupWindow('../admins/AlertInfo.aspx?id=" + notification.fldid + "&i=" + notification.fldmd5 + "',1280,800);return false;\"><%=GetText("Acknowledge")%></button></td></tr>"
                             tableHTML += "</table>";
-                            tableHTML += "<div align='center'><button class='btn default' id='btnAcknowledge'><%=GetText("Acknowledge")%></button></div>";
+                            //tableHTML += "<div align='center'><button class='btn default' id='btnAcknowledge'><%=GetText("Acknowledge")%></button></div>";
                             //tableHTML += "<button class='btn default' onclick='SetMapCenter(" + notification.fldRLat + "," + notification.fldRLong + ");return false;" > Show Location</button > "
 
                             var toastrclass;
@@ -515,7 +443,8 @@
                             if ($toast && $toast.find('#btnAcknowledge').length) {
                                 $toast.find('#btnAcknowledge').on('click', function () {
                                     event.preventDefault(); // Prevent any default action when clicking the button
-                                    getModalData(notification.fldid);
+                                    CloseToastr(notification.fldid);
+                                    //getModalData(notification.fldid);
                                 });
                             }
                         });
@@ -528,62 +457,62 @@
             });
         }
 
-        function getModalData(alertid) {
-            document.getElementById('hfAlertID').value = 0;
-            $.ajax({
-                type: "POST",
-                url: "../GetData.aspx/GetNotificationDetail", // Replace with the actual server-side URL
-                data: JSON.stringify({ alertid: alertid }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var alerts = JSON.parse(response.d);
-                    if (alerts.length > 0) {
-                        var alert = alerts[0];
-                        if (alert && Object.keys(alert).length > 0) {
-                            if (alert.fldPhoto1 && alert.fldPhoto1.trim() !== "") {
-                                document.getElementById('imgPPhoto1Preview').src = alert.fldphoto1;
-                            } else {
-                                document.getElementById('imgPPhoto1Preview').src = "../assets/img/No_Image.png";
-                            }
-                            document.getElementById('hfAlertID').value = alert.fldid;
-                            document.getElementById('txtPImei').innerText = alert.fldimei;
-                            document.getElementById('txtPDateTime').innerText = alert.flddatetime.replace("T", " ");
-                            document.getElementById('txtPViolateTerms').innerText = alert.fldmsg.toUpperCase();
-                            document.getElementById('txtPSubjectName').innerText = alert.fldoppname;
-                            document.getElementById('txtPSubjectICNo').innerText = alert.fldoppicno;
-                            document.getElementById('txtPSubjectContactNo').innerText = alert.fldoppcontactno;
-                            document.getElementById('txtPPoliceStation').innerText = alert.fldpsname;
-                            document.getElementById('txtPPSContactNo').innerText = alert.fldpscontactno;
-                            document.getElementById('txtPDepartment').innerText = alert.flddepartment;
-                            document.getElementById('txtPOverseer').innerText = alert.fldoverseername;
-                            document.getElementById('txtPOverseerIDNo').innerText = alert.fldoverseerpoliceno;
-                            document.getElementById('txtPOverseerContactNo').innerText = alert.fldoverseercontactno;
+        //function getModalData(alertid) {
+        //    document.getElementById('hfAlertID').value = 0;
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "../GetData.aspx/GetNotificationDetail", // Replace with the actual server-side URL
+        //        data: JSON.stringify({ alertid: alertid }),
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json",
+        //        success: function (response) {
+        //            var alerts = JSON.parse(response.d);
+        //            if (alerts.length > 0) {
+        //                var alert = alerts[0];
+        //                if (alert && Object.keys(alert).length > 0) {
+        //                    if (alert.fldPhoto1 && alert.fldPhoto1.trim() !== "") {
+        //                        document.getElementById('imgPPhoto1Preview').src = alert.fldphoto1;
+        //                    } else {
+        //                        document.getElementById('imgPPhoto1Preview').src = "../assets/img/No_Image.png";
+        //                    }
+        //                    document.getElementById('hfAlertID').value = alert.fldid;
+        //                    document.getElementById('txtPImei').innerText = alert.fldimei;
+        //                    document.getElementById('txtPDateTime').innerText = alert.flddatetime.replace("T", " ");
+        //                    document.getElementById('txtPViolateTerms').innerText = alert.fldmsg.toUpperCase();
+        //                    document.getElementById('txtPSubjectName').innerText = alert.fldoppname;
+        //                    document.getElementById('txtPSubjectICNo').innerText = alert.fldoppicno;
+        //                    document.getElementById('txtPSubjectContactNo').innerText = alert.fldoppcontactno;
+        //                    document.getElementById('txtPPoliceStation').innerText = alert.fldpsname;
+        //                    document.getElementById('txtPPSContactNo').innerText = alert.fldpscontactno;
+        //                    document.getElementById('txtPDepartment').innerText = alert.flddepartment;
+        //                    document.getElementById('txtPOverseer').innerText = alert.fldoverseername;
+        //                    document.getElementById('txtPOverseerIDNo').innerText = alert.fldoverseerpoliceno;
+        //                    document.getElementById('txtPOverseerContactNo').innerText = alert.fldoverseercontactno;
 
-                            if (alert.fldprocess == 1) {
-                                document.getElementById('btnPAcknowledge').style.display = "none"; // Hide the button
-                                document.getElementById('txtPRemark').value = alert.fldremark;
-                                document.getElementById('txtPAcknowledgeByID').innerText = alert.fldprocessbyname;
-                                document.getElementById('txtPAcknowledgeDateTime').innerText = alert.fldprocessdatetime.replace("T", " ");
-                            } else {
-                                document.getElementById('btnPAcknowledge').style.display = "inline-block"; // Show the button
-                                document.getElementById('txtPRemark').value = "";
-                                document.getElementById('txtPAcknowledgeByID').innerText = "";
-                                document.getElementById('txtPAcknowledgeDateTime').innerText = "";
-                            }
-                            $('#plAcknowledge').modal('show');
-                        } else {
-                            $('#plAcknowledge').modal('hide');
-                        }
-                    } else {
-                        $('#plAcknowledge').modal('hide');
-                    }
-                },
-                error: function (error) {
-                    console.error("Error: ", error);
-                }
-            });
-        }
+        //                    if (alert.fldprocess == 1) {
+        //                        document.getElementById('btnPAcknowledge').style.display = "none"; // Hide the button
+        //                        document.getElementById('txtPRemark').value = alert.fldremark;
+        //                        document.getElementById('txtPAcknowledgeByID').innerText = alert.fldprocessbyname;
+        //                        document.getElementById('txtPAcknowledgeDateTime').innerText = alert.fldprocessdatetime.replace("T", " ");
+        //                    } else {
+        //                        document.getElementById('btnPAcknowledge').style.display = "inline-block"; // Show the button
+        //                        document.getElementById('txtPRemark').value = "";
+        //                        document.getElementById('txtPAcknowledgeByID').innerText = "";
+        //                        document.getElementById('txtPAcknowledgeDateTime').innerText = "";
+        //                    }
+        //                    $('#plAcknowledge').modal('show');
+        //                } else {
+        //                    $('#plAcknowledge').modal('hide');
+        //                }
+        //            } else {
+        //                $('#plAcknowledge').modal('hide');
+        //            }
+        //        },
+        //        error: function (error) {
+        //            console.error("Error: ", error);
+        //        }
+        //    });
+        //}
 
         var currentAudio = null;
         function playNotificationSound() {
@@ -799,7 +728,7 @@
             </div>
         </div>
 
-        <asp:Panel runat="server" ClientIDMode="Static" ID="plAcknowledge" CssClass="modal fade" TabIndex="-1" data-backdrop="static" data-keyboard="false">
+        <%--<asp:Panel runat="server" ClientIDMode="Static" ID="plAcknowledge" CssClass="modal fade" TabIndex="-1" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="portlet light bordered" style="width: 100%; margin: 0 auto">
@@ -966,7 +895,7 @@
                     </div>
                 </div>
             </div>
-        </asp:Panel>
+        </asp:Panel>--%>
 
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/jquery.min.js" type="text/javascript"></script>

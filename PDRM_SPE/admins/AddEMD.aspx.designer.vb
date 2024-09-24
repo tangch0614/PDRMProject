@@ -59,6 +59,24 @@ Partial Public Class AAddEMD
     Protected WithEvents rfvImei As Global.System.Web.UI.WebControls.RequiredFieldValidator
 
     '''<summary>
+    '''lblName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblName As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''lblSimNo control.
     '''</summary>
     '''<remarks>
@@ -77,15 +95,6 @@ Partial Public Class AAddEMD
     Protected WithEvents txtSimNo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''rfvSimNo control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents rfvSimNo As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
     '''lblSimNo2 control.
     '''</summary>
     '''<remarks>
@@ -102,24 +111,6 @@ Partial Public Class AAddEMD
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtSimNo2 As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''lblStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddlStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlStatus As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''btnSubmit control.

@@ -138,6 +138,12 @@
   <data name="Acknowledge" xml:space="preserve">
     <value>Maklum Terima</value>
   </data>
+  <data name="AcknowledgeBy" xml:space="preserve">
+    <value>Maklum Diterima Oleh</value>
+  </data>
+  <data name="AcknowledgeDateTime" xml:space="preserve">
+    <value>Masa Maklum Diterima</value>
+  </data>
   <data name="Activate" xml:space="preserve">
     <value>Aktifkan</value>
   </data>
@@ -373,190 +379,190 @@
     <value>Penyertaan</value>
   </data>
   <data name="ErrorAccessDenied" xml:space="preserve">
-    <value>Anda tidak dibenarkan mengakses halaman ini!</value>
+    <value>Anda tidak dibenarkan mengakses halaman ini.</value>
   </data>
   <data name="ErrorAddItemFailed" xml:space="preserve">
-    <value>*Gagal menambah vITEM baru!</value>
+    <value>*Gagal menambah vITEM baru.</value>
   </data>
   <data name="ErrorAlphanumericOnly" xml:space="preserve">
-    <value>*vITEM mesti aksara alfanumerik sahaja!</value>
+    <value>*vITEM mesti aksara alfanumerik sahaja.</value>
   </data>
   <data name="ErrorCancelFailed" xml:space="preserve">
-    <value>*Pembatalan gagal!</value>
+    <value>*Pembatalan gagal.</value>
   </data>
   <data name="ErrorCaptchaExpired" xml:space="preserve">
-    <value>*Kod Captcha telah tamat tempoh!</value>
+    <value>*Kod Captcha telah tamat tempoh.</value>
   </data>
   <data name="ErrorCaptchaIncorrect" xml:space="preserve">
-    <value>*Kod captcha salah!</value>
+    <value>*Kod captcha salah.</value>
   </data>
   <data name="ErrorCategoryNameUnavailable" xml:space="preserve">
-    <value>*Nama kategori sudah wujud!</value>
+    <value>*Nama kategori sudah wujud.</value>
   </data>
   <data name="ErrorChangePasswordFailed" xml:space="preserve">
-    <value>*Pertukaran kata laluan gagal!</value>
+    <value>*Pertukaran kata laluan gagal.</value>
   </data>
   <data name="ErrorCommandSendFailed" xml:space="preserve">
-    <value>*Gagal menghantar arahan GPRS!</value>
+    <value>*Gagal menghantar arahan GPRS.</value>
   </data>
   <data name="ErrorConfirmPasswordCompare" xml:space="preserve">
-    <value>*Kata laluan tidak sepadan!</value>
+    <value>*Kata laluan tidak sepadan.</value>
   </data>
   <data name="ErrorDeleteFailed" xml:space="preserve">
-    <value>*Padam gagal!</value>
+    <value>*Pemadaman gagal.</value>
   </data>
   <data name="ErrorDigitOnly" xml:space="preserve">
-    <value>*vITEM mestilah nombor sahaja!</value>
+    <value>*vITEM mestilah nombor sahaja.</value>
   </data>
   <data name="ErrorDuplicateEntry" xml:space="preserve">
-    <value>*Entri duplikasi!</value>
+    <value>*Entri duplikasi.</value>
   </data>
   <data name="ErrorDuplicateItem" xml:space="preserve">
-    <value>*vITEM telah wujud!</value>
+    <value>*vITEM telah wujud.</value>
   </data>
   <data name="ErrorFileSizeLimit" xml:space="preserve">
-    <value>*Saiz fail tidak boleh lebih besar daripada vSIZE!</value>
+    <value>*Saiz fail tidak boleh lebih besar daripada vSIZE.</value>
   </data>
   <data name="ErrorImageSizeLimit" xml:space="preserve">
-    <value>*Saiz imej tidak boleh lebih besar daripada vSIZE!</value>
+    <value>*Saiz imej tidak boleh lebih besar daripada vSIZE.</value>
   </data>
   <data name="ErrorIncorrectCurrentPassword" xml:space="preserve">
-    <value>*Kata laluan semasa tidak sah!</value>
+    <value>*Kata laluan semasa tidak sah.</value>
   </data>
   <data name="ErrorIncorrectEmail" xml:space="preserve">
-    <value>*ID log masuk dan e-mel tidak sepadan!</value>
+    <value>*ID log masuk dan e-mel tidak sepadan.</value>
   </data>
   <data name="ErrorIncorrectPassword" xml:space="preserve">
-    <value>*Kata laluan tidak sah!</value>
+    <value>*Kata laluan tidak sah.</value>
   </data>
   <data name="ErrorInvalidAmount" xml:space="preserve">
-    <value>*Amaun tidak sah!</value>
+    <value>*Amaun tidak sah.</value>
   </data>
   <data name="ErrorInvalidEmail" xml:space="preserve">
-    <value>*Alamat e-mel tidak sah!</value>
+    <value>*Alamat e-mel tidak sah.</value>
   </data>
   <data name="ErrorInvalidFileFormat" xml:space="preserve">
-    <value>*Format fail tidak sah, format yang disokong (vSUPPORT)!</value>
+    <value>*Format fail tidak sah, format yang disokong (vSUPPORT).</value>
   </data>
   <data name="ErrorInvalidImageFormat" xml:space="preserve">
-    <value>*Format imej tidak sah. Format yang disokong ialah vSUPPORT!</value>
+    <value>*Format imej tidak sah. Format yang disokong ialah vSUPPORT.</value>
   </data>
   <data name="ErrorInvalidInputValue" xml:space="preserve">
-    <value>*vITEM tidak sah!</value>
+    <value>*vITEM tidak sah.</value>
   </data>
   <data name="ErrorInvalidIntroducer" xml:space="preserve">
-    <value>*Pengenal tidak sah!</value>
+    <value>*Pengenal tidak sah.</value>
   </data>
   <data name="ErrorInvalidMemberID" xml:space="preserve">
-    <value>*ID ahli tidak sah!</value>
+    <value>*ID ahli tidak sah.</value>
   </data>
   <data name="ErrorInvalidQuantity" xml:space="preserve">
-    <value>*Kuantiti tidak sah!</value>
+    <value>*Kuantiti tidak sah.</value>
   </data>
   <data name="ErrorInvalidUnit" xml:space="preserve">
-    <value>*Bilangan unit tidak sah!</value>
+    <value>*Bilangan unit tidak sah.</value>
   </data>
   <data name="ErrorItemNotFound" xml:space="preserve">
-    <value>*vITEM tidak boleh dijumpai!</value>
+    <value>*vITEM tidak boleh dijumpai.</value>
   </data>
   <data name="ErrorItemRequired" xml:space="preserve">
-    <value>*vITEM diperlukan!</value>
+    <value>*vITEM diperlukan.</value>
   </data>
   <data name="ErrorLoginAttemptExceeded" xml:space="preserve">
-    <value>*Sudah mencapai percubaan log masuk maksimum! Sila cuba lagi dalam vTIME minit!</value>
+    <value>*Sudah mencapai percubaan log masuk maksimum. Sila cuba lagi dalam vTIME minit.</value>
   </data>
   <data name="ErrorLoginIDSpecialChar" xml:space="preserve">
-    <value>*ID log masuk mesti mengandungi sekurang-kurangnya 6 aksara alfanumerik!</value>
+    <value>*ID log masuk mesti mengandungi sekurang-kurangnya 6 aksara alfanumerik.</value>
   </data>
   <data name="ErrorLoginIDUnavailable" xml:space="preserve">
-    <value>*ID log masuk sudah wujud!</value>
+    <value>*ID log masuk sudah wujud.</value>
   </data>
   <data name="ErrorMemberIDNotFound" xml:space="preserve">
-    <value>*ID ahli tidak dijumpai!</value>
+    <value>*ID ahli tidak dijumpai.</value>
   </data>
   <data name="ErrorMemberIDSpecialChar" xml:space="preserve">
-    <value>*ID ahli mesti mengandungi sekurang-kurangnya 6 aksara alfanumerik!</value>
+    <value>*ID ahli mesti mengandungi sekurang-kurangnya 6 aksara alfanumerik.</value>
   </data>
   <data name="ErrorMemberIDUnavailable" xml:space="preserve">
-    <value>*ID ahli sudah wujud!</value>
+    <value>*ID ahli sudah wujud.</value>
   </data>
   <data name="ErrorMemberNotFound" xml:space="preserve">
-    <value>*Ahli ini tidak boleh dijumpai!</value>
+    <value>*Ahli ini tidak boleh dijumpai.</value>
   </data>
   <data name="ErrorNewCurrentPasswordCompare" xml:space="preserve">
-    <value>*Kata laluan baru tidak boleh sama dengan kata laluan semasa!</value>
+    <value>*Kata laluan baru tidak boleh sama dengan kata laluan semasa.</value>
   </data>
   <data name="ErrorNoCredentialMatch" xml:space="preserve">
-    <value>*ID log masuk atau kata laluan tidak sah!</value>
+    <value>*ID log masuk atau kata laluan tidak sah.</value>
   </data>
   <data name="ErrorNoCredentialMatch2" xml:space="preserve">
-    <value>*ID log masuk atau kata laluan tidak sah!</value>
+    <value>*ID log masuk atau kata laluan tidak sah.</value>
   </data>
   <data name="ErrorNoData" xml:space="preserve">
-    <value>Tiada data terdapat dalam jadual!</value>
+    <value>Tiada data terdapat dalam jadual.</value>
   </data>
   <data name="ErrorNoFileSelected" xml:space="preserve">
-    <value>*Tiada fail dipilih!</value>
+    <value>*Tiada fail dipilih.</value>
   </data>
   <data name="ErrorNoImageSelected" xml:space="preserve">
-    <value>*Tiada imej dipilih!</value>
+    <value>*Tiada imej dipilih.</value>
   </data>
   <data name="ErrorNoMatchFound" xml:space="preserve">
-    <value>Tiada rekod yang sepadan dijumpai!</value>
+    <value>Tiada rekod yang sepadan dijumpai.</value>
   </data>
   <data name="ErrorNoNewsFound" xml:space="preserve">
-    <value>*Berita tidak dijumpai!</value>
+    <value>*Berita tidak dijumpai.</value>
   </data>
   <data name="ErrorNoResult" xml:space="preserve">
-    <value>Tiada penyertaan dijumpai!</value>
+    <value>Tiada penyertaan dijumpai.</value>
   </data>
   <data name="ErrorNoRowSelected" xml:space="preserve">
-    <value>*Tiada baris dipilih!</value>
+    <value>*Tiada baris dipilih.</value>
   </data>
   <data name="ErrorNoSearchValue" xml:space="preserve">
-    <value>*Sila masukkan sekurang-kurangnya 1 kata kunci pencarian!</value>
+    <value>*Sila masukkan sekurang-kurangnya 1 kata kunci pencarian.</value>
   </data>
   <data name="ErrorOccur" xml:space="preserve">
-    <value>*Ralat berlaku!</value>
+    <value>*Ralat berlaku.</value>
   </data>
   <data name="ErrorPageInvalid" xml:space="preserve">
-    <value>*Sila pastikan semua ruangan diisi dengan betul!</value>
+    <value>*Sila pastikan semua ruangan diisi dengan betul.</value>
   </data>
   <data name="ErrorPasswordLength" xml:space="preserve">
-    <value>*Kata laluan mesti melebihi daripada 6 nombor!</value>
+    <value>*Kata laluan mesti melebihi daripada 6 nombor.</value>
   </data>
   <data name="ErrorPostFailed" xml:space="preserve">
-    <value>*Pos berita gagal!</value>
+    <value>*Pos berita gagal.</value>
   </data>
   <data name="ErrorResetPasswordFailed" xml:space="preserve">
-    <value>*Gagal menetapkan semula katalaluan!</value>
+    <value>*Gagal menetapkan semula katalaluan.</value>
   </data>
   <data name="ErrorSubmitFailed" xml:space="preserve">
-    <value>Penyerahan gagal!!</value>
+    <value>Penyerahan gagal..</value>
   </data>
   <data name="ErrorTransactionFailed" xml:space="preserve">
-    <value>*Transaksi gagal!</value>
+    <value>*Transaksi gagal.</value>
   </data>
   <data name="ErrorTransactionNoFound" xml:space="preserve">
-    <value>*Transaksi tidak dijumpai!</value>
+    <value>*Transaksi tidak dijumpai.</value>
   </data>
   <data name="ErrorUnderConstruction" xml:space="preserve">
-    <value>Halaman ini sedang dibina, sila semak semula nanti!</value>
+    <value>Halaman ini sedang dibina, sila semak semula nanti.</value>
   </data>
   <data name="ErrorUpdateFailed" xml:space="preserve">
-    <value>Kemas kini gagal!</value>
+    <value>Kemas kini gagal.</value>
   </data>
   <data name="ErrorUploadFailed" xml:space="preserve">
-    <value>*Gagal memuat naik imej!</value>
+    <value>*Gagal memuat naik.</value>
   </data>
   <data name="ErrorUserIDNotFound" xml:space="preserve">
-    <value>*ID Pengguna tidak dijumpai!</value>
+    <value>*ID Pengguna tidak dijumpai.</value>
   </data>
   <data name="ErrorUsernameNotFound" xml:space="preserve">
-    <value>*ID pengguna tidak dijumpai!</value>
+    <value>*ID pengguna tidak dijumpai.</value>
   </data>
   <data name="ErrorUsernameUnavailable" xml:space="preserve">
-    <value>*ID pengguna sudah wujud!</value>
+    <value>*ID pengguna sudah wujud.</value>
   </data>
   <data name="Excel" xml:space="preserve">
     <value>Excel</value>
@@ -606,6 +612,9 @@
   <data name="Geofence" xml:space="preserve">
     <value>Geo Pagar</value>
   </data>
+  <data name="GeofenceMukim" xml:space="preserve">
+    <value>Geo Pagar Mukim</value>
+  </data>
   <data name="GeofenceStatus" xml:space="preserve">
     <value>Status Geo Pagar</value>
   </data>
@@ -617,6 +626,9 @@
   </data>
   <data name="GSMSignal" xml:space="preserve">
     <value>Isyarat GSM</value>
+  </data>
+  <data name="High" xml:space="preserve">
+    <value>Tinggi</value>
   </data>
   <data name="History" xml:space="preserve">
     <value>Sejarah</value>
@@ -720,6 +732,9 @@
   <data name="Logout" xml:space="preserve">
     <value>Log keluar</value>
   </data>
+  <data name="Low" xml:space="preserve">
+    <value>Rendah</value>
+  </data>
   <data name="MailFootNote" xml:space="preserve">
     <value>&lt;p&gt;E-mel ini adalah sulit dan bertujuan semata-mata untuk kegunaan individu yang ditujukan kepadanya. Sebarang pandangan atau pendapat yang dikemukakan adalah semata-mata dari pengarang dan tidak semestinya mewakili pandangan vCOMPANY atau mana-mana ahli gabungannya. Jika anda bukan penerima yang dimaksudkan, maklum bahawa anda telah tersilap menerima e-mel ini dan sebarang penggunaan, penyebaran, pemajuan, pencetakan atau penyalinan e-mel ini adalah dilarang sama sekali. Jika anda tersilap menerima e-mel ini, sila kembalikan mesej itu kepada pengirim dengan membalasnya dan kemudian padamkan mesej itu daripada komputer anda.&lt;/p&gt;
 &lt;p&gt;Nota kaki ini juga mengesahkan bahawa mesej e-mel ini telah disemak oleh perisian anti-virus untuk kehadiran virus komputer. Walau bagaimanapun, vCOMPANY atau mana-mana ahli gabungannya tidak bertanggungjawab terhadap sebarang virus atau kecacatan yang mungkin timbul daripada membuka e-mel atau lampiran ini.&lt;/p&gt;</value>
@@ -781,8 +796,14 @@
   <data name="Map" xml:space="preserve">
     <value>Peta</value>
   </data>
+  <data name="Marking" xml:space="preserve">
+    <value>Marking</value>
+  </data>
   <data name="Max" xml:space="preserve">
     <value>Maksimum</value>
+  </data>
+  <data name="Medium" xml:space="preserve">
+    <value>Sederhana</value>
   </data>
   <data name="Member" xml:space="preserve">
     <value>Ahli</value>
@@ -851,19 +872,19 @@
     <value>Berita Lain</value>
   </data>
   <data name="MsgAddItemSuccess" xml:space="preserve">
-    <value>vITEM baru telah ditambah!</value>
+    <value>vITEM baru telah ditambah.</value>
   </data>
   <data name="MsgApproved" xml:space="preserve">
-    <value>vTYPE diluluskan!!</value>
+    <value>vTYPE diluluskan..</value>
   </data>
   <data name="MsgCancelSuccess" xml:space="preserve">
-    <value>Pembatalan berjaya!</value>
+    <value>Pembatalan berjaya.</value>
   </data>
   <data name="MsgChangePasswordSuccess" xml:space="preserve">
-    <value>Kata laluan berjaya ditukar!</value>
+    <value>Kata laluan berjaya ditukar.</value>
   </data>
   <data name="MsgCommandSendSuccess" xml:space="preserve">
-    <value>Arahan GPRS berjaya dihantar!</value>
+    <value>Arahan GPRS berjaya dihantar.</value>
   </data>
   <data name="MsgComputerGenerated" xml:space="preserve">
     <value>Ini adalah vTYPE yang dijana komputer dan tidak memerlukan tandatangan.</value>
@@ -875,28 +896,28 @@
     <value>Sahkan vITEM?</value>
   </data>
   <data name="MsgDeleteSuccess" xml:space="preserve">
-    <value>Dipadam!</value>
+    <value>Berjaya dipadamkan.</value>
   </data>
   <data name="MsgLoginIDAvailable" xml:space="preserve">
-    <value>ID log masuk tersedia!</value>
+    <value>ID log masuk tersedia.</value>
   </data>
   <data name="MsgLoginToProceed" xml:space="preserve">
     <value>Sila Log Masuk untuk meneruskan.</value>
   </data>
   <data name="MsgMemberDetailUpdated" xml:space="preserve">
-    <value>Butiran ahli dikemas kini!</value>
+    <value>Butiran ahli dikemas kini.</value>
   </data>
   <data name="MsgMemberIDAvailable" xml:space="preserve">
-    <value>ID Ahli tersedia!</value>
+    <value>ID Ahli tersedia.</value>
   </data>
   <data name="MsgNoChanges" xml:space="preserve">
-    <value>Tiada nilai yang diubah!</value>
+    <value>Tiada nilai yang diubah.</value>
   </data>
   <data name="MsgPostBy" xml:space="preserve">
     <value>Dihantar oleh vCREATOR pada vDATE</value>
   </data>
   <data name="MsgPostSuccess" xml:space="preserve">
-    <value>Pos berita berjaya!</value>
+    <value>Pos berita berjaya.</value>
   </data>
   <data name="MsgPrintInstruction" xml:space="preserve">
     <value>Sila tekan "CTR+P" untuk mencetak atau "ESC" untuk keluar</value>
@@ -905,37 +926,40 @@
     <value>Saiz Imej Disarankan, Lebar: vWSIZE, Tinggi: vHSIZE.</value>
   </data>
   <data name="MsgRejected" xml:space="preserve">
-    <value>vTYPE ditolak!!</value>
+    <value>vTYPE ditolak..</value>
   </data>
   <data name="MsgResetPasswordSuccess" xml:space="preserve">
-    <value>Kata laluan anda telah ditetapkan semula dan kata laluan baru telah dihantar ke e-mel anda!</value>
+    <value>Kata laluan anda telah ditetapkan semula dan kata laluan baru telah dihantar ke e-mel anda.</value>
   </data>
   <data name="MsgSubmitSuccess" xml:space="preserve">
-    <value>Penyerahan berjaya!!</value>
+    <value>Penyerahan berjaya..</value>
   </data>
   <data name="MsgTransactionSuccess" xml:space="preserve">
-    <value>Transaksi berjaya!</value>
+    <value>Transaksi berjaya.</value>
   </data>
   <data name="MsgUpdateSuccess" xml:space="preserve">
-    <value>Kemas kini berjaya!</value>
+    <value>Kemas kini berjaya.</value>
   </data>
   <data name="MsgUploadSuccess" xml:space="preserve">
-    <value>Imej dimuat naik!</value>
+    <value>Imej dimuat naik.</value>
   </data>
   <data name="MsgUsernameAvailable" xml:space="preserve">
-    <value>ID Pengguna tersedia!</value>
+    <value>ID Pengguna tersedia.</value>
   </data>
   <data name="MsgValidIntroducer" xml:space="preserve">
-    <value>Pengenal Sah!</value>
+    <value>Pengenal Sah.</value>
   </data>
   <data name="MsgValidMemberID" xml:space="preserve">
-    <value>ID ahli sah!</value>
+    <value>ID ahli sah.</value>
   </data>
   <data name="MsgValidUserID" xml:space="preserve">
-    <value>ID pengguna sah!</value>
+    <value>ID pengguna sah.</value>
   </data>
   <data name="MsgValidUsername" xml:space="preserve">
-    <value>ID pengguna sah!</value>
+    <value>ID pengguna sah.</value>
+  </data>
+  <data name="MultipleFile" xml:space="preserve">
+    <value>Berbilang Fail</value>
   </data>
   <data name="MyMemberID" xml:space="preserve">
     <value>ID Ahli Saya</value>
@@ -1392,6 +1416,9 @@
   </data>
   <data name="Verify" xml:space="preserve">
     <value>Mengesahkan</value>
+  </data>
+  <data name="VerifyStatus" xml:space="preserve">
+    <value>Status Pengesahan</value>
   </data>
   <data name="View" xml:space="preserve">
     <value>Semak</value>

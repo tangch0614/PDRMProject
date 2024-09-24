@@ -38,8 +38,8 @@ Public Class AMainMap
 
     Private Sub SetText()
         'popup subject
-        btnPAcknowledge.Text = GetText("Acknowledge")
-        btnPCancel.Text = GetText("Close")
+        'btnPAcknowledge.Text = GetText("Acknowledge")
+        'btnPCancel.Text = GetText("Close")
         hfConfirm.Value = GetText("MsgConfirm")
     End Sub
 
@@ -63,19 +63,19 @@ Public Class AMainMap
         ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "fetchAndUpdateMarkers(true);", True)
     End Sub
 
-    Protected Sub btnPAcknowledge_Click(sender As Object, e As EventArgs)
-        UserIsAuthenticated()
-        If EMDDeviceManager.AcknowledgeAlertNotification(hfAlertID.Value, AdminAuthentication.GetUserData(2), txtPRemark.Text) Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE VIOLATION ALERT", "Alert ID: " & hfAlertID.Value, "")
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');getModalData(" & hfAlertID.Value & ");CloseToastr(" & hfAlertID.Value & ");", True)
-        Else
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("ErrorUpdateFailed") & "');getModalData(" & hfAlertID.Value & ");", True)
-        End If
-    End Sub
+    'Protected Sub btnPAcknowledge_Click(sender As Object, e As EventArgs)
+    '    UserIsAuthenticated()
+    '    If EMDDeviceManager.AcknowledgeAlertNotification(hfAlertID.Value, AdminAuthentication.GetUserData(2), txtPRemark.Text) Then
+    '        UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE VIOLATION ALERT", "Alert ID: " & hfAlertID.Value, "")
+    '        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');getModalData(" & hfAlertID.Value & ");CloseToastr(" & hfAlertID.Value & ");", True)
+    '    Else
+    '        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("ErrorUpdateFailed") & "');getModalData(" & hfAlertID.Value & ");", True)
+    '    End If
+    'End Sub
 
-    Protected Sub btnPCancel_Click(sender As Object, e As EventArgs)
-        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plAcknowledge').modal('hide');", True)
-    End Sub
+    'Protected Sub btnPCancel_Click(sender As Object, e As EventArgs)
+    '    ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plAcknowledge').modal('hide');", True)
+    'End Sub
 
 #End Region
 End Class

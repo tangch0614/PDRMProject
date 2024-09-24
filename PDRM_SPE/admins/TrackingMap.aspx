@@ -34,7 +34,7 @@
     <link href="../assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
     <!-- END THEME LAYOUT STYLES -->
     <!-- NON TEMPLATE-->
-    <link href="../assets/css/general.css?v=1" rel="stylesheet" />
+    <link href="../assets/css/general.css?v=1.1" rel="stylesheet" />
     <link href="../assets/css/layout1.css" rel="stylesheet" />
     <link href="../assets/jquery-ui-1.11.1/jquery-ui.css" rel="stylesheet" />
     <!-- NON TEMPLATE-->
@@ -116,9 +116,7 @@
             vertical-align: top;
         }
     </style>
-    <script>(g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-            ({ key: "AIzaSyA9AQTXBVGEnr8xB2k3chP1Ek5Yxk6gePU", v: "weekly" });</script>
-
+    <script src="../assets/js/gmapapi.js"></script>
     <!--MAP-->
     <script type="text/javascript">
         let map;
@@ -407,8 +405,8 @@
                                 };
                                 var tableHTML = '<table style="width: 100%;" class="dataTable table-bordered table-striped">';
                                 tableHTML += '<tr><td><%=GetText("DateTime")%></td><td class="bold">' + notification.flddatetime.replace('T', ' ') + '</td></tr>';
+                                tableHTML += "<tr><td colspan='2' align='center'><button class='btn blue btn-xs' id='btnAcknowledge' onclick=\"OpenPopupWindow('../admins/AlertInfo.aspx?id=" + notification.fldid + "&i=" + notification.fldmd5 + "',1280,800);return false;\"><%=GetText("Acknowledge")%></button></td></tr>"
                                 tableHTML += '</table>';
-                                tableHTML += '<div align="center"><button class="btn default" id="btnAcknowledge">Acknowledge</button></div>';
 
                                 var toastrclass;
                                 if (notification.fldseverity == "low") {
@@ -438,7 +436,7 @@
                                 if ($toast && $toast.find('#btnAcknowledge').length) {
                                     $toast.find('#btnAcknowledge').on('click', function () {
                                         event.preventDefault(); // Prevent any default action when clicking the button
-                                        getModalData(notification.fldid);
+                                        CloseToastr(notification.fldid);
                                     });
                                 }
                             });
@@ -450,63 +448,6 @@
                     }
                 });
             }
-        }
-
-        function getModalData(alertid) {
-            document.getElementById('hfAlertID').value = 0;
-            $.ajax({
-                type: "POST",
-                url: "../GetData.aspx/GetNotificationDetail", // Replace with the actual server-side URL
-                data: JSON.stringify({ alertid: alertid }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    var alerts = JSON.parse(response.d);
-                    if (alerts.length > 0) {
-                        var alert = alerts[0];
-                        if (alert && Object.keys(alert).length > 0) {
-                            if (alert.fldPhoto1 && alert.fldPhoto1.trim() !== "") {
-                                document.getElementById('imgPPhoto1Preview').src = alert.fldphoto1;
-                            } else {
-                                document.getElementById('imgPPhoto1Preview').src = "../assets/img/No_Image.png";
-                            }
-                            document.getElementById('hfAlertID').value = alert.fldid;
-                            document.getElementById('txtPImei').innerText = alert.fldimei;
-                            document.getElementById('txtPDateTime').innerText = alert.flddatetime.replace("T", " ");
-                            document.getElementById('txtPViolateTerms').innerText = alert.fldmsg.toUpperCase();
-                            document.getElementById('txtPSubjectName').innerText = alert.fldoppname;
-                            document.getElementById('txtPSubjectICNo').innerText = alert.fldoppicno;
-                            document.getElementById('txtPSubjectContactNo').innerText = alert.fldoppcontactno;
-                            document.getElementById('txtPPoliceStation').innerText = alert.fldpsname;
-                            document.getElementById('txtPPSContactNo').innerText = alert.fldpscontactno;
-                            document.getElementById('txtPDepartment').innerText = alert.flddepartment;
-                            document.getElementById('txtPOverseer').innerText = alert.fldoverseername;
-                            document.getElementById('txtPOverseerIDNo').innerText = alert.fldoverseerpoliceno;
-                            document.getElementById('txtPOverseerContactNo').innerText = alert.fldoverseercontactno;
-
-                            if (alert.fldprocess == 1) {
-                                document.getElementById('btnPAcknowledge').style.display = "none"; // Hide the button
-                                document.getElementById('txtPRemark').value = alert.fldremark;
-                                document.getElementById('txtPAcknowledgeByID').innerText = alert.fldprocessbyname;
-                                document.getElementById('txtPAcknowledgeDateTime').innerText = alert.fldprocessdatetime.replace("T", " ");
-                            } else {
-                                document.getElementById('btnPAcknowledge').style.display = "inline-block"; // Show the button
-                                document.getElementById('txtPRemark').value = "";
-                                document.getElementById('txtPAcknowledgeByID').innerText = "";
-                                document.getElementById('txtPAcknowledgeDateTime').innerText = "";
-                            }
-                            $('#plAcknowledge').modal('show');
-                        } else {
-                            $('#plAcknowledge').modal('hide');
-                        }
-                    } else {
-                        $('#plAcknowledge').modal('hide');
-                    }
-                },
-                error: function (error) {
-                    console.error("Error: ", error);
-                }
-            });
         }
 
         var currentAudio = null;
@@ -696,177 +637,7 @@
         <asp:HiddenField runat="server" ID="hfNoResult" ClientIDMode="Static" />
         <asp:HiddenField runat="server" ID="hfAlertID" ClientIDMode="Static" />
         <asp:HiddenField runat="server" ID="hfConfirm" ClientIDMode="Static" />
-
-        <asp:Panel runat="server" ClientIDMode="Static" ID="plAcknowledge" CssClass="modal fade" TabIndex="-1" data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="portlet light bordered" style="width: 100%; margin: 0 auto">
-                        <div class="portlet-title">
-                            <button type="button" class="close" aria-hidden="true" onclick="$('#plAcknowledge').modal('hide');"></button>
-                            <div class="caption">
-                                <i class="fa fa-check fa-fw"></i>
-                                <label class="caption-subject bold uppercase"><%=GetText("ViolateTerms")%></label>
-                            </div>
-                        </div>
-                        <div class="portlet-body form">
-                            <div class="form-horizontal">
-                                <asp:UpdatePanel runat="server">
-                                    <ContentTemplate>
-                                        <div class="form-body">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group margin-bottom-5">
-                                                        <div style="text-align: center">
-                                                            <asp:Image runat="server" ID="imgPPhoto1Preview" ClientIDMode="Static" Style="height: 200px;" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <table class="dataTable table-bordered table-striped">
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("ViolateTerms")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPViolateTerms" ClientIDMode="Static"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("DateTime")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPDateTime" ClientIDMode="Static"></asp:Label>
-                                                            </td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("IMEI")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPImei" ClientIDMode="Static"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("Name")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPSubjectName"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("ICNum")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPSubjectICNo"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("ContactNum")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPSubjectContactNo"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("PoliceStation")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPPoliceStation" ClientIDMode="Static"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("Department")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPDepartment"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPPSContactNo"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("Overseer")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPOverseer" ClientIDMode="Static"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("PoliceIDNo")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPOverseerIDNo"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("OfficerItem").Replace("vITEM", GetText("ContactNum"))%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPOverseerContactNo"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <table class="dataTable table-bordered table-striped">
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("Remark")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:TextBox runat="server" ID="txtPRemark" TextMode="MultiLine" Rows="15" Style="width: 100%"></asp:TextBox>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("AcknowledgeBy")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPAcknowledgeByID"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <label><%=GetText("AcknowledgeDateTime")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPAcknowledgeDateTime"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="form-actions">
-                                                <div class="pull-right">
-                                                    <asp:Button runat="server" CssClass="btn blue " ID="btnPAcknowledge" Text="Maklum Terima" OnClientClick='return confirm(hfConfirm.value);' OnClick="btnPAcknowledge_Click" ClientIDMode="static" />
-                                                    <asp:Button runat="server" CssClass="btn default " ID="btnPCancel" Text="Tutup" OnClick="btnPCancel_Click" ClientIDMode="static" />
-                                                </div>
-                                            </div>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </asp:Panel>
-
-
+               
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
