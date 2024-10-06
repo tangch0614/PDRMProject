@@ -74,6 +74,15 @@ NameSpace BusinessLogic
             End Using
         End Function
 
+        Public Shared Function GetMukimID(ByVal mukim As String) As Long
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Long = CountryDB.GetMukimID(mukim, myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
         Public Shared Function GetCurrency(ByVal countryID As String) As String
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()

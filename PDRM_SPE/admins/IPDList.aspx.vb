@@ -33,7 +33,7 @@ Public Class AIPDList
         lblInfo.Text = GetText("Information").Replace("vINFOTYPE", GetText("IPD"))
         'Search
         lblSName.Text = GetText("Name")
-        lblSIPK.Text = GetText("IPK")
+        lblSIPK.Text = GetText("StateContingent")
         'lblSState.Text = GetText("State")
         'lblSDistrict.Text = GetText("District")
         'lblSStatus.Text = GetText("Status")

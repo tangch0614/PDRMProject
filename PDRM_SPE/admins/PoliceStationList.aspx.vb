@@ -33,7 +33,7 @@ Public Class APoliceStationList
         lblInfo.Text = GetText("Information").Replace("vINFOTYPE", GetText("PoliceStation"))
         'Search
         lblSName.Text = GetText("Name")
-        lblSIPK.Text = GetText("IPK")
+        lblSIPK.Text = GetText("StateContingent")
         lblSIPD.Text = GetText("IPD")
         'lblSState.Text = GetText("State")
         'lblSDistrict.Text = GetText("District")

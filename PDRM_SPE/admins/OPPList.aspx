@@ -43,26 +43,6 @@
                                                 <asp:TextBox runat="server" ID="txtSOrdRefNo" CssClass="form-control input-inline input-large"></asp:TextBox>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblSDepartment" CssClass="col-md-3 control-label" Text="Jabatan"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlSDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblSPoliceStation" CssClass="col-md-3 control-label" Text="Balai Police"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlSPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <%--<div class="form-group">
-                                            <asp:Label runat="server" ID="lblSEMD" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlSEMD" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                            </div>
-                                        </div>--%>
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblSStatus" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
                                             <div class="col-md-8">
@@ -75,6 +55,46 @@
                                                 <asp:DropDownList runat="server" ID="ddlSVerifyStatus" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <asp:Label runat="server" ID="lblSDepartment" CssClass="col-md-3 control-label" Text="Jabatan"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:DropDownList runat="server" ID="ddlSDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <asp:UpdatePanel runat="server">
+                                            <ContentTemplate>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblSIPK" CssClass="col-md-3 control-label" Text="Balai Police"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlSIPK" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlSIPK_SelectedIndexChanged"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblSIPD" CssClass="col-md-3 control-label" Text="Balai Police"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlSIPD" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlSIPD_SelectedIndexChanged"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblSPoliceStation" CssClass="col-md-3 control-label" Text="Balai Police"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlSPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="ddlSIPK" />
+                                                <asp:AsyncPostBackTrigger ControlID="ddlSIPD" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
+                                        <%--<div class="form-group">
+                                            <asp:Label runat="server" ID="lblSEMD" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:DropDownList runat="server" ID="ddlSEMD" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                            </div>
+                                        </div>--%>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -106,7 +126,7 @@
                                         <table class="table table-striped table-hover table-bordered managedTable" id="table1">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 10% !important">
+                                                    <th style="width: 5% !important">
                                                         <%#GetText("Num")%>
                                                     </th>
                                                     <th style="width: 10% !important">
@@ -115,8 +135,14 @@
                                                     <th style="width: 10% !important">
                                                         <%#GetText("ICNum")%>
                                                     </th>
+                                                    <th style="width: 5% !important">
+                                                        <%#GetText("Gender")%>
+                                                    </th>
                                                     <th style="width: 10% !important">
                                                         <%#GetText("EMD")%>
+                                                    </th>
+                                                    <th style="width: 10% !important">
+                                                        <%#GetText("PoliceStation") & "/ " & GetText("Department")%>
                                                     </th>
                                                     <th style="width: 10% !important">
                                                         <%#GetText("OrderRefNo")%>
@@ -134,13 +160,10 @@
                                                         <%#GetText("State") & "/ " & GetText("District") & "/ " & GetText("Township")%>
                                                     </th>
                                                     <th style="width: 10% !important">
-                                                        <%#GetText("PoliceStation") & "/ " & GetText("Department")%>
-                                                    </th>
-                                                    <th style="width: 10% !important">
                                                         <%#GetText("VerifyStatus")%>
                                                     </th>
                                                     <th style="width: 10% !important">
-                                                        <%#GetText("Status")%>
+                                                        <%#GetText("OPPItem").Replace("vITEM", GetText("Status"))%>
                                                     </th>
                                                     <th style="width: 10% !important">
                                                         <%#GetText("Map")%>
@@ -161,8 +184,14 @@
                                             <td style="text-align: left">
                                                 <%#Eval("fldICNo")%>
                                             </td>
+                                            <td style="text-align: center">
+                                                <%#GetText(If(Eval("fldGender").Equals("M"), "Male", "Female"))%>
+                                            </td>
                                             <td style="text-align: left">
                                                 <%#Eval("fldImei")%>
+                                            </td>
+                                            <td style="text-align: left">
+                                                <%#Eval("fldPSName") & " / " & Eval("fldDepartment")%>
                                             </td>
                                             <td style="text-align: left">
                                                 <%#Eval("fldOrdRefNo")%>
@@ -172,24 +201,23 @@
                                             </td>
                                             <td style="text-align: left">
                                                 <%#Eval("fldOrdFrDate", "{0:yyyy-MM-dd}") & " - " & Eval("fldOrdToDate", "{0:yyyy-MM-dd}") _
-                                                                                                & If(CInt(Eval("fldOrdYear")) > 0, String.Format(" ({0} {1})", Eval("fldOrdYear"), GetText("Year")), "") _
-                                                                                                & If(CInt(Eval("fldOrdMonth")) > 0, String.Format(" ({0} {1})", Eval("fldOrdMonth"), GetText("Month")), "") _
-                                                                                                & If(CInt(Eval("fldOrdDay")) > 0, String.Format(" ({0} {1})", Eval("fldOrdDay"), GetText("Day")), "")%>
+                                                                                                            & If(CInt(Eval("fldOrdYear")) > 0, String.Format(" ({0} {1})", Eval("fldOrdYear"), GetText("Year")), "") _
+                                                                                                            & If(CInt(Eval("fldOrdMonth")) > 0, String.Format(" ({0} {1})", Eval("fldOrdMonth"), GetText("Month")), "") _
+                                                                                                            & If(CInt(Eval("fldOrdDay")) > 0, String.Format(" ({0} {1})", Eval("fldOrdDay"), GetText("Day")), "")%>
                                             </td>
                                             <td style="text-align: left">
-                                                <%#Eval("fldEMDInstallDate", "{0:yyyy-MM-dd}")%>
+                                                <%#Eval("fldEMDInstallDate", "{0:yyyy-MM-dd HH:mm:ss}")%>
                                             </td>
                                             <td style="text-align: left">
                                                 <%#Eval("fldState") & "/ " & Eval("fldDistrict") & "/ " & Eval("fldMukim")%>
                                             </td>
-                                            <td style="text-align: left">
-                                                <%#Eval("fldPSName") & " / " & Eval("fldDepartment")%>
-                                            </td>
                                             <td style="text-align: center">
                                                 <asp:Label runat="server" ID="txtVerifyStatus" Text='<%#If(Eval("fldVerifyStatus").Equals("Y"), GetText("Approved"), If(Eval("fldVerifyStatus").Equals("N"), GetText("Rejected"), GetText("Pending")))%>' CssClass='<%#If(Eval("fldVerifyStatus").Equals("Y"), "label label-success", If(Eval("fldVerifyStatus").Equals("N"), "label label-danger", "label label-warning"))%>'></asp:Label>
+                                                <asp:Label runat="server" Text='<%#Eval("fldVerifyDateTime", "{0:yyyy-MM-dd HH:mm:ss}")%>' Visible='<%#Eval("fldVerifyStatus").Equals("Y")%>'></asp:Label>
                                             </td>
                                             <td style="text-align: center">
                                                 <asp:Label runat="server" ID="txtStatus" Text='<%#If(Eval("fldStatus").Equals("Y"), GetText("Active"), If(Eval("fldStatus").Equals("N"), GetText("Inactive"), GetText("Pending")))%>' CssClass='<%#If(Eval("fldStatus").Equals("Y"), "label label-success", If(Eval("fldStatus").Equals("N"), "label label-danger", "label label-warning"))%>'></asp:Label>
+                                                <asp:Label runat="server" Text='<%#Eval("fldActivateDateTime", "{0:yyyy-MM-dd HH:mm:ss}")%>' Visible='<%#Eval("fldStatus").Equals("Y")%>'></asp:Label>
                                             </td>
                                             <td style="text-align: center">
                                                 <asp:LinkButton runat="server" ID="lbtShowMap" Text='<%#GetText("ShowMap")%>' OnClientClick='<%#GetLink(Eval("fldID"), "showmap")%>' CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs margin-bottom-5" />
@@ -239,6 +267,12 @@
                                                 <asp:Label runat="server" ID="txtVerifyStatus" CssClass="form-control-static"></asp:Label>
                                             </div>
                                         </div>
+                                        <asp:Panel runat="server" ID="plVerifyDateTime" class="form-group">
+                                            <asp:Label runat="server" ID="lblVerifyDateTime" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:TextBox runat="server" ID="txtVerifyDateTime"  CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true" ></asp:TextBox>
+                                            </div>
+                                        </asp:Panel>
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblStatus" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
                                             <div class="col-md-8">
@@ -246,6 +280,12 @@
                                                 <asp:Button runat="server" CssClass="btn blue " ID="btnOPPStatus" Text="Update" OnClientClick='return confirm(hfConfirm.value);' OnClick="btnOPPStatus_Click" ClientIDMode="static" />
                                             </div>
                                         </div>
+                                        <asp:Panel runat="server" ID="plActivateDateTime" class="form-group">
+                                            <asp:Label runat="server" ID="lblActivateDateTime" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:TextBox runat="server" ID="txtActivateDateTime"  CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true" ></asp:TextBox>
+                                            </div>
+                                        </asp:Panel>
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblGeofenceStatus" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
                                             <div class="col-md-8">
@@ -336,48 +376,52 @@
                                 <div class="form-horizontal">
                                     <div class="form-body">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblSubjectName" CssClass="col-md-4 control-label" Text="Name Subjek"></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="txtSubjectName" CssClass="form-control input-inline input-large"></asp:TextBox>
-                                                        <label style="color: red">*</label><div>
-                                                            <asp:RequiredFieldValidator runat="server" ID="rfvSubjectName" ControlToValidate="txtSubjectName" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                            <asp:UpdatePanel runat="server">
+                                                <ContentTemplate>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblSubjectName" CssClass="col-md-4 control-label" Text="Name Subjek"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:TextBox runat="server" ID="txtSubjectName" CssClass="form-control input-inline input-large"></asp:TextBox>
+                                                                <label style="color: red">*</label><div>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvSubjectName" ControlToValidate="txtSubjectName" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblSubjectICNo" CssClass="col-md-4 control-label" Text="No. K/P"></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="txtSubjectICNo" CssClass="form-control input-inline input-large" />
-                                                        <label style="color: red">*</label><div>
-                                                            <asp:RequiredFieldValidator runat="server" ID="rfvSubjectICNo" ControlToValidate="txtSubjectICNo" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblSubjectICNo" CssClass="col-md-4 control-label" Text="No. K/P"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:TextBox runat="server" ID="txtSubjectICNo" CssClass="form-control input-inline input-large" />
+                                                                <label style="color: red">*</label><div>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvSubjectICNo" ControlToValidate="txtSubjectICNo" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblSubjectContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="txtSubjectContactNo" CssClass="form-control input-inline input-large" />
-                                                        <label style="color: red">*</label><div>
-                                                            <asp:RequiredFieldValidator runat="server" ID="rfvSubjectContactNo" ControlToValidate="txtSubjectContactNo" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblGender" CssClass="col-md-4 control-label" Text="Gender"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:DropDownList runat="server" ID="ddlGender" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblAddress" CssClass="col-md-4 control-label" Text="Alamat Kediaman"></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="txtAddress" TextMode="MultiLine" Rows="5" CssClass="form-control input-inline input-large" />
-                                                        <label style="color: red">*</label>
-                                                        <div>
-                                                            <asp:RequiredFieldValidator runat="server" ID="rfvAddress" ControlToValidate="txtAddress" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblSubjectContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:TextBox runat="server" ID="txtSubjectContactNo" CssClass="form-control input-inline input-large" />
+                                                                <label style="color: red">*</label><div>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvSubjectContactNo" ControlToValidate="txtSubjectContactNo" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <asp:UpdatePanel runat="server">
-                                                    <ContentTemplate>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblAddress" CssClass="col-md-4 control-label" Text="Alamat Kediaman"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:TextBox runat="server" ID="txtAddress" TextMode="MultiLine" Rows="5" CssClass="form-control input-inline input-large" />
+                                                                <label style="color: red">*</label>
+                                                                <div>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvAddress" ControlToValidate="txtAddress" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <asp:Label runat="server" ID="lblState" CssClass="col-md-4 control-label" Text="Negeri"></asp:Label>
                                                             <div class="col-md-8">
@@ -408,6 +452,28 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblDepartment" CssClass="col-md-4 control-label" Text="Jabatan"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:DropDownList runat="server" ID="ddlDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                                <label style="color: red">*</label>
+                                                                <div>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvDepartment" ControlToValidate="ddlDepartment" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblIPK" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:DropDownList runat="server" ID="ddlIPK" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlIPK_SelectedIndexChanged"></asp:DropDownList>
+                                                                <label style="color: red">*</label>
+                                                                <div>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvIPK" ControlToValidate="ddlPoliceStation" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <div class="form-group">
                                                             <asp:Label runat="server" ID="lblPoliceStation" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
                                                             <div class="col-md-8">
@@ -419,32 +485,23 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <asp:Label runat="server" ID="lblDepartment" CssClass="col-md-4 control-label" Text="Jabatan"></asp:Label>
+                                                            <asp:Label runat="server" ID="lblOffenceDesc" CssClass="col-md-4 control-label" Text="Kesalahan"></asp:Label>
                                                             <div class="col-md-8">
-                                                                <asp:DropDownList runat="server" ID="ddlDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                                <asp:TextBox runat="server" ID="txtOffenceDesc" TextMode="MultiLine" Rows="5" CssClass="form-control input-inline input-large" />
                                                                 <label style="color: red">*</label>
                                                                 <div>
-                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvDepartment" ControlToValidate="ddlDepartment" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvOffenceDesc" ControlToValidate="txtOffenceDesc" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </ContentTemplate>
-                                                    <Triggers>
-                                                        <asp:AsyncPostBackTrigger ControlID="ddlState" />
-                                                        <asp:AsyncPostBackTrigger ControlID="ddlDistrict" />
-                                                    </Triggers>
-                                                </asp:UpdatePanel>
-                                                <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblOffenceDesc" CssClass="col-md-4 control-label" Text="Kesalahan"></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:TextBox runat="server" ID="txtOffenceDesc" TextMode="MultiLine" Rows="5" CssClass="form-control input-inline input-large" />
-                                                        <label style="color: red">*</label>
-                                                        <div>
-                                                            <asp:RequiredFieldValidator runat="server" ID="rfvOffenceDesc" ControlToValidate="txtOffenceDesc" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
-                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </ContentTemplate>
+                                                <Triggers>
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlState" />
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlDistrict" />
+                                                    <asp:AsyncPostBackTrigger ControlID="ddlIPK" />
+                                                </Triggers>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
                                 </div>
@@ -473,7 +530,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
-                                                            <div class="col-md-8 col-md-offset-4">
+                                                            <asp:Label runat="server" ID="lblActsSection" CssClass="col-md-4 control-label" Text="Seksyen"></asp:Label>
+                                                            <div class="col-md-8">
                                                                 <asp:DropDownList runat="server" ID="ddlActsSection" ClientIDMode="Static" CssClass="form-control input-inline input-large margin-top-10"></asp:DropDownList>
                                                                 <label style="color: red">*</label><div>
                                                                     <asp:RequiredFieldValidator runat="server" ID="rfvActsSection" ControlToValidate="ddlActsSection" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
@@ -660,22 +718,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Geofence -->
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <asp:Label runat="server" ID="lblGeofenceInfo" CssClass="caption-subject uppercase">Oversight Info</asp:Label>
-                                </div>
-                            </div>
-                            <div class="portlet-body form">
-                                <div class="form-horizontal">
-                                    <div class="form-body">
-                                        <div class="row">
-                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblGeofenceDistrict" CssClass="col-md-4 control-label" Text="Daerah"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlGeofenceDistrict" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlGeofenceDistrict_SelectedIndexChanged"></asp:DropDownList>
+                                                        <label style="color: red">*</label>
+                                                        <div>
+                                                            <asp:RequiredFieldValidator runat="server" ID="rfvGeofenceDistrict" ControlToValidate="ddlGeofenceDistrict" InitialValue="" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <asp:Label runat="server" ID="lblGeofenceMukim" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
                                                     <div class="col-md-8">
@@ -821,7 +873,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <%--<div class="col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label runat="server" ID="lblOverseerIPK" CssClass="col-md-4 control-label" Text="Kontinjen"></asp:Label>
                                                     <div class="col-md-8">
@@ -834,7 +886,7 @@
                                                         <asp:TextBox runat="server" ID="txtOverseerDept" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                     <div class="form-actions">
@@ -873,6 +925,12 @@
                                                         <input id="txtEMDInstallDate" name="txtEMDInstallDate" class="DateFrom form-control input-inline input-large" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
                                                     </div>
                                                     <asp:TextBox runat="server" ID="hfEMDInstallDate" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblEMDInstallTime" CssClass="col-md-4 control-label" Text="Masa"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlEMDInstallTime" class="form-control input-inline input-large" ClientIDMode="Static"></asp:DropDownList>
+                                                    </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <asp:Label runat="server" ID="lblEMD" CssClass="col-md-4 control-label" Text="IMEI"></asp:Label>
@@ -1011,6 +1069,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <asp:Label runat="server" ID="lblPGender" CssClass="col-md-4 control-label" Text="No. K/P"></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPGender" CssClass="form-control input-inline input-large" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPSubjectContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
                                                 <div class="col-md-8">
                                                     <asp:Label runat="server" ID="txtPSubjectContactNo" CssClass="form-control input-inline input-large" />
@@ -1041,15 +1105,21 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <asp:Label runat="server" ID="lblPPoliceStation" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
-                                                <div class="col-md-8">
-                                                    <asp:Label runat="server" ID="txtPPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:Label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPDepartment" CssClass="col-md-4 control-label" Text="Jabatan"></asp:Label>
                                                 <div class="col-md-8">
                                                     <asp:Label runat="server" ID="txtPDepartment" CssClass="form-control input-inline input-large"></asp:Label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label runat="server" ID="lblPIPK" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPIPK" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:Label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Label runat="server" ID="lblPPoliceStation" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:Label>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1077,7 +1147,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <div class="col-md-8 col-md-offset-4">
+                                                <asp:Label runat="server" ID="lblPActsSection" CssClass="col-md-4 control-label" Text="Seksyen"></asp:Label>
+                                                <div class="col-md-8">
                                                     <asp:Label runat="server" ID="txtPActsSection" ClientIDMode="Static" CssClass="form-control input-inline input-large margin-top-10"></asp:Label>
                                                 </div>
                                             </div>
@@ -1206,6 +1277,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <asp:Label runat="server" ID="lblPOverseerContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPOverseerContactNo" CssClass="form-control input-inline input-large" />
+                                                </div>
+                                            </div>
+                                            <%--<div class="form-group">
                                                 <asp:Label runat="server" ID="lblPOverseerIPK" CssClass="col-md-4 control-label" Text="Kontinjen"></asp:Label>
                                                 <div class="col-md-8">
                                                     <asp:Label runat="server" ID="txtPOverseerIPK" CssClass="form-control input-inline input-large"></asp:Label>
@@ -1216,13 +1293,7 @@
                                                 <div class="col-md-8">
                                                     <asp:Label runat="server" ID="txtPOverseerDept" CssClass="form-control input-inline input-large"></asp:Label>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:Label runat="server" ID="lblPOverseerContactNo" CssClass="col-md-4 control-label" Text="No. Tel."></asp:Label>
-                                                <div class="col-md-8">
-                                                    <asp:Label runat="server" ID="txtPOverseerContactNo" CssClass="form-control input-inline input-large" />
-                                                </div>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -1252,18 +1323,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Geofence -->
-                                <div class="portlet-title">
-                                    <div class="caption">
-                                        <asp:Label runat="server" ID="lblPGeofenceInfo" CssClass="caption-subject uppercase">Geo Pagar</asp:Label>
-                                    </div>
-                                </div>
-                                <div class="portlet-body form">
-                                    <div class="form-horizontal">
-                                        <div class="form-body">
+                                            <div class="form-group">
+                                                <asp:Label runat="server" ID="lblPGeofenceDistrict" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPGeofenceDistrict" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:Label>
+                                                </div>
+                                            </div>
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPGeofenceMukim" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
                                                 <div class="col-md-8">
@@ -1381,12 +1446,24 @@
                                                     <asp:Label runat="server" ID="txtPStatus" CssClass="form-control input-inline input-large"></asp:Label>
                                                 </div>
                                             </div>
+                                            <asp:panel runat="server" ID="plPActivateDateTime" class="form-group">
+                                                <asp:Label runat="server" ID="lblPActivateDateTime" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPActivateDateTime" CssClass="form-control input-inline input-large"></asp:Label>
+                                                </div>
+                                            </asp:panel>
                                             <div class="form-group">
                                                 <asp:Label runat="server" ID="lblPVerifyStatus" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
                                                 <div class="col-md-8">
                                                     <asp:Label runat="server" ID="txtPVerifyStatus" CssClass="form-control input-inline input-large"></asp:Label>
                                                 </div>
                                             </div>
+                                            <asp:panel runat="server" ID="plPVerifyDateTime" class="form-group">
+                                                <asp:Label runat="server" ID="lblPVerifyDateTime" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
+                                                <div class="col-md-8">
+                                                    <asp:Label runat="server" ID="txtPVerifyDateTime" CssClass="form-control input-inline input-large"></asp:Label>
+                                                </div>
+                                            </asp:panel>
                                         </div>
                                         <div class="form-actions">
                                             <div class="row">
@@ -1416,18 +1493,22 @@
             $('#ddlState').select2();
             $('#ddlDistrict').select2();
             $('#ddlMukim').select2();
+            $('#ddlIPK').select2();
             $('#ddlPoliceStation').select2();
+            $('#ddlSIPK').select2();
+            $('#ddlSIPD').select2();
             $('#ddlSPoliceStation').select2();
             $('#ddlActs').select2();
             $('#ddlActsSection').select2();
             $('#ddlRptPoliceStation').select2();
             $('#ddlOverseer').select2();
+            $('#ddlGeofenceDistrict').select2();
             $('#ddlGeofenceMukim').select2();
             $('#ddlEMD').select2();
         }
 
     </script>
-    
+
     <script type="text/javascript">
 
         function listSelectedFile(input, previewid) {

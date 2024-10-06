@@ -32,14 +32,10 @@ Public Class AMainMap
         UserID = AdminAuthentication.GetUserData(2)
         SetText()
         SetDeparmentColor()
-        GetEMD()
         ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "initMap();initdashboarddata();initNotifications();", True)
     End Sub
 
     Private Sub SetText()
-        'popup subject
-        'btnPAcknowledge.Text = GetText("Acknowledge")
-        'btnPCancel.Text = GetText("Close")
         hfConfirm.Value = GetText("MsgConfirm")
     End Sub
 
@@ -50,32 +46,57 @@ Public Class AMainMap
         dvCawanganKhas.Attributes.CssStyle.Add("Background-Color", UtilityManager.GetDeptColor(4))
     End Sub
 
-    Private Sub GetEMD()
-        ddlEMD.DataSource = EMDDeviceManager.GetDeviceList(-1, "", "", "Y")
-        ddlEMD.DataTextField = "fldName"
-        ddlEMD.DataValueField = "fldID"
-        ddlEMD.DataBind()
-        ddlEMD.Items.Insert(0, New ListItem(GetText("All"), -1))
-        ddlEMD.SelectedIndex = 0
+    Protected Sub rptActiveEMD_ItemCreated(sender As Object, e As RepeaterItemEventArgs)
+        If e.Item.ItemType = ListItemType.Item OrElse e.Item.ItemType = ListItemType.AlternatingItem Then
+            Dim scriptManager As ScriptManager = ScriptManager.GetCurrent(Me)
+            Dim lbtEMDList As LinkButton = e.Item.FindControl("lbtEMDList")
+            scriptManager.RegisterAsyncPostBackControl(lbtEMDList)
+        End If
     End Sub
 
-    Protected Sub ddlEMD_SelectedIndexChanged(sender As Object, e As EventArgs)
-        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "fetchAndUpdateMarkers(true);", True)
+    Protected Sub rptActiveEMD_ItemCommand(source As Object, e As RepeaterCommandEventArgs)
+        If e.CommandName.Equals("showlist") Then
+            lblActiveEMDListTitle.Text = GetText("ActiveEMD") & " - " & PoliceStationManager.GetDepartmentName(e.CommandArgument)
+            rptActiveEMDList.DataSource = EMDDeviceManager.GetActiveDeviceList(e.CommandArgument)
+            rptActiveEMDList.DataBind()
+            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#dvActiveEMDList').modal('show');", True)
+        End If
     End Sub
 
-    'Protected Sub btnPAcknowledge_Click(sender As Object, e As EventArgs)
-    '    UserIsAuthenticated()
-    '    If EMDDeviceManager.AcknowledgeAlertNotification(hfAlertID.Value, AdminAuthentication.GetUserData(2), txtPRemark.Text) Then
-    '        UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE VIOLATION ALERT", "Alert ID: " & hfAlertID.Value, "")
-    '        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');getModalData(" & hfAlertID.Value & ");CloseToastr(" & hfAlertID.Value & ");", True)
-    '    Else
-    '        ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("ErrorUpdateFailed") & "');getModalData(" & hfAlertID.Value & ");", True)
-    '    End If
-    'End Sub
+    Protected Sub lbtActiveEMD_Click(sender As Object, e As EventArgs)
+        rptActiveEMD.DataSource = EMDDeviceManager.CountActiveEMDList_ByDept()
+        rptActiveEMD.DataBind()
+        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#dvActiveEMD').modal('show');", True)
+    End Sub
 
-    'Protected Sub btnPCancel_Click(sender As Object, e As EventArgs)
-    '    ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#plAcknowledge').modal('hide');", True)
-    'End Sub
+    Protected Sub lbtInactiveEMD_Click(sender As Object, e As EventArgs)
+        Dim datatable As DataTable = EMDDeviceManager.GetInactiveDeviceList(-1)
+        rptInactiveEMDList.DataSource = datatable
+        rptInactiveEMDList.DataBind()
+        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#dvInactiveEMDList').modal('show');", True)
+    End Sub
 
+    Protected Sub lbtViolateTermsList_Click(sender As Object, e As EventArgs)
+        Dim datatable As DataTable = New DataTable
+        If sender.CommandArgument.Equals("jenayah_alert") Then
+            lblViolateTermsTitle.Text = GetText("ViolateTerms") & " - " & PoliceStationManager.GetDepartmentName(1)
+            datatable = AlertManager.CountAlertGroup(-1, -1, 1, 0, "", -1)
+        ElseIf sender.CommandArgument.Equals("komersil_alert") Then
+            lblViolateTermsTitle.Text = GetText("ViolateTerms") & " - " & PoliceStationManager.GetDepartmentName(2)
+            datatable = AlertManager.CountAlertGroup(-1, -1, 2, 0, "", -1)
+        ElseIf sender.CommandArgument.Equals("narkotik_alert") Then
+            lblViolateTermsTitle.Text = GetText("ViolateTerms") & " - " & PoliceStationManager.GetDepartmentName(3)
+            datatable = AlertManager.CountAlertGroup(-1, -1, 3, 0, "", -1)
+        ElseIf sender.CommandArgument.Equals("cawangankhas_alert") Then
+            lblViolateTermsTitle.Text = GetText("ViolateTerms") & " - " & PoliceStationManager.GetDepartmentName(4)
+            datatable = AlertManager.CountAlertGroup(-1, -1, 4, 0, "", -1)
+        Else
+            lblViolateTermsTitle.Text = GetText("ViolateTerms")
+            datatable = AlertManager.CountAlertGroup(-1, -1, -1, 0, "", -1)
+        End If
+        rptTotal_Alert.DataSource = datatable
+        rptTotal_Alert.DataBind()
+        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "$('#dvViolateTermsList').modal('show');", True)
+    End Sub
 #End Region
 End Class

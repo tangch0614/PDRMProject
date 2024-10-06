@@ -127,6 +127,8 @@
         let markercluster;
         let focusmarker = true;
         let isUserInteracting = false;
+        let fetchmarker;
+        let fetchalert;
 
         async function initMap() {
             // Request needed libraries.
@@ -154,8 +156,6 @@
             });
 
             //initMarkers(locations)
-            fetchAndUpdateMarkers(focusmarker);
-            setInterval(() => fetchAndUpdateMarkers(focusmarker), 5000); // Fetch and update every 10 seconds
         }
 
         // Fetch marker data from server
@@ -187,12 +187,9 @@
                         document.getElementById("txtBeltStatus").innerHTML = data.beltstatus;
                         document.getElementById("txtSpeed").innerHTML = data.speed;
                     } else {
-                        document.getElementById("txtIMEI").innerHTML = "";
-                        document.getElementById("imgGSMStatus").innerHTML = "";
-                        document.getElementById("txtGPSStatus").innerHTML = "";
-                        document.getElementById("txtBatteryStatus").innerHTML = "";
-                        document.getElementById("txtBeltStatus").innerHTML = "";
-                        document.getElementById("txtSpeed").innerHTML = "";
+                        alert('No result');
+                        stopFetchingMarkers();
+
                     }
                 } catch (error) {
                     alert('Error fetching EMD data.');
@@ -213,13 +210,15 @@
         function getInfoWindowContent(location) {
             var content = "<div><table>" +
                 "<tr><td>IMEI</td><td>: " + location.imei + "</td></tr>" +
-                "<tr><td>DateTime</td><td>: " + location.datetime + "</td></tr>" +
-                "<tr><td>GPS Status</td><td>: " + location.locstatus + "</td></tr>" +
-                "<tr><td>GSM</td><td>: <img src='../assets/img/" + location.gsm + "'/></td></tr>" +
-                "<tr><td>Battery</td><td>: " + location.battery + "</td></tr>" +
-                "<tr><td>Belt Status</td><td>: " + location.beltstatus + "</td></tr>" +
-                "<tr><td>Alarm</td><td>: " + location.alarm + "</td></tr>" +
-                "<tr><td>Speed</td><td>: " + location.speed +
+                "<tr><td><%=GetText("Date")%></td><td>: " + location.datetime + "</td></tr>" +
+                "<tr><td><%=GetText("Latitude")%></td><td>: " + location.lat + "</td></tr>" +
+                "<tr><td><%=GetText("Longitude")%></td><td>: " + location.lng + "</td></tr>" +
+                "<tr><td><%=GetText("GPSStatus")%></td><td>: " + location.locstatus + "</td></tr>" +
+                "<tr><td><%=GetText("GSMSignal")%></td><td>: <img src='../assets/img/" + location.gsm + "'/></td></tr>" +
+                "<tr><td><%=GetText("Battery")%></td><td>: " + location.battery + "</td></tr>" +
+                "<tr><td><%=GetText("BeltStatus")%></td><td>: " + location.beltstatus + "</td></tr>" +
+                "<tr><td><%=GetText("Alarm")%></td><td>: " + location.alarm + "</td></tr>" +
+                "<tr><td><%=GetText("Speed")%></td><td>: " + location.speed +
                 "</table></div>"
             return content;
         }
@@ -248,6 +247,23 @@
                     marker.content = pinElement.element;
                 }
 
+                //show geofence
+                if (currentGeofence) {
+                    currentGeofence.setMap(null);
+                }
+                if (location.geofence != '') {
+                    currentGeofence = new google.maps.Polygon({
+                        paths: JSON.parse(location.geofence),
+                        strokeColor: "#FF0000",
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: "#FF0000",
+                        fillOpacity: 0.35,
+                        editable: false,
+                    });
+                    currentGeofence.setMap(map);
+                }
+
                 updateMarkerClickListener(marker, location, InfoWindow, AdvancedMarkerElement, PinElement);
 
                 // If this marker's info window is currently open, update the content
@@ -255,13 +271,6 @@
                     const newContent = getInfoWindowContent(location);
                     currentInfoWindow.setContent('');
                     currentInfoWindow.setContent(newContent);
-
-                    //show geofence
-                    if (currentGeofence) {
-                        if (location.geofence != '') {
-                            currentGeofence.setPath(JSON.parse(location.geofence));
-                        }
-                    }
                 }
 
                 if (setcenter == true) {
@@ -327,13 +336,6 @@
 
             });
 
-            infoWindow.addListener('closeclick', function () {
-                // Remove the polygon from the map when the InfoWindow is closed
-                if (currentGeofence) {
-                    currentGeofence.setMap(null);
-                }
-            });
-
             map.setCenter(marker.position);
             map.setZoom(15);
         }
@@ -358,10 +360,40 @@
             });
         }
 
+        function startFetchingMarkers() {
+            focusmarker = true;
+            fetchAndUpdateMarkers(focusmarker);
+            if (fetchmarker) {
+                clearInterval(fetchmarker); // Clear the interval to stop repeated fetching
+                fetchmarker = null;
+            }
+            fetchmarker = setInterval(() => fetchAndUpdateMarkers(focusmarker), 5000); // Fetch and update every 10 seconds
+        }
+
+        function stopFetchingMarkers() {
+            if (fetchmarker) {
+                clearInterval(fetchmarker); // Clear the interval to stop repeated fetching
+                fetchmarker = null;
+            }
+            // Clear marker data and reset UI elements
+            clearMarkers();
+            document.getElementById("txtIMEI").innerHTML = "";
+            document.getElementById("imgGSMStatus").src = "";
+            document.getElementById("txtGPSStatus").innerHTML = "";
+            document.getElementById("txtBatteryStatus").innerHTML = "";
+            document.getElementById("txtBeltStatus").innerHTML = "";
+            document.getElementById("txtSpeed").innerHTML = "";
+        }
+
         function clearMarkers() {
             if (marker) {
                 marker.setMap(null);
             }
+            marker = null;
+            if (currentGeofence) {
+                currentGeofence.setMap(null);
+            }
+            currentGeofence = null;
         }
 
     </script>
@@ -448,6 +480,9 @@
                     }
                 });
             }
+            else {
+
+            }
         }
 
         var currentAudio = null;
@@ -473,10 +508,23 @@
             }
         }
 
-        function initNotifications() {
+        function startFetchingNotifications() {
             fetchNotifications();
-            setInterval(fetchNotifications, 5000); // 10 seconds
+            if (fetchalert) {
+                clearInterval(fetchalert); // Clear the interval to stop repeated fetching
+                fetchalert = null;
+            }
+            fetchalert = setInterval(fetchNotifications, 5000); // 10 seconds
         }
+
+        function stopFetchingNotifications() {
+            if (fetchalert) {
+                clearInterval(fetchalert); // Clear the interval to stop repeated fetching
+                fetchalert = null;
+            }
+            cleartoastr();
+        }
+
     </script>
 
     <script type="text/javascript">
@@ -558,7 +606,7 @@
                                                         <asp:Label runat="server" ID="txtOverseerName"></asp:Label>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr runat="server" visible="false">
                                                     <td><%=GetText("PoliceIDNo")%></td>
                                                     <td class="bold">
                                                         <asp:Label runat="server" ID="txtPoliceNo"></asp:Label>
@@ -571,21 +619,33 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><%=GetText("PoliceStation")%></td>
-                                                    <td class="bold">
-                                                        <asp:Label runat="server" ID="txtPoliceStation"></asp:Label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <td><%=GetText("Department")%></td>
                                                     <td class="bold">
                                                         <asp:Label runat="server" ID="txtDepartment"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><%=GetText("PoliceStation").Replace("vITEM", GetText("ContactNum")) & " 1"%></td>
+                                                    <td><%=GetText("Contingent")%></td>
+                                                    <td class="bold">
+                                                        <asp:Label runat="server" ID="txtIPK"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%=GetText("PoliceStation")%></td>
+                                                    <td class="bold">
+                                                        <asp:Label runat="server" ID="txtPoliceStation"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr runat="server" visible="false">
+                                                    <td><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></td>
                                                     <td class="bold">
                                                         <asp:Label runat="server" ID="txtPSContactNo"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%=GetText("Township")%></td>
+                                                    <td class="bold">
+                                                        <asp:Label runat="server" ID="txtMukim"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>

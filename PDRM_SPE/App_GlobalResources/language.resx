@@ -144,8 +144,14 @@
   <data name="AcknowledgeDateTime" xml:space="preserve">
     <value>Acknowledged Date Time</value>
   </data>
+  <data name="ActionTaken" xml:space="preserve">
+    <value>Action Taken</value>
+  </data>
   <data name="Activate" xml:space="preserve">
     <value>Activate</value>
+  </data>
+  <data name="ActivateDateTime" xml:space="preserve">
+    <value>Activate Date Time</value>
   </data>
   <data name="Activation" xml:space="preserve">
     <value>Activation</value>
@@ -205,8 +211,14 @@
   <data name="Alert" xml:space="preserve">
     <value>Alert</value>
   </data>
+  <data name="AlertDateTime" xml:space="preserve">
+    <value>Alert Date Time</value>
+  </data>
   <data name="AlertNotificationList" xml:space="preserve">
     <value>Alert List</value>
+  </data>
+  <data name="AlertReport" xml:space="preserve">
+    <value>Alert Report</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>All</value>
@@ -277,11 +289,20 @@
   <data name="Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="ClosingBy" xml:space="preserve">
+    <value>Closing By</value>
+  </data>
   <data name="CompanyInfo" xml:space="preserve">
     <value>Company Information</value>
   </data>
+  <data name="CompleteBy" xml:space="preserve">
+    <value>Completed By</value>
+  </data>
   <data name="Completed" xml:space="preserve">
     <value>Completed</value>
+  </data>
+  <data name="CompleteDateTime" xml:space="preserve">
+    <value>Completed Date Time</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm New Password</value>
@@ -294,6 +315,9 @@
   </data>
   <data name="Contingent" xml:space="preserve">
     <value>Contingent</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Count</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
@@ -312,6 +336,9 @@
   </data>
   <data name="Current" xml:space="preserve">
     <value>Current</value>
+  </data>
+  <data name="CurrentAlertList" xml:space="preserve">
+    <value>Current Alert List</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Current Password</value>
@@ -580,6 +607,9 @@
   <data name="Failed" xml:space="preserve">
     <value>Failed</value>
   </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
@@ -588,6 +618,9 @@
   </data>
   <data name="FileUpload" xml:space="preserve">
     <value>File Upload</value>
+  </data>
+  <data name="FirstResponder" xml:space="preserve">
+    <value>First Responder</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Forgot password?</value>
@@ -603,6 +636,9 @@
   </data>
   <data name="FullBody" xml:space="preserve">
     <value>Full Body</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
   </data>
   <data name="GeneratedDateTime" xml:space="preserve">
     <value>Generated Date Time</value>
@@ -685,6 +721,9 @@
   <data name="InstallationRequestList" xml:space="preserve">
     <value>Installation Request List</value>
   </data>
+  <data name="InstallationTime" xml:space="preserve">
+    <value>Installation Time</value>
+  </data>
   <data name="Inventory" xml:space="preserve">
     <value>Inventory</value>
   </data>
@@ -694,17 +733,26 @@
   <data name="IPDList" xml:space="preserve">
     <value>IPD List</value>
   </data>
+  <data name="IPK" xml:space="preserve">
+    <value>Contingent</value>
+  </data>
   <data name="IPKList" xml:space="preserve">
-    <value>IPK List</value>
+    <value>Contingent List</value>
   </data>
   <data name="Item" xml:space="preserve">
     <value>Item</value>
+  </data>
+  <data name="ItemDetails" xml:space="preserve">
+    <value>vITEM Details</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Last Login</value>
+  </data>
+  <data name="LastResponder" xml:space="preserve">
+    <value>Last Responder</value>
   </data>
   <data name="LatestNews" xml:space="preserve">
     <value>Latest News</value>
@@ -772,6 +820,9 @@
   </data>
   <data name="Maintenance" xml:space="preserve">
     <value>Maintenance</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
   </data>
   <data name="ManageActs" xml:space="preserve">
     <value>Manage Acts</value>
@@ -974,6 +1025,9 @@
   <data name="NetworkInfo" xml:space="preserve">
     <value>Network Information</value>
   </data>
+  <data name="NewAlertList" xml:space="preserve">
+    <value>New Alert List</value>
+  </data>
   <data name="NewImage" xml:space="preserve">
     <value>New Image</value>
   </data>
@@ -1082,6 +1136,9 @@
   <data name="Out" xml:space="preserve">
     <value>Out</value>
   </data>
+  <data name="Out Of Geofence" xml:space="preserve">
+    <value>Out of Geofence</value>
+  </data>
   <data name="Overseer" xml:space="preserve">
     <value>Overseer</value>
   </data>
@@ -1108,6 +1165,9 @@
   </data>
   <data name="PasswordRecovery" xml:space="preserve">
     <value>Password Recovery</value>
+  </data>
+  <data name="PastAlertList" xml:space="preserve">
+    <value>Alert History</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>
@@ -1138,9 +1198,6 @@
   </data>
   <data name="PoliceStation" xml:space="preserve">
     <value>Police Station</value>
-  </data>
-  <data name="PoliceStationInfo" xml:space="preserve">
-    <value>Police Station Details</value>
   </data>
   <data name="PoliceStationItem" xml:space="preserve">
     <value>Police Station vITEM</value>
@@ -1208,6 +1265,9 @@
   <data name="Remark" xml:space="preserve">
     <value>Remark</value>
   </data>
+  <data name="RemarkHistory" xml:space="preserve">
+    <value>Remark History</value>
+  </data>
   <data name="Report" xml:space="preserve">
     <value>Report</value>
   </data>
@@ -1262,8 +1322,14 @@
   <data name="SelfReportTime" xml:space="preserve">
     <value>Self-Report Time</value>
   </data>
+  <data name="SerialNum" xml:space="preserve">
+    <value>Serial No.</value>
+  </data>
   <data name="ServiceHour" xml:space="preserve">
     <value>Office Hour</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Severity</value>
   </data>
   <data name="Show" xml:space="preserve">
     <value>Show</value>
@@ -1280,6 +1346,9 @@
   <data name="SIMNo" xml:space="preserve">
     <value>SIM No.</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
   <data name="SortBy" xml:space="preserve">
     <value>Sort By</value>
   </data>
@@ -1289,14 +1358,17 @@
   <data name="South" xml:space="preserve">
     <value>South</value>
   </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
   <data name="State" xml:space="preserve">
     <value>State</value>
   </data>
+  <data name="StateContingent" xml:space="preserve">
+    <value>State Contingent</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>
-  <data name="SubjectInfo" xml:space="preserve">
-    <value>Subject Details</value>
   </data>
   <data name="SubjectItem" xml:space="preserve">
     <value>Subject vITEM</value>
@@ -1417,6 +1489,9 @@
   </data>
   <data name="Verify" xml:space="preserve">
     <value>Verify</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>Verify Date Time</value>
   </data>
   <data name="VerifyStatus" xml:space="preserve">
     <value>Verification Status</value>

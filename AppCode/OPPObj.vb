@@ -11,6 +11,7 @@ NameSpace BusinessObject
 		Private _fldID As Long
 		Private _fldRefID As String = String.Empty
 		Private _fldName As String = String.Empty
+		Private _fldGender As String = String.Empty
 		Private _fldICNo As String = String.Empty
 		Private _fldContactNo As String = String.Empty
 		Private _fldPhoto1 As String = String.Empty
@@ -20,6 +21,8 @@ NameSpace BusinessObject
 		Private _fldState As String = String.Empty
 		Private _fldDistrict As String = String.Empty
 		Private _fldMukim As String = String.Empty
+		Private _fldIPKID As Long
+		Private _fldIPDID As Long
 		Private _fldPoliceStationID As Long
 		Private _fldDeptID As String = String.Empty
 		Private _fldOffenceDesc As String = String.Empty
@@ -67,11 +70,14 @@ NameSpace BusinessObject
 		Private _fldGeofence2 As String = String.Empty
 		Private _fldGeofence2FrTime As String = String.Empty
 		Private _fldGeofence2ToTime As String = String.Empty
+		Private _fldGeofenceDistrict As String = String.Empty
 		Private _fldGeofenceMukim As String = String.Empty
+		Private _fldGeofenceMukimID As Integer = 0
 		Private _fldAttachment1 As String = String.Empty
 		Private _fldAttachment2 As String = String.Empty
 		Private _fldRemark As String = String.Empty
 		Private _fldStatus As String = "Y"
+		Private _fldActivateDateTime As DateTime = DateTime.MinValue
 		Private _fldVerifyStatus As String = "P"
 		Private _fldVerifyDateTime As DateTime = DateTime.MinValue
 		Private _fldVerifyBy As Long = 0
@@ -94,6 +100,14 @@ NameSpace BusinessObject
 			End Get
 			Set
 				_fldName = Value
+			End Set
+		End Property
+		Public Property fldGender As String
+			Get
+				Return _fldGender
+			End Get
+			Set(value As String)
+				_fldGender = value
 			End Set
 		End Property
 		Public Property fldICNo() As String
@@ -158,6 +172,22 @@ NameSpace BusinessObject
 			End Get
 			Set
 				_fldMukim = Value
+			End Set
+		End Property
+		Public Property fldIPKID() As Long
+			Get
+				Return _fldIPKID
+			End Get
+			Set
+				_fldIPKID = Value
+			End Set
+		End Property
+		Public Property fldIPDID() As Long
+			Get
+				Return _fldIPDID
+			End Get
+			Set
+				_fldIPDID = Value
 			End Set
 		End Property
 		Public Property fldPoliceStationID() As Long
@@ -633,6 +663,34 @@ NameSpace BusinessObject
 				_fldGeoFenceActive = value
 			End Set
 		End Property
+
+		Public Property fldGeofenceDistrict As String
+			Get
+				Return _fldGeofenceDistrict
+			End Get
+			Set(value As String)
+				_fldGeofenceDistrict = value
+			End Set
+		End Property
+
+		Public Property fldGeofenceMukimID As Integer
+			Get
+				Return _fldGeofenceMukimID
+			End Get
+			Set(value As Integer)
+				_fldGeofenceMukimID = value
+			End Set
+		End Property
+
+		Public Property fldActivateDateTime As Date
+			Get
+				Return _fldActivateDateTime
+			End Get
+			Set(value As Date)
+				_fldActivateDateTime = value
+			End Set
+		End Property
+
 
 #End Region
 

@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class AAlertNotificationList
+Partial Public Class AAlertNotificationList_New
 
     '''<summary>
     '''lblPageTitle control.

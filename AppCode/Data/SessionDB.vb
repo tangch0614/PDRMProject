@@ -8,6 +8,11 @@ NameSpace DataAccess
 
 #Region "Public Methods"
 
+        Public Shared Function CountLoggedInUser(ByVal myConnection As MySqlConnection) As Integer
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select count(*) from tblsession Where fldUserID>0", myConnection)
+            Return myCommand.ExecuteScalar
+        End Function
+
         Public Shared Function GetItem(ByVal fldID As Long, ByVal myConnection As MySqlConnection) As SessionObj
             Dim mySession As SessionObj = Nothing
             Dim myCommand As MySqlCommand = New MySqlCommand("Select * From tblsession Where fldID = @fldID", myConnection)

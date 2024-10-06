@@ -137,12 +137,14 @@
                 "<tr><td>IMEI</td><td>: " + location.imei + "</td></tr>" +
                 "<tr><td><%=GetText("From") + " " + GetText("DateTime")%></td><td>: " + location.datetime + "</td></tr>" +
                 "<tr><td><%=GetText("To") + " " + GetText("DateTime")%></td><td>: " + location.datetimeto + "</td></tr>" +
+                "<tr><td><%=GetText("Latitude")%></td><td>: " + location.lat + "</td></tr>" +
+                "<tr><td><%=GetText("Longitude")%></td><td>: " + location.lng + "</td></tr>" +
                 "<tr><td><%=GetText("GPSStatus")%></td><td>: " + location.locstatus + "</td></tr>" +
                 "<tr><td><%=GetText("GSMSignal")%></td><td>: <img src='../assets/img/" + location.gsm + "'/></td></tr>" +
                 "<tr><td><%=GetText("Battery")%></td><td>: " + location.battery + "</td></tr>" +
-                "<tr><td>Belt Status</td><td>: " + location.beltstatus + "</td></tr>" +
-                "<tr><td>Alarm</td><td>: " + location.alarm + "</td></tr>" +
-                "<tr><td>Speed</td><td>: " + location.speed +
+                "<tr><td><%=GetText("BeltStatus")%></td><td>: " + location.beltstatus + "</td></tr>" +
+                "<tr><td><%=GetText("Alarm")%></td><td>: " + location.alarm + "</td></tr>" +
+                "<tr><td><%=GetText("Speed")%></td><td>: " + location.speed +
                 "</table></div>"
             return content;
         }
@@ -416,7 +418,7 @@
                                                         <asp:Label runat="server" ID="txtOverseerName"></asp:Label>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr runat="server" visible="false">
                                                     <td><%=GetText("PoliceIDNo")%></td>
                                                     <td class="bold">
                                                         <asp:Label runat="server" ID="txtPoliceNo"></asp:Label>
@@ -429,21 +431,33 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><%=GetText("PoliceStation")%></td>
-                                                    <td class="bold">
-                                                        <asp:Label runat="server" ID="txtPoliceStation"></asp:Label>
-                                                    </td>
-                                                </tr>
-                                                <tr>
                                                     <td><%=GetText("Department")%></td>
                                                     <td class="bold">
                                                         <asp:Label runat="server" ID="txtDepartment"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>
+                                                    <td><%=GetText("Contingent")%></td>
+                                                    <td class="bold">
+                                                        <asp:Label runat="server" ID="txtIPK"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%=GetText("PoliceStation")%></td>
+                                                    <td class="bold">
+                                                        <asp:Label runat="server" ID="txtPoliceStation"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr runat="server" visible="false">
                                                     <td><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></td>
                                                     <td class="bold">
                                                         <asp:Label runat="server" ID="txtPSContactNo"></asp:Label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><%=GetText("Township")%></td>
+                                                    <td class="bold">
+                                                        <asp:Label runat="server" ID="txtMukim"></asp:Label>
                                                     </td>
                                                 </tr>
                                                 <tr>

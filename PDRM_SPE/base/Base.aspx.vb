@@ -66,6 +66,11 @@ Public Class Base
         Return resourseHelper.GetText(key)
     End Function
 
+    Public Shared Function GetTextShared(ByVal key As String) As String
+        Dim resourseHelper As ResourceHelper = New ResourceHelper
+        Return resourseHelper.GetText(key)
+    End Function
+
     Public Function GetResource() As System.Resources.ResourceManager
         Dim resourseHelper As ResourceHelper = New ResourceHelper
         Return resourseHelper.GetResource()

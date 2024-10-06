@@ -9,8 +9,10 @@ Public Class GetData
     Inherits System.Web.UI.Page
 
     Protected Overloads Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        GetEMDHistory(-1, 5, "", "")
+        'GetNotificationData(-1, -1, 0, "test")
+        'GetEMDHistory(-1, 5, "", "")
         'GetMarkers(-1, "", "", "Y")
+        'GetEMDDeviceList("-1", -1, "Y", "Y")
     End Sub
 
 #Region "Notification"
@@ -19,20 +21,46 @@ Public Class GetData
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
     Public Shared Function GetDashboardData() As DashboardData
         Dim data As New DashboardData() With {
-            .active_emd = EMDDeviceManager.CountEMDStatus("Y"),
-            .inactive_emd = EMDDeviceManager.CountEMDStatus("N"),
-            .total_alert = EMDDeviceManager.CountNotification(-1, -1, -1, 0, "", 5),
-            .jenayah_alert = EMDDeviceManager.CountNotification(-1, -1, 1, 0, "", 5),
-            .komersil_alert = EMDDeviceManager.CountNotification(-1, -1, 2, 0, "", 5),
-            .narkotik_alert = EMDDeviceManager.CountNotification(-1, -1, 3, 0, "", 5),
-            .cawangankhas_alert = EMDDeviceManager.CountNotification(-1, -1, 4, 0, "", 5)
+            .login_user = SessionManager.CountLoggedInUser(),
+            .active_emd = EMDDeviceManager.CountActiveEMD(),
+            .inactive_emd = EMDDeviceManager.CountInactiveEMD(),
+            .total_alert = AlertManager.CountAlert(-1, -1, -1, 0, "", -1),
+            .jenayah_alert = AlertManager.CountAlert(-1, -1, 1, 0, "", -1),
+            .komersil_alert = AlertManager.CountAlert(-1, -1, 2, 0, "", -1),
+            .narkotik_alert = AlertManager.CountAlert(-1, -1, 3, 0, "", -1),
+            .cawangankhas_alert = AlertManager.CountAlert(-1, -1, 4, 0, "", -1)
             }
         Return data
     End Function
 
     <WebMethod()>
+    Public Shared Function GetAlertList(processstatus As Integer, severity As String, limit As Integer) As String
+        Dim myDataTable As DataTable = AlertManager.GetAlertList(-1, -1, -1, processstatus, "", severity, "", "", -1, limit, " fldID Desc ")
+        myDataTable.Columns.Add("fldMD5", GetType(String))
+        For i As Integer = 0 To myDataTable.Rows.Count - 1
+            myDataTable.Rows(i)("fldMD5") = UtilityManager.MD5Encrypt(myDataTable.Rows(i)("fldID") & "processalert")
+        Next
+        Dim json As String = JsonConvert.SerializeObject(myDataTable)
+        Dim jArray As JArray = JArray.Parse(json)
+        Dim newArray As JArray = New JArray()
+        For Each jObject As JObject In jArray
+            Dim newJObject As New JObject()
+            For Each prop As JProperty In jObject.Properties()
+                newJObject.Add(prop.Name.ToLower(), prop.Value)
+            Next
+            newArray.Add(newJObject)
+        Next
+        Return newArray.ToString
+    End Function
+
+    <WebMethod()>
+    Public Shared Function GetAlertListCount(processstatus As Integer, severity As String) As Integer
+        Return AlertManager.CountAlert(-1, -1, -1, processstatus, severity, -1)
+    End Function
+
+    <WebMethod()>
     Public Shared Function GetNotificationData(ByVal deviceid As Long, ByVal oppid As Long, ByVal userid As Long, ByVal page As String) As String 'Notify opp page
-        Dim dataTable As DataTable = EMDDeviceManager.GetAlertNotification(-1, deviceid, oppid, "", userid, 0, page, 5, True)
+        Dim dataTable As DataTable = AlertManager.GetAlertNotification(-1, deviceid, oppid, "", userid, 0, page, 5, True)
         dataTable.Columns.Add("fldMD5", GetType(String))
         For i As Integer = 0 To dataTable.Rows.Count - 1
             dataTable.Rows(i)("fldMD5") = UtilityManager.MD5Encrypt(dataTable.Rows(i)("fldID") & "processalert")
@@ -51,23 +79,8 @@ Public Class GetData
         Return newArray.ToString
     End Function
 
-    <WebMethod()>
-    Public Shared Function GetNotificationDetail(ByVal alertid As Long) As String
-        Dim alert As DataTable = EMDDeviceManager.GetAlertNotification(alertid, -1, -1, "", -1, "", -1, -1)
-        Dim json As String = JsonConvert.SerializeObject(alert)
-        Dim jArray As JArray = JArray.Parse(json)
-        Dim newArray As JArray = New JArray()
-        For Each jObject As JObject In jArray
-            Dim newJObject As New JObject()
-            For Each prop As JProperty In jObject.Properties()
-                newJObject.Add(prop.Name.ToLower(), prop.Value)
-            Next
-            newArray.Add(newJObject)
-        Next
-        Return newArray.ToString
-    End Function
-
     Public Class DashboardData
+        Public Property login_user As Integer
         Public Property active_emd As Integer
         Public Property inactive_emd As Integer
         Public Property total_alert As Integer
@@ -87,9 +100,9 @@ Public Class GetData
     Public Shared Function GetEMDHistory(ByVal deviceid As Long, ByVal oppid As Long, ByVal frdatetime As String, ByVal todatetime As String) As List(Of EMDDeviceInfo)
         Dim markers As New List(Of EMDDeviceInfo)()
         Dim dataTable As DataTable = EMDDeviceManager.GetDeviceHistoryFiltered(deviceid, oppid, "", frdatetime, todatetime)
-        If dataTable Is Nothing OrElse dataTable.Rows.Count = 0 Then
-            dataTable = EMDDeviceManager.GetDeviceHistory(deviceid, oppid, "", frdatetime, todatetime, 180)
-        End If
+        'If dataTable Is Nothing OrElse dataTable.Rows.Count = 0 Then
+        '    dataTable = EMDDeviceManager.GetDeviceHistory(deviceid, oppid, "", frdatetime, todatetime, 180)
+        'End If
         ' Convert the DataTable to JSON
         Dim base As New Base
         For i As Integer = 0 To dataTable.Rows.Count - 1
@@ -161,10 +174,10 @@ Public Class GetData
     <WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
     Public Shared Function GetEMDDeviceInfo(ByVal deviceid As Long, ByVal oppid As Long) As EMDDeviceInfo
-        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, oppid, "", "", "", "", "")
+        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, oppid, -1, "", "", "", "", "", "", "", "")
         Dim base As New Base
         If Not datatable Is Nothing AndAlso datatable.Rows.Count > 0 Then
-            If Not String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLat")) AndAlso Not String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLong")) Then
+            If Not String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLat")) AndAlso Not String.IsNullOrWhiteSpace(datatable.Rows(0)("fldRLong")) AndAlso CInt(datatable.Rows(0)("fldInit")) = 1 Then
                 Dim statusarr As Array = CStr(datatable.Rows(0)("fldDeviceStatus")).ToCharArray
                 Dim deviceinfo As New EMDDeviceInfo() With {
                     .emdid = datatable.Rows(0)("fldID"),
@@ -194,12 +207,12 @@ Public Class GetData
 
     <WebMethod()>
     <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
-    Public Shared Function GetMarkers(ByVal deviceid As Long, ByVal imei As String, ByVal simno As String, ByVal status As String) As List(Of EMDDeviceInfo)
+    Public Shared Function GetEMDDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal devicestatus As String, ByVal oppstatus As String) As List(Of EMDDeviceInfo)
         Dim markers As New List(Of EMDDeviceInfo)()
-        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, -1, imei, "", simno, "", status)
+        Dim datatable As DataTable = EMDDeviceManager.GetDeviceList(deviceid, oppid, -1, "", "", "", "", "", "", devicestatus, oppstatus)
         Dim base As New Base
         For i As Integer = 0 To datatable.Rows.Count - 1
-            If Not String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLat")) AndAlso Not String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLong")) Then
+            If Not String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLat")) AndAlso Not String.IsNullOrWhiteSpace(datatable.Rows(i)("fldRLong")) AndAlso CInt(datatable.Rows(i)("fldInit")) = 1 Then
                 Dim statusarr As Array = CStr(datatable.Rows(i)("fldDeviceStatus")).ToCharArray
                 Dim marker As New EMDDeviceInfo() With {
                     .emdid = datatable.Rows(i)("fldID"),

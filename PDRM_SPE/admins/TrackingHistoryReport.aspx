@@ -487,6 +487,12 @@
                                         <th>
                                             <%#GetText("Alert")%>
                                         </th>
+                                        <th>
+                                            <%#GetText("FirstResponder")%>
+                                        </th>
+                                        <th>
+                                            <%#GetText("LastResponder")%>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -497,10 +503,16 @@
                                         <%#Container.ItemIndex + 1%>
                                     </td>
                                     <td>
-                                        <%#Eval("fldDatetime", "{0:yyyy-MM-dd hh:mm:ss tt}")%>
+                                        <%#Eval("fldDatetime", "{0:yyyy-MM-dd HH:mm:ss}")%>
                                     </td>
                                     <td>
-                                        <%#Eval("fldmsg")%>
+                                        <%#Eval("fldmsg").toupper%>
+                                    </td>
+                                    <td>
+                                        <%#Eval("fldprocessbyname")%>
+                                    </td>
+                                    <td>
+                                        <%#Eval("fldlastprocessbyname")%>
                                     </td>
                                 </tr>
                             </ItemTemplate>
@@ -573,7 +585,7 @@
                                         <%#Container.ItemIndex + 1%>
                                     </td>
                                     <td>
-                                        <%#Eval("fldDeviceDatetime", "{0:yyyy-MM-dd hh:mm:ss tt}")%>
+                                        <%#Eval("fldDeviceDatetime", "{0:yyyy-MM-dd HH:mm:ss}")%>
                                     </td>
                                     <td>
                                         <%#Eval("fldimei")%>

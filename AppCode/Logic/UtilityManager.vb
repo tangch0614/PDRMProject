@@ -345,6 +345,24 @@ Namespace BusinessLogic
             Return sb.ToString()
         End Function
 
+        Public Shared Function EscapeSQLString(ByVal input As String) As String
+            If input Is Nothing Then
+                Return ""
+            End If
+            Dim escapedString As String = input
+            escapedString = escapedString.Replace("\", "\\") ' Escape backslashes
+            escapedString = escapedString.Replace("'", "\'") ' Escape single quotes
+            escapedString = escapedString.Replace("""", "\""") ' Escape double quotes
+            escapedString = escapedString.Replace("\x00", "\\0") ' Escape null byte
+            escapedString = escapedString.Replace("\n", "\\n") ' Escape newline
+            escapedString = escapedString.Replace("\r", "\\r") ' Escape carriage return
+            escapedString = escapedString.Replace("\x1a", "\\Z") ' Escape ASCII 26 (EOF)
+            escapedString = escapedString.Replace("%", "\%") ' Escape % wildcard in LIKE
+            escapedString = escapedString.Replace(";", "\;") ' Escape ; end of query
+            escapedString = escapedString.Replace("*", "\*") ' Escape *
+            Return escapedString
+        End Function
+
         Public Shared Function EscapeFileName(ByVal fileName As String) As String
             ' Define a pattern for invalid characters
             Dim invalidCharsPattern As String = "[" & Regex.Escape("\/:*?""'<>|") & "]"

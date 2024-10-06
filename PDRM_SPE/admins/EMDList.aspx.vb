@@ -34,12 +34,16 @@ Public Class AEMDList
         'Search
         lblSImei.Text = GetText("Imei")
         lblSName.Text = GetText("Marking")
+        lblSSN.Text = GetText("SerialNum")
+        lblSSize.Text = GetText("Size")
         lblSStatus.Text = GetText("Status")
         btnSearch.Text = GetText("Search")
         btnSReset.Text = GetText("Reset")
         'details
         lblImei.Text = GetText("Imei")
         lblName.Text = GetText("Marking")
+        lblSN.Text = GetText("SerialNum")
+        lblSize.Text = GetText("Size")
         'rfvName.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Name"))
         lblSimNo.Text = GetText("SIMNo")
         'rfvSimNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("SIMNo"))
@@ -52,6 +56,7 @@ Public Class AEMDList
         btnReset.Text = GetText("Reset")
         btnSubmit.Text = GetText("Update")
         hfConfirm.Value = GetText("MsgConfirmItem").Replace("vITEM", GetText("Update").ToLower)
+        hfConfirm2.Value = GetText("MsgConfirm")
         ValidationSummary1.HeaderText = GetText("ErrorPageInvalid")
     End Sub
 
@@ -60,8 +65,26 @@ Public Class AEMDList
 #Region "Initialize"
 
     Private Sub Initialize()
+        GetSize()
         GetStatus()
         BindTable()
+    End Sub
+
+    Private Sub GetSize()
+        ddlSize.Items.Add(New ListItem(1, 1, True))
+        ddlSize.Items.Add(New ListItem(2, 2, True))
+        ddlSize.Items.Add(New ListItem(3, 3, True))
+        ddlSize.Items.Add(New ListItem(4, 4, True))
+        ddlSize.Items.Add(New ListItem(5, 5, True))
+        ddlSize.SelectedIndex = 0
+
+        ddlSSize.Items.Add(New ListItem(GetText("All"), "", True))
+        ddlSSize.Items.Add(New ListItem(1, 1, True))
+        ddlSSize.Items.Add(New ListItem(2, 2, True))
+        ddlSSize.Items.Add(New ListItem(3, 3, True))
+        ddlSSize.Items.Add(New ListItem(4, 4, True))
+        ddlSSize.Items.Add(New ListItem(5, 5, True))
+        ddlSSize.SelectedIndex = 0
     End Sub
 
     Private Sub GetStatus()
@@ -80,7 +103,7 @@ Public Class AEMDList
 #Region "Table binding"
 
     Private Sub BindTable()
-        Dim myDataTable As DataTable = EMDDeviceManager.GetDeviceList(-1, -1, txtSImei.Text, txtSName.Text, "", "", ddlSStatus.SelectedValue)
+        Dim myDataTable As DataTable = EMDDeviceManager.GetDeviceList(-1, -1, -1, txtSImei.Text, txtSName.Text, txtSSN.Text, ddlSSize.selectedValue, "", "", ddlSStatus.SelectedValue, "")
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptTable.DataSource = myDataTable
             rptTable.DataBind()
@@ -122,14 +145,17 @@ Public Class AEMDList
 
     Private Sub GetDeviceData(ByVal device As EMDDeviceObj)
         txtImei.Text = device.fldImei
+        txtSN.Text = device.fldSN
         txtSimNo.Text = device.fldSimNo
         txtSimNo2.Text = device.fldSimNo2
         txtName.Text = device.fldName
+        Try
+            ddlSize.SelectedValue = device.fldSize
+        Catch
+            ddlSize.SelectedIndex = 0
+        End Try
         'ddlStatus.SelectedValue = device.fldStatus
     End Sub
-#End Region
-
-#Region "Search"
 
     Protected Sub btnSearch_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
@@ -160,6 +186,15 @@ Public Class AEMDList
         Return True
     End Function
 
+    Private Function VerifySerialNum(ByVal device As EMDDeviceObj, ByVal serialno As String, ByVal errormsg As Boolean, ByRef msg As String)
+        If Not String.IsNullOrWhiteSpace(serialno) AndAlso Not device.fldSN.Equals(serialno) AndAlso EMDDeviceManager.VerifySerialNum(serialno) > 0 Then
+            msg = GetText("ErrorDuplicateItem").Replace("vITEM", GetText("SerialNum"))
+            If errormsg Then ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & msg & "');", True)
+            Return False
+        End If
+        Return True
+    End Function
+
     Private Function VerifySIMNo(ByVal device As EMDDeviceObj, ByVal simno As String, ByVal errormsg As Boolean, ByRef msg As String)
         If Not String.IsNullOrWhiteSpace(simno) AndAlso Not device.fldSimNo.Equals(simno) AndAlso EMDDeviceManager.VerifySimNo(simno) > 0 Then
             msg = GetText("ErrorDuplicateItem").Replace("vITEM", GetText("SIMNo"))
@@ -181,6 +216,10 @@ Public Class AEMDList
             result = False
             errorMsg &= msg & "\n"
         End If
+        If Not VerifySerialNum(device, txtSN.Text, False, msg) Then
+            result = False
+            errorMsg &= msg & "\n"
+        End If
         'If Not VerifySIMNo(device, txtSimNo.Text, False, msg) Then
         '    result = False
         '    errorMsg &= msg & "\n"
@@ -199,6 +238,8 @@ Public Class AEMDList
         UserIsAuthenticated()
         Dim device As EMDDeviceObj = EMDDeviceManager.GetDevice(DeviceID)
         If Not device Is Nothing AndAlso PageValid(device) Then
+            device.fldSN = txtSN.Text
+            device.fldSize = ddlSize.SelectedValue
             device.fldSimNo = txtSimNo.Text
             device.fldSimNo2 = txtSimNo2.Text
             device.fldName = txtName.Text
@@ -219,7 +260,10 @@ Public Class AEMDList
 
     Protected Sub btnSReset_Click(sender As Object, e As EventArgs)
         txtSImei.Text = ""
+        txtSName.Text = ""
+        txtSSN.Text = ""
         ddlSStatus.SelectedIndex = 0
+        ddlSize.SelectedIndex = 0
         rptTable.DataSource = ""
         rptTable.DataBind()
         plUpdate.Visible = False

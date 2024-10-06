@@ -12,6 +12,8 @@ NameSpace BusinessObject
 		Private _fldDateTime As DateTime = DateTime.MinValue
 		Private _fldName As String = String.Empty
 		Private _fldImei As String = String.Empty
+		Private _fldSN As String = String.Empty
+		Private _fldSize As String = String.Empty
 		Private _fldSimNo As String = String.Empty
 		Private _fldSimNo2 As String = String.Empty
 		Private _fldLastPing As DateTime = DateTime.MinValue
@@ -103,14 +105,22 @@ NameSpace BusinessObject
 				_fldSimNo2 = value
 			End Set
 		End Property
-
-
-
-
-
-
-
-
+		Public Property fldSN As String
+			Get
+				Return _fldSN
+			End Get
+			Set(value As String)
+				_fldSN = value
+			End Set
+		End Property
+		Public Property fldSize As String
+			Get
+				Return _fldSize
+			End Get
+			Set(value As String)
+				_fldSize = value
+			End Set
+		End Property
 
 #End Region
 

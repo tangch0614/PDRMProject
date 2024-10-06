@@ -95,15 +95,6 @@ Partial Public Class AAlertInfo
     Protected WithEvents txtSubjectContactNo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPoliceStation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPoliceStation As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtDepartment control.
     '''</summary>
     '''<remarks>
@@ -113,6 +104,15 @@ Partial Public Class AAlertInfo
     Protected WithEvents txtDepartment As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''txtPoliceStation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPoliceStation As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtPSContactNo control.
     '''</summary>
     '''<remarks>
@@ -120,6 +120,15 @@ Partial Public Class AAlertInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPSContactNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtMukim control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtMukim As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtOverseer control.
@@ -167,6 +176,33 @@ Partial Public Class AAlertInfo
     Protected WithEvents txtDateTime As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''trRemarkHist control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents trRemarkHist As Global.System.Web.UI.HtmlControls.HtmlTableRow
+
+    '''<summary>
+    '''txtRemarkHist control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtRemarkHist As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''trRemark control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents trRemark As Global.System.Web.UI.HtmlControls.HtmlTableRow
+
+    '''<summary>
     '''txtRemark control.
     '''</summary>
     '''<remarks>
@@ -194,6 +230,42 @@ Partial Public Class AAlertInfo
     Protected WithEvents txtAcknowledgeDateTime As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''trCompleteBy control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents trCompleteBy As Global.System.Web.UI.HtmlControls.HtmlTableRow
+
+    '''<summary>
+    '''txtCompleteByID control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCompleteByID As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''trCompleteDateTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents trCompleteDateTime As Global.System.Web.UI.HtmlControls.HtmlTableRow
+
+    '''<summary>
+    '''txtCompleteDateTime control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtCompleteDateTime As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''btnAcknowledge control.
     '''</summary>
     '''<remarks>
@@ -201,6 +273,15 @@ Partial Public Class AAlertInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAcknowledge As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''btnCompleted control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCompleted As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''btnCancel control.

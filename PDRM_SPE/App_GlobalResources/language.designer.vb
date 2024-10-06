@@ -146,11 +146,29 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Action Taken.
+        '''</summary>
+        Friend Shared ReadOnly Property ActionTaken() As String
+            Get
+                Return ResourceManager.GetString("ActionTaken", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Activate.
         '''</summary>
         Friend Shared ReadOnly Property Activate() As String
             Get
                 Return ResourceManager.GetString("Activate", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Activate Date Time.
+        '''</summary>
+        Friend Shared ReadOnly Property ActivateDateTime() As String
+            Get
+                Return ResourceManager.GetString("ActivateDateTime", resourceCulture)
             End Get
         End Property
         
@@ -327,11 +345,29 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Alert Date Time.
+        '''</summary>
+        Friend Shared ReadOnly Property AlertDateTime() As String
+            Get
+                Return ResourceManager.GetString("AlertDateTime", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Alert List.
         '''</summary>
         Friend Shared ReadOnly Property AlertNotificationList() As String
             Get
                 Return ResourceManager.GetString("AlertNotificationList", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Alert Report.
+        '''</summary>
+        Friend Shared ReadOnly Property AlertReport() As String
+            Get
+                Return ResourceManager.GetString("AlertReport", resourceCulture)
             End Get
         End Property
         
@@ -543,6 +579,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Closing By.
+        '''</summary>
+        Friend Shared ReadOnly Property ClosingBy() As String
+            Get
+                Return ResourceManager.GetString("ClosingBy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Company Information.
         '''</summary>
         Friend Shared ReadOnly Property CompanyInfo() As String
@@ -552,11 +597,29 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Completed By.
+        '''</summary>
+        Friend Shared ReadOnly Property CompleteBy() As String
+            Get
+                Return ResourceManager.GetString("CompleteBy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Completed.
         '''</summary>
         Friend Shared ReadOnly Property Completed() As String
             Get
                 Return ResourceManager.GetString("Completed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Completed Date Time.
+        '''</summary>
+        Friend Shared ReadOnly Property CompleteDateTime() As String
+            Get
+                Return ResourceManager.GetString("CompleteDateTime", resourceCulture)
             End Get
         End Property
         
@@ -593,6 +656,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Contingent() As String
             Get
                 Return ResourceManager.GetString("Contingent", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Count.
+        '''</summary>
+        Friend Shared ReadOnly Property Count() As String
+            Get
+                Return ResourceManager.GetString("Count", resourceCulture)
             End Get
         End Property
         
@@ -647,6 +719,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Current() As String
             Get
                 Return ResourceManager.GetString("Current", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Current Alert List.
+        '''</summary>
+        Friend Shared ReadOnly Property CurrentAlertList() As String
+            Get
+                Return ResourceManager.GetString("CurrentAlertList", resourceCulture)
             End Get
         End Property
         
@@ -1452,6 +1533,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Female.
+        '''</summary>
+        Friend Shared ReadOnly Property Female() As String
+            Get
+                Return ResourceManager.GetString("Female", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to File.
         '''</summary>
         Friend Shared ReadOnly Property File() As String
@@ -1475,6 +1565,15 @@ Namespace Resources
         Friend Shared ReadOnly Property FileUpload() As String
             Get
                 Return ResourceManager.GetString("FileUpload", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to First Responder.
+        '''</summary>
+        Friend Shared ReadOnly Property FirstResponder() As String
+            Get
+                Return ResourceManager.GetString("FirstResponder", resourceCulture)
             End Get
         End Property
         
@@ -1520,6 +1619,15 @@ Namespace Resources
         Friend Shared ReadOnly Property FullBody() As String
             Get
                 Return ResourceManager.GetString("FullBody", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Gender.
+        '''</summary>
+        Friend Shared ReadOnly Property Gender() As String
+            Get
+                Return ResourceManager.GetString("Gender", resourceCulture)
             End Get
         End Property
         
@@ -1767,6 +1875,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Installation Time.
+        '''</summary>
+        Friend Shared ReadOnly Property InstallationTime() As String
+            Get
+                Return ResourceManager.GetString("InstallationTime", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Inventory.
         '''</summary>
         Friend Shared ReadOnly Property Inventory() As String
@@ -1794,7 +1911,16 @@ Namespace Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to IPK List.
+        '''  Looks up a localized string similar to Contingent.
+        '''</summary>
+        Friend Shared ReadOnly Property IPK() As String
+            Get
+                Return ResourceManager.GetString("IPK", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Contingent List.
         '''</summary>
         Friend Shared ReadOnly Property IPKList() As String
             Get
@@ -1808,6 +1934,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Item() As String
             Get
                 Return ResourceManager.GetString("Item", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to vITEM Details.
+        '''</summary>
+        Friend Shared ReadOnly Property ItemDetails() As String
+            Get
+                Return ResourceManager.GetString("ItemDetails", resourceCulture)
             End Get
         End Property
         
@@ -1826,6 +1961,15 @@ Namespace Resources
         Friend Shared ReadOnly Property LastLogin() As String
             Get
                 Return ResourceManager.GetString("LastLogin", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Last Responder.
+        '''</summary>
+        Friend Shared ReadOnly Property LastResponder() As String
+            Get
+                Return ResourceManager.GetString("LastResponder", resourceCulture)
             End Get
         End Property
         
@@ -1988,6 +2132,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Maintenance() As String
             Get
                 Return ResourceManager.GetString("Maintenance", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Male.
+        '''</summary>
+        Friend Shared ReadOnly Property Male() As String
+            Get
+                Return ResourceManager.GetString("Male", resourceCulture)
             End Get
         End Property
         
@@ -2595,6 +2748,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to New Alert List.
+        '''</summary>
+        Friend Shared ReadOnly Property NewAlertList() As String
+            Get
+                Return ResourceManager.GetString("NewAlertList", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to New Image.
         '''</summary>
         Friend Shared ReadOnly Property NewImage() As String
@@ -2910,6 +3072,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Out of Geofence.
+        '''</summary>
+        Friend Shared ReadOnly Property Out_Of_Geofence() As String
+            Get
+                Return ResourceManager.GetString("Out Of Geofence", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Overseer.
         '''</summary>
         Friend Shared ReadOnly Property Overseer() As String
@@ -2987,6 +3158,15 @@ Namespace Resources
         Friend Shared ReadOnly Property PasswordRecovery() As String
             Get
                 Return ResourceManager.GetString("PasswordRecovery", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Alert History.
+        '''</summary>
+        Friend Shared ReadOnly Property PastAlertList() As String
+            Get
+                Return ResourceManager.GetString("PastAlertList", resourceCulture)
             End Get
         End Property
         
@@ -3077,15 +3257,6 @@ Namespace Resources
         Friend Shared ReadOnly Property PoliceStation() As String
             Get
                 Return ResourceManager.GetString("PoliceStation", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Police Station Details.
-        '''</summary>
-        Friend Shared ReadOnly Property PoliceStationInfo() As String
-            Get
-                Return ResourceManager.GetString("PoliceStationInfo", resourceCulture)
             End Get
         End Property
         
@@ -3288,6 +3459,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Remark History.
+        '''</summary>
+        Friend Shared ReadOnly Property RemarkHistory() As String
+            Get
+                Return ResourceManager.GetString("RemarkHistory", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Report.
         '''</summary>
         Friend Shared ReadOnly Property Report() As String
@@ -3450,11 +3630,29 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Serial No..
+        '''</summary>
+        Friend Shared ReadOnly Property SerialNum() As String
+            Get
+                Return ResourceManager.GetString("SerialNum", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Office Hour.
         '''</summary>
         Friend Shared ReadOnly Property ServiceHour() As String
             Get
                 Return ResourceManager.GetString("ServiceHour", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Severity.
+        '''</summary>
+        Friend Shared ReadOnly Property Severity() As String
+            Get
+                Return ResourceManager.GetString("Severity", resourceCulture)
             End Get
         End Property
         
@@ -3504,6 +3702,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Size.
+        '''</summary>
+        Friend Shared ReadOnly Property Size() As String
+            Get
+                Return ResourceManager.GetString("Size", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Sort By.
         '''</summary>
         Friend Shared ReadOnly Property SortBy() As String
@@ -3531,6 +3738,15 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Speed.
+        '''</summary>
+        Friend Shared ReadOnly Property Speed() As String
+            Get
+                Return ResourceManager.GetString("Speed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to State.
         '''</summary>
         Friend Shared ReadOnly Property State() As String
@@ -3540,20 +3756,20 @@ Namespace Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to State Contingent.
+        '''</summary>
+        Friend Shared ReadOnly Property StateContingent() As String
+            Get
+                Return ResourceManager.GetString("StateContingent", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Status.
         '''</summary>
         Friend Shared ReadOnly Property Status() As String
             Get
                 Return ResourceManager.GetString("Status", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Subject Details.
-        '''</summary>
-        Friend Shared ReadOnly Property SubjectInfo() As String
-            Get
-                Return ResourceManager.GetString("SubjectInfo", resourceCulture)
             End Get
         End Property
         
@@ -3914,6 +4130,15 @@ Namespace Resources
         Friend Shared ReadOnly Property Verify() As String
             Get
                 Return ResourceManager.GetString("Verify", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Verify Date Time.
+        '''</summary>
+        Friend Shared ReadOnly Property VerifyDateTime() As String
+            Get
+                Return ResourceManager.GetString("VerifyDateTime", resourceCulture)
             End Get
         End Property
         

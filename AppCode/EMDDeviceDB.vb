@@ -26,178 +26,6 @@ NameSpace DataAccess
         End Function
 
 #End Region
-#Region "Notification"
-
-        Public Shared Function InsertNotification(ByVal fldIMEI As String, ByVal oppid As Long, ByVal EMDDeviceID As Long, ByVal fldMsg As String, ByVal Level As String, ByVal myConnection As MySqlConnection) As Boolean
-            Dim myCommand As MySqlCommand = New MySqlCommand("insert into tblpdrmnotification (fldDatetime,fldIMEI,fldoppid,fldEMDDeviceID,fldMsg,fldSeverity) values(now(),@fldIMEI,@fldoppid,@fldEMDDeviceID, @fldMsg, @fldSeverity)", myConnection)
-            myCommand.CommandType = CommandType.Text
-            myCommand.Parameters.AddWithValue("@fldEMDDeviceID", EMDDeviceID)
-            myCommand.Parameters.AddWithValue("@fldIMEI", fldIMEI)
-            myCommand.Parameters.AddWithValue("@fldMsg", fldMsg)
-            myCommand.Parameters.AddWithValue("@fldSeverity", Level)
-            myCommand.Parameters.AddWithValue("@fldoppid", oppid)
-            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
-            Return result
-        End Function
-
-        Public Shared Function CountNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal myConnection As MySqlConnection) As Integer
-            Dim myDataTable As DataTable = New DataTable()
-            Dim query As String = ""
-            If Not intervalminute < 0 Then query &= " a.fldDateTime >= Date_add(NOW(), interval @intervalminute Minute) And "
-            If Not deviceid <= 0 Then query &= " a.fldID = @deviceid And "
-            If Not oppid <= 0 Then query &= " b.fldID = @oppid And "
-            If Not processstatus < 0 Then query &= " a.fldprocess = @processstatus And "
-            If Not deptid <= 0 Then query &= " b.fldDeptID = @deptid And "
-            If Not String.IsNullOrEmpty(severity) Then query &= " a.fldseverity = @severity And "
-            If Not String.IsNullOrEmpty(query) Then
-                query = " Where " & query
-                query = query.Substring(0, query.Length - 4)
-            End If
-            Dim myCommand As MySqlCommand = New MySqlCommand("SELECT count(*) FROM tblpdrmnotification a JOIN tblopp b ON b.fldid=a.fldoppid " & query, myConnection)
-            myCommand.CommandType = CommandType.Text
-            myCommand.Parameters.AddWithValue("@deviceid", deviceid)
-            myCommand.Parameters.AddWithValue("@oppid", oppid)
-            myCommand.Parameters.AddWithValue("@processstatus", processstatus)
-            myCommand.Parameters.AddWithValue("@deptid", deptid)
-            myCommand.Parameters.AddWithValue("@severity", severity)
-            myCommand.Parameters.AddWithValue("@intervalminute", 0 - intervalminute)
-            Return myCommand.ExecuteScalar
-        End Function
-
-        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal processstatus As Integer, ByVal page As String, ByVal intervalminute As Integer, ByVal myConnection As MySqlConnection) As DataTable
-            Dim myDataTable As DataTable = New DataTable()
-            Dim query As String = ""
-            If Not intervalminute < 0 Then query &= " a.fldDateTime >= Date_add(NOW(), interval @intervalminute Minute) And "
-            If Not alertid <= 0 Then query &= " a.fldID = @alertid And "
-            If Not deviceid <= 0 Then query &= " a.fldEMDDeviceID = @deviceid And "
-            If Not oppid <= 0 Then query &= " a.fldOPPID = @oppid And "
-            If Not String.IsNullOrEmpty(imei) Then query &= " a.fldimei = @imei And "
-            If Not userid < 0 Then query &= " f.fldID is null And "
-            If Not processstatus < 0 Then query &= " a.fldProcess = @processstatus And "
-            If Not String.IsNullOrEmpty(query) Then
-                query = " Where " & query
-                query = query.Substring(0, query.Length - 4)
-            End If
-            Dim myCommand As MySqlCommand = New MySqlCommand("SELECT a.*, b.fldimei AS fldemdimei, b.fldRLat, b.fldRLong, b.fldGPSStatus, b.fldBatteryLvl, b.fldDeviceStatus,
-                                                                c.fldPhoto1,c.fldPhoto2, c.fldname AS fldOPPName, c.fldicno AS fldOPPICNo, c.fldcontactno AS fldOPPContactNo, ifnull(g.fldName,'') As fldDepartment,
-                                                                IFNULL(d.fldName,'') AS fldPSName, IFNULL(d.fldContactNo,'') AS fldPSContactNo, 
-                                                                IFNULL(e.fldName,'') AS fldOverseerName, IFNULL(e.fldcontactno,'') AS fldOverseerContactNo, IFNULL(e.fldPoliceNo,'') AS fldOverseerPoliceNo,
-                                                                IFNULL(h.fldName,'') As fldProcessByName                                                                
-                                                                FROM tblpdrmnotification a 
-                                                                JOIN tblemddevice b ON b.fldid=a.fldemddeviceid 
-                                                                JOIN tblopp c ON c.fldid=a.fldoppid 
-                                                                LEFT JOIN tblpolicestation d ON d.fldID=c.fldPoliceStationID
-                                                                LEFT JOIN tbladmin e ON e.fldID=c.fldoverseerid 
-                                                                LEFT JOIN tblpdrmnotification_seen f ON f.fldNoticeID=a.fldID and f.fldUserID=@userid and f.fldPage=@page
-                                                                LEFT JOIN tbldepartment g ON g.fldID=c.fldDeptID 
-                                                                LEFT JOIN tbladmin h ON h.fldID=a.fldProcessUserID and a.fldProcessUserID>0 " _
-                                                                & query & " Order by fldSeverity Desc, fldID Desc", myConnection)
-            myCommand.CommandType = CommandType.Text
-            myCommand.Parameters.AddWithValue("@alertid", alertid)
-            myCommand.Parameters.AddWithValue("@deviceid", deviceid)
-            myCommand.Parameters.AddWithValue("@oppid", oppid)
-            myCommand.Parameters.AddWithValue("@imei", imei)
-            myCommand.Parameters.AddWithValue("@userid", userid)
-            myCommand.Parameters.AddWithValue("@processstatus", processstatus)
-            myCommand.Parameters.AddWithValue("@page", page)
-            myCommand.Parameters.AddWithValue("@intervalminute", 0 - intervalminute)
-            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
-            adapter.Fill(myDataTable)
-            Return myDataTable
-        End Function
-
-        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal limit As Integer, ByVal myConnection As MySqlConnection) As DataTable
-            Dim myDataTable As DataTable = New DataTable()
-            Dim query As String = ""
-            Dim limitstr As String = ""
-            If Not intervalminute < 0 Then query &= " a.fldDateTime >= Date_add(NOW(), interval @intervalminute Minute) And "
-            If Not alertid <= 0 Then query &= " a.fldID = @alertid And "
-            If Not deviceid <= 0 Then query &= " a.fldEMDDeviceID = @deviceid And "
-            If Not oppid <= 0 Then query &= " a.fldOPPID = @oppid And "
-            If Not String.IsNullOrEmpty(imei) Then query &= " a.fldimei = @imei And "
-            If Not String.IsNullOrEmpty(severity) Then query &= " a.fldseverity = @severity And "
-            If Not processstatus < 0 Then query &= " a.fldProcess = @processstatus And "
-            If Not String.IsNullOrEmpty(query) Then
-                query = " Where " & query
-                query = query.Substring(0, query.Length - 4)
-            End If
-            If Not limit <= 0 Then limitstr = " Limit @limit "
-            Dim myCommand As MySqlCommand = New MySqlCommand("SELECT a.*, b.fldimei AS fldemdimei, b.fldRLat, b.fldRLong, b.fldGPSStatus, b.fldBatteryLvl, b.fldDeviceStatus,
-                                                                c.fldPhoto1,c.fldPhoto2, c.fldname AS fldOPPName, c.fldicno AS fldOPPICNo, c.fldcontactno AS fldOPPContactNo, ifnull(f.fldName,'') As fldDepartment,
-                                                                IFNULL(d.fldName,'') AS fldPSName, IFNULL(d.fldContactNo,'') AS fldPSContactNo, 
-                                                                IFNULL(e.fldName,'') AS fldOverseerName, IFNULL(e.fldcontactno,'') AS fldOverseerContactNo, IFNULL(e.fldPoliceNo,'') AS fldOverseerPoliceNo,
-                                                                IFNULL(g.fldName,'') As fldProcessByName                                                                
-                                                                FROM tblpdrmnotification a 
-                                                                JOIN tblemddevice b ON b.fldid=a.fldemddeviceid 
-                                                                JOIN tblopp c ON c.fldid=a.fldoppid 
-                                                                LEFT JOIN tblpolicestation d ON d.fldID=c.fldPoliceStationID
-                                                                LEFT JOIN tbladmin e ON e.fldID=c.fldoverseerid 
-                                                                LEFT JOIN tbldepartment f ON f.fldID=c.fldDeptID 
-                                                                Left JOIN tbladmin g ON g.fldID=a.fldProcessUserID and a.fldProcessUserID>0 " _
-                                                                & query & " Order by fldSeverity Desc, fldID Desc" & limitstr, myConnection)
-            myCommand.CommandType = CommandType.Text
-            myCommand.Parameters.AddWithValue("@alertid", alertid)
-            myCommand.Parameters.AddWithValue("@deviceid", deviceid)
-            myCommand.Parameters.AddWithValue("@oppid", oppid)
-            myCommand.Parameters.AddWithValue("@imei", imei)
-            myCommand.Parameters.AddWithValue("@severity", severity)
-            myCommand.Parameters.AddWithValue("@processstatus", processstatus)
-            myCommand.Parameters.AddWithValue("@intervalminute", 0 - intervalminute)
-            myCommand.Parameters.AddWithValue("@limit", limit)
-            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
-            adapter.Fill(myDataTable)
-            Return myDataTable
-        End Function
-
-        Public Shared Function GetAlertNotificationList(ByVal emdID As Long, ByVal oppID As Long, ByVal dateFrom As String, ByVal dateTo As String, ByVal myConnection As MySqlConnection) As DataTable
-            Dim query As String = Nothing
-            If Not oppID <= 0 Then query &= " fldoppID = @fldoppID AND "
-            If Not emdID <= 0 Then query &= " fldEMDDeviceID = @fldEMDDeviceID AND "
-            If Not String.IsNullOrEmpty(dateFrom) Then query &= " fldDateTime >= @dateFrom AND "
-            If Not String.IsNullOrEmpty(dateTo) Then query &= " fldDateTime < date_add(@dateTo,interval 1 day) AND "
-            If Not query Is Nothing Then
-                query = " Where " & query
-                query = query.Substring(0, query.Length - 4)
-            End If
-            Dim myDataTable As DataTable = New DataTable()
-            Dim myCommand As MySqlCommand = New MySqlCommand("SELECT * FROM tblpdrmnotification " & query & " Order By fldid asc", myConnection)
-            myCommand.CommandType = CommandType.Text
-            myCommand.Parameters.AddWithValue("@fldoppID", oppID)
-            myCommand.Parameters.AddWithValue("@fldEMDDeviceID", emdID)
-            myCommand.Parameters.AddWithValue("@dateFrom", dateFrom)
-            myCommand.Parameters.AddWithValue("@dateTo", dateTo)
-            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
-            adapter.Fill(myDataTable)
-            Return myDataTable
-        End Function
-
-        Public Shared Function UpdateAlertNotificationSeenUser(ByVal ids As List(Of Long), ByVal userid As Long, ByVal page As String, ByVal myConnection As MySqlConnection) As Boolean
-            Dim myCommand As MySqlCommand = New MySqlCommand
-            Dim inquery As String = ""
-            For i As Integer = 0 To ids.Count - 1
-                inquery &= String.Format("(@noticeid{0},@userid,@page,Now()){1}", i, If(i < ids.Count - 1, ",", ""))
-                myCommand.Parameters.AddWithValue("@noticeid" & i, ids(i))
-            Next
-            myCommand.Parameters.AddWithValue("@userid", userid)
-            myCommand.Parameters.AddWithValue("@page", page)
-            myCommand.CommandText = "Insert Into tblpdrmnotification_seen (fldNoticeID,fldUserID,fldPage,fldDateTime) Values " & inquery
-            myCommand.Connection = myConnection
-            Dim result As Boolean = myCommand.ExecuteNonQuery()
-            Return result
-        End Function
-
-        Public Shared Function AcknowledgeAlertNotification(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String, ByVal myConnection As MySqlConnection) As Boolean
-            Dim myCommand As MySqlCommand = New MySqlCommand
-            myCommand.CommandText = "Update tblpdrmnotification Set fldProcess=1, fldProcessUserID=@creatorid, fldremark=@remark, fldProcessDateTime=Now() Where fldID = @id"
-            myCommand.Connection = myConnection
-            myCommand.Parameters.AddWithValue("@id", id)
-            myCommand.Parameters.AddWithValue("@creatorid", creatorid)
-            myCommand.Parameters.AddWithValue("@remark", remark)
-            Dim result As Boolean = myCommand.ExecuteNonQuery()
-            Return result
-        End Function
-
-#End Region
 
 #Region "EMD History"
 
@@ -324,6 +152,23 @@ NameSpace DataAccess
             Return result
         End Function
 
+        Public Shared Function GetEMDDeviceID(ByVal oppid As Long, ByVal name As String, ByVal imei As String, ByVal myconn As MySqlConnection) As Long
+            Dim query As String = ""
+            If Not oppid <= 0 Then query &= " fldoppid = @oppid And "
+            If Not String.IsNullOrEmpty(name) Then query &= " fldname = @name And "
+            If Not String.IsNullOrEmpty(imei) Then query &= " fldimei = @imei AND "
+            If Not String.IsNullOrEmpty(query) Then
+                query = " Where " & query
+                query = query.Substring(0, query.Length - 4)
+            End If
+            Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldID,0) from tblemddevice " & query, myconn)
+            mycmd.Parameters.AddWithValue("@oppid", oppid)
+            mycmd.Parameters.AddWithValue("@name", name)
+            mycmd.Parameters.AddWithValue("@imei", imei)
+            Dim result As Long = mycmd.ExecuteScalar
+            Return result
+        End Function
+
         Public Shared Function GetIMEI(ByVal id As Long, ByVal myconn As MySqlConnection) As String
             Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldImei,0) from tblemddevice where fldID=@id", myconn)
             mycmd.Parameters.AddWithValue("@id", id)
@@ -345,6 +190,13 @@ NameSpace DataAccess
             Return result
         End Function
 
+        Public Shared Function VerifySerialNum(ByVal serialno As String, ByVal myconn As MySqlConnection) As Long
+            Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldID,0) from tblemddevice where fldSN=@serialno", myconn)
+            mycmd.Parameters.AddWithValue("@serialno", serialno)
+            Dim result As Long = mycmd.ExecuteScalar
+            Return result
+        End Function
+
         Public Shared Function VerifySimNo(ByVal simno As String, ByVal myconn As MySqlConnection) As Long
             Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldID,0) from tblemddevice where fldsimno=@simno", myconn)
             mycmd.Parameters.AddWithValue("@simno", simno)
@@ -352,9 +204,47 @@ NameSpace DataAccess
             Return result
         End Function
 
+        Public Shared Function CountActiveEMDList_ByDept(ByVal myconn As MySqlConnection) As DataTable
+            Dim datatable As DataTable = New DataTable
+            Dim mycmd As MySqlCommand = New MySqlCommand("SELECT a.fldID, a.fldName As fldDepartment, IFNULL(d.fldCount,0) as fldCount FROM tbldepartment a 
+                                                            LEFT JOIN (SELECT c.fldDeptID, COUNT(*) AS fldCount 
+                                                                        FROM tblemddevice b 
+                                                                        JOIN tblopp c ON c.fldid=b.fldoppid 
+                                                                        WHERE b.fldstatus='Y' and c.fldstatus='Y' GROUP BY c.fldDeptID) d ON d.fldDeptID=a.fldID
+                                                            WHERE a.fldStatus='Y'", myconn)
+            Dim adp As MySqlDataAdapter = New MySqlDataAdapter(mycmd)
+            adp.Fill(datatable)
+            Return datatable
+        End Function
+
+        Public Shared Function CountInactiveEMDList_ByDept(ByVal myconn As MySqlConnection) As DataTable
+            Dim datatable As DataTable = New DataTable
+            Dim mycmd As MySqlCommand = New MySqlCommand("SELECT a.fldID, a.fldName As fldDepartment, IFNULL(d.fldCount,0) as fldCount FROM tbldepartment a 
+                                                            LEFT JOIN (SELECT c.fldDeptID, COUNT(*) AS fldCount 
+                                                                        FROM tblemddevice b 
+                                                                        JOIN tblopp c ON c.fldid=b.fldoppid 
+                                                                        WHERE b.fldstatus='N' Or c.fldstatus='N' GROUP BY c.fldDeptID) d ON d.fldDeptID=a.fldID
+                                                            WHERE a.fldStatus='Y'", myconn)
+            Dim adp As MySqlDataAdapter = New MySqlDataAdapter(mycmd)
+            adp.Fill(datatable)
+            Return datatable
+        End Function
+
         Public Shared Function CountEMDStatus(ByVal status As String, ByVal myconn As MySqlConnection) As Long
             Dim mycmd As MySqlCommand = New MySqlCommand("Select Count(*) from tblemddevice where fldstatus=@status", myconn)
             mycmd.Parameters.AddWithValue("@status", status)
+            Dim result As Long = mycmd.ExecuteScalar
+            Return result
+        End Function
+
+        Public Shared Function CountActiveEMD(ByVal myconn As MySqlConnection) As Long
+            Dim mycmd As MySqlCommand = New MySqlCommand("Select Count(*) from tblemddevice a Left Join tblopp b on b.fldid=a.fldoppid Where a.fldStatus='Y' And b.fldStatus='Y'", myconn)
+            Dim result As Long = mycmd.ExecuteScalar
+            Return result
+        End Function
+
+        Public Shared Function CountInactiveEMD(ByVal myconn As MySqlConnection) As Long
+            Dim mycmd As MySqlCommand = New MySqlCommand("Select Count(*) from tblemddevice a Left Join tblopp b on b.fldid=a.fldoppid Where a.fldStatus='N' Or b.fldStatus='N'", myconn)
             Dim result As Long = mycmd.ExecuteScalar
             Return result
         End Function
@@ -374,16 +264,20 @@ NameSpace DataAccess
             Return device
         End Function
 
-        Public Shared Function GetDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal name As String, ByVal simno1 As String, ByVal simno2 As String, ByVal status As String, ByVal myConnection As MySqlConnection) As DataTable
+        Public Shared Function GetDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal imei As String, ByVal name As String, ByVal serialno As String, ByVal size As String, ByVal simno1 As String, ByVal simno2 As String, ByVal devicestatus As String, ByVal oppstatus As String, ByVal myConnection As MySqlConnection) As DataTable
             Dim myDataTable As DataTable = New DataTable()
             Dim query As String = ""
             If Not deviceid <= 0 Then query &= " a.fldID = @deviceid And "
             If Not oppid <= 0 Then query &= " b.fldID = @oppid And "
+            If Not deptid <= 0 Then query &= " b.fldDeptID = @deptid And "
             If Not String.IsNullOrEmpty(imei) Then query &= " a.fldimei = @imei And "
             If Not String.IsNullOrEmpty(name) Then query &= " a.fldName = @name And "
+            If Not String.IsNullOrEmpty(serialno) Then query &= " a.fldSN = @serialno And "
+            If Not String.IsNullOrEmpty(size) Then query &= " a.fldSize = @size And "
             If Not String.IsNullOrEmpty(simno1) Then query &= " a.fldsimno1 = @simno1 AND "
             If Not String.IsNullOrEmpty(simno2) Then query &= " a.fldsimno2 = @simno2 AND "
-            If Not String.IsNullOrEmpty(status) Then query &= " a.fldStatus = @status AND "
+            If Not String.IsNullOrEmpty(devicestatus) Then query &= " a.fldStatus = @devicestatus AND "
+            If Not String.IsNullOrEmpty(oppstatus) Then query &= " b.fldStatus = @oppstatus AND "
             If Not String.IsNullOrEmpty(query) Then
                 query = " Where " & query
                 query = query.Substring(0, query.Length - 4)
@@ -401,11 +295,15 @@ NameSpace DataAccess
             myCommand.CommandType = CommandType.Text
             myCommand.Parameters.AddWithValue("@deviceid", deviceid)
             myCommand.Parameters.AddWithValue("@oppid", oppid)
+            myCommand.Parameters.AddWithValue("@deptid", deptid)
             myCommand.Parameters.AddWithValue("@imei", imei)
             myCommand.Parameters.AddWithValue("@name", name)
+            myCommand.Parameters.AddWithValue("@serialno", serialno)
+            myCommand.Parameters.AddWithValue("@size", size)
             myCommand.Parameters.AddWithValue("@simno1", simno1)
             myCommand.Parameters.AddWithValue("@simno2", simno2)
-            myCommand.Parameters.AddWithValue("@status", status)
+            myCommand.Parameters.AddWithValue("@devicestatus", devicestatus)
+            myCommand.Parameters.AddWithValue("@oppstatus", oppstatus)
             Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
             adapter.Fill(myDataTable)
             Return myDataTable
@@ -433,6 +331,48 @@ NameSpace DataAccess
             Return myDataTable
         End Function
 
+        Public Shared Function GetActiveDeviceList(ByVal deptid As Long, ByVal myConnection As MySqlConnection) As DataTable
+            Dim myDataTable As DataTable = New DataTable()
+            Dim query As String = " a.fldStatus = 'Y' AND  b.fldStatus = 'Y' AND "
+            If Not deptid <= 0 Then query &= " b.fldDeptID = @deptid And "
+            If Not String.IsNullOrEmpty(query) Then
+                query = " Where " & query
+                query = query.Substring(0, query.Length - 4)
+            End If
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select a.*, a.fldSpeed*1.852 as fldSpeedKmh, if(a.fldGSMSignal>0,a.fldGSMSignal/31*100,0) As fldGSMSignalPercent, if(a.flddevicestatus IN ('10', '11'),'Yes','No') AS fldChargingStatus, if(a.flddevicestatus IN ('01', '11'),'BeltOn','BeltOff') AS fldBeltStatus, 
+                                                                ifnull(b.fldName,'') As fldOPPName, ifnull(b.fldICNo,'') As fldOPPICNo, ifnull(b.fldContactNo,'') As fldOPPContactNo, 
+                                                                ifnull(c.fldColor,'grey') as fldDeptColor, ifnull(c.fldName,'') As fldDepartment
+                                                                From tblemddevice a 
+                                                                Left Join tblopp b ON b.fldID=a.fldOppID 
+                                                                Left Join tbldepartment c On c.fldID=b.fldDeptID" & query, myConnection)
+            myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@deptid", deptid)
+            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
+            adapter.Fill(myDataTable)
+            Return myDataTable
+        End Function
+
+        Public Shared Function GetInactiveDeviceList(ByVal deptid As Long, ByVal myConnection As MySqlConnection) As DataTable
+            Dim myDataTable As DataTable = New DataTable()
+            Dim query As String = " a.fldStatus ='N' Or  b.fldStatus = 'N' AND "
+            If Not deptid <= 0 Then query &= " b.fldDeptID = @deptid And "
+            If Not String.IsNullOrEmpty(query) Then
+                query = " Where " & query
+                query = query.Substring(0, query.Length - 4)
+            End If
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select a.*, a.fldSpeed*1.852 as fldSpeedKmh, if(a.fldGSMSignal>0,a.fldGSMSignal/31*100,0) As fldGSMSignalPercent, if(a.flddevicestatus IN ('10', '11'),'Yes','No') AS fldChargingStatus, if(a.flddevicestatus IN ('01', '11'),'BeltOn','BeltOff') AS fldBeltStatus, 
+                                                                ifnull(b.fldName,'') As fldOPPName, ifnull(b.fldICNo,'') As fldOPPICNo, ifnull(b.fldContactNo,'') As fldOPPContactNo, 
+                                                                ifnull(c.fldColor,'grey') as fldDeptColor, ifnull(c.fldName,'') As fldDepartment
+                                                                From tblemddevice a 
+                                                                Left Join tblopp b ON b.fldID=a.fldOppID 
+                                                                Left Join tbldepartment c On c.fldID=b.fldDeptID" & query, myConnection)
+            myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@deptid", deptid)
+            Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
+            adapter.Fill(myDataTable)
+            Return myDataTable
+        End Function
+
         Public Shared Function UpdateOPPID(ByVal deviceid As String, ByVal oppid As Long, ByVal myConnection As MySqlConnection) As Boolean
             Dim myCommand As MySqlCommand = New MySqlCommand("Update tblemddevice set fldOPPID=@oppid Where fldID=@deviceid", myConnection)
             myCommand.Parameters.AddWithValue("@oppid", oppid)
@@ -455,10 +395,10 @@ NameSpace DataAccess
             Dim processReturn As String = "Select LAST_INSERT_ID()"
             Dim isInsert As Boolean = True
             If device.fldID = Nothing Then
-                processExe = "Insert into tblemddevice (fldDateTime, fldName, fldImei, fldSimNo, fldSimNo2, fldStatus, fldWifiData, fldPayloadData, fldGeofenceJson) Values (Now(), @fldName, @fldImei, @fldSimNo, @fldSimNo2, @fldStatus, '', '' ,'')"
+                processExe = "Insert into tblemddevice (fldDateTime, fldName, fldImei, fldSN, fldSize, fldSimNo, fldSimNo2, fldStatus, fldWifiData, fldPayloadData, fldGeofenceJson) Values (Now(), @fldName, @fldImei, @fldSN, @fldSize, @fldSimNo, @fldSimNo2, @fldStatus, '', '' ,'')"
                 isInsert = True
             Else
-                processExe = "Update tblemddevice set fldName=@fldName, fldSimNo = @fldSimNo, fldSimNo2 = @fldSimNo2 Where fldID = @fldID"
+                processExe = "Update tblemddevice set fldSN=@fldSN, fldSize=@fldSize, fldName=@fldName, fldSimNo = @fldSimNo, fldSimNo2 = @fldSimNo2 Where fldID = @fldID"
                 isInsert = False
             End If
             Dim myCommand As MySqlCommand = New MySqlCommand(processExe, myConnection)
@@ -466,6 +406,8 @@ NameSpace DataAccess
             If Not isInsert Then myCommand.Parameters.AddWithValue("@fldID", device.fldID)
             myCommand.Parameters.AddWithValue("@fldImei", device.fldImei)
             myCommand.Parameters.AddWithValue("@fldName", device.fldName)
+            myCommand.Parameters.AddWithValue("@fldSN", device.fldSN)
+            myCommand.Parameters.AddWithValue("@fldSize", device.fldSize)
             myCommand.Parameters.AddWithValue("@fldSimNo", device.fldSimNo)
             myCommand.Parameters.AddWithValue("@fldSimNo2", device.fldSimNo2)
             myCommand.Parameters.AddWithValue("@fldStatus", device.fldStatus)
@@ -503,6 +445,12 @@ NameSpace DataAccess
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldImei"))) Then
                 device.fldImei = myDataRecord.GetString(myDataRecord.GetOrdinal("fldImei"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldSN"))) Then
+                device.fldSN = myDataRecord.GetString(myDataRecord.GetOrdinal("fldSN"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldSize"))) Then
+                device.fldSize = myDataRecord.GetString(myDataRecord.GetOrdinal("fldSize"))
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldSimNo"))) Then
                 device.fldSimNo = myDataRecord.GetString(myDataRecord.GetOrdinal("fldSimNo"))

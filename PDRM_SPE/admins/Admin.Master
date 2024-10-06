@@ -79,6 +79,7 @@
                             <div class="welcome-header">
                                 <div class="welcome-content">
                                     <asp:Label runat="server" Font-Bold="true" ID="lblCompanyName"></asp:Label>
+                                    <i style="font-size:small" >(Electronic Monitoring Device)</i>
                                 </div>
                             </div>
                             <!-- BEGIN TOP NAVIGATION MENU -->

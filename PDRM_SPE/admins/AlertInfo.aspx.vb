@@ -30,13 +30,14 @@ Public Class AAlertInfo
     End Sub
 
     Private Sub SetText()
-        btnAcknowledge.Text = GetText("Acknowledge")
+        btnAcknowledge.Text = GetText("Acknowledge") & "/" & GetText("Hold")
+        btnCompleted.Text = GetText("Completed")
         btnCancel.Text = GetText("Close")
         hfConfirm.Value = GetText("MsgConfirm")
     End Sub
 
     Private Sub GetInfo(ByVal alertid As Long, init As Boolean)
-        Dim alert As DataTable = EMDDeviceManager.GetAlertNotification(alertid, -1, -1, "", -1, "", -1, -1)
+        Dim alert As DataTable = AlertManager.GetAlertInfoList(alertid, -1, -1, -1, -1, "", "", "", -1, -1, "")
         If alert.Rows.Count > 0 Then
             Dim row As DataRow = alert.Rows(0)
             If row("fldseverity").Equals("high") Then
@@ -53,6 +54,7 @@ Public Class AAlertInfo
             txtViolateTerms.Text = row("fldmsg").ToUpper()
             txtSubjectName.Text = row("fldoppname")
             txtSubjectICNo.Text = row("fldoppicno")
+            txtMukim.Text = row("fldmukim")
             txtSubjectContactNo.Text = row("fldoppcontactno")
             txtPoliceStation.Text = row("fldpsname")
             txtPSContactNo.Text = row("fldpscontactno")
@@ -60,15 +62,24 @@ Public Class AAlertInfo
             txtOverseer.Text = row("fldoverseername")
             txtOverseerIDNo.Text = row("fldoverseerpoliceno")
             txtOverseerContactNo.Text = row("fldoverseercontactno")
-            If CInt(row("fldprocess")) = 1 Then
-                btnAcknowledge.Visible = False
-                txtRemark.Enabled = False
-                txtRemark.Text = row("fldremark")
+            btnAcknowledge.Visible = CInt(row("fldprocessstatus")) <> 2
+            btnCompleted.Visible = CInt(row("fldprocessstatus")) <> 2
+            trRemark.Visible = CInt(row("fldprocessstatus")) <> 2
+            trRemarkHist.Visible = CInt(row("fldprocessstatus")) <> 0
+            trCompleteBy.Visible = CInt(row("fldprocessstatus")) = 2
+            trCompleteDateTime.Visible = CInt(row("fldprocessstatus")) = 2
+            If CInt(row("fldprocessstatus")) = 2 Then
+                txtRemarkHist.Text = AlertManager.GetAlertRemarkHist(alertid)
+                txtAcknowledgeByID.Text = row("fldprocessbyname")
+                txtAcknowledgeDateTime.Text = CDate(row("fldprocessdatetime")).ToString("yyyy-MM-dd hh:mm:ss tt")
+                txtCompleteByID.Text = row("fldlastprocessbyname")
+                txtCompleteDateTime.Text = CDate(row("fldlastprocessdatetime")).ToString("yyyy-MM-dd hh:mm:ss tt")
+            ElseIf CInt(row("fldprocessstatus")) = 1 Then
+                txtRemark.Text = ""
+                txtRemarkHist.Text = AlertManager.GetAlertRemarkHist(alertid)
                 txtAcknowledgeByID.Text = row("fldprocessbyname")
                 txtAcknowledgeDateTime.Text = CDate(row("fldprocessdatetime")).ToString("yyyy-MM-dd hh:mm:ss tt")
             Else
-                btnAcknowledge.Visible = True
-                txtRemark.Enabled = True
                 txtRemark.Text = ""
                 txtAcknowledgeByID.Text = ""
                 txtAcknowledgeDateTime.Text = ""
@@ -84,8 +95,19 @@ Public Class AAlertInfo
 
     Protected Sub btnAcknowledge_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
-        If EMDDeviceManager.AcknowledgeAlertNotification(alertID, AdminAuthentication.GetUserData(2), txtRemark.Text) Then
-            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE VIOLATION ALERT", "Alert ID: " & alertID, "")
+        If AlertManager.UpdateProcessStatus(alertID, 1, AdminAuthentication.GetUserData(2), txtRemark.Text) Then
+            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "ACKNOWLEDGE/HOLD VIOLATION ALERT", "Alert ID: " & alertID, "")
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+            GetInfo(alertID, False)
+        Else
+            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
+        End If
+    End Sub
+
+    Protected Sub btnCompleted_Click(sender As Object, e As EventArgs)
+        UserIsAuthenticated()
+        If AlertManager.UpdateProcessStatus(alertID, 2, AdminAuthentication.GetUserData(2), txtRemark.Text) Then
+            UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "COMPLETE VIOLATION ALERT", "Alert ID: " & alertID, "")
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "javascript", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
             GetInfo(alertID, False)
         Else

@@ -34,7 +34,7 @@ Public Class AIPKList
         'Search
         lblSName.Text = GetText("Name")
         lblSState.Text = GetText("Name")
-        lblSState.Text = GetText("State")
+        lblSState.Text = GetText("IPK")
         'lblSStatus.Text = GetText("Status")
         btnSearch.Text = GetText("Search")
         btnSReset.Text = GetText("Reset")

@@ -11,10 +11,10 @@ Namespace BusinessLogic
 
 #Region "Public Methods"
 
-        Public Shared Function GetOPPID(ByVal deviceid As Long, ByVal name As String, ByVal icno As String) As Long
+        Public Shared Function GetOPPID(ByVal name As String, ByVal icno As String) As Long
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim result As Long = OPPDB.GetOPPID(deviceid, name, icno, myConnection)
+                Dim result As Long = OPPDB.GetOPPID(name, icno, myConnection)
                 myConnection.Close()
                 Return result
             End Using
@@ -29,28 +29,28 @@ Namespace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function GetEMDDeviceID(ByVal id As Long) As Long
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                myConnection.Open()
-                Dim result As Long = OPPDB.GetEMDDeviceID(id, myConnection)
-                myConnection.Close()
-                Return result
-            End Using
-        End Function
+        'Public Shared Function GetEMDDeviceID(ByVal id As Long) As Long
+        '    Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+        '        myConnection.Open()
+        '        Dim result As Long = OPPDB.GetEMDDeviceID(id, myConnection)
+        '        myConnection.Close()
+        '        Return result
+        '    End Using
+        'End Function
 
-        Public Shared Function GetOPPList(ByVal id As Long, ByVal name As String, ByVal icno As String, ByVal deviceid As Long, ByVal deptid As Long, ByVal policestationid As Long, ByVal orderrefno As String, ByVal status As String, ByVal verifystatus As String) As DataTable
+        Public Shared Function GetOPPList(ByVal id As Long, ByVal name As String, ByVal icno As String, ByVal deviceid As Long, ByVal deptid As Long, ByVal ipkid As Long, ByVal ipdid As Long, ByVal policestationid As Long, ByVal orderrefno As String, ByVal status As String, ByVal verifystatus As String) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim myDataTable As DataTable = OPPDB.GetOPPList(id, name, icno, deviceid, deptid, policestationid, orderrefno, status, verifystatus, myConnection)
+                Dim myDataTable As DataTable = OPPDB.GetOPPList(id, name, icno, deviceid, deptid, ipkid, ipdid, policestationid, orderrefno, status, verifystatus, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using
         End Function
 
-        Public Shared Function GetOPPList(ByVal id As Long, ByVal status As String) As DataTable
+        Public Shared Function GetOPPList(ByVal id As Long, ByVal verifystatus As String, ByVal status As String) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim myDataTable As DataTable = OPPDB.GetOPPList(id, status, myConnection)
+                Dim myDataTable As DataTable = OPPDB.GetOPPList(id, verifystatus, status, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using
@@ -69,7 +69,7 @@ Namespace BusinessLogic
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
-                    Dim oriemdid As Long = OPPDB.GetEMDDeviceID(oppid, myConnection)
+                    Dim oriemdid As Long = EMDDeviceDB.GetEMDDeviceID(oppid, "", "", myConnection)
                     Dim result As Boolean = False
                     If oriemdid <> deviceid Then
                         result = OPPDB.UpdateEMDDeviceID(oppid, deviceid, myConnection)
@@ -144,11 +144,15 @@ Namespace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function UpdateGeofenceMukim(ByVal oppid As Long, ByVal mukim As String) As Boolean
+        Public Shared Function UpdateGeofenceMukim(ByVal oppid As Long, ByVal district As String, ByVal mukim As String) As Boolean
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
-                    Dim result As Boolean = OPPDB.UpdateGeofenceMukim(oppid, mukim, myConnection)
+                    Dim result As Boolean = False
+                    Dim mukimid As Long = CountryDB.GetMukimID(mukim, myConnection)
+                    If mukimid > 0 Then
+                        result = OPPDB.UpdateGeofenceMukim(oppid, district, mukim, mukimid, myConnection)
+                    End If
                     myConnection.Close()
                     If result Then myTransactionScope.Complete()
                     Return result
@@ -197,6 +201,11 @@ Namespace BusinessLogic
                 Using myTransactionScope As TransactionScope = New TransactionScope()
                     myConnection.Open()
                     Dim result As Boolean = OPPDB.UpdateVerifyStatus(oppid, oldstatus, newstatus, creatorid, myConnection)
+                    If result AndAlso newstatus.Equals("Y") Then
+                        Dim curstatus As String = OPPDB.GetStatus(oppid, myConnection)
+                        result = OPPDB.UpdateStatus(oppid, curstatus, "Y", myConnection)
+                        If result Then result = OPPDB.SaveOPPStatusHist(oppid, curstatus, "Y", "Verify Approved OPP Data", creatorid, myConnection)
+                    End If
                     myConnection.Close()
                     If result Then myTransactionScope.Complete()
                     Return result

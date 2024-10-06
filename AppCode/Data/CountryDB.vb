@@ -62,6 +62,14 @@ NameSpace DataAccess
             Return myDataTable
         End Function
 
+        Public Shared Function GetMukimID(ByVal mukim As String, ByVal myConnection As MySqlConnection) As Long
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select ifnull(fldID,0) From tblcountrymukim Where fldMukim = @mukim", myConnection)
+            myCommand.CommandType = CommandType.Text
+            myCommand.Parameters.AddWithValue("@mukim", mukim)
+            Dim result As Long = myCommand.ExecuteScalar()
+            Return result
+        End Function
+
         Public Shared Function GetCurrency(ByVal countryID As String, ByVal myConnection As MySqlConnection) As String
             Dim currency As String = ""
             Dim myCommand As MySqlCommand = New MySqlCommand("Select fldCurrency From tblcountry where fldID = @fldID", myConnection)

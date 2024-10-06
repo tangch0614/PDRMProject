@@ -142,10 +142,16 @@
     <value>Maklum Diterima Oleh</value>
   </data>
   <data name="AcknowledgeDateTime" xml:space="preserve">
-    <value>Masa Maklum Diterima</value>
+    <value>Tarikh Masa Maklum Diterima</value>
+  </data>
+  <data name="ActionTaken" xml:space="preserve">
+    <value>Tindakan Diambil</value>
   </data>
   <data name="Activate" xml:space="preserve">
     <value>Aktifkan</value>
+  </data>
+  <data name="ActivateDateTime" xml:space="preserve">
+    <value>Tarikh Masa Pengaktifan</value>
   </data>
   <data name="Activation" xml:space="preserve">
     <value>Aktivasi</value>
@@ -204,8 +210,14 @@
   <data name="Alert" xml:space="preserve">
     <value>Makluman</value>
   </data>
+  <data name="AlertDateTime" xml:space="preserve">
+    <value>Tarikh Masa Makluman</value>
+  </data>
   <data name="AlertNotificationList" xml:space="preserve">
     <value>Senarai Makluman</value>
+  </data>
+  <data name="AlertReport" xml:space="preserve">
+    <value>Laporan Makluman</value>
   </data>
   <data name="All" xml:space="preserve">
     <value>Semua</value>
@@ -238,7 +250,7 @@
     <value>Bateri</value>
   </data>
   <data name="BeltStatus" xml:space="preserve">
-    <value>Belt Status</value>
+    <value>Status Belt</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Batal</value>
@@ -276,11 +288,20 @@
   <data name="Close" xml:space="preserve">
     <value>Tutup</value>
   </data>
+  <data name="ClosingBy" xml:space="preserve">
+    <value>Tutup Oleh</value>
+  </data>
   <data name="CompanyInfo" xml:space="preserve">
     <value>Maklumat Syarikat</value>
   </data>
+  <data name="CompleteBy" xml:space="preserve">
+    <value>Diselesaikan Oleh</value>
+  </data>
   <data name="Completed" xml:space="preserve">
     <value>Selesai</value>
+  </data>
+  <data name="CompleteDateTime" xml:space="preserve">
+    <value>Tarikh Masa Selesai</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Sahkan Kata Laluan Baru</value>
@@ -289,10 +310,13 @@
     <value>Butiran Hubungan</value>
   </data>
   <data name="ContactNum" xml:space="preserve">
-    <value>No. Tel.</value>
+    <value>Tel. No</value>
   </data>
   <data name="Contingent" xml:space="preserve">
-    <value>Kontinjen</value>
+    <value>Kontingen</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>Kiraan</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>Negara</value>
@@ -311,6 +335,9 @@
   </data>
   <data name="Current" xml:space="preserve">
     <value>Semasa</value>
+  </data>
+  <data name="CurrentAlertList" xml:space="preserve">
+    <value>Makluman Semasa</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
     <value>Kata Laluan Semasa</value>
@@ -538,7 +565,7 @@
     <value>*Gagal menetapkan semula katalaluan.</value>
   </data>
   <data name="ErrorSubmitFailed" xml:space="preserve">
-    <value>Penyerahan gagal..</value>
+    <value>Penghantaran gagal..</value>
   </data>
   <data name="ErrorTransactionFailed" xml:space="preserve">
     <value>*Transaksi gagal.</value>
@@ -579,6 +606,9 @@
   <data name="Failed" xml:space="preserve">
     <value>Gagal</value>
   </data>
+  <data name="Female" xml:space="preserve">
+    <value>Perempuan</value>
+  </data>
   <data name="File" xml:space="preserve">
     <value>Fail</value>
   </data>
@@ -587,6 +617,9 @@
   </data>
   <data name="FileUpload" xml:space="preserve">
     <value>Muat Naik Fail</value>
+  </data>
+  <data name="FirstResponder" xml:space="preserve">
+    <value>Responder Pertama</value>
   </data>
   <data name="ForgotPassword" xml:space="preserve">
     <value>Terlupa Kata laluan?</value>
@@ -603,6 +636,9 @@
   <data name="FullBody" xml:space="preserve">
     <value>Seluruh Badan</value>
   </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Jantina</value>
+  </data>
   <data name="GeneratedDateTime" xml:space="preserve">
     <value>Tarikh Masa Dijana</value>
   </data>
@@ -613,7 +649,7 @@
     <value>Geo Pagar</value>
   </data>
   <data name="GeofenceMukim" xml:space="preserve">
-    <value>Geo Pagar Mukim</value>
+    <value>Pagar Mukim</value>
   </data>
   <data name="GeofenceStatus" xml:space="preserve">
     <value>Status Geo Pagar</value>
@@ -684,6 +720,9 @@
   <data name="InstallationRequestList" xml:space="preserve">
     <value>Senarai Pemohonan Pemasangan</value>
   </data>
+  <data name="InstallationTime" xml:space="preserve">
+    <value>Masa Pemasangan</value>
+  </data>
   <data name="Inventory" xml:space="preserve">
     <value>Inventori</value>
   </data>
@@ -693,17 +732,26 @@
   <data name="IPDList" xml:space="preserve">
     <value>Senarai IPD</value>
   </data>
+  <data name="IPK" xml:space="preserve">
+    <value>Kontinjen</value>
+  </data>
   <data name="IPKList" xml:space="preserve">
-    <value>Senarai IPK</value>
+    <value>Senarai Kontinjen</value>
   </data>
   <data name="Item" xml:space="preserve">
     <value>Item</value>
+  </data>
+  <data name="ItemDetails" xml:space="preserve">
+    <value>Butir-butir vITEM</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Bahasa</value>
   </data>
   <data name="LastLogin" xml:space="preserve">
     <value>Log Masuk Terakhir</value>
+  </data>
+  <data name="LastResponder" xml:space="preserve">
+    <value>Responder Terakhir</value>
   </data>
   <data name="LatestNews" xml:space="preserve">
     <value>Berita Terkini</value>
@@ -771,6 +819,9 @@
   </data>
   <data name="Maintenance" xml:space="preserve">
     <value>Penyelenggaraan</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Lelaki</value>
   </data>
   <data name="ManageActs" xml:space="preserve">
     <value>Urus Akta</value>
@@ -932,7 +983,7 @@
     <value>Kata laluan anda telah ditetapkan semula dan kata laluan baru telah dihantar ke e-mel anda.</value>
   </data>
   <data name="MsgSubmitSuccess" xml:space="preserve">
-    <value>Penyerahan berjaya..</value>
+    <value>Penghantaran berjaya..</value>
   </data>
   <data name="MsgTransactionSuccess" xml:space="preserve">
     <value>Transaksi berjaya.</value>
@@ -972,6 +1023,9 @@
   </data>
   <data name="NetworkInfo" xml:space="preserve">
     <value>Maklumat Rangkaian</value>
+  </data>
+  <data name="NewAlertList" xml:space="preserve">
+    <value>Makluman Baru</value>
   </data>
   <data name="NewImage" xml:space="preserve">
     <value>Imej Baru</value>
@@ -1081,6 +1135,9 @@
   <data name="Out" xml:space="preserve">
     <value>Keluar</value>
   </data>
+  <data name="Out Of Geofence" xml:space="preserve">
+    <value>Keluar dari Kawasan Mukim</value>
+  </data>
   <data name="Overseer" xml:space="preserve">
     <value>Pegawai Pengawasan</value>
   </data>
@@ -1108,6 +1165,9 @@
   <data name="PasswordRecovery" xml:space="preserve">
     <value>Pemulihan Kata Laluan</value>
   </data>
+  <data name="PastAlertList" xml:space="preserve">
+    <value>Makluman Lampau</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Tertangguh</value>
   </data>
@@ -1133,13 +1193,10 @@
     <value>Titik</value>
   </data>
   <data name="PoliceIDNo" xml:space="preserve">
-    <value>No. Polis</value>
+    <value>No. Badan</value>
   </data>
   <data name="PoliceStation" xml:space="preserve">
     <value>Balai Polis</value>
-  </data>
-  <data name="PoliceStationInfo" xml:space="preserve">
-    <value>Butir-Butir Balai Polis</value>
   </data>
   <data name="PoliceStationItem" xml:space="preserve">
     <value>vITEM Balai Polis</value>
@@ -1207,6 +1264,9 @@
   <data name="Remark" xml:space="preserve">
     <value>Catatan</value>
   </data>
+  <data name="RemarkHistory" xml:space="preserve">
+    <value>Catatan Lampau</value>
+  </data>
   <data name="Report" xml:space="preserve">
     <value>Laporan</value>
   </data>
@@ -1220,7 +1280,7 @@
     <value>Menetapkan Semula Kata laluan</value>
   </data>
   <data name="ResidenceRestrictionPeriod" xml:space="preserve">
-    <value>Masa Sekatan Kediaman</value>
+    <value>Tempoh Masa Pengawasan Kediaman</value>
   </data>
   <data name="ResidentialAddress" xml:space="preserve">
     <value>Alamat Kediaman</value>
@@ -1261,8 +1321,14 @@
   <data name="SelfReportTime" xml:space="preserve">
     <value>Masa Lapor Diri</value>
   </data>
+  <data name="SerialNum" xml:space="preserve">
+    <value>No. Siri</value>
+  </data>
   <data name="ServiceHour" xml:space="preserve">
     <value>Waktu Pejabat</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Tahap Risiko</value>
   </data>
   <data name="Show" xml:space="preserve">
     <value>Tunjuk</value>
@@ -1279,6 +1345,9 @@
   <data name="SIMNo" xml:space="preserve">
     <value>No. SIM</value>
   </data>
+  <data name="Size" xml:space="preserve">
+    <value>Saiz</value>
+  </data>
   <data name="SortBy" xml:space="preserve">
     <value>Isih Mengikut</value>
   </data>
@@ -1288,20 +1357,23 @@
   <data name="South" xml:space="preserve">
     <value>Selatan</value>
   </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Kelajuan Pergerakan</value>
+  </data>
   <data name="State" xml:space="preserve">
     <value>Negeri</value>
   </data>
+  <data name="StateContingent" xml:space="preserve">
+    <value>Kontinjen Negeri</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>
-  <data name="SubjectInfo" xml:space="preserve">
-    <value>Butir-butir Subjek</value>
   </data>
   <data name="SubjectItem" xml:space="preserve">
     <value>vITEM Subjek</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Serahkan</value>
+    <value>Hantar</value>
   </data>
   <data name="Subpage" xml:space="preserve">
     <value>Subhalaman</value>
@@ -1416,6 +1488,9 @@
   </data>
   <data name="Verify" xml:space="preserve">
     <value>Mengesahkan</value>
+  </data>
+  <data name="VerifyDateTime" xml:space="preserve">
+    <value>Tarikh Masa Pengesahan</value>
   </data>
   <data name="VerifyStatus" xml:space="preserve">
     <value>Status Pengesahan</value>

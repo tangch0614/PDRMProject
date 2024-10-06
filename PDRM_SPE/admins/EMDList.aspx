@@ -38,6 +38,18 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <asp:Label runat="server" ID="lblSSN" CssClass="col-md-3 control-label" Text="User ID"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:TextBox runat="server" ID="txtSSN" CssClass="form-control input-inline input-large"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label runat="server" ID="lblSSize" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:DropDownList runat="server" ID="ddlSSize" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <asp:Label runat="server" ID="lblSStatus" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:DropDownList runat="server" ID="ddlSStatus" CssClass="form-control input-inline input-large"></asp:DropDownList>
@@ -73,11 +85,18 @@
                                                             <th style="width: 5% !important">
                                                                 <%#GetText("Num")%>
                                                             </th>
+                                                            <th style="width: 5% !important"></th>
                                                             <th style="width: 10% !important">
                                                                 <%#GetText("Imei")%>
                                                             </th>
                                                             <th style="width: 10% !important">
                                                                 <%#GetText("Marking")%>
+                                                            </th>
+                                                            <th style="width: 10% !important">
+                                                                <%#GetText("SerialNum")%>
+                                                            </th>
+                                                            <th style="width: 10% !important">
+                                                                <%#GetText("Size")%>
                                                             </th>
                                                             <th style="width: 10% !important; display: none;">
                                                                 <%#GetText("SIMNo")%>
@@ -105,10 +124,19 @@
                                                         <%# Container.ItemIndex + 1%>
                                                     </td>
                                                     <td style="text-align: left">
+                                                        <asp:Button runat="server" ID="btnEdit" Text='<%#GetText("Update")%>' CommandName="update" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
+                                                    </td>
+                                                    <td style="text-align: left">
                                                         <%#Eval("fldImei")%>
                                                     </td>
                                                     <td style="text-align: left">
                                                         <%#Eval("fldName")%>
+                                                    </td>
+                                                    <td style="text-align: left">
+                                                        <%#Eval("fldSN")%>
+                                                    </td>
+                                                    <td style="text-align: center">
+                                                        <%#Eval("fldSize")%>
                                                     </td>
                                                     <td style="text-align: left; display: none;">
                                                         <%#Eval("fldSImNo")%>
@@ -126,9 +154,8 @@
                                                         <asp:Label runat="server" ID="txtStatus" Text='<%#If(Eval("fldStatus").Equals("Y"), GetText("Active"), GetText("Inactive"))%>' CssClass='<%#If(Eval("fldStatus").Equals("Y"), "label label-success", "label label-danger")%>'></asp:Label>
                                                     </td>
                                                     <td style="text-align: center">
-                                                        <asp:Button runat="server" ID="btnLockEMD" Text='<%#GetText("Lock")%>' CommandName="lock" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
-                                                        <asp:Button runat="server" ID="btnUnlockEMD" Text='<%#GetText("Unlock")%>' CommandName="unlock" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
-                                                        <asp:Button runat="server" ID="btnEdit" Text='<%#GetText("Update")%>' CommandName="update" CommandArgument='<%#Eval("fldID")%>' CssClass="btn blue btn-xs " />
+                                                        <asp:Button runat="server" ID="btnLockEMD" Text='<%#GetText("Lock")%>' OnClientClick="return confirm(hfConfirm2.value);" CommandName="lock" CommandArgument='<%#Eval("fldID")%>' CssClass="btn purple btn-xs " />
+                                                        <asp:Button runat="server" ID="btnUnlockEMD" Text='<%#GetText("Unlock")%>' OnClientClick="return confirm(hfConfirm2.value);" CommandName="unlock" CommandArgument='<%#Eval("fldID")%>' CssClass="btn red btn-xs " />
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>
@@ -168,6 +195,20 @@
                                                 <asp:TextBox runat="server" ID="txtName" data-temp="1" CssClass="form-control input-inline input-large"></asp:TextBox>
                                                 <%--<label style="color: red">*</label>--%>
                                                 <%--<asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtName" ErrorMessage="*Name cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="update"></asp:RequiredFieldValidator>--%>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label runat="server" ID="lblSN" CssClass="col-md-3 control-label" Text="Current Login ID"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:TextBox runat="server" ID="txtSN" data-temp="1" CssClass="form-control input-inline input-large"></asp:TextBox>
+                                                <%--<label style="color: red">*</label>--%>
+                                                <%--<asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtName" ErrorMessage="*Name cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="add"></asp:RequiredFieldValidator>--%>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label runat="server" ID="lblSize" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:DropDownList runat="server" ID="ddlSize" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -211,6 +252,7 @@
     </div>
     <!-- PAGE BODY -->
     <asp:HiddenField runat="server" ID="hfConfirm" Value="Confirm update details?" ClientIDMode="Static" />
+    <asp:HiddenField runat="server" ID="hfConfirm2" Value="Confirm update details?" ClientIDMode="Static" />
     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ValidationGroup="update" DisplayMode="BulletList" HeaderText="Please make sure all field are entered correctly" ShowMessageBox="true" ShowValidationErrors="true" ShowSummary="false" />
 
     <!--LOADING POPUP-->

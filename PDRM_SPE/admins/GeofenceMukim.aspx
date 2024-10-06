@@ -186,7 +186,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="2" align="right">
-                                                        <asp:Button runat="server" CssClass="btn blue" ID="btnSubmit" Text='Search' OnClientClick="return processCoordinates();" OnClick="btnSubmit_Click" />
+                                                        <asp:Button runat="server" CssClass="btn blue" ID="btnSubmit" Text='Search' OnClientClick="if(!confirm(hfConfirm.value)){return false;}else{return processCoordinates();}" OnClick="btnSubmit_Click" />
                                                         <asp:HiddenField runat="server" ID="hfGeofence" ClientIDMode="Static" />
                                                     </td>
                                                 </tr>
@@ -200,6 +200,7 @@
                 </div>
             </div>
         </div>
+        <asp:HiddenField runat="server" ID="hfConfirm" ClientIDMode="Static" />
 
         <!-- BEGIN CORE PLUGINS -->
         <script src="../assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>

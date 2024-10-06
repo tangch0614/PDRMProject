@@ -64,7 +64,7 @@ Public Class TestHistMapFiltered
     End Sub
 
     Private Sub GetOPPList()
-        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "Y")
+        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "Y", "")
         datatable.Columns.Add("fldNameIC", GetType(String), "fldName + '-' + fldICNo")
         ddlOPP.DataSource = datatable
         ddlOPP.DataTextField = "fldNameIC"
@@ -86,7 +86,7 @@ Public Class TestHistMapFiltered
         txtIMEI.Text = ""
         plOPPInfo.Visible = False
         If id > 0 Then
-            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, "", "", "")
+            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, -1, -1, "", "", "")
             If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
                 imgPhoto.ImageUrl = If(Not String.IsNullOrEmpty(myDataTable.Rows(0)("fldPhoto1")), myDataTable.Rows(0)("fldPhoto1"), "../assets/img/No_Image.png")
                 txtOPPName.Text = myDataTable.Rows(0)("fldName")
@@ -109,7 +109,7 @@ Public Class TestHistMapFiltered
         If ddlOPP.SelectedIndex > 0 Then
             oppid = ddlOPP.SelectedValue
         ElseIf ddlEMD.SelectedIndex > 0 Then
-            oppid = OPPManager.GetOPPID(ddlEMD.SelectedValue, "", "")
+            oppid = EMDDeviceManager.GetOPPID(ddlEMD.SelectedValue)
         End If
         If oppid > 0 Then
             hfOPPID.Value = oppid
@@ -122,7 +122,7 @@ Public Class TestHistMapFiltered
 
     Protected Sub ddlOPP_SelectedIndexChanged(sender As Object, e As EventArgs)
         If ddlOPP.SelectedIndex > 0 Then
-            Dim deviceid As Long = OPPManager.GetEMDDeviceID(ddlOPP.SelectedValue)
+            Dim deviceid As Long = EMDDeviceManager.GetEMDDeviceID(ddlOPP.SelectedValue, "", "")
             Try
                 ddlEMD.SelectedValue = deviceid
             Catch ex As Exception
@@ -133,7 +133,7 @@ Public Class TestHistMapFiltered
 
     Protected Sub ddlEMD_SelectedIndexChanged(sender As Object, e As EventArgs)
         If ddlEMD.SelectedValue > 0 Then
-            Dim oppid As Long = OPPManager.GetOPPID(ddlEMD.SelectedValue, "", "")
+            Dim oppid As Long = EMDDeviceManager.GetOPPID(ddlEMD.SelectedValue)
             Try
                 ddlOPP.SelectedValue = oppid
             Catch ex As Exception

@@ -11,6 +11,15 @@ NameSpace BusinessLogic
 
 #Region "Public Methods"
 
+        Public Shared Function CountLoggedInUser() As Integer
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Integer = SessionDB.CountLoggedInUser(myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
         Public Shared Function GetList() As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()

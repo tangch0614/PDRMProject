@@ -17,7 +17,7 @@ Public Class ATrackingHistoryReport
                 If Request("opp") > 0 Then
                     oppid = Request("opp")
                 ElseIf Request("emd") > 0 Then
-                    oppid = OPPManager.GetOPPID(Request("emd"), "", "")
+                    oppid = EMDDeviceManager.GetOPPID(Request("emd"))
                 End If
                 If oppid > 0 Then
                     Dim opp As OPPObj = OPPManager.GetOPP(oppid)
@@ -83,7 +83,7 @@ Public Class ATrackingHistoryReport
     End Sub
 
     Private Sub BindAlertList(deviceid As Long, oppid As Long, frdatetime As String, todatetime As String)
-        Dim myDataTable As DataTable = EMDDeviceManager.GetAlertNotificationList(deviceid, oppid, frdatetime, todatetime)
+        Dim myDataTable As DataTable = AlertManager.GetAlertList(-1, deviceid, oppid, -1, "", "", frdatetime, todatetime, -1, -1, " fldID ASC ")
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptAlert.DataSource = myDataTable
             rptAlert.DataBind()

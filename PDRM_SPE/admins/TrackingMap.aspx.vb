@@ -24,6 +24,7 @@ Public Class ATrackingMap
             GetEMDDevice()
             GetOPPList()
             hfOPPID.Value = -1
+            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "initMap();", True)
             If Not Request("opp") Is Nothing Then
                 Dim opp As OPPObj = OPPManager.GetOPP(Request("opp"))
                 If Not opp Is Nothing AndAlso Not Request("i") Is Nothing AndAlso Request("i").Equals(UtilityManager.MD5Encrypt(Request("opp") & "trackingmap")) Then
@@ -31,6 +32,8 @@ Public Class ATrackingMap
                         ddlEMD.SelectedValue = opp.fldEMDDeviceID
                         ddlOPP.SelectedValue = opp.fldID
                         hfOPPID.Value = Request("opp")
+                        GetOPPInfo(hfOPPID.Value)
+                        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "startFetchingMarkers();startFetchingNotifications();", True)
                     Catch
                         ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("ErrorItemNotFound").Replace("vITEM", "OPP") & "')", True)
                         ddlEMD.SelectedIndex = 0
@@ -38,8 +41,6 @@ Public Class ATrackingMap
                     End Try
                 End If
             End If
-            GetOPPInfo(hfOPPID.Value)
-            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "initMap();initNotifications();", True)
         End If
     End Sub
 
@@ -59,7 +60,7 @@ Public Class ATrackingMap
     End Sub
 
     Private Sub GetOPPList()
-        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "Y")
+        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "", "Y")
         datatable.Columns.Add("fldNameIC", GetType(String), "fldName + '-' + fldICNo")
         ddlOPP.DataSource = datatable
         ddlOPP.DataTextField = "fldNameIC"
@@ -78,16 +79,20 @@ Public Class ATrackingMap
         txtPoliceStation.Text = ""
         txtDepartment.Text = ""
         txtPSContactNo.Text = ""
+        txtIPK.Text = ""
+        txtMukim.Text = ""
         If id > 0 Then
-            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, "", "", "")
+            Dim myDataTable As DataTable = OPPManager.GetOPPList(id, "", "", -1, -1, -1, -1, -1, "", "", "")
             If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
                 imgPhoto.ImageUrl = If(Not String.IsNullOrEmpty(myDataTable.Rows(0)("fldPhoto1")), myDataTable.Rows(0)("fldPhoto1"), "../assets/img/No_Image.png")
                 txtOPPName.Text = myDataTable.Rows(0)("fldName")
                 txtOPPICNo.Text = myDataTable.Rows(0)("fldICNo")
+                txtMukim.Text = myDataTable.Rows(0)("fldMukim")
                 txtOverseerName.Text = myDataTable.Rows(0)("fldOverseerName")
                 txtOverseerContactNo.Text = myDataTable.Rows(0)("fldOverseerContactNo")
                 txtPoliceNo.Text = myDataTable.Rows(0)("fldPoliceNo")
                 txtPoliceStation.Text = myDataTable.Rows(0)("fldPSName")
+                txtIPK.Text = myDataTable.Rows(0)("fldIPKName")
                 txtDepartment.Text = myDataTable.Rows(0)("fldDepartment")
                 txtPSContactNo.Text = myDataTable.Rows(0)("fldPSContactNo")
             End If
@@ -100,11 +105,11 @@ Public Class ATrackingMap
         If ddlOPP.SelectedIndex > 0 Then
             oppid = ddlOPP.SelectedValue
         ElseIf ddlEMD.SelectedIndex > 0 Then
-            oppid = OPPManager.GetOPPID(ddlEMD.SelectedValue, "", "")
+            oppid = EMDDeviceManager.GetOPPID(ddlEMD.SelectedValue)
         End If
         If oppid > 0 Then
             hfOPPID.Value = oppid
-            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "cleartoastr();fetchAndUpdateMarkers(true);", True)
+            ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "cleartoastr();startFetchingMarkers();startFetchingNotifications();", True)
         Else
             ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & GetText("ErrorNoResult") & "');", True)
         End If
@@ -112,8 +117,9 @@ Public Class ATrackingMap
     End Sub
 
     Protected Sub ddlOPP_SelectedIndexChanged(sender As Object, e As EventArgs)
+        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "stopFetchingMarkers();stopFetchingNotifications();", True)
         If ddlOPP.SelectedIndex > 0 Then
-            Dim deviceid As Long = OPPManager.GetEMDDeviceID(ddlOPP.SelectedValue)
+            Dim deviceid As Long = EMDDeviceManager.GetEMDDeviceID(ddlOPP.SelectedValue, "", "")
             Try
                 ddlEMD.SelectedValue = deviceid
             Catch ex As Exception
@@ -123,8 +129,9 @@ Public Class ATrackingMap
     End Sub
 
     Protected Sub ddlEMD_SelectedIndexChanged(sender As Object, e As EventArgs)
+        ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "stopFetchingMarkers();stopFetchingNotifications();", True)
         If ddlEMD.SelectedValue > 0 Then
-            Dim oppid As Long = OPPManager.GetOPPID(ddlEMD.SelectedValue, "", "")
+            Dim oppid As Long = EMDDeviceManager.GetOPPID(ddlEMD.SelectedValue)
             Try
                 ddlOPP.SelectedValue = oppid
             Catch ex As Exception

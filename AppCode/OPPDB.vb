@@ -8,9 +8,8 @@ NameSpace DataAccess
 
 #Region "Public Methods"
 
-        Public Shared Function GetOPPID(ByVal deviceid As Long, ByVal name As String, ByVal icno As String, ByVal myconn As MySqlConnection) As Long
+        Public Shared Function GetOPPID(ByVal name As String, ByVal icno As String, ByVal myconn As MySqlConnection) As Long
             Dim query As String = ""
-            If Not deviceid <= 0 Then query &= " fldEMDDeviceID = @deviceid And "
             If Not String.IsNullOrEmpty(name) Then query &= " fldname = @name And "
             If Not String.IsNullOrEmpty(icno) Then query &= " fldicno = @icno AND "
             If Not String.IsNullOrEmpty(query) Then
@@ -18,7 +17,6 @@ NameSpace DataAccess
                 query = query.Substring(0, query.Length - 4)
             End If
             Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldID,0) from tblopp " & query, myconn)
-            mycmd.Parameters.AddWithValue("@deviceid", deviceid)
             mycmd.Parameters.AddWithValue("@name", name)
             mycmd.Parameters.AddWithValue("@icno", icno)
             Dim result As Long = mycmd.ExecuteScalar
@@ -39,12 +37,12 @@ NameSpace DataAccess
             Return result
         End Function
 
-        Public Shared Function GetEMDDeviceID(ByVal id As Long, ByVal myconn As MySqlConnection) As Long
-            Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldEMDDeviceID,0) from tblopp where fldID=@id", myconn)
-            mycmd.Parameters.AddWithValue("@id", id)
-            Dim result As Long = mycmd.ExecuteScalar
-            Return result
-        End Function
+        'Public Shared Function GetEMDDeviceID(ByVal id As Long, ByVal myconn As MySqlConnection) As Long
+        '    Dim mycmd As MySqlCommand = New MySqlCommand("Select ifnull(fldEMDDeviceID,0) from tblopp where fldID=@id", myconn)
+        '    mycmd.Parameters.AddWithValue("@id", id)
+        '    Dim result As Long = mycmd.ExecuteScalar
+        '    Return result
+        'End Function
 
         Public Shared Function GetOPP(ByVal fldID As Long, ByVal myConnection As MySqlConnection) As OPPObj
             Dim myopp As OPPObj = Nothing
@@ -61,7 +59,7 @@ NameSpace DataAccess
             Return myopp
         End Function
 
-        Public Shared Function GetOPPList(ByVal id As Long, ByVal name As String, ByVal icno As String, ByVal deviceid As Long, ByVal deptid As Long, ByVal policestationid As Long, ByVal orderrefno As String, ByVal status As String, ByVal verifystatus As String, ByVal myConnection As MySqlConnection) As DataTable
+        Public Shared Function GetOPPList(ByVal id As Long, ByVal name As String, ByVal icno As String, ByVal deviceid As Long, ByVal deptid As Long, ByVal ipkid As Long, ByVal ipdid As Long, ByVal policestationid As Long, ByVal orderrefno As String, ByVal status As String, ByVal verifystatus As String, ByVal myConnection As MySqlConnection) As DataTable
             Dim myDataTable As DataTable = New DataTable()
             Dim query As String = ""
             If Not id <= 0 Then query &= " a.fldID = @id And "
@@ -69,6 +67,8 @@ NameSpace DataAccess
             If Not String.IsNullOrEmpty(name) Then query &= " a.fldname = @name And "
             If Not String.IsNullOrEmpty(icno) Then query &= " a.fldicno = @icno AND "
             If Not deptid < 0 Then query &= " a.flddeptid = @deptid AND "
+            If Not ipkid < 0 Then query &= " a.fldipkid = @ipkid AND "
+            If Not ipdid < 0 Then query &= " a.fldipdid = @ipdid AND "
             If Not policestationid < 0 Then query &= " a.fldpolicestationid = @policestationid AND "
             If Not String.IsNullOrEmpty(orderrefno) Then query &= " a.fldordrefno = @orderrefno AND "
             If Not String.IsNullOrEmpty(status) Then query &= " a.fldStatus = @status AND "
@@ -77,10 +77,11 @@ NameSpace DataAccess
                 query = " Where " & query
                 query = query.Substring(0, query.Length - 4)
             End If
-            Dim myCommand As MySqlCommand = New MySqlCommand("Select a.*, ifnull(b.fldName,'') As fldPSName, ifnull(b.fldContactNo,'') As fldPSContactNo, ifnull(c.fldName,'') as fldActs, ifnull(d.fldName,'') as fldActsSection, ifnull(e.fldName,'') as fldEMDName, ifnull(e.fldImei,'') As fldImei,
+            Dim myCommand As MySqlCommand = New MySqlCommand("Select a.*, ifnull(b.fldName,'') As fldPSName, ifnull(b.fldContactNo,'') As fldPSContactNo, ifnull(b.fldName,'') As fldIPKName, ifnull(c.fldName,'') as fldActs, ifnull(d.fldName,'') as fldActsSection, ifnull(e.fldName,'') as fldEMDName, ifnull(e.fldImei,'') As fldImei,
                                                                 ifnull(f.fldName,'') as fldOverseerName, ifnull(f.fldICNo,'') as fldOverseerICNo, ifnull(f.fldContactNo,'') as fldOverseerContactNo, ifnull(f.fldPoliceNo,'') as fldPoliceNo, ifnull(g.fldName,'') as fldDepartment
                                                                 From tblopp a 
                                                                 left Join tblpolicestation b On b.fldID=a.fldPoliceStationID 
+                                                                left Join tblpolicestation b2 On b.fldID=a.fldIPKID 
                                                                 left Join tblacts c On c.fldID=a.fldActsID 
                                                                 left Join tblActsSection d On d.fldID=a.fldActsSectionID 
                                                                 left Join tblemddevice e On e.fldID=a.fldEMDDeviceID
@@ -92,6 +93,8 @@ NameSpace DataAccess
             myCommand.Parameters.AddWithValue("@name", name)
             myCommand.Parameters.AddWithValue("@icno", icno)
             myCommand.Parameters.AddWithValue("@deptid", deptid)
+            myCommand.Parameters.AddWithValue("@ipkid", ipkid)
+            myCommand.Parameters.AddWithValue("@ipdid", ipdid)
             myCommand.Parameters.AddWithValue("@policestationid", policestationid)
             myCommand.Parameters.AddWithValue("@orderrefno", orderrefno)
             myCommand.Parameters.AddWithValue("@status", status)
@@ -101,10 +104,11 @@ NameSpace DataAccess
             Return myDataTable
         End Function
 
-        Public Shared Function GetOPPList(ByVal id As Long, ByVal status As String, ByVal myConnection As MySqlConnection) As DataTable
+        Public Shared Function GetOPPList(ByVal id As Long, ByVal verifystatus As String, ByVal status As String, ByVal myConnection As MySqlConnection) As DataTable
             Dim myDataTable As DataTable = New DataTable()
             Dim query As String = ""
             If Not id <= 0 Then query &= " fldID = @id And "
+            If Not String.IsNullOrEmpty(verifystatus) Then query &= " fldVerifyStatus = @verifystatus AND "
             If Not String.IsNullOrEmpty(status) Then query &= " fldStatus = @status AND "
             If Not String.IsNullOrEmpty(query) Then
                 query = " Where " & query
@@ -113,6 +117,7 @@ NameSpace DataAccess
             Dim myCommand As MySqlCommand = New MySqlCommand("Select * From tblopp " & query & " Order by fldName ", myConnection)
             myCommand.CommandType = CommandType.Text
             myCommand.Parameters.AddWithValue("@id", id)
+            myCommand.Parameters.AddWithValue("@verifystatus", verifystatus)
             myCommand.Parameters.AddWithValue("@status", status)
             Dim adapter As MySqlDataAdapter = New MySqlDataAdapter(myCommand)
             adapter.Fill(myDataTable)
@@ -139,10 +144,18 @@ NameSpace DataAccess
         End Function
 
         Public Shared Function UpdateStatus(ByVal oppid As Long, ByVal oldstatus As String, ByVal newstatus As String, ByVal myConnection As MySqlConnection) As Boolean
-            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblopp set fldStatus=@newstatus Where fldID=@oppid and fldStatus=@oldstatus", myConnection)
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblopp set fldStatus=@newstatus, fldActivateDateTime=If(@newstatus='Y',NOW(),fldActivateDateTime) Where fldID=@oppid and fldStatus=@oldstatus", myConnection)
             myCommand.Parameters.AddWithValue("@oppid", oppid)
             myCommand.Parameters.AddWithValue("@oldstatus", oldstatus)
             myCommand.Parameters.AddWithValue("@newstatus", newstatus)
+            Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
+            Return result
+        End Function
+
+        Public Shared Function UpdateActivateDateTime(ByVal oppid As Long, ByVal datetime As String, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblopp set fldActivateDateTime=@datetime Where fldID=@oppid", myConnection)
+            myCommand.Parameters.AddWithValue("@oppid", oppid)
+            myCommand.Parameters.AddWithValue("@datetime", datetime)
             Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
             Return result
         End Function
@@ -223,10 +236,12 @@ NameSpace DataAccess
             Return result
         End Function
 
-        Public Shared Function UpdateGeofenceMukim(ByVal oppid As Long, ByVal mukim As String, ByVal myConnection As MySqlConnection) As Boolean
-            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblopp set fldGeofenceMukim=@mukim Where fldID=@oppid", myConnection)
+        Public Shared Function UpdateGeofenceMukim(ByVal oppid As Long, ByVal district As String, ByVal mukim As String, ByVal mukimid As Long, ByVal myConnection As MySqlConnection) As Boolean
+            Dim myCommand As MySqlCommand = New MySqlCommand("Update tblopp set fldGeofenceDistrict=@district, fldGeofenceMukim=@mukim, fldGeofenceMukimID=@mukimid Where fldID=@oppid", myConnection)
             myCommand.Parameters.AddWithValue("@oppid", oppid)
+            myCommand.Parameters.AddWithValue("@district", district)
             myCommand.Parameters.AddWithValue("@mukim", mukim)
+            myCommand.Parameters.AddWithValue("@mukimid", mukimid)
             Dim result As Boolean = myCommand.ExecuteNonQuery() > 0
             Return result
         End Function
@@ -267,11 +282,11 @@ NameSpace DataAccess
             Dim processReturn As String = "Select LAST_INSERT_ID()"
             Dim isInsert As Boolean = True
             If myopp.fldID = Nothing Then
-                processExe = "Insert into tblopp (fldDateTime, fldRefID, fldName, fldICNo, fldContactNo, fldPhoto1, fldPhoto2, fldAddress, fldCountryID, fldState, fldDistrict, fldMukim, fldPoliceStationID, fldDeptID, fldOffenceDesc, fldCaseFileNo, fldCaseHandlerName, fldCaseHandlerTelNo, fldActsID, fldActsSectionID, fldOrdParty, fldOrdPartyName, fldOrdIssuedDate, fldOrdRefNo, fldOrdDay, fldOrdMonth, fldOrdYear, fldOrdFrDate, fldOrdToDate, fldRptPoliceStationID, fldSDNo, fldOCSName, fldOCSTelNo, fldRptDay, fldRptFrTime, fldRptToTime, fldOverseerID, fldEMDDeviceID, fldEMDInstallDate, fldSmartTagCode, fldOBCCode, fldBeaconCode, fldChargerCode, fldStrapCode, fldCableCode, fldSmartTag, fldOBC, fldBeacon, fldCharger, fldStrap, fldCable, fldRestrictFrTime, fldRestrictToTime, fldGeofence1, fldGeofence1FrTime, fldGeofence1ToTime, fldGeofence2, fldGeofence2FrTime, fldGeofence2ToTime, fldGeofenceMukim, fldAttachment1, fldAttachment2, fldRemark, fldStatus, fldVerifyStatus, fldVerifyDateTime, fldVerifyBy, fldGeofenceActive) Values (Now(), @fldRefID, @fldName, @fldICNo, @fldContactNo, @fldPhoto1, @fldPhoto2, @fldAddress, @fldCountryID, @fldState, @fldDistrict, @fldMukim, @fldPoliceStationID, @fldDeptID, @fldOffenceDesc, @fldCaseFileNo, @fldCaseHandlerName, @fldCaseHandlerTelNo, @fldActsID, @fldActsSectionID, @fldOrdParty, @fldOrdPartyName, @fldOrdIssuedDate, @fldOrdRefNo, @fldOrdDay, @fldOrdMonth, @fldOrdYear, @fldOrdFrDate, @fldOrdToDate, @fldRptPoliceStationID, @fldSDNo, @fldOCSName, @fldOCSTelNo, @fldRptDay, @fldRptFrTime, @fldRptToTime, @fldOverseerID, @fldEMDDeviceID, @fldEMDInstallDate, @fldSmartTagCode, @fldOBCCode, @fldBeaconCode, @fldChargerCode, @fldStrapCode, @fldCableCode, @fldSmartTag, @fldOBC, @fldBeacon, @fldCharger, @fldStrap, @fldCable, @fldRestrictFrTime, @fldRestrictToTime, @fldGeofence1, @fldGeofence1FrTime, @fldGeofence1ToTime, @fldGeofence2, @fldGeofence2FrTime, @fldGeofence2ToTime, @fldGeofenceMukim, @fldAttachment1, @fldAttachment2, @fldRemark, @fldStatus, @fldVerifyStatus, @fldVerifyDateTime, @fldVerifyBy, @fldGeofenceActive)"
+                processExe = "Insert into tblopp (fldDateTime, fldRefID, fldName, fldICNo, fldGender, fldContactNo, fldPhoto1, fldPhoto2, fldAddress, fldCountryID, fldState, fldDistrict, fldMukim, fldIPKID, fldIPDID, fldPoliceStationID, fldDeptID, fldOffenceDesc, fldCaseFileNo, fldCaseHandlerName, fldCaseHandlerTelNo, fldActsID, fldActsSectionID, fldOrdParty, fldOrdPartyName, fldOrdIssuedDate, fldOrdRefNo, fldOrdDay, fldOrdMonth, fldOrdYear, fldOrdFrDate, fldOrdToDate, fldRptPoliceStationID, fldSDNo, fldOCSName, fldOCSTelNo, fldRptDay, fldRptFrTime, fldRptToTime, fldOverseerID, fldEMDDeviceID, fldEMDInstallDate, fldSmartTagCode, fldOBCCode, fldBeaconCode, fldChargerCode, fldStrapCode, fldCableCode, fldSmartTag, fldOBC, fldBeacon, fldCharger, fldStrap, fldCable, fldRestrictFrTime, fldRestrictToTime, fldGeofence1, fldGeofence1FrTime, fldGeofence1ToTime, fldGeofence2, fldGeofence2FrTime, fldGeofence2ToTime, fldGeofenceDistrict, fldGeofenceMukim, fldGeofenceMukimID, fldAttachment1, fldAttachment2, fldRemark, fldStatus, fldActivateDateTime, fldVerifyStatus, fldVerifyDateTime, fldVerifyBy, fldGeofenceActive) Values (Now(), @fldRefID, @fldName, @fldICNo, @fldGender,@fldContactNo, @fldPhoto1, @fldPhoto2, @fldAddress, @fldCountryID, @fldState, @fldDistrict, @fldMukim, @fldIPKID, @fldIPDID, @fldPoliceStationID, @fldDeptID, @fldOffenceDesc, @fldCaseFileNo, @fldCaseHandlerName, @fldCaseHandlerTelNo, @fldActsID, @fldActsSectionID, @fldOrdParty, @fldOrdPartyName, @fldOrdIssuedDate, @fldOrdRefNo, @fldOrdDay, @fldOrdMonth, @fldOrdYear, @fldOrdFrDate, @fldOrdToDate, @fldRptPoliceStationID, @fldSDNo, @fldOCSName, @fldOCSTelNo, @fldRptDay, @fldRptFrTime, @fldRptToTime, @fldOverseerID, @fldEMDDeviceID, @fldEMDInstallDate, @fldSmartTagCode, @fldOBCCode, @fldBeaconCode, @fldChargerCode, @fldStrapCode, @fldCableCode, @fldSmartTag, @fldOBC, @fldBeacon, @fldCharger, @fldStrap, @fldCable, @fldRestrictFrTime, @fldRestrictToTime, @fldGeofence1, @fldGeofence1FrTime, @fldGeofence1ToTime, @fldGeofence2, @fldGeofence2FrTime, @fldGeofence2ToTime, @fldGeofenceDistrict, @fldGeofenceMukim, @fldGeofenceMukimID, @fldAttachment1, @fldAttachment2, @fldRemark, @fldStatus, @fldActivateDateTime, @fldVerifyStatus, @fldVerifyDateTime, @fldVerifyBy, @fldGeofenceActive)"
                 isInsert = True
             Else
                 'processExe = "Update tblopp set fldName = @fldName, fldICNo = @fldICNo, fldContactNo=@fldContactNo, fldPhoto1 = @fldPhoto1, fldPhoto2 = @fldPhoto2, fldAddress = @fldAddress, fldCountryID = @fldCountryID, fldState = @fldState, fldDistrict = @fldDistrict, fldMukim = @fldMukim, fldPoliceStationID = @fldPoliceStationID, fldDeptID = @fldDeptID, fldOffenceDesc = @fldOffenceDesc, fldCaseFileNo = @fldCaseFileNo, fldCaseHandlerName = @fldCaseHandlerName, fldCaseHandlerTelNo = @fldCaseHandlerTelNo, fldActsID = @fldActsID, fldActsSectionID = @fldActsSectionID, fldOrdParty = @fldOrdParty, fldOrdPartyName = @fldOrdPartyName, fldOrdIssuedDate=@fldOrdIssuedDate, fldOrdRefNo=@fldOrdRefNo, fldOrdDay=@fldOrdDay, fldOrdMonth=@fldOrdMonth, fldOrdYear = @fldOrdYear, fldOrdFrDate = @fldOrdFrDate, fldOrdToDate = @fldOrdToDate, fldRptPoliceStationID = @fldRptPoliceStationID, fldSDNo = @fldSDNo, fldOCSName = @fldOCSName, fldOCSTelNo = @fldOCSTelNo, fldRptDay = @fldRptDay, fldRptFrTime = @fldRptFrTime, fldRptToTime = @fldRptToTime, fldOverseerID = @fldOverseerID, fldEMDDeviceID = @fldEMDDeviceID, fldEMDInstallDate=@fldEMDInstallDate, fldBeaconCode=@fldBeaconCode, fldSmartTag=@fldSmartTag, fldOBC=@fldOBC, fldBeacon=@fldBeacon, fldCharger=@fldCharger, fldStrap=@fldStrap, fldCable=@fldCable, fldRestrictFrTime=@fldRestrictFrTime, fldRestrictToTime=@fldRestrictToTime, fldGeofenceMukim = @fldGeofenceMukim, fldAttachment1 = @fldAttachment1, fldAttachment2 = @fldAttachment2, fldRemark = @fldRemark Where fldID = @fldID"
-                processExe = "Update tblopp set fldName = @fldName, fldICNo = @fldICNo, fldContactNo=@fldContactNo, fldPhoto1 = @fldPhoto1, fldPhoto2 = @fldPhoto2, fldAddress = @fldAddress, fldCountryID = @fldCountryID, fldState = @fldState, fldDistrict = @fldDistrict, fldMukim = @fldMukim, fldPoliceStationID = @fldPoliceStationID, fldDeptID = @fldDeptID, fldOffenceDesc = @fldOffenceDesc, fldCaseFileNo = @fldCaseFileNo, fldCaseHandlerName = @fldCaseHandlerName, fldCaseHandlerTelNo = @fldCaseHandlerTelNo, fldActsID = @fldActsID, fldActsSectionID = @fldActsSectionID, fldOrdParty = @fldOrdParty, fldOrdPartyName = @fldOrdPartyName, fldOrdIssuedDate=@fldOrdIssuedDate, fldOrdRefNo=@fldOrdRefNo, fldOrdDay=@fldOrdDay, fldOrdMonth=@fldOrdMonth, fldOrdYear = @fldOrdYear, fldOrdFrDate = @fldOrdFrDate, fldOrdToDate = @fldOrdToDate, fldRptPoliceStationID = @fldRptPoliceStationID, fldSDNo = @fldSDNo, fldOCSName = @fldOCSName, fldOCSTelNo = @fldOCSTelNo, fldRptDay = @fldRptDay, fldRptFrTime = @fldRptFrTime, fldRptToTime = @fldRptToTime, fldRestrictFrTime=@fldRestrictFrTime, fldRestrictToTime=@fldRestrictToTime, fldGeofenceMukim = @fldGeofenceMukim, fldRemark = @fldRemark Where fldID = @fldID"
+                processExe = "Update tblopp set fldName = @fldName, fldICNo = @fldICNo, fldGender=@fldGender,fldContactNo=@fldContactNo, fldPhoto1 = @fldPhoto1, fldPhoto2 = @fldPhoto2, fldAddress = @fldAddress, fldCountryID = @fldCountryID, fldState = @fldState, fldDistrict = @fldDistrict, fldMukim = @fldMukim, fldIPKID=@fldIPKID, fldIPDID=@fldIPDID, fldPoliceStationID = @fldPoliceStationID, fldDeptID = @fldDeptID, fldOffenceDesc = @fldOffenceDesc, fldCaseFileNo = @fldCaseFileNo, fldCaseHandlerName = @fldCaseHandlerName, fldCaseHandlerTelNo = @fldCaseHandlerTelNo, fldActsID = @fldActsID, fldActsSectionID = @fldActsSectionID, fldOrdParty = @fldOrdParty, fldOrdPartyName = @fldOrdPartyName, fldOrdIssuedDate=@fldOrdIssuedDate, fldOrdRefNo=@fldOrdRefNo, fldOrdDay=@fldOrdDay, fldOrdMonth=@fldOrdMonth, fldOrdYear = @fldOrdYear, fldOrdFrDate = @fldOrdFrDate, fldOrdToDate = @fldOrdToDate, fldRptPoliceStationID = @fldRptPoliceStationID, fldSDNo = @fldSDNo, fldOCSName = @fldOCSName, fldOCSTelNo = @fldOCSTelNo, fldRptDay = @fldRptDay, fldRptFrTime = @fldRptFrTime, fldRptToTime = @fldRptToTime, fldRestrictFrTime=@fldRestrictFrTime, fldRestrictToTime=@fldRestrictToTime, fldGeofenceDistrict = @fldGeofenceDistrict, fldGeofenceMukim = @fldGeofenceMukim,fldGeofenceMukimID = @fldGeofenceMukimID, fldRemark = @fldRemark Where fldID = @fldID"
                 isInsert = False
             End If
             Dim myCommand As MySqlCommand = New MySqlCommand(processExe, myConnection)
@@ -281,6 +296,7 @@ NameSpace DataAccess
             myCommand.Parameters.AddWithValue("@fldRefID", myopp.fldRefID)
             myCommand.Parameters.AddWithValue("@fldName", myopp.fldName)
             myCommand.Parameters.AddWithValue("@fldICNo", myopp.fldICNo)
+            myCommand.Parameters.AddWithValue("@fldGender", myopp.fldGender)
             myCommand.Parameters.AddWithValue("@fldContactNo", myopp.fldContactNo)
             myCommand.Parameters.AddWithValue("@fldPhoto1", myopp.fldPhoto1)
             myCommand.Parameters.AddWithValue("@fldPhoto2", myopp.fldPhoto2)
@@ -289,6 +305,8 @@ NameSpace DataAccess
             myCommand.Parameters.AddWithValue("@fldState", myopp.fldState)
             myCommand.Parameters.AddWithValue("@fldDistrict", myopp.fldDistrict)
             myCommand.Parameters.AddWithValue("@fldMukim", myopp.fldMukim)
+            myCommand.Parameters.AddWithValue("@fldIPKID", myopp.fldIPKID)
+            myCommand.Parameters.AddWithValue("@fldIPDID", myopp.fldIPDID)
             myCommand.Parameters.AddWithValue("@fldPoliceStationID", myopp.fldPoliceStationID)
             myCommand.Parameters.AddWithValue("@fldDeptID", myopp.fldDeptID)
             myCommand.Parameters.AddWithValue("@fldOffenceDesc", myopp.fldOffenceDesc)
@@ -336,11 +354,14 @@ NameSpace DataAccess
             myCommand.Parameters.AddWithValue("@fldGeofence2", myopp.fldGeofence2)
             myCommand.Parameters.AddWithValue("@fldGeofence2FrTime", myopp.fldGeofence2FrTime)
             myCommand.Parameters.AddWithValue("@fldGeofence2ToTime", myopp.fldGeofence2ToTime)
+            myCommand.Parameters.AddWithValue("@fldGeofenceDistrict", myopp.fldGeofenceDistrict)
             myCommand.Parameters.AddWithValue("@fldGeofenceMukim", myopp.fldGeofenceMukim)
+            myCommand.Parameters.AddWithValue("@fldGeofenceMukimID", myopp.fldGeofenceMukimID)
             myCommand.Parameters.AddWithValue("@fldAttachment1", myopp.fldAttachment1)
             myCommand.Parameters.AddWithValue("@fldAttachment2", myopp.fldAttachment2)
             myCommand.Parameters.AddWithValue("@fldRemark", myopp.fldRemark)
             myCommand.Parameters.AddWithValue("@fldStatus", myopp.fldStatus)
+            myCommand.Parameters.AddWithValue("@fldActivateDateTime", myopp.fldActivateDateTime)
             myCommand.Parameters.AddWithValue("@fldVerifyStatus", myopp.fldVerifyStatus)
             myCommand.Parameters.AddWithValue("@fldVerifyDateTime", myopp.fldVerifyDateTime)
             myCommand.Parameters.AddWithValue("@fldVerifyBy", myopp.fldVerifyBy)
@@ -380,6 +401,9 @@ NameSpace DataAccess
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldICNo"))) Then
                 myopp.fldICNo = myDataRecord.GetString(myDataRecord.GetOrdinal("fldICNo"))
             End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldGender"))) Then
+                myopp.fldGender = myDataRecord.GetString(myDataRecord.GetOrdinal("fldGender"))
+            End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldContactNo"))) Then
                 myopp.fldContactNo = myDataRecord.GetString(myDataRecord.GetOrdinal("fldContactNo"))
             End If
@@ -403,6 +427,12 @@ NameSpace DataAccess
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldMukim"))) Then
                 myopp.fldMukim = myDataRecord.GetString(myDataRecord.GetOrdinal("fldMukim"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldIPKID"))) Then
+                myopp.fldIPKID = myDataRecord.GetInt64(myDataRecord.GetOrdinal("fldIPKID"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldIPDID"))) Then
+                myopp.fldIPDID = myDataRecord.GetInt64(myDataRecord.GetOrdinal("fldIPDID"))
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldPoliceStationID"))) Then
                 myopp.fldPoliceStationID = myDataRecord.GetInt64(myDataRecord.GetOrdinal("fldPoliceStationID"))
@@ -545,8 +575,14 @@ NameSpace DataAccess
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldGeofence2ToTime"))) Then
                 myopp.fldGeofence2ToTime = myDataRecord.GetString(myDataRecord.GetOrdinal("fldGeofence2ToTime"))
             End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldGeofenceDistrict"))) Then
+                myopp.fldGeofenceDistrict = myDataRecord.GetString(myDataRecord.GetOrdinal("fldGeofenceDistrict"))
+            End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldGeofenceMukim"))) Then
                 myopp.fldGeofenceMukim = myDataRecord.GetString(myDataRecord.GetOrdinal("fldGeofenceMukim"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldGeofenceMukimID"))) Then
+                myopp.fldGeofenceMukimID = myDataRecord.GetInt32(myDataRecord.GetOrdinal("fldGeofenceMukimID"))
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldAttachment1"))) Then
                 myopp.fldAttachment1 = myDataRecord.GetString(myDataRecord.GetOrdinal("fldAttachment1"))
@@ -559,6 +595,9 @@ NameSpace DataAccess
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldStatus"))) Then
                 myopp.fldStatus = myDataRecord.GetString(myDataRecord.GetOrdinal("fldStatus"))
+            End If
+            If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldActivateDateTime"))) Then
+                myopp.fldActivateDateTime = myDataRecord.GetDateTime(myDataRecord.GetOrdinal("fldActivateDateTime"))
             End If
             If (Not myDataRecord.IsDBNull(myDataRecord.GetOrdinal("fldVerifyStatus"))) Then
                 myopp.fldVerifyStatus = myDataRecord.GetString(myDataRecord.GetOrdinal("fldVerifyStatus"))

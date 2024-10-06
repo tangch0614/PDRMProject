@@ -38,6 +38,20 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <asp:Label runat="server" ID="lblSN" CssClass="col-md-3 control-label" Text="Current Login ID"></asp:Label>
+                                <div class="col-md-8">
+                                    <asp:TextBox runat="server" ID="txtSN" data-temp="1" CssClass="form-control input-inline input-large"></asp:TextBox>
+                                    <%--<label style="color: red">*</label>--%>
+                                    <%--<asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtName" ErrorMessage="*Name cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="add"></asp:RequiredFieldValidator>--%>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <asp:Label runat="server" ID="lblSize" CssClass="col-md-3 control-label" Text="Status"></asp:Label>
+                                <div class="col-md-8">
+                                    <asp:DropDownList runat="server" ID="ddlSize" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <asp:Label runat="server" ID="lblSimNo" CssClass="col-md-3 control-label" Text="Name"></asp:Label>
                                 <div class="col-md-8">
                                     <asp:TextBox runat="server" ID="txtSimNo" CssClass="form-control input-inline input-large" />

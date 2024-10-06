@@ -381,14 +381,6 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <label><%=GetText("PoliceStation")%></label>
-                                                            </td>
-                                                            <td>
-                                                                <asp:Label runat="server" ID="txtPoliceStation" ClientIDMode="Static"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
                                                                 <label><%=GetText("Department")%></label>
                                                             </td>
                                                             <td>
@@ -397,10 +389,26 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
+                                                                <label><%=GetText("PoliceStation")%></label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label runat="server" ID="txtPoliceStation" ClientIDMode="Static"></asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
                                                                 <label><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></label>
                                                             </td>
                                                             <td>
                                                                 <asp:Label runat="server" ID="txtPSContactNo"></asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <label><%=GetText("Township")%></label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label runat="server" ID="txtMukim"></asp:Label>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -447,7 +455,15 @@
                                                                 <asp:Label runat="server" ID="txtDateTime" ClientIDMode="Static"></asp:Label>
                                                             </td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr runat="server" id="trRemarkHist">
+                                                            <td>
+                                                                <label><%=GetText("RemarkHistory")%></label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:TextBox runat="server" ID="txtRemarkHist" TextMode="MultiLine" Rows="10" Style="width: 100%" Enabled="false" ReadOnly="true"></asp:TextBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr runat="server" id="trRemark">
                                                             <td>
                                                                 <label><%=GetText("Remark")%></label>
                                                             </td>
@@ -471,13 +487,30 @@
                                                                 <asp:Label runat="server" ID="txtAcknowledgeDateTime"></asp:Label>
                                                             </td>
                                                         </tr>
+                                                        <tr runat="server" id="trCompleteBy">
+                                                            <td>
+                                                                <label><%=GetText("CompleteBy")%></label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label runat="server" ID="txtCompleteByID"></asp:Label>
+                                                            </td>
+                                                        </tr>
+                                                        <tr runat="server" id="trCompleteDateTime">
+                                                            <td>
+                                                                <label><%=GetText("CompleteDateTime")%></label>
+                                                            </td>
+                                                            <td>
+                                                                <asp:Label runat="server" ID="txtCompleteDateTime"></asp:Label>
+                                                            </td>
+                                                        </tr>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-actions">
                                             <div class="pull-right">
-                                                <asp:Button runat="server" CssClass="btn blue " ID="btnAcknowledge" Text="Maklum Terima" OnClientClick='return confirm(hfConfirm.value);' OnClick="btnAcknowledge_Click" ClientIDMode="static" />
+                                                <asp:Button runat="server" CssClass="btn purple " ID="btnAcknowledge" Text="Maklum Terima" OnClientClick='return confirm(hfConfirm.value);' OnClick="btnAcknowledge_Click" ClientIDMode="static" />
+                                                <asp:Button runat="server" CssClass="btn blue " ID="btnCompleted" Text="Selesai" OnClientClick='return confirm(hfConfirm.value);' OnClick="btnCompleted_Click" ClientIDMode="static" />
                                                 <asp:Button runat="server" CssClass="btn default " ID="btnCancel" Text="Tutup" OnClick="btnCancel_Click" ClientIDMode="static" />
                                             </div>
                                         </div>

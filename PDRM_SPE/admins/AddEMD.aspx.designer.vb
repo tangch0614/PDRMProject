@@ -77,6 +77,42 @@ Partial Public Class AAddEMD
     Protected WithEvents txtName As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblSN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSN As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtSN control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtSN As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''lblSize control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSize As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlSize control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSize As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''lblSimNo control.
     '''</summary>
     '''<remarks>

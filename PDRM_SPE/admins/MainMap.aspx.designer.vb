@@ -32,13 +32,13 @@ Partial Public Class AMainMap
     Protected WithEvents style_color As Global.System.Web.UI.HtmlControls.HtmlLink
 
     '''<summary>
-    '''ddlEMD control.
+    '''lbtActiveEMD control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddlEMD As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents lbtActiveEMD As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''txtActiveEMD control.
@@ -59,6 +59,15 @@ Partial Public Class AMainMap
     Protected WithEvents lblActiveEMD As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbtInactiveEMD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtInactiveEMD As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''txtInactiveEMD control.
     '''</summary>
     '''<remarks>
@@ -75,6 +84,15 @@ Partial Public Class AMainMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblInactiveEMD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbtTotal_Alert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtTotal_Alert As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''txtTotal_Alert control.
@@ -113,6 +131,15 @@ Partial Public Class AMainMap
     Protected WithEvents lblOnlineCount As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbtJenayah_Alert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtJenayah_Alert As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''dvJenayah control.
     '''</summary>
     '''<remarks>
@@ -138,6 +165,15 @@ Partial Public Class AMainMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblJenayah_Alert As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbtNarkotik_Alert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtNarkotik_Alert As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''dvNarkotik control.
@@ -167,6 +203,15 @@ Partial Public Class AMainMap
     Protected WithEvents lblNarkotik_Alert As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''lbtKomersil_Alert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtKomersil_Alert As Global.System.Web.UI.WebControls.LinkButton
+
+    '''<summary>
     '''dvKomersil control.
     '''</summary>
     '''<remarks>
@@ -192,6 +237,15 @@ Partial Public Class AMainMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblKomersil_Alert As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbtCawanganKhas_Alert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbtCawanganKhas_Alert As Global.System.Web.UI.WebControls.LinkButton
 
     '''<summary>
     '''dvCawanganKhas control.
@@ -237,4 +291,58 @@ Partial Public Class AMainMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfConfirm As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''rptActiveEMD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptActiveEMD As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''lblActiveEMDListTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblActiveEMDListTitle As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rptActiveEMDList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptActiveEMDList As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''rptInactiveEMDList control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptInactiveEMDList As Global.System.Web.UI.WebControls.Repeater
+
+    '''<summary>
+    '''lblViolateTermsTitle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblViolateTermsTitle As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''rptTotal_Alert control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents rptTotal_Alert As Global.System.Web.UI.WebControls.Repeater
 End Class

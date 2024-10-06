@@ -54,7 +54,7 @@ Public Class WebForm1
                 ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('Failed');", True)
             End If
         ElseIf e.CommandName.Equals("LowBattery") Then
-            Dim result As Boolean = EMDDeviceManager.InsertNotification(e.CommandArgument, "device low battery", "medium")
+            Dim result As Boolean = AlertManager.InsertAlert(e.CommandArgument, "device low battery", "medium")
             If result Then
                 ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('Success');", True)
             Else

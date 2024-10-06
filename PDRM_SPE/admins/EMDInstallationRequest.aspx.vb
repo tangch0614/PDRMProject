@@ -51,7 +51,7 @@ Public Class AEMDInstallationRequest
         'file upload
         lblFileInfo.Text = GetText("Attachment")
         lblAttachment1.Text = GetText("Attachment")
-        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("MultipleFile"))
+        btnAttachment1.Text = GetText("UploadDocument")
         'Buttons/Message
         btnSubmit.Text = GetText("Submit")
         hfConfirm.Value = GetText("MsgConfirmItem").Replace("vITEM", GetText("Submit").ToLower)

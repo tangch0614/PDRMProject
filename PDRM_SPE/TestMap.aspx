@@ -55,11 +55,11 @@
             try {
                 const param = {
                     deviceid: document.getElementById("ddlEMD").value,
-                    imei: "",
-                    simno: "",
-                    status: "Y"
+                    oppid: -1,
+                    devicestatus: "Y",
+                    oppstatus: "Y"
                 };
-                const response = await fetch('../GetData.aspx/GetMarkers', {
+                const response = await fetch('../GetData.aspx/GetEMDDeviceList', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

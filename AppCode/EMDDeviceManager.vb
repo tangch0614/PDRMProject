@@ -122,84 +122,6 @@ NameSpace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function InsertNotification(ByVal DeviceID As Long, ByVal MsgType As String, ByVal Level As String) As Boolean
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                Using myTransactionScope As TransactionScope = New TransactionScope()
-                    myConnection.Open()
-                    Dim result As Boolean = False
-                    Dim MsgContent As String = ""
-                    Dim IMEI As String = EMDDeviceDB.GetIMEI(DeviceID, myConnection)
-                    Dim oppid As String = EMDDeviceDB.GetOPPID(DeviceID, myConnection)
-                    If Not String.IsNullOrEmpty(IMEI) Then
-                        result = EMDDeviceDB.InsertNotification(IMEI, oppid, DeviceID, MsgType, Level, myConnection)
-                    End If
-                    myConnection.Close()
-                    If result Then
-                        myTransactionScope.Complete()
-                    End If
-                    Return result
-                End Using
-            End Using
-        End Function
-
-#End Region
-
-#Region "Notification"
-
-        Public Shared Function CountNotification(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer) As Integer
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                myConnection.Open()
-                Dim result As Integer = EMDDeviceDB.CountNotification(deviceid, oppid, deptid, processstatus, severity, intervalminute, myConnection)
-                myConnection.Close()
-                Return result
-            End Using
-        End Function
-
-        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal userid As Long, ByVal processstatus As Integer, ByVal page As String, ByVal intervalminute As Integer, ByVal updatestatus As Boolean) As DataTable
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                myConnection.Open()
-                Dim result As Boolean = False
-                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(alertid, deviceid, oppid, imei, userid, processstatus, page, intervalminute, myConnection)
-                If updatestatus AndAlso Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
-                    Dim ids As List(Of Long) = myDataTable.AsEnumerable().Select(Function(row) row.Field(Of Long)("fldID")).ToList()
-                    result = EMDDeviceDB.UpdateAlertNotificationSeenUser(ids, userid, page, myConnection)
-                End If
-                myConnection.Close()
-                Return myDataTable
-            End Using
-        End Function
-
-        Public Shared Function GetAlertNotification(ByVal alertid As Long, ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal processstatus As Integer, ByVal severity As String, ByVal intervalminute As Integer, ByVal limit As Integer) As DataTable
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                myConnection.Open()
-                Dim result As Boolean = False
-                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotification(alertid, deviceid, oppid, imei, processstatus, severity, intervalminute, limit, myConnection)
-                myConnection.Close()
-                Return myDataTable
-            End Using
-        End Function
-
-        Public Shared Function GetAlertNotificationList(ByVal emdID As Long, ByVal oppID As Long, ByVal dateFrom As String, ByVal dateTo As String) As DataTable
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                myConnection.Open()
-                Dim myDataTable As DataTable = EMDDeviceDB.GetAlertNotificationList(emdID, oppID, dateFrom, dateTo, myConnection)
-                myConnection.Close()
-                Return myDataTable
-            End Using
-        End Function
-
-        Public Shared Function AcknowledgeAlertNotification(ByVal id As Long, ByVal creatorid As Long, ByVal remark As String) As Boolean
-            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
-                Using myTransactionScope As TransactionScope = New TransactionScope()
-                    myConnection.Open()
-                    Dim result As Boolean = EMDDeviceDB.AcknowledgeAlertNotification(id, creatorid, remark, myConnection)
-                    myConnection.Close()
-                    If result Then myTransactionScope.Complete()
-                    Return result
-                End Using
-            End Using
-        End Function
-
 #End Region
 
 #Region "EMD History"
@@ -244,6 +166,24 @@ NameSpace BusinessLogic
 
 #Region "EMD Device"
 
+        Public Shared Function CountActiveEMDList_ByDept() As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As DataTable = EMDDeviceDB.CountActiveEMDList_ByDept(myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
+        Public Shared Function CountInactiveEMDList_ByDept() As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As DataTable = EMDDeviceDB.CountInactiveEMDList_ByDept(myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
         Public Shared Function CountEMDStatus(ByVal status As String) As Long
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
@@ -253,10 +193,37 @@ NameSpace BusinessLogic
             End Using
         End Function
 
+        Public Shared Function CountActiveEMD() As Long
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Long = EMDDeviceDB.CountActiveEMD(myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
+        Public Shared Function CountInactiveEMD() As Long
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Long = EMDDeviceDB.CountInactiveEMD(myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
         Public Shared Function GetOPPID(ByVal id As Long) As Long
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
                 Dim result As Long = EMDDeviceDB.GetOPPID(id, myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
+        Public Shared Function GetEMDDeviceID(ByVal oppid As Long, ByVal name As String, ByVal imei As String) As Long
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Long = EMDDeviceDB.GetEMDDeviceID(oppid, name, imei, myConnection)
                 myConnection.Close()
                 Return result
             End Using
@@ -289,6 +256,15 @@ NameSpace BusinessLogic
             End Using
         End Function
 
+        Public Shared Function VerifySerialNum(ByVal serialno As String) As Long
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim result As Long = EMDDeviceDB.VerifySerialNum(serialno, myConnection)
+                myConnection.Close()
+                Return result
+            End Using
+        End Function
+
         Public Shared Function VerifySimNo(ByVal simno As String) As Long
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
@@ -298,10 +274,28 @@ NameSpace BusinessLogic
             End Using
         End Function
 
-        Public Shared Function GetDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal imei As String, ByVal name As String, ByVal simno1 As String, ByVal simno2 As String, ByVal status As String) As DataTable
+        Public Shared Function GetActiveDeviceList(ByVal deptid As Long) As DataTable
             Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
                 myConnection.Open()
-                Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceList(deviceid, oppid, imei, name, simno1, simno2, status, myConnection)
+                Dim myDataTable As DataTable = EMDDeviceDB.GetActiveDeviceList(deptid, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
+        Public Shared Function GetInactiveDeviceList(ByVal deptid As Long) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = EMDDeviceDB.GetInactiveDeviceList(deptid, myConnection)
+                myConnection.Close()
+                Return myDataTable
+            End Using
+        End Function
+
+        Public Shared Function GetDeviceList(ByVal deviceid As Long, ByVal oppid As Long, ByVal deptid As Long, ByVal imei As String, ByVal name As String, ByVal serialno As String, ByVal size As String, ByVal simno1 As String, ByVal simno2 As String, ByVal devicestatus As String, ByVal oppstatus As String) As DataTable
+            Using myConnection As MySqlConnection = New MySqlConnection(AppConfiguration.ConnectionString)
+                myConnection.Open()
+                Dim myDataTable As DataTable = EMDDeviceDB.GetDeviceList(deviceid, oppid, deptid, imei, name, serialno, size, simno1, simno2, devicestatus, oppstatus, myConnection)
                 myConnection.Close()
                 Return myDataTable
             End Using

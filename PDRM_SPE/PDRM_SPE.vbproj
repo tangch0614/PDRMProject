@@ -126,12 +126,15 @@
     <Content Include="admins\AccessControl.aspx" />
     <Content Include="admins\AccessControl2.aspx" />
     <Content Include="admins\ActsSectionList.aspx" />
+    <Content Include="admins\AlertNotificationList_Current.aspx" />
+    <Content Include="admins\AlertNotificationReport.aspx" />
     <Content Include="admins\EMDInstallationRequest.aspx" />
     <Content Include="admins\AddUser.aspx" />
     <Content Include="admins\ChangePassword.aspx" />
     <Content Include="admins\ActsList.aspx" />
     <Content Include="admins\AddEMD.aspx" />
-    <Content Include="admins\AlertNotificationList.aspx" />
+    <Content Include="admins\AlertNotificationList_New.aspx" />
+    <Content Include="admins\AlertNotificationList_Past.aspx" />
     <Content Include="admins\EMDMap.aspx" />
     <Content Include="admins\AlertInfo.aspx" />
     <Content Include="admins\HistoryMap.aspx" />
@@ -6225,6 +6228,20 @@
       <DependentUpon>ActsSectionList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="admins\AlertNotificationList_Current.aspx.designer.vb">
+      <DependentUpon>AlertNotificationList_Current.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admins\AlertNotificationList_Current.aspx.vb">
+      <DependentUpon>AlertNotificationList_Current.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admins\AlertNotificationReport.aspx.designer.vb">
+      <DependentUpon>AlertNotificationReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admins\AlertNotificationReport.aspx.vb">
+      <DependentUpon>AlertNotificationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="admins\EMDInstallationRequest.aspx.designer.vb">
       <DependentUpon>EMDInstallationRequest.aspx</DependentUpon>
     </Compile>
@@ -6267,11 +6284,18 @@
       <DependentUpon>AddEMD.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="admins\AlertNotificationList.aspx.designer.vb">
-      <DependentUpon>AlertNotificationList.aspx</DependentUpon>
+    <Compile Include="admins\AlertNotificationList_New.aspx.designer.vb">
+      <DependentUpon>AlertNotificationList_New.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admins\AlertNotificationList.aspx.vb">
-      <DependentUpon>AlertNotificationList.aspx</DependentUpon>
+    <Compile Include="admins\AlertNotificationList_New.aspx.vb">
+      <DependentUpon>AlertNotificationList_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admins\AlertNotificationList_Past.aspx.designer.vb">
+      <DependentUpon>AlertNotificationList_Past.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admins\AlertNotificationList_Past.aspx.vb">
+      <DependentUpon>AlertNotificationList_Past.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="admins\EMDMap.aspx.designer.vb">

@@ -100,12 +100,12 @@
         async function fetchAndUpdateMarkers(setcenter) {
             try {
                 const param = {
-                    deviceid: document.getElementById("ddlEMD").value,
-                    imei: "",
-                    simno: "",
-                    status: "Y"
+                    deviceid: -1,
+                    oppid: -1,
+                    devicestatus: "Y",
+                    oppstatus: "Y"
                 };
-                const response = await fetch('../GetData.aspx/GetMarkers', {
+                const response = await fetch('../GetData.aspx/GetEMDDeviceList', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -135,12 +135,14 @@
                 "<tr><td colspan=2 style='font-weight:bold;padding-top:5px;border-bottom:1px solid #ccc;'>EMD</td></tr>" +
                 "<tr><td>IMEI</td><td>: " + location.imei + "</td></tr>" +
                 "<tr><td><%=GetText("Date")%></td><td>: " + location.datetime + "</td></tr>" +
-                "<tr><td>GPS</td><td>: " + location.locstatus + "</td></tr>" +
-                "<tr><td>GSM</td><td>: <img src='../assets/img/" + location.gsm + "'/></td></tr>" +
-                "<tr><td>Battery</td><td>: " + location.battery + "</td></tr>" +
-                "<tr><td>Belt Status</td><td>: " + location.beltstatus + "</td></tr>" +
-                "<tr><td>Alarm</td><td>: " + location.alarm + "</td></tr>" +
-                "<tr><td>Speed</td><td>: " + location.speed +
+                "<tr><td><%=GetText("Latitude")%></td><td>: " + location.lat + "</td></tr>" +
+                "<tr><td><%=GetText("Longitude")%></td><td>: " + location.lng + "</td></tr>" +
+                "<tr><td><%=GetText("GPSStatus")%></td><td>: " + location.locstatus + "</td></tr>" +
+                "<tr><td><%=GetText("GSMSignal")%></td><td>: <img src='../assets/img/" + location.gsm + "'/></td></tr>" +
+                "<tr><td><%=GetText("Battery")%></td><td>: " + location.battery + "</td></tr>" +
+                "<tr><td><%=GetText("BeltStatus")%></td><td>: " + location.beltstatus + "</td></tr>" +
+                "<tr><td><%=GetText("Alarm")%></td><td>: " + location.alarm + "</td></tr>" +
+                "<tr><td><%=GetText("Speed")%></td><td>: " + location.speed +
                 "</table></div>"
             return content;
         }
@@ -391,9 +393,9 @@
             markers = [];
         }
 
-        function SetMapCenter(lat, lng) {
+        function SetMapCenter(lat, lng, zoom) {
             map.setCenter({ lat: lat, lng: lng });
-            map.setZoom(20);
+            map.setZoom(zoom);
         }
 
     </script>
@@ -441,9 +443,10 @@
                             tableHTML += "<tr><td><%=GetText("OfficerItem").Replace("vITEM", GetText("Name"))%></td><td class='bold'>" + notification.fldoverseername + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("PoliceIDNo")%></td><td class='bold'>" + notification.fldoverseerpoliceno + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("OfficerItem").Replace("vITEM", GetText("ContactNum"))%></td><td class='bold'>" + notification.fldoverseercontactno + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("Department")%></td><td class='bold'>" + notification.flddepartment + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("PoliceStation")%></td><td class='bold'>" + notification.fldpsname + "</td></tr>";
-                            tableHTML += "<tr><td><%=GetText("Department")%></td><td class='bold'>" + notification.fldDepartment + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))%></td><td class='bold'>" + notification.fldpscontactno + "</td></tr>";
+                            tableHTML += "<tr><td><%=GetText("Township")%></td><td class='bold'>" + notification.fldmukim + "</td></tr>";
                             tableHTML += "<tr><td><%=GetText("DateTime")%></td><td class='bold'>" + notification.flddatetime.replace("T", " ") + "</td></tr>";
                             tableHTML += "<tr><td colspan='2' align='center'><button class='btn blue btn-xs' id='btnAcknowledge' onclick=\"OpenPopupWindow('../admins/AlertInfo.aspx?id=" + notification.fldid + "&i=" + notification.fldmd5 + "',1280,800);return false;\"><%=GetText("Acknowledge")%></button></td></tr>"
                             tableHTML += "</table>";
@@ -527,6 +530,7 @@
                 success: function (response) {
                     // Parse the JSON response
                     var data = response.d;
+                    document.getElementById("txtOnlineCount").innerHTML = data.login_user;
                     document.getElementById("txtActiveEMD").innerHTML = data.active_emd;
                     document.getElementById("txtInactiveEMD").innerHTML = data.inactive_emd;
                     document.getElementById("txtTotal_Alert").innerHTML = data.total_alert;
@@ -566,7 +570,7 @@
                 <asp:UpdatePanel runat="server">
                     <ContentTemplate>
                         <div>
-                            <asp:DropDownList runat="server" ID="ddlEMD" Style="display: none; position: absolute; z-index: 100; top: 20px; left: 200px; padding: 10px;" ClientIDMode="Static" AutoPostBack="true" OnSelectedIndexChanged="ddlEMD_SelectedIndexChanged"></asp:DropDownList>
+                            <a class="btn default" style="position: absolute; z-index: 100; top: 20px; left: 200px; padding: 9px; box-shadow: 0px 0px 3px #4a4a4a !important; -moz-box-shadow: 0px 0px 3px #4a4a4a !important; -webkit-box-shadow: 0px 0px 3px #4a4a4a !important;" onclick="SetMapCenter(4.2105,108.9758,6)"><%=GetText("Reset")%></a>
                         </div>
                     </ContentTemplate>
                 </asp:UpdatePanel>
@@ -574,46 +578,52 @@
             </div>
             <div class="row" style="height: 30%; padding: 10px;">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtActiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtActiveEMD" OnClick="lbtActiveEMD_Click">
+                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblActiveEMD" ClientIDMode="Static" Text="EMD Aktif"><%=GetText("ActiveEMD")%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtActiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblActiveEMD" ClientIDMode="Static" Text="EMD Aktif"><%=GetText("ActiveEMD")%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtInactiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtInactiveEMD" OnClick="lbtInactiveEMD_Click">
+                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblInactiveEMD" ClientIDMode="Static" Text="EMD Tidak Aktif"><%=GetText("InactiveEMD")%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtInactiveEMD" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblInactiveEMD" ClientIDMode="Static" Text="EMD Tidak Aktif"><%=GetText("InactiveEMD")%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtTotal_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtTotal_Alert" CommandArgument="total_alert" OnClick="lbtViolateTermsList_Click">
+                        <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblTotal_Alert" ClientIDMode="Static" Text="OPP Langgar Syarat"><%=GetText("OPPViolateTerms")%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtTotal_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblTotal_Alert" ClientIDMode="Static" Text="OPP Langgar Syarat"><%=GetText("OPPViolateTerms")%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
                     <div class="dashboard-stat custom-color" style="background-color: #1f1d59">
@@ -630,60 +640,68 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" runat="server" id="dvJenayah">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtJenayah_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtJenayah_Alert" CommandArgument="jenayah_alert" OnClick="lbtViolateTermsList_Click">
+                        <div class="dashboard-stat custom-color" runat="server" id="dvJenayah">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblJenayah_Alert" ClientIDMode="Static" Text="Langgar Syarat (Jenayah)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Jenayah"))%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtJenayah_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblJenayah_Alert" ClientIDMode="Static" Text="Langgar Syarat (Jenayah)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Jenayah"))%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" runat="server" id="dvNarkotik">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtNarkotik_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtNarkotik_Alert" CommandArgument="narkotik_alert" OnClick="lbtViolateTermsList_Click">
+                        <div class="dashboard-stat custom-color" runat="server" id="dvNarkotik">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblNarkotik_Alert" ClientIDMode="Static" Text="Langgar Syarat (Narkotik)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Narkotik"))%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtNarkotik_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblNarkotik_Alert" ClientIDMode="Static" Text="Langgar Syarat (Narkotik)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Narkotik"))%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" runat="server" id="dvKomersil">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtKomersil_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtKomersil_Alert" CommandArgument="komersil_alert" OnClick="lbtViolateTermsList_Click">
+                        <div class="dashboard-stat custom-color" runat="server" id="dvKomersil">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblKomersil_Alert" ClientIDMode="Static" Text="Langgar Syarat (Komersil)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Komersil"))%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtKomersil_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblKomersil_Alert" ClientIDMode="Static" Text="Langgar Syarat (Komersil)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Komersil"))%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-6">
-                    <div class="dashboard-stat custom-color" runat="server" id="dvCawanganKhas">
-                        <div class="visual">
-                        </div>
-                        <div class="details">
-                            <div class="number">
-                                <asp:Label runat="server" ID="txtCawanganKhas_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                    <asp:LinkButton runat="server" ID="lbtCawanganKhas_Alert" CommandArgument="cawangankhas_alert" OnClick="lbtViolateTermsList_Click">
+                        <div class="dashboard-stat custom-color" runat="server" id="dvCawanganKhas">
+                            <div class="visual">
                             </div>
-                            <div class="desc">
-                                <asp:Label runat="server" ID="lblCawanganKhas_Alert" ClientIDMode="Static" Text="Langgar Syarat (Cawangan Khas)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Cawangan Khas"))%></asp:Label>
+                            <div class="details">
+                                <div class="number">
+                                    <asp:Label runat="server" ID="txtCawanganKhas_Alert" ClientIDMode="Static" Text="0"></asp:Label>
+                                </div>
+                                <div class="desc">
+                                    <asp:Label runat="server" ID="lblCawanganKhas_Alert" ClientIDMode="Static" Text="Langgar Syarat (Cawangan Khas)"><%=String.Format("{0} ({1})", GetText("ViolateTerms"), GetText("Cawangan Khas"))%></asp:Label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </asp:LinkButton>
                 </div>
             </div>
         </div>
@@ -691,4 +709,214 @@
         </div>
     </div>
     <!-- PAGE BODY -->
+
+    <!-- Active EMD By Department -->
+    <div class="modal fade" id="dvActiveEMD" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><%=GetText("ActiveEMD")%></h4>
+                </div>
+                <div class="modal-body">
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <asp:Repeater runat="server" ID="rptActiveEMD" OnItemCommand="rptActiveEMD_ItemCommand" OnItemCreated="rptActiveEMD_ItemCreated">
+                                <HeaderTemplate>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th><%#GetText("Department")%></th>
+                                                <th><%#GetText("Unit")%></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%#Eval("fldDepartment")%></td>
+                                        <td style="text-align: center;"><%#Eval("fldCount")%></td>
+                                        <td style="text-align: center;">
+                                            <asp:LinkButton runat="server" CssClass="btn blue btn-xs" ID="lbtEMDList" CommandName="showlist" CommandArgument='<%#Eval("fldID")%>'><%#GetText("EMDList")%></asp:LinkButton></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                            </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="lbtActiveEMD" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" CssClass="btn default" OnClientClick="$('#dvActiveEMD').modal('hide');return false;"><%=GetText("Close")%></asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active EMD List -->
+    <div class="modal fade" id="dvActiveEMDList" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">
+                                <asp:Label runat="server" ID="lblActiveEMDListTitle"></asp:Label>
+                            </h4>
+                        </div>
+                        <div class="modal-body" style="overflow-y: scroll;max-height: 70vh;">
+                            <asp:Repeater runat="server" ID="rptActiveEMDList">
+                                <HeaderTemplate>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th><%#GetText("Marking")%></th>
+                                                <th><%#GetText("IMEI")%></th>
+                                                <th><%#GetText("OPP")%></th>
+                                                <th><%#GetText("Show")%></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%#Eval("fldName")%></td>
+                                        <td><%#Eval("fldImei")%></td>
+                                        <td><%#Eval("fldOPPName") & " - " & Eval("fldOPPICNo")%></td>
+                                        <td style="text-align: center;">
+                                            <a class="btn blue btn-xs" onclick='SetMapCenter(<%#Eval("fldRLat")%>,<%#Eval("fldRLong")%>,15);$("#dvActiveEMDList").modal("hide");$("#dvActiveEMD").modal("hide");'><%#GetText("Show")%></a></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                            </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton runat="server" CssClass="btn default" OnClientClick="$('#dvActiveEMDList').modal('hide');return false;"><%=GetText("Close")%></asp:LinkButton>
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inactive EMD List -->
+    <div class="modal fade" id="dvInactiveEMDList" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title"><%=GetText("InactiveEMD")%></h4>
+                </div>
+                <div class="modal-body" style="overflow-y: scroll;max-height: 70vh;">
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <asp:Repeater runat="server" ID="rptInactiveEMDList">
+                                <HeaderTemplate>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th><%#GetText("Marking")%></th>
+                                                <th><%#GetText("IMEI")%></th>
+                                                <th><%#GetText("OPP")%></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td><%#Eval("fldName")%></td>
+                                        <td><%#Eval("fldImei")%></td>
+                                        <td><%#Eval("fldOPPName") & " - " & Eval("fldOPPICNo")%></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                            </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="lbtInactiveEMD" />
+                        </Triggers>
+                    </asp:UpdatePanel>
+                </div>
+                <div class="modal-footer">
+                    <asp:LinkButton runat="server" CssClass="btn default" OnClientClick="$('#dvInactiveEMDList').modal('hide');return false;"><%=GetText("Close")%></asp:LinkButton>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Alert List -->
+    <div class="modal fade" id="dvViolateTermsList" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">
+                                <asp:Label runat="server" ID="lblViolateTermsTitle"></asp:Label>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <asp:Repeater runat="server" ID="rptTotal_Alert">
+                                <HeaderTemplate>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th><%#GetText("ViolateTerms")%></th>
+                                                <th><%#GetText("Total")%></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <tr>
+                                        <td>
+                                            <asp:Button runat="server" OnClientClick="return false;" CssClass='<%#If(Eval("fldSeverity").Equals("high"), "btn red btn-xs", If(Eval("fldSeverity").Equals("medium"), "btn yellow-gold btn-xs", "btn yellow-crusta btn-xs"))%>' Text='<%#Eval("fldMsg")%>' />
+                                        </td>
+                                        <td style="text-align: center;"><%#Eval("fldCount")%></td>
+                                    </tr>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                            </table>
+                                </FooterTemplate>
+                            </asp:Repeater>
+                        </div>
+                        <div class="modal-footer">
+                            <asp:LinkButton runat="server" CssClass="btn default" data-dismiss="modal" aria-label="Close"><%=GetText("Close")%></asp:LinkButton>
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="lbtTotal_Alert" />
+                        <asp:AsyncPostBackTrigger ControlID="lbtJenayah_Alert" />
+                        <asp:AsyncPostBackTrigger ControlID="lbtNarkotik_Alert" />
+                        <asp:AsyncPostBackTrigger ControlID="lbtKomersil_Alert" />
+                        <asp:AsyncPostBackTrigger ControlID="lbtCawanganKhas_Alert" />
+                    </Triggers>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+    </div>
+
 </asp:Content>

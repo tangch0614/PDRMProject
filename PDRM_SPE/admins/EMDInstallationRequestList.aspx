@@ -25,47 +25,75 @@
                             <div class="portlet-body form">
                                 <div class="form-horizontal">
                                     <div class="form-body">
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblSDate" CssClass="col-md-4 control-label" Text="Transaction Date"></asp:Label>
-                                            <div class="col-md-8">
-                                                <div class="input-group input-large">
-                                                    <div class="input-group-addon">
-                                                        <asp:Label runat="server" ID="lblFrom"><%=gettext("From")%></asp:Label>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblSDate" CssClass="col-md-4 control-label" Text="Transaction Date"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <div class="input-group input-large">
+                                                            <div class="input-group-addon">
+                                                                <asp:Label runat="server" ID="lblFrom"><%=gettext("From")%></asp:Label>
+                                                            </div>
+                                                            <input id="txtDateFrom" name="txtDateFrom" class="DateFrom form-control" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
+                                                        </div>
+                                                        <div class="input-group input-large margin-top-10">
+                                                            <div class="input-group-addon">
+                                                                <asp:Label runat="server" ID="lblTo"><%=gettext("To")%></asp:Label>
+                                                            </div>
+                                                            <input id="txtDateTo" name="txtDateTo" class="DateTo form-control" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
+                                                        </div>
                                                     </div>
-                                                    <input id="txtDateFrom" name="txtDateFrom" class="DateFrom form-control" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
+                                                    <asp:TextBox runat="server" ID="hfDateFrom" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
+                                                    <asp:TextBox runat="server" ID="hfDateTo" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
                                                 </div>
-                                                <div class="input-group input-large margin-top-10">
-                                                    <div class="input-group-addon">
-                                                        <asp:Label runat="server" ID="lblTo"><%=gettext("To")%></asp:Label>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblSStatus" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlSStatus" CssClass="form-control input-inline input-large"></asp:DropDownList>
                                                     </div>
-                                                    <input id="txtDateTo" name="txtDateTo" class="DateTo form-control" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
                                                 </div>
                                             </div>
-                                            <asp:TextBox runat="server" ID="hfDateFrom" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
-                                            <asp:TextBox runat="server" ID="hfDateTo" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblSPoliceStation" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlSPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                            <div class="col-md-6">
+                                                <asp:UpdatePanel runat="server">
+                                                    <ContentTemplate>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblSIPK" CssClass="col-md-4 control-label" Text="Balai Police"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:DropDownList runat="server" ID="ddlSIPK" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlSIPK_SelectedIndexChanged"></asp:DropDownList>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblSIPD" CssClass="col-md-4 control-label" Text="Balai Police"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:DropDownList runat="server" ID="ddlSIPD" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlSIPD_SelectedIndexChanged"></asp:DropDownList>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <asp:Label runat="server" ID="lblSPoliceStation" CssClass="col-md-4 control-label" Text="Balai Police"></asp:Label>
+                                                            <div class="col-md-8">
+                                                                <asp:DropDownList runat="server" ID="ddlSPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                            </div>
+                                                        </div>
+                                                    </ContentTemplate>
+                                                    <Triggers>
+                                                        <asp:AsyncPostBackTrigger ControlID="ddlSIPK" />
+                                                        <asp:AsyncPostBackTrigger ControlID="ddlSIPD" />
+                                                    </Triggers>
+                                                </asp:UpdatePanel>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblSDepartment" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlSDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblSDepartment" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlSDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblSStatus" CssClass="col-md-4 control-label" Text="Status"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlSStatus" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-md-offset-4 col-md-8">
-                                                <asp:Button runat="server" CssClass="btn blue" ID="btnSearch" Text="Search" OnClick="btnSearch_Click" />
-                                                <asp:Button runat="server" CssClass="btn default" ID="btnSReset" Text="Reset" OnClick="btnSReset_Click" />
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div align="center">
+                                                        <asp:Button runat="server" CssClass="btn blue" ID="btnSearch" Text="Search" OnClick="btnSearch_Click" />
+                                                        <asp:Button runat="server" CssClass="btn " ID="btnSReset" Text="Reset" OnClick="btnSReset_Click" />
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +135,7 @@
                                                                 <%#GetText("Department")%>
                                                             </th>
                                                             <th style="width: 10% !important">
-                                                                <%#GetText("PoliceStation")%>
+                                                                <%#GetText("IPK") & "/ " & GetText("PoliceStation")%>
                                                             </th>
                                                             <th style="width: 10% !important">
                                                                 <%#GetText("OCSItem").replace("vITEM", gettext("Name"))%>
@@ -147,7 +175,7 @@
                                                         <%#Eval("fldDepartment")%>
                                                     </td>
                                                     <td style="text-align: center">
-                                                        <%#Eval("fldPSName")%>
+                                                        <%#Eval("fldIPKName") & "/ " & Eval("fldPSName")%>
                                                     </td>
                                                     <td style="text-align: left">
                                                         <%#Eval("fldOCSName")%>

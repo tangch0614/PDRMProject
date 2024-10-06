@@ -29,16 +29,18 @@ Public Class AOPPList
 #Region "Languange"
     Private Sub SetText()
         'Header/Title
-        lblPageTitle.Text = GetText("ManageOPP")
-        lblHeader.Text = GetText("ManageOPP")
+        lblPageTitle.Text = GetText("OPPList")
+        lblHeader.Text = GetText("OPPList")
         'Search
         lblSName.Text = GetText("Name")
         lblSICNo.Text = GetText("ICNum")
         lblSOrdRefNo.Text = GetText("OrderRefNo")
         'lblSEMD.Text = GetText("EMD")
         lblSDepartment.Text = GetText("Department")
+        lblSIPK.Text = GetText("IPK")
+        lblSIPD.Text = GetText("IPD")
         lblSPoliceStation.Text = GetText("PoliceStation")
-        lblSStatus.Text = GetText("Status")
+        lblSStatus.Text = GetText("OPPItem").Replace("vITEM", GetText("Status"))
         lblSVerifyStatus.Text = GetText("VerifyStatus")
         btnSearch.Text = GetText("Search")
         btnSReset.Text = GetText("Reset")
@@ -49,11 +51,12 @@ Public Class AOPPList
         lblPhoto2.Text = GetText("Picture") & " (" & GetText("FullBody") & ")"
         btnPhoto2.Text = GetText("SelectItem").Replace("vITEM", GetText("Picture"))
         'subject
-        lblSubject.Text = GetText("SubjectInfo")
+        lblSubject.Text = GetText("ItemDetails").Replace("vITEM", GetText("OPP"))
         lblSubjectName.Text = GetText("Name")
         rfvSubjectName.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Name"))
         lblSubjectICNo.Text = GetText("ICNum")
         rfvSubjectICNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("ICNum"))
+        lblGender.Text = GetText("Gender")
         lblSubjectContactNo.Text = GetText("ContactNum")
         rfvSubjectContactNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("ContactNum"))
         lblAddress.Text = GetText("ResidentialAddress")
@@ -64,6 +67,8 @@ Public Class AOPPList
         rfvDistrict.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("District"))
         lblMukim.Text = GetText("Township")
         rfvMukim.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Township"))
+        lblIPK.Text = GetText("Contingent")
+        rfvIPK.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Contingent"))
         lblPoliceStation.Text = GetText("PoliceStation")
         rfvPoliceStation.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("PoliceStation"))
         lblDepartment.Text = GetText("Department")
@@ -71,9 +76,10 @@ Public Class AOPPList
         lblOffenceDesc.Text = GetText("Offence")
         rfvOffenceDesc.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Offence"))
         'order
-        lblOrderInfo.Text = GetText("Order")
+        lblOrderInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("Order"))
         lblActs.Text = GetText("OrderCategory")
         rfvActs.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Acts"))
+        lblActsSection.Text = GetText("Section")
         rfvActsSection.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Section"))
         lblOrderIssuedBy.Text = GetText("OrderIssuedBy")
         rfvOrderIssuedBy.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("OrderIssuedBy"))
@@ -85,7 +91,7 @@ Public Class AOPPList
         lblOrderPeriod.Text = GetText("OrderPeriod")
         rfvOrderPeriod.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("OrderPeriod"))
         'police station
-        lblReportInfo.Text = GetText("PoliceStationInfo")
+        lblReportInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("PoliceStation"))
         lblRptPoliceStation.Text = GetText("SelfReportPoliceStation")
         rfvRptPoliceStation.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("SelfReportPoliceStation"))
         lblRptPSContactNo.Text = GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))
@@ -98,18 +104,19 @@ Public Class AOPPList
         lblReportDay.Text = GetText("SelfReportDay")
         lblReportTime.Text = GetText("SelfReportTime")
         'overseer
-        lblOverseerInfo.Text = GetText("Overseer")
-        lblOverseer.Text = GetText("Overseer")
+        lblOverseerInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("Overseer"))
+        lblOverseer.Text = GetText("OverseerItem").Replace("vITEM", GetText("Name"))
         rfvOverseer.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Overseer"))
         lblOverseerIDNo.Text = GetText("PoliceIDNo")
-        lblOverseerIPK.Text = GetText("Contingent")
-        lblOverseerDept.Text = GetText("Department")
-        lblOverseerContactNo.Text = GetText("ContactNum")
+        'lblOverseerIPK.Text = GetText("Contingent")
+        'lblOverseerDept.Text = GetText("Department")
+        lblOverseerContactNo.Text = GetText("OverseerItem").Replace("vITEM", GetText("ContactNum"))
         'oversight
-        lblOversightInfo.Text = GetText("Oversight")
+        lblOversightInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("Oversight"))
         lblRestrictTime.Text = GetText("ResidenceRestrictionPeriod")
         'geofence
-        lblGeofenceInfo.Text = GetText("Geofence")
+        lblGeofenceDistrict.Text = GetText("District")
+        rfvGeofenceDistrict.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("District") & " (" & GetText("Geofence") & ")")
         lblGeofenceMukim.Text = GetText("Township")
         rfvGeofenceMukim.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Township") & " (" & GetText("Geofence") & ")")
         'status
@@ -117,6 +124,8 @@ Public Class AOPPList
         lblGeofenceStatus.Text = GetText("GeofenceStatus")
         lblStatus.Text = GetText("OPPItem").Replace("vITEM", GetText("Status"))
         lblVerifyStatus.Text = GetText("VerifyStatus")
+        lblVerifyDateTime.Text = GetText("VerifyDateTime")
+        lblActivateDateTime.Text = GetText("ActivateDateTime")
         'emd
         lblEMDInstallDate.Text = GetText("InstallationDate")
         lblEMDDeviceInfo.Text = GetText("EMD")
@@ -131,25 +140,28 @@ Public Class AOPPList
         'file upload
         lblFileInfo.Text = GetText("Attachment")
         lblAttachment1.Text = GetText("Attachment")
-        btnAttachment1.Text = GetText("SelectItem").Replace("vITEM", GetText("MultipleFile"))
+        btnAttachment1.Text = GetText("UploadDocument")
         'others
         lblOthersInfo.Text = GetText("OthersInfo")
         lblRemark.Text = GetText("Remark")
         'popup subject
-        lblPSubject.Text = GetText("SubjectInfo")
+        lblPSubject.Text = GetText("ItemDetails").Replace("vITEM", GetText("OPP"))
         lblPSubjectName.Text = GetText("Name")
         lblPSubjectICNo.Text = GetText("ICNum")
+        lblPGender.Text = GetText("Gender")
         lblPSubjectContactNo.Text = GetText("ContactNum")
         lblPAddress.Text = GetText("ResidentialAddress")
         lblPState.Text = GetText("State")
         lblPDistrict.Text = GetText("District")
         lblPMukim.Text = GetText("Township")
+        lblPIPK.Text = GetText("Contingent")
         lblPPoliceStation.Text = GetText("PoliceStation")
         lblPDepartment.Text = GetText("Department")
         lblPOffenceDesc.Text = GetText("Offence")
         'popup order
-        lblPOrderInfo.Text = GetText("Order")
+        lblPOrderInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("Order"))
         lblPActs.Text = GetText("OrderCategory")
+        lblPActsSection.Text = GetText("Section")
         lblPOrderIssuedBy.Text = GetText("OrderIssuedBy")
         'txtpOrderIssuedBy.Attributes("placeholder") = GetText("Nyatakan pihak mengeluaran perintah")
         lblPOrderIssuedDate.Text = GetText("OrderIssuedDate")
@@ -157,7 +169,7 @@ Public Class AOPPList
         lblPOrderDate.Text = GetText("OrderDate")
         lblPOrderPeriod.Text = GetText("OrderPeriod")
         'popup police station
-        lblPReportInfo.Text = GetText("PoliceStationInfo")
+        lblPReportInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("PoliceStation"))
         lblPRptPoliceStation.Text = GetText("SelfReportPoliceStation")
         lblPRptPSContactNo.Text = GetText("PoliceStationItem").Replace("vITEM", GetText("ContactNum"))
         lblPSDNo.Text = GetText("SDNum")
@@ -166,16 +178,16 @@ Public Class AOPPList
         lblPReportDay.Text = GetText("SelfReportDay")
         lblPReportTime.Text = GetText("SelfReportTime")
         'popup overseer
-        lblPOverseerInfo.Text = GetText("Overseer")
-        lblPOverseer.Text = GetText("Overseer")
+        lblPOverseerInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("Overseer"))
+        lblPOverseer.Text = GetText("OverseerItem").Replace("vITEM", GetText("Name"))
         lblPOverseerIDNo.Text = GetText("PoliceIDNo")
-        lblPOverseerIPK.Text = GetText("Contingent")
-        lblPOverseerDept.Text = GetText("Department")
-        lblPOverseerContactNo.Text = GetText("ContactNum")
+        'lblPOverseerIPK.Text = GetText("Contingent")
+        'lblPOverseerDept.Text = GetText("Department")
+        lblPOverseerContactNo.Text = GetText("OverseerItem").Replace("vITEM", GetText("ContactNum"))
         'popup oversight
-        lblPOversightInfo.Text = GetText("Oversight")
+        lblPOversightInfo.Text = GetText("ItemDetails").Replace("vITEM", GetText("Oversight"))
         lblPRestrictTime.Text = GetText("ResidenceRestrictionPeriod")
-        lblPGeofenceInfo.Text = GetText("Geofence")
+        lblPGeofenceDistrict.Text = GetText("District")
         lblPGeofenceMukim.Text = GetText("Township")
         'popup emd
         lblPEMDInstallDate.Text = GetText("InstallationDate")
@@ -194,8 +206,10 @@ Public Class AOPPList
         lblPAttachment1.Text = GetText("Attachment")
         'lblPAttachment2.Text = GetText("Attachment") & " 2"
         lblPRemark.Text = GetText("Remark")
-        lblPStatus.Text = GetText("Status")
+        lblPStatus.Text = GetText("OPPItem").Replace("vITEM", GetText("Status"))
         lblPVerifyStatus.Text = GetText("VerifyStatus")
+        lblPVerifyDateTime.Text = GetText("VerifyDateTime")
+        lblPActivateDateTime.Text = GetText("ActivateDateTime")
         'Buttons/Message
         btnPApprove.Text = GetText("Approve")
         btnPCancel.Text = GetText("Close")
@@ -225,14 +239,19 @@ Public Class AOPPList
 #Region "Initialize"
 
     Private Sub Initialize()
+        GetGender()
+        GetEMDInstallTime()
         GetStatus()
         GetVerifyStatus()
         GetGeofenceStatus()
         GetOrderPeriodUnit()
         GetDepartment()
-        GetPoliceStation()
+        GetIPK()
+        GetSIPD(-1)
+        GetSPoliceStation(-1, -1)
+        GetRptPoliceStation()
         GetState()
-        GetGeofenceMukim()
+        GetGeofenceDistrict()
         GetActs()
         GetOrderIssuedBy()
         GetReportDay()
@@ -244,9 +263,29 @@ Public Class AOPPList
         hfOrderDate.Text = dateTime.ToString("yyyy-MM-dd")
         hfOrderIssuedDate.Text = dateTime.ToString("yyyy-MM-dd")
         hfEMDInstallDate.Text = dateTime.ToString("yyyy-MM-dd")
+        ddlIPK_SelectedIndexChanged(Me.ddlIPK, EventArgs.Empty)
         ddlActs_SelectedIndexChanged(Me.ddlActs, EventArgs.Empty)
         ddlState_SelectedIndexChanged(Me.ddlState, EventArgs.Empty)
+        ddlGeofenceDistrict_SelectedIndexChanged(Me.ddlGeofenceDistrict, EventArgs.Empty)
         BindTable()
+    End Sub
+
+    Private Sub GetGender()
+        ddlGender.Items.Add(New ListItem(GetText("Male"), "M"))
+        ddlGender.Items.Add(New ListItem(GetText("Female"), "F"))
+    End Sub
+
+    Private Sub GetEMDInstallTime()
+        Dim startTime As DateTime = DateTime.ParseExact("00:00:00", "HH:mm:ss", Nothing)
+        Dim endTime As DateTime = DateTime.ParseExact("23:30:00", "HH:mm:ss", Nothing)
+
+        While startTime <= endTime
+            ' Add time to dropdown list
+            ddlEMDInstallTime.Items.Add(New ListItem(startTime.ToString("HH:mm"), startTime.ToString("HH:mm:ss")))
+            ' Increment time by 5 minutes
+            startTime = startTime.AddMinutes(30)
+        End While
+        ddlEMDInstallTime.SelectedValue = "08:00:00"
     End Sub
 
     Private Sub GetDepartment()
@@ -339,9 +378,9 @@ Public Class AOPPList
         ddlSVerifyStatus.Items.Add(New ListItem(GetText("Approved"), "Y", True))
         'ddlSVerifyStatus.Items.Add(New ListItem(GetText("Rejected"), "N", True))
         If (AdminAuthentication.GetUserData(5) = 3) Then
-            ddlSStatus.SelectedValue = "P"
+            ddlSVerifyStatus.SelectedValue = "P"
         Else
-            ddlSStatus.SelectedIndex = 0
+            ddlSVerifyStatus.SelectedIndex = 0
         End If
     End Sub
 
@@ -356,8 +395,9 @@ Public Class AOPPList
     End Sub
 
     Private Sub GetDistrict(ByVal state As String)
+        Dim datatable As DataTable = CountryManager.GetDistrictList(state)
         ddlDistrict.Items.Clear()
-        ddlDistrict.DataSource = CountryManager.GetDistrictList(state)
+        ddlDistrict.DataSource = datatable
         ddlDistrict.DataTextField = "fldDistrict"
         ddlDistrict.DataValueField = "fldDistrict"
         ddlDistrict.DataBind()
@@ -376,8 +416,18 @@ Public Class AOPPList
         ddlMukim.SelectedIndex = 0
     End Sub
 
-    Private Sub GetGeofenceMukim()
-        Dim datatable As DataTable = CountryManager.GetMukimList("", "")
+    Private Sub GetGeofenceDistrict()
+        Dim datatable As DataTable = CountryManager.GetDistrictList("")
+        ddlGeofenceDistrict.DataSource = datatable
+        ddlGeofenceDistrict.DataTextField = "fldDistrict"
+        ddlGeofenceDistrict.DataValueField = "fldDistrict"
+        ddlGeofenceDistrict.DataBind()
+        ddlGeofenceDistrict.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("District")), "", True))
+        ddlGeofenceDistrict.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetGeofenceMukim(ByVal district As String)
+        Dim datatable As DataTable = CountryManager.GetMukimList("", district)
         ddlGeofenceMukim.DataSource = datatable
         ddlGeofenceMukim.DataTextField = "fldMukim"
         ddlGeofenceMukim.DataValueField = "fldMukim"
@@ -386,41 +436,60 @@ Public Class AOPPList
         ddlGeofenceMukim.SelectedIndex = 0
     End Sub
 
-    'Private Sub GetPoliceStation(ByVal state As String)
-    '    Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "", state, "", "", "Y")
-    '    ddlPoliceStation.Items.Clear()
-    '    ddlPoliceStation.DataSource = datatable
-    '    ddlPoliceStation.DataTextField = "fldName"
-    '    ddlPoliceStation.DataValueField = "fldID"
-    '    ddlPoliceStation.DataBind()
-    '    ddlPoliceStation.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("PoliceStation")), -1, True))
-    '    ddlPoliceStation.SelectedIndex = 0
+    Private Sub GetIPK()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "IPK", "", "", "", "Y")
+        ddlSIPK.DataSource = datatable
+        ddlSIPK.DataTextField = "fldName"
+        ddlSIPK.DataValueField = "fldID"
+        ddlSIPK.DataBind()
+        ddlSIPK.Items.Insert(0, New ListItem(GetText("All"), -1, True))
+        ddlSIPK.SelectedIndex = 0
 
-    '    ddlRptPoliceStation.Items.Clear()
-    '    ddlRptPoliceStation.DataSource = datatable
-    '    ddlRptPoliceStation.DataTextField = "fldName"
-    '    ddlRptPoliceStation.DataValueField = "fldID"
-    '    ddlRptPoliceStation.DataBind()
-    '    ddlRptPoliceStation.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("PoliceStation")), -1, True))
-    '    ddlRptPoliceStation.SelectedIndex = 0
-    'End Sub
+        ddlIPK.DataSource = datatable
+        ddlIPK.DataTextField = "fldName"
+        ddlIPK.DataValueField = "fldID"
+        ddlIPK.DataBind()
+        ddlIPK.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("Contingent")), -1, True))
+        ddlIPK.SelectedIndex = 0
+    End Sub
 
-    Private Sub GetPoliceStation()
-        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "", "", "", "", "Y")
+    Private Sub GetSIPD(ByVal ipkid As Long)
+        ddlSIPD.Items.Clear()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, ipkid, -1, "IPD", "", "", "", "Y")
+        ddlSIPD.DataSource = datatable
+        ddlSIPD.DataTextField = "fldName"
+        ddlSIPD.DataValueField = "fldID"
+        ddlSIPD.DataBind()
+        ddlSIPD.Items.Insert(0, New ListItem(GetText("All"), -1, True))
+        ddlSIPD.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetSPoliceStation(ByVal ipkid As Long, ByVal ipdid As Long)
+        ddlSPoliceStation.Items.Clear()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, ipkid, ipdid, "Balai", "", "", "", "Y")
         ddlSPoliceStation.DataSource = datatable
         ddlSPoliceStation.DataTextField = "fldName"
         ddlSPoliceStation.DataValueField = "fldID"
         ddlSPoliceStation.DataBind()
         ddlSPoliceStation.Items.Insert(0, New ListItem(GetText("All"), -1, True))
         ddlSPoliceStation.SelectedIndex = 0
+    End Sub
 
-        ddlPoliceStation.DataSource = datatable
-        ddlPoliceStation.DataTextField = "fldName"
-        ddlPoliceStation.DataValueField = "fldID"
-        ddlPoliceStation.DataBind()
+    Private Sub GetPoliceStation(ByVal ipkid As Long)
+        ddlPoliceStation.Items.Clear()
+        If ipkid > 0 Then
+            Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, ipkid, -1, "Balai", "", "", "", "Y")
+            ddlPoliceStation.DataSource = datatable
+            ddlPoliceStation.DataTextField = "fldName"
+            ddlPoliceStation.DataValueField = "fldID"
+            ddlPoliceStation.DataBind()
+        End If
         ddlPoliceStation.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("PoliceStation")), -1, True))
         ddlPoliceStation.SelectedIndex = 0
+    End Sub
 
+    Private Sub GetRptPoliceStation()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "", "", "", "", "Y")
         ddlRptPoliceStation.DataSource = datatable
         ddlRptPoliceStation.DataTextField = "fldName"
         ddlRptPoliceStation.DataValueField = "fldID"
@@ -482,6 +551,19 @@ Public Class AOPPList
         ddlOverseer.SelectedIndex = 0
     End Sub
 
+    Protected Sub ddlSIPK_SelectedIndexChanged(sender As Object, e As EventArgs)
+        GetSIPD(ddlSIPK.SelectedValue)
+        ddlSIPD_SelectedIndexChanged(Me.ddlSIPD, EventArgs.Empty)
+    End Sub
+
+    Protected Sub ddlSIPD_SelectedIndexChanged(sender As Object, e As EventArgs)
+        GetSPoliceStation(ddlSIPK.SelectedValue, ddlSIPD.SelectedValue)
+    End Sub
+
+    Protected Sub ddlIPK_SelectedIndexChanged(sender As Object, e As EventArgs)
+        GetPoliceStation(ddlIPK.SelectedValue)
+    End Sub
+
     Protected Sub ddlState_SelectedIndexChanged(sender As Object, e As EventArgs)
         GetDistrict(ddlState.SelectedValue)
         ddlDistrict_SelectedIndexChanged(Me.ddlDistrict, EventArgs.Empty)
@@ -490,6 +572,10 @@ Public Class AOPPList
     Protected Sub ddlDistrict_SelectedIndexChanged(sender As Object, e As EventArgs)
         GetMukim(ddlState.SelectedValue, ddlDistrict.SelectedValue)
         'GetPoliceStation(ddlState.SelectedValue)
+    End Sub
+
+    Protected Sub ddlGeofenceDistrict_SelectedIndexChanged(sender As Object, e As EventArgs)
+        GetGeofenceMukim(ddlGeofenceDistrict.SelectedValue)
     End Sub
 
     Protected Sub ddlActs_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -503,21 +589,21 @@ Public Class AOPPList
     Protected Sub ddlOverseer_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim officer As AdminObj = AdminManager.GetAdmin(ddlOverseer.SelectedValue)
         If Not officer Is Nothing Then
-            Dim pstype As String = PoliceStationManager.GetPoliceStationType(officer.fldPoliceStationID)
-            Dim ipkid As Long = 0
-            If pstype.Equals("IPK") Then
-                ipkid = officer.fldPoliceStationID
-            Else
-                ipkid = PoliceStationManager.GetPoliceStationIPK(officer.fldPoliceStationID)
-            End If
+            'Dim pstype As String = PoliceStationManager.GetPoliceStationType(officer.fldPoliceStationID)
+            'Dim ipkid As Long = 0
+            'If pstype.Equals("IPK") Then
+            '    ipkid = officer.fldPoliceStationID
+            'Else
+            '    ipkid = PoliceStationManager.GetPoliceStationIPK(officer.fldPoliceStationID)
+            'End If
             txtOverseerIDNo.Text = officer.fldPoliceNo
-            txtOverseerIPK.Text = PoliceStationManager.GetPoliceStationName(ipkid)
-            txtOverseerDept.Text = PoliceStationManager.GetDepartmentName(officer.fldDeptID)
+            'txtOverseerIPK.Text = PoliceStationManager.GetPoliceStationName(ipkid)
+            'txtOverseerDept.Text = PoliceStationManager.GetDepartmentName(officer.fldDeptID)
             txtOverseerContactNo.Text = officer.fldContactNo
         Else
             txtOverseerIDNo.Text = ""
-            txtOverseerIPK.Text = ""
-            txtOverseerDept.Text = ""
+            'txtOverseerIPK.Text = ""
+            'txtOverseerDept.Text = ""
             txtOverseerContactNo.Text = ""
         End If
     End Sub
@@ -527,7 +613,7 @@ Public Class AOPPList
 #Region "Table binding"
 
     Private Sub BindTable()
-        Dim myDataTable As DataTable = OPPManager.GetOPPList(-1, txtSName.Text, txtSICNo.Text, -1, ddlSDepartment.SelectedValue, ddlSPoliceStation.SelectedValue, txtSOrdRefNo.Text, ddlSStatus.SelectedValue, ddlSVerifyStatus.SelectedValue)
+        Dim myDataTable As DataTable = OPPManager.GetOPPList(-1, txtSName.Text, txtSICNo.Text, -1, ddlSDepartment.SelectedValue, ddlSIPK.SelectedValue, -1, ddlSPoliceStation.SelectedValue, txtSOrdRefNo.Text, ddlSStatus.SelectedValue, ddlSVerifyStatus.SelectedValue)
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptTable.DataSource = myDataTable
             rptTable.DataBind()
@@ -594,11 +680,13 @@ Public Class AOPPList
             End If
             txtPSubjectName.Text = opp.fldName
             txtPSubjectICNo.Text = opp.fldICNo
+            txtPGender.Text = If(opp.fldGender.Equals("M"), GetText("Male"), GetText("Female"))
             txtPSubjectContactNo.Text = opp.fldContactNo
             txtPAddress.Text = opp.fldAddress
             txtPState.Text = opp.fldState
             txtPDistrict.Text = opp.fldDistrict
             txtPMukim.Text = opp.fldMukim
+            txtPIPK.Text = PoliceStationManager.GetPoliceStationName(opp.fldIPKID)
             txtPPoliceStation.Text = PoliceStationManager.GetPoliceStationName(opp.fldPoliceStationID)
             txtPDepartment.Text = PoliceStationManager.GetDepartmentName(opp.fldDeptID)
             txtPOffenceDesc.Text = opp.fldOffenceDesc
@@ -627,27 +715,28 @@ Public Class AOPPList
             txtPRestrictToTime.Text = opp.fldRestrictToTime
             Dim officer As AdminObj = AdminManager.GetAdmin(opp.fldOverseerID)
             If Not officer Is Nothing Then
-                Dim pstype As String = PoliceStationManager.GetPoliceStationType(officer.fldPoliceStationID)
-                Dim ipkid As Long = 0
-                If pstype.Equals("IPK") Then
-                    ipkid = officer.fldPoliceStationID
-                Else
-                    ipkid = PoliceStationManager.GetPoliceStationIPK(officer.fldPoliceStationID)
-                End If
+                'Dim pstype As String = PoliceStationManager.GetPoliceStationType(officer.fldPoliceStationID)
+                'Dim ipkid As Long = 0
+                'If pstype.Equals("IPK") Then
+                '    ipkid = officer.fldPoliceStationID
+                'Else
+                '    ipkid = PoliceStationManager.GetPoliceStationIPK(officer.fldPoliceStationID)
+                'End If
                 txtPOverseer.Text = officer.fldName
                 txtPOverseerIDNo.Text = officer.fldPoliceNo
-                txtPOverseerIPK.Text = PoliceStationManager.GetPoliceStationName(ipkid)
-                txtPOverseerDept.Text = PoliceStationManager.GetDepartmentName(officer.fldDeptID)
                 txtPOverseerContactNo.Text = officer.fldContactNo
+                'txtPOverseerIPK.Text = PoliceStationManager.GetPoliceStationName(ipkid)
+                'txtPOverseerDept.Text = PoliceStationManager.GetDepartmentName(officer.fldDeptID)
             Else
                 txtPOverseer.Text = ""
                 txtPOverseerIDNo.Text = ""
-                txtPOverseerIPK.Text = ""
-                txtPOverseerDept.Text = ""
                 txtPOverseerContactNo.Text = ""
+                'txtPOverseerIPK.Text = ""
+                'txtPOverseerDept.Text = ""
             End If
+            txtPGeofenceDistrict.Text = opp.fldGeofenceDistrict
             txtPGeofenceMukim.Text = opp.fldGeofenceMukim
-            txtPEMDInstallDate.Text = opp.fldEMDInstallDate.ToString("yyyy-MM-dd")
+            txtPEMDInstallDate.Text = opp.fldEMDInstallDate.ToString("yyyy-MM-dd HH:mm:ss")
             If opp.fldEMDDeviceID > 0 Then
                 txtPEMD.Text = EMDDeviceManager.GetIMEI(opp.fldEMDDeviceID)
             Else
@@ -691,19 +780,25 @@ Public Class AOPPList
             txtPRemark.Text = opp.fldRemark
             txtPStatus.Text = If(opp.fldStatus.Equals("Y"), GetText("Active"), If(opp.fldStatus.Equals("N"), GetText("Inactive"), GetText("Pending")))
             txtPStatus.CssClass = If(opp.fldStatus.Equals("Y"), "label label-success", If(opp.fldStatus.Equals("N"), "label label-danger", "label label-warning"))
+            plPActivateDateTime.Visible = opp.fldStatus.Equals("Y")
+            txtPActivateDateTime.Text = opp.fldActivateDateTime.ToString("yyyy-MM-dd HH:mm:ss")
             txtPVerifyStatus.Text = If(opp.fldVerifyStatus.Equals("Y"), GetText("Approved"), If(opp.fldVerifyStatus.Equals("N"), GetText("Inactive"), GetText("Pending")))
             txtPVerifyStatus.CssClass = If(opp.fldVerifyStatus.Equals("Y"), "label label-success", If(opp.fldVerifyStatus.Equals("N"), "label label-danger", "label label-warning"))
+            plPVerifyDateTime.Visible = opp.fldVerifyStatus.Equals("Y")
+            txtPVerifyDateTime.Text = opp.fldVerifyDateTime.ToString("yyyy-MM-dd HH:mm:ss")
             btnPApprove.Visible = opp.fldVerifyStatus.Equals("P")
         Else
             imgPPhoto1Preview.ImageUrl = "../assets/img/No_Image.png"
             imgPPhoto2Preview.ImageUrl = "../assets/img/No_Image.png"
             txtPSubjectName.Text = ""
             txtPSubjectICNo.Text = ""
+            txtPGender.Text = ""
             txtPSubjectContactNo.Text = ""
             txtPAddress.Text = ""
             txtPState.Text = ""
             txtPDistrict.Text = ""
             txtPMukim.Text = ""
+            txtPIPK.Text = ""
             txtPPoliceStation.Text = ""
             txtPDepartment.Text = ""
             txtPOffenceDesc.Text = ""
@@ -726,9 +821,10 @@ Public Class AOPPList
             txtPOverseer.Text = ""
             txtPOverseer.Text = ""
             txtPOverseerIDNo.Text = ""
-            txtPOverseerIPK.Text = ""
-            txtPOverseerDept.Text = ""
+            'txtPOverseerIPK.Text = ""
+            'txtPOverseerDept.Text = ""
             txtPOverseerContactNo.Text = ""
+            txtPGeofenceDistrict.Text = ""
             txtPGeofenceMukim.Text = ""
             txtPEMDInstallDate.Text = ""
             txtPEMD.Text = ""
@@ -749,8 +845,12 @@ Public Class AOPPList
             txtPRemark.Text = ""
             txtPStatus.Text = ""
             txtPStatus.CssClass = ""
+            plPActivateDateTime.Visible = False
+            txtPActivateDateTime.Text = ""
             txtPVerifyStatus.Text = ""
             txtPVerifyStatus.CssClass = ""
+            plPVerifyDateTime.Visible = False
+            txtPVerifyDateTime.Text = ""
             btnPApprove.Visible = False
         End If
     End Sub
@@ -793,6 +893,7 @@ Public Class AOPPList
     Private Sub GetSubjectData(ByVal opp As OPPObj)
         txtSubjectName.Text = opp.fldName
         txtSubjectICNo.Text = opp.fldICNo
+        ddlGender.SelectedValue = opp.fldGender
         txtSubjectContactNo.Text = opp.fldContactNo
         txtAddress.Text = opp.fldAddress
         Try
@@ -812,6 +913,12 @@ Public Class AOPPList
         Catch ex As Exception
             ddlMukim.SelectedIndex = 0
         End Try
+        Try
+            ddlIPK.SelectedValue = opp.fldIPKID
+        Catch ex As Exception
+            ddlIPK.SelectedIndex = 0
+        End Try
+        ddlIPK_SelectedIndexChanged(Me.ddlIPK, EventArgs.Empty)
         Try
             ddlPoliceStation.SelectedValue = opp.fldPoliceStationID
         Catch ex As Exception
@@ -860,6 +967,12 @@ Public Class AOPPList
         ddlRestrictToTime.SelectedValue = opp.fldRestrictToTime
         txtRemark.Text = opp.fldRemark
         Try
+            ddlGeofenceDistrict.SelectedValue = opp.fldGeofenceDistrict
+        Catch ex As Exception
+            ddlGeofenceDistrict.SelectedIndex = 0
+        End Try
+        ddlGeofenceDistrict_SelectedIndexChanged(Me.ddlGeofenceDistrict, EventArgs.Empty)
+        Try
             ddlGeofenceMukim.SelectedValue = opp.fldGeofenceMukim
         Catch ex As Exception
             ddlGeofenceMukim.SelectedIndex = 0
@@ -884,13 +997,20 @@ Public Class AOPPList
     Private Sub GetStatusData(ByVal opp As OPPObj)
         txtVerifyStatus.Text = If(opp.fldVerifyStatus.Equals("Y"), GetText("Approved"), If(opp.fldVerifyStatus.Equals("N"), GetText("Rejected"), GetText("Pending")))
         txtVerifyStatus.CssClass = If(opp.fldVerifyStatus.Equals("Y"), "label label-success", If(opp.fldVerifyStatus.Equals("N"), "label label-danger", "label label-warning"))
+        plVerifyDateTime.Visible = opp.fldVerifyStatus.Equals("Y")
+        txtVerifyDateTime.Text = opp.fldVerifyDateTime.ToString("yyyy-MM-dd HH:mm:ss")
         ddlStatus.SelectedValue = opp.fldStatus
+        ddlStatus.Enabled = opp.fldVerifyStatus.Equals("Y")
+        plActivateDateTime.Visible = opp.fldStatus.Equals("Y")
+        txtActivateDateTime.Text = opp.fldActivateDateTime.ToString("yyyy-MM-dd HH:mm:ss")
+        btnOPPStatus.Enabled = opp.fldVerifyStatus.Equals("Y")
         ddlGeofenceStatus.SelectedValue = opp.fldGeoFenceActive
     End Sub
 
     Private Sub GetEMDData(ByVal opp As OPPObj)
         GetDevice(opp)
         hfEMDInstallDate.Text = opp.fldEMDInstallDate.ToString("yyyy-MM-dd")
+        ddlEMDInstallTime.SelectedValue = opp.fldEMDInstallDate.ToString("HH:mm:ss")
         Try
             ddlEMD.SelectedValue = opp.fldEMDDeviceID
         Catch ex As Exception
@@ -1003,12 +1123,14 @@ Public Class AOPPList
                 Dim result As Boolean = True
                 opp.fldName = txtSubjectName.Text
                 opp.fldICNo = txtSubjectICNo.Text
+                opp.fldGender = ddlGender.SelectedValue
                 opp.fldContactNo = txtSubjectContactNo.Text
                 opp.fldAddress = txtAddress.Text
                 opp.fldCountryID = "MY"
                 opp.fldState = ddlState.SelectedValue
                 opp.fldDistrict = ddlDistrict.SelectedValue
                 opp.fldMukim = ddlMukim.SelectedValue
+                opp.fldIPKID = ddlIPK.SelectedValue
                 opp.fldPoliceStationID = ddlPoliceStation.SelectedValue
                 opp.fldDeptID = ddlDepartment.SelectedValue
                 opp.fldOffenceDesc = txtOffenceDesc.Text
@@ -1039,7 +1161,9 @@ Public Class AOPPList
                 opp.fldRestrictFrTime = ddlRestrictFrTime.SelectedValue
                 opp.fldRestrictToTime = ddlRestrictToTime.SelectedValue
                 opp.fldRemark = txtRemark.Text
+                opp.fldGeofenceDistrict = ddlGeofenceDistrict.SelectedValue
                 opp.fldGeofenceMukim = ddlGeofenceMukim.SelectedValue
+                opp.fldGeofenceMukimID = CountryManager.GetMukimID(ddlGeofenceMukim.SelectedValue)
                 result = OPPManager.Update(opp, AdminAuthentication.GetUserData(2))
                 If result Then
                     UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP DETAILS", "OPP ID: " & OPPID, "")
@@ -1122,7 +1246,7 @@ Public Class AOPPList
     Protected Sub btnSubmitEMD_Click(sender As Object, e As EventArgs)
         UserIsAuthenticated()
         If PageValid("emd") Then
-            If OPPManager.UpdateEMDDevice(OPPID, ddlEMD.SelectedValue, hfEMDInstallDate.Text, If(chkSmartTag.Checked, txtSmartTagCode.Text, ""), If(chkOBC.Checked, txtOBCCode.Text, ""), If(chkBeacon.Checked, txtBeaconCode.Text, ""), If(chkCharger.Checked, txtChargerCode.Text, ""), If(chkStrap.Checked, txtStrapCode.Text, ""), If(chkCable.Checked, txtCableCode.Text, ""), If(chkSmartTag.Checked, 1, 0), If(chkOBC.Checked, 1, 0), If(chkBeacon.Checked, 1, 0), If(chkCharger.Checked, 1, 0), If(chkStrap.Checked, 1, 0), If(chkCable.Checked, 1, 0), AdminAuthentication.GetUserData(2)) Then
+            If OPPManager.UpdateEMDDevice(OPPID, ddlEMD.SelectedValue, hfEMDInstallDate.Text & " " & ddlEMDInstallTime.SelectedValue, If(chkSmartTag.Checked, txtSmartTagCode.Text, ""), If(chkOBC.Checked, txtOBCCode.Text, ""), If(chkBeacon.Checked, txtBeaconCode.Text, ""), If(chkCharger.Checked, txtChargerCode.Text, ""), If(chkStrap.Checked, txtStrapCode.Text, ""), If(chkCable.Checked, txtCableCode.Text, ""), If(chkSmartTag.Checked, 1, 0), If(chkOBC.Checked, 1, 0), If(chkBeacon.Checked, 1, 0), If(chkCharger.Checked, 1, 0), If(chkStrap.Checked, 1, 0), If(chkCable.Checked, 1, 0), AdminAuthentication.GetUserData(2)) Then
                 UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP EMD Device", "OPP ID: " & OPPID & ", Device ID: " & ddlEMD.SelectedValue, "")
                 ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
             Else
@@ -1146,6 +1270,7 @@ Public Class AOPPList
         If OPPManager.UpdateStatus(OPPID, ddlStatus.SelectedValue, AdminAuthentication.GetUserData(2)) Then
             UtilityManager.SaveLog(0, AdminAuthentication.GetUserData(2), "UPDATE OPP STATUS", "OPP ID: " & OPPID & ", Status: " & ddlStatus.SelectedValue, "")
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("MsgUpdateSuccess") & "');", True)
+            GetStatusData(OPPManager.GetOPP(OPPID))
         Else
             ScriptManager.RegisterStartupScript(Me, Me.GetType(), "Alert", "alert('" & GetText("ErrorUpdateFailed") & "');", True)
         End If
@@ -1173,6 +1298,8 @@ Public Class AOPPList
         txtSName.Text = ""
         txtSICNo.Text = ""
         ddlSStatus.SelectedIndex = 0
+        ddlSIPK.SelectedIndex = 0
+        ddlSIPK_SelectedIndexChanged(Me.ddlSIPK, EventArgs.Empty)
         rptTable.DataSource = ""
         rptTable.DataBind()
         plUpdate.Visible = False

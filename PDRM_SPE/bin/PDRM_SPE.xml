@@ -550,6 +550,249 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Current._lblPageTitle">
+<summary>
+lblPageTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Current._upTable">
+<summary>
+upTable control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Current._hfConfirm">
+<summary>
+hfConfirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblPageTitle">
+<summary>
+lblPageTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._upTable">
+<summary>
+upTable control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblHeader">
+<summary>
+lblHeader control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblSDate">
+<summary>
+lblSDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblFrom">
+<summary>
+lblFrom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblTo">
+<summary>
+lblTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._hfDateFrom">
+<summary>
+hfDateFrom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._hfDateTo">
+<summary>
+hfDateTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblSTime">
+<summary>
+lblSTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._ddlFrTime">
+<summary>
+ddlFrTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._ddlToTime">
+<summary>
+ddlToTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblSEMD">
+<summary>
+lblSEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._ddlSEMD">
+<summary>
+ddlSEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblSOPP">
+<summary>
+lblSOPP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._ddlSOPP">
+<summary>
+ddlSOPP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblSState">
+<summary>
+lblSState control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._ddlSState">
+<summary>
+ddlSState control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._lblSProcessStatus">
+<summary>
+lblSProcessStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._ddlSProcessStatus">
+<summary>
+ddlSProcessStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._btnSReset">
+<summary>
+btnSReset control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._btnExport">
+<summary>
+btnExport control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._rptTable">
+<summary>
+rptTable control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationReport._upPopup">
+<summary>
+upPopup control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AEMDInstallationRequest._lblPageTitle">
 <summary>
 lblPageTitle control.
@@ -1819,6 +2062,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AAddEMD._lblSN">
+<summary>
+lblSN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddEMD._txtSN">
+<summary>
+txtSN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddEMD._lblSize">
+<summary>
+lblSize control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddEMD._ddlSize">
+<summary>
+ddlSize control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AAddEMD._lblSimNo">
 <summary>
 lblSimNo control.
@@ -1882,7 +2161,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAlertNotificationList._lblPageTitle">
+<member name="F:PDRM_SPE.AAlertNotificationList_New._lblPageTitle">
 <summary>
 lblPageTitle control.
 </summary>
@@ -1891,7 +2170,7 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAlertNotificationList._upTable">
+<member name="F:PDRM_SPE.AAlertNotificationList_New._upTable">
 <summary>
 upTable control.
 </summary>
@@ -1900,9 +2179,189 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAlertNotificationList._hfConfirm">
+<member name="F:PDRM_SPE.AAlertNotificationList_New._hfConfirm">
 <summary>
 hfConfirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblPageTitle">
+<summary>
+lblPageTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._upTable">
+<summary>
+upTable control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblHeader">
+<summary>
+lblHeader control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblSDate">
+<summary>
+lblSDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblFrom">
+<summary>
+lblFrom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblTo">
+<summary>
+lblTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._hfDateFrom">
+<summary>
+hfDateFrom control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._hfDateTo">
+<summary>
+hfDateTo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblSEMD">
+<summary>
+lblSEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._ddlSEMD">
+<summary>
+ddlSEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblSOPP">
+<summary>
+lblSOPP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._ddlSOPP">
+<summary>
+ddlSOPP control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblSViolateTerms">
+<summary>
+lblSViolateTerms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._ddlSViolateTerms">
+<summary>
+ddlSViolateTerms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._lblSSeverity">
+<summary>
+lblSSeverity control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._ddlSSeverity">
+<summary>
+ddlSSeverity control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._btnSearch">
+<summary>
+btnSearch control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._btnSReset">
+<summary>
+btnSReset control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._rptTable">
+<summary>
+rptTable control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertNotificationList_Past._upPopup">
+<summary>
+upPopup control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1999,15 +2458,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAlertInfo._txtPoliceStation">
-<summary>
-txtPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AAlertInfo._txtDepartment">
 <summary>
 txtDepartment control.
@@ -2017,9 +2467,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AAlertInfo._txtPoliceStation">
+<summary>
+txtPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AAlertInfo._txtPSContactNo">
 <summary>
 txtPSContactNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._txtMukim">
+<summary>
+txtMukim control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2071,6 +2539,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AAlertInfo._trRemarkHist">
+<summary>
+trRemarkHist control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._txtRemarkHist">
+<summary>
+txtRemarkHist control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._trRemark">
+<summary>
+trRemark control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AAlertInfo._txtRemark">
 <summary>
 txtRemark control.
@@ -2098,9 +2593,54 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AAlertInfo._trCompleteBy">
+<summary>
+trCompleteBy control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._txtCompleteByID">
+<summary>
+txtCompleteByID control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._trCompleteDateTime">
+<summary>
+trCompleteDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._txtCompleteDateTime">
+<summary>
+txtCompleteDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AAlertInfo._btnAcknowledge">
 <summary>
 btnAcknowledge control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAlertInfo._btnCompleted">
+<summary>
+btnCompleted control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2305,15 +2845,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AHistoryMap._txtPoliceStation">
-<summary>
-txtPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AHistoryMap._txtDepartment">
 <summary>
 txtDepartment control.
@@ -2323,9 +2854,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AHistoryMap._txtIPK">
+<summary>
+txtIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHistoryMap._txtPoliceStation">
+<summary>
+txtPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AHistoryMap._txtPSContactNo">
 <summary>
 txtPSContactNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHistoryMap._txtMukim">
+<summary>
+txtMukim control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2431,6 +2989,60 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AEMDInstallationRequestList._lblSStatus">
+<summary>
+lblSStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDInstallationRequestList._ddlSStatus">
+<summary>
+ddlSStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDInstallationRequestList._lblSIPK">
+<summary>
+lblSIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDInstallationRequestList._ddlSIPK">
+<summary>
+ddlSIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDInstallationRequestList._lblSIPD">
+<summary>
+lblSIPD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDInstallationRequestList._ddlSIPD">
+<summary>
+ddlSIPD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AEMDInstallationRequestList._lblSPoliceStation">
 <summary>
 lblSPoliceStation control.
@@ -2461,24 +3073,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AEMDInstallationRequestList._ddlSDepartment">
 <summary>
 ddlSDepartment control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AEMDInstallationRequestList._lblSStatus">
-<summary>
-lblSStatus control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AEMDInstallationRequestList._ddlSStatus">
-<summary>
-ddlSStatus control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4285,6 +4879,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AGeofenceMukim._hfConfirm">
+<summary>
+hfConfirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.ATrackingMap._style_components">
 <summary>
 style_components control.
@@ -4402,15 +5005,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.ATrackingMap._txtPoliceStation">
-<summary>
-txtPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.ATrackingMap._txtDepartment">
 <summary>
 txtDepartment control.
@@ -4420,9 +5014,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.ATrackingMap._txtIPK">
+<summary>
+txtIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.ATrackingMap._txtPoliceStation">
+<summary>
+txtPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.ATrackingMap._txtPSContactNo">
 <summary>
 txtPSContactNo control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.ATrackingMap._txtMukim">
+<summary>
+txtMukim control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4528,9 +5149,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AMainMap._ddlEMD">
+<member name="F:PDRM_SPE.AMainMap._lbtActiveEMD">
 <summary>
-ddlEMD control.
+lbtActiveEMD control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4555,6 +5176,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AMainMap._lbtInactiveEMD">
+<summary>
+lbtInactiveEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AMainMap._txtInactiveEMD">
 <summary>
 txtInactiveEMD control.
@@ -4567,6 +5197,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AMainMap._lblInactiveEMD">
 <summary>
 lblInactiveEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._lbtTotal_Alert">
+<summary>
+lbtTotal_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4609,6 +5248,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AMainMap._lbtJenayah_Alert">
+<summary>
+lbtJenayah_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AMainMap._dvJenayah">
 <summary>
 dvJenayah control.
@@ -4630,6 +5278,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AMainMap._lblJenayah_Alert">
 <summary>
 lblJenayah_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._lbtNarkotik_Alert">
+<summary>
+lbtNarkotik_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4663,6 +5320,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AMainMap._lbtKomersil_Alert">
+<summary>
+lbtKomersil_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AMainMap._dvKomersil">
 <summary>
 dvKomersil control.
@@ -4684,6 +5350,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AMainMap._lblKomersil_Alert">
 <summary>
 lblKomersil_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._lbtCawanganKhas_Alert">
+<summary>
+lbtCawanganKhas_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4729,6 +5404,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AMainMap._hfConfirm">
 <summary>
 hfConfirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._rptActiveEMD">
+<summary>
+rptActiveEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._lblActiveEMDListTitle">
+<summary>
+lblActiveEMDListTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._rptActiveEMDList">
+<summary>
+rptActiveEMDList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._rptInactiveEMDList">
+<summary>
+rptInactiveEMDList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._lblViolateTermsTitle">
+<summary>
+lblViolateTermsTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AMainMap._rptTotal_Alert">
+<summary>
+rptTotal_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6598,6 +7327,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AAddOPP._lblGender">
+<summary>
+lblGender control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._ddlGender">
+<summary>
+ddlGender control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AAddOPP._lblSubjectContactNo">
 <summary>
 lblSubjectContactNo control.
@@ -6733,33 +7480,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAddOPP._lblPoliceStation">
-<summary>
-lblPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AAddOPP._ddlPoliceStation">
-<summary>
-ddlPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AAddOPP._rfvPoliceStation">
-<summary>
-rfvPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AAddOPP._lblDepartment">
 <summary>
 lblDepartment control.
@@ -6781,6 +7501,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AAddOPP._rfvDepartment">
 <summary>
 rfvDepartment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._lblIPK">
+<summary>
+lblIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._ddlIPK">
+<summary>
+ddlIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._rfvIPK">
+<summary>
+rfvIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._lblPoliceStation">
+<summary>
+lblPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._ddlPoliceStation">
+<summary>
+ddlPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._rfvPoliceStation">
+<summary>
+rfvPoliceStation control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6916,6 +7690,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AAddOPP._rfvActs">
 <summary>
 rfvActs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._lblActsSection">
+<summary>
+lblActsSection control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7327,42 +8110,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAddOPP._lblOverseerIPK">
-<summary>
-lblOverseerIPK control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AAddOPP._txtOverseerIPK">
-<summary>
-txtOverseerIPK control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AAddOPP._lblOverseerDept">
-<summary>
-lblOverseerDept control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AAddOPP._txtOverseerDept">
-<summary>
-txtOverseerDept control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AAddOPP._lblOversightInfo">
 <summary>
 lblOversightInfo control.
@@ -7399,9 +8146,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AAddOPP._lblGeofenceInfo">
+<member name="F:PDRM_SPE.AAddOPP._lblGeofenceDistrict">
 <summary>
-lblGeofenceInfo control.
+lblGeofenceDistrict control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._ddlGeofenceDistrict">
+<summary>
+ddlGeofenceDistrict control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._rfvGeofenceDistrict">
+<summary>
+rfvGeofenceDistrict control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7456,6 +8221,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AAddOPP._hfEMDInstallDate">
 <summary>
 hfEMDInstallDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._lblEMDInstallTime">
+<summary>
+lblEMDInstallTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AAddOPP._ddlEMDInstallTime">
+<summary>
+ddlEMDInstallTime control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7786,42 +8569,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblSDepartment">
-<summary>
-lblSDepartment control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._ddlSDepartment">
-<summary>
-ddlSDepartment control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._lblSPoliceStation">
-<summary>
-lblSPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._ddlSPoliceStation">
-<summary>
-ddlSPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AOPPList._lblSStatus">
 <summary>
 lblSStatus control.
@@ -7852,6 +8599,78 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._ddlSVerifyStatus">
 <summary>
 ddlSVerifyStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblSDepartment">
+<summary>
+lblSDepartment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlSDepartment">
+<summary>
+ddlSDepartment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblSIPK">
+<summary>
+lblSIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlSIPK">
+<summary>
+ddlSIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblSIPD">
+<summary>
+lblSIPD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlSIPD">
+<summary>
+ddlSIPD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblSPoliceStation">
+<summary>
+lblSPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlSPoliceStation">
+<summary>
+ddlSPoliceStation control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7939,6 +8758,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AOPPList._plVerifyDateTime">
+<summary>
+plVerifyDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblVerifyDateTime">
+<summary>
+lblVerifyDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtVerifyDateTime">
+<summary>
+txtVerifyDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AOPPList._lblStatus">
 <summary>
 lblStatus control.
@@ -7960,6 +8806,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._btnOPPStatus">
 <summary>
 btnOPPStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._plActivateDateTime">
+<summary>
+plActivateDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblActivateDateTime">
+<summary>
+lblActivateDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtActivateDateTime">
+<summary>
+txtActivateDateTime control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8182,6 +9055,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AOPPList._lblGender">
+<summary>
+lblGender control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlGender">
+<summary>
+ddlGender control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AOPPList._lblSubjectContactNo">
 <summary>
 lblSubjectContactNo control.
@@ -8317,33 +9208,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblPoliceStation">
-<summary>
-lblPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._ddlPoliceStation">
-<summary>
-ddlPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._rfvPoliceStation">
-<summary>
-rfvPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AOPPList._lblDepartment">
 <summary>
 lblDepartment control.
@@ -8365,6 +9229,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._rfvDepartment">
 <summary>
 rfvDepartment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblIPK">
+<summary>
+lblIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlIPK">
+<summary>
+ddlIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._rfvIPK">
+<summary>
+rfvIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblPoliceStation">
+<summary>
+lblPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlPoliceStation">
+<summary>
+ddlPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._rfvPoliceStation">
+<summary>
+rfvPoliceStation control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8428,6 +9346,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._rfvActs">
 <summary>
 rfvActs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblActsSection">
+<summary>
+lblActsSection control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8803,9 +9730,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblGeofenceInfo">
+<member name="F:PDRM_SPE.AOPPList._lblGeofenceDistrict">
 <summary>
-lblGeofenceInfo control.
+lblGeofenceDistrict control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlGeofenceDistrict">
+<summary>
+ddlGeofenceDistrict control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._rfvGeofenceDistrict">
+<summary>
+rfvGeofenceDistrict control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -9019,42 +9964,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblOverseerIPK">
-<summary>
-lblOverseerIPK control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._txtOverseerIPK">
-<summary>
-txtOverseerIPK control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._lblOverseerDept">
-<summary>
-lblOverseerDept control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._txtOverseerDept">
-<summary>
-txtOverseerDept control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AOPPList._btnSubmitOverseer">
 <summary>
 btnSubmitOverseer control.
@@ -9094,6 +10003,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._hfEMDInstallDate">
 <summary>
 hfEMDInstallDate control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblEMDInstallTime">
+<summary>
+lblEMDInstallTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._ddlEMDInstallTime">
+<summary>
+ddlEMDInstallTime control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -9442,6 +10369,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AOPPList._lblPGender">
+<summary>
+lblPGender control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtPGender">
+<summary>
+txtPGender control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AOPPList._lblPSubjectContactNo">
 <summary>
 lblPSubjectContactNo control.
@@ -9532,24 +10477,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblPPoliceStation">
-<summary>
-lblPPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._txtPPoliceStation">
-<summary>
-txtPPoliceStation control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AOPPList._lblPDepartment">
 <summary>
 lblPDepartment control.
@@ -9562,6 +10489,42 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._txtPDepartment">
 <summary>
 txtPDepartment control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblPIPK">
+<summary>
+lblPIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtPIPK">
+<summary>
+txtPIPK control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblPPoliceStation">
+<summary>
+lblPPoliceStation control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtPPoliceStation">
+<summary>
+txtPPoliceStation control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -9607,6 +10570,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._txtPActs">
 <summary>
 txtPActs control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblPActsSection">
+<summary>
+lblPActsSection control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -9901,42 +10873,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblPOverseerIPK">
-<summary>
-lblPOverseerIPK control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._txtPOverseerIPK">
-<summary>
-txtPOverseerIPK control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._lblPOverseerDept">
-<summary>
-lblPOverseerDept control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:PDRM_SPE.AOPPList._txtPOverseerDept">
-<summary>
-txtPOverseerDept control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:PDRM_SPE.AOPPList._lblPOverseerContactNo">
 <summary>
 lblPOverseerContactNo control.
@@ -9991,9 +10927,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AOPPList._lblPGeofenceInfo">
+<member name="F:PDRM_SPE.AOPPList._lblPGeofenceDistrict">
 <summary>
-lblPGeofenceInfo control.
+lblPGeofenceDistrict control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtPGeofenceDistrict">
+<summary>
+txtPGeofenceDistrict control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10234,6 +11179,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AOPPList._plPActivateDateTime">
+<summary>
+plPActivateDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblPActivateDateTime">
+<summary>
+lblPActivateDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtPActivateDateTime">
+<summary>
+txtPActivateDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AOPPList._lblPVerifyStatus">
 <summary>
 lblPVerifyStatus control.
@@ -10246,6 +11218,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AOPPList._txtPVerifyStatus">
 <summary>
 txtPVerifyStatus control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._plPVerifyDateTime">
+<summary>
+plPVerifyDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._lblPVerifyDateTime">
+<summary>
+lblPVerifyDateTime control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AOPPList._txtPVerifyDateTime">
+<summary>
+txtPVerifyDateTime control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10279,9 +11278,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:PDRM_SPE.AHome._ddlEMD">
+<member name="F:PDRM_SPE.AHome._lbtActiveEMD">
 <summary>
-ddlEMD control.
+lbtActiveEMD control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10306,6 +11305,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AHome._lbtInactiveEMD">
+<summary>
+lbtInactiveEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AHome._txtInactiveEMD">
 <summary>
 txtInactiveEMD control.
@@ -10318,6 +11326,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AHome._lblInactiveEMD">
 <summary>
 lblInactiveEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._lbtTotal_Alert">
+<summary>
+lbtTotal_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10360,6 +11377,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AHome._lbtJenayah_Alert">
+<summary>
+lbtJenayah_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AHome._dvJenayah">
 <summary>
 dvJenayah control.
@@ -10381,6 +11407,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AHome._lblJenayah_Alert">
 <summary>
 lblJenayah_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._lbtNarkotik_Alert">
+<summary>
+lbtNarkotik_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10414,6 +11449,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AHome._lbtKomersil_Alert">
+<summary>
+lbtKomersil_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AHome._dvKomersil">
 <summary>
 dvKomersil control.
@@ -10441,6 +11485,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AHome._lbtCawanganKhas_Alert">
+<summary>
+lbtCawanganKhas_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AHome._dvCawanganKhas">
 <summary>
 dvCawanganKhas control.
@@ -10462,6 +11515,60 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AHome._lblCawanganKhas_Alert">
 <summary>
 lblCawanganKhas_Alert control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._rptActiveEMD">
+<summary>
+rptActiveEMD control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._lblActiveEMDListTitle">
+<summary>
+lblActiveEMDListTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._rptActiveEMDList">
+<summary>
+rptActiveEMDList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._rptInactiveEMDList">
+<summary>
+rptInactiveEMDList control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._lblViolateTermsTitle">
+<summary>
+lblViolateTermsTitle control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AHome._rptTotal_Alert">
+<summary>
+rptTotal_Alert control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -10675,6 +11782,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AEMDList._lblSSN">
+<summary>
+lblSSN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._txtSSN">
+<summary>
+txtSSN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._lblSSize">
+<summary>
+lblSSize control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._ddlSSize">
+<summary>
+ddlSSize control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AEMDList._lblSStatus">
 <summary>
 lblSStatus control.
@@ -10783,6 +11926,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:PDRM_SPE.AEMDList._lblSN">
+<summary>
+lblSN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._txtSN">
+<summary>
+txtSN control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._lblSize">
+<summary>
+lblSize control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._ddlSize">
+<summary>
+ddlSize control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:PDRM_SPE.AEMDList._lblSimNo">
 <summary>
 lblSimNo control.
@@ -10849,6 +12028,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:PDRM_SPE.AEMDList._hfConfirm">
 <summary>
 hfConfirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:PDRM_SPE.AEMDList._hfConfirm2">
+<summary>
+hfConfirm2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -11501,9 +12689,19 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Acknowledged Date Time.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.ActionTaken">
+<summary>
+  Looks up a localized string similar to Action Taken.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.Activate">
 <summary>
   Looks up a localized string similar to Activate.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.ActivateDateTime">
+<summary>
+  Looks up a localized string similar to Activate Date Time.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.Activation">
@@ -11602,9 +12800,19 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Alert.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.AlertDateTime">
+<summary>
+  Looks up a localized string similar to Alert Date Time.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.AlertNotificationList">
 <summary>
   Looks up a localized string similar to Alert List.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.AlertReport">
+<summary>
+  Looks up a localized string similar to Alert Report.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.All">
@@ -11722,14 +12930,29 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Close.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.ClosingBy">
+<summary>
+  Looks up a localized string similar to Closing By.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.CompanyInfo">
 <summary>
   Looks up a localized string similar to Company Information.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.CompleteBy">
+<summary>
+  Looks up a localized string similar to Completed By.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.Completed">
 <summary>
   Looks up a localized string similar to Completed.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.CompleteDateTime">
+<summary>
+  Looks up a localized string similar to Completed Date Time.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.ConfirmPassword">
@@ -11750,6 +12973,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.Contingent">
 <summary>
   Looks up a localized string similar to Contingent.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.Count">
+<summary>
+  Looks up a localized string similar to Count.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.Country">
@@ -11780,6 +13008,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.Current">
 <summary>
   Looks up a localized string similar to Current.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.CurrentAlertList">
+<summary>
+  Looks up a localized string similar to Current Alert List.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.CurrentPassword">
@@ -12227,6 +13460,11 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Failed.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.Female">
+<summary>
+  Looks up a localized string similar to Female.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.File">
 <summary>
   Looks up a localized string similar to File.
@@ -12240,6 +13478,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.FileUpload">
 <summary>
   Looks up a localized string similar to File Upload.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.FirstResponder">
+<summary>
+  Looks up a localized string similar to First Responder.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.ForgotPassword">
@@ -12265,6 +13508,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.FullBody">
 <summary>
   Looks up a localized string similar to Full Body.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.Gender">
+<summary>
+  Looks up a localized string similar to Gender.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.GeneratedDateTime">
@@ -12402,6 +13650,11 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Installation Request List.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.InstallationTime">
+<summary>
+  Looks up a localized string similar to Installation Time.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.Inventory">
 <summary>
   Looks up a localized string similar to Inventory.
@@ -12417,14 +13670,24 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to IPD List.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.IPK">
+<summary>
+  Looks up a localized string similar to Contingent.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.IPKList">
 <summary>
-  Looks up a localized string similar to IPK List.
+  Looks up a localized string similar to Contingent List.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.Item">
 <summary>
   Looks up a localized string similar to Item.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.ItemDetails">
+<summary>
+  Looks up a localized string similar to vITEM Details.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.Language">
@@ -12435,6 +13698,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.LastLogin">
 <summary>
   Looks up a localized string similar to Last Login.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.LastResponder">
+<summary>
+  Looks up a localized string similar to Last Responder.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.LatestNews">
@@ -12529,6 +13797,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.Maintenance">
 <summary>
   Looks up a localized string similar to Maintenance.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.Male">
+<summary>
+  Looks up a localized string similar to Male.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.ManageActs">
@@ -12866,6 +14139,11 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Network Information.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.NewAlertList">
+<summary>
+  Looks up a localized string similar to New Alert List.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.NewImage">
 <summary>
   Looks up a localized string similar to New Image.
@@ -13041,6 +14319,11 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Out.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.Out_Of_Geofence">
+<summary>
+  Looks up a localized string similar to Out of Geofence.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.Overseer">
 <summary>
   Looks up a localized string similar to Overseer.
@@ -13084,6 +14367,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.PasswordRecovery">
 <summary>
   Looks up a localized string similar to Password Recovery.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.PastAlertList">
+<summary>
+  Looks up a localized string similar to Alert History.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.Pending">
@@ -13134,11 +14422,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.PoliceStation">
 <summary>
   Looks up a localized string similar to Police Station.
-</summary>
-</member>
-<member name="P:PDRM_SPE.Resources.language.PoliceStationInfo">
-<summary>
-  Looks up a localized string similar to Police Station Details.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.PoliceStationItem">
@@ -13251,6 +14534,11 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Remark.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.RemarkHistory">
+<summary>
+  Looks up a localized string similar to Remark History.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.Report">
 <summary>
   Looks up a localized string similar to Report.
@@ -13341,9 +14629,19 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to Self-Report Time.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.SerialNum">
+<summary>
+  Looks up a localized string similar to Serial No..
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.ServiceHour">
 <summary>
   Looks up a localized string similar to Office Hour.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.Severity">
+<summary>
+  Looks up a localized string similar to Severity.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.Show">
@@ -13371,6 +14669,11 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to SIM No..
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.Size">
+<summary>
+  Looks up a localized string similar to Size.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.SortBy">
 <summary>
   Looks up a localized string similar to Sort By.
@@ -13386,19 +14689,24 @@ To modify move field declaration from designer file to code-behind file.
   Looks up a localized string similar to South.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.Speed">
+<summary>
+  Looks up a localized string similar to Speed.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.State">
 <summary>
   Looks up a localized string similar to State.
 </summary>
 </member>
+<member name="P:PDRM_SPE.Resources.language.StateContingent">
+<summary>
+  Looks up a localized string similar to State Contingent.
+</summary>
+</member>
 <member name="P:PDRM_SPE.Resources.language.Status">
 <summary>
   Looks up a localized string similar to Status.
-</summary>
-</member>
-<member name="P:PDRM_SPE.Resources.language.SubjectInfo">
-<summary>
-  Looks up a localized string similar to Subject Details.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.SubjectItem">
@@ -13599,6 +14907,11 @@ To modify move field declaration from designer file to code-behind file.
 <member name="P:PDRM_SPE.Resources.language.Verify">
 <summary>
   Looks up a localized string similar to Verify.
+</summary>
+</member>
+<member name="P:PDRM_SPE.Resources.language.VerifyDateTime">
+<summary>
+  Looks up a localized string similar to Verify Date Time.
 </summary>
 </member>
 <member name="P:PDRM_SPE.Resources.language.VerifyStatus">

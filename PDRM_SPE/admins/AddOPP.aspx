@@ -79,6 +79,12 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
+                                            <asp:Label runat="server" ID="lblGender" CssClass="col-md-4 control-label" Text="Gender"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:DropDownList runat="server" ID="ddlGender" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
                                             <asp:Label runat="server" ID="lblSubjectContactNo" CssClass="col-md-4 control-label" Text="No. K/P"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:TextBox runat="server" ID="txtSubjectContactNo" CssClass="form-control input-inline input-large" />
@@ -130,16 +136,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <asp:Label runat="server" ID="lblPoliceStation" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
-                                                    <div class="col-md-8">
-                                                        <asp:DropDownList runat="server" ID="ddlPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                                        <label style="color: red">*</label>
-                                                        <div>
-                                                            <asp:RequiredFieldValidator runat="server" ID="rfvPoliceStation" ControlToValidate="ddlPoliceStation" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
                                                     <asp:Label runat="server" ID="lblDepartment" CssClass="col-md-4 control-label" Text="Jabatan"></asp:Label>
                                                     <div class="col-md-8">
                                                         <asp:DropDownList runat="server" ID="ddlDepartment" CssClass="form-control input-inline input-large"></asp:DropDownList>
@@ -149,10 +145,31 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblIPK" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlIPK" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlIPK_SelectedIndexChanged"></asp:DropDownList>
+                                                        <label style="color: red">*</label>
+                                                        <div>
+                                                            <asp:RequiredFieldValidator runat="server" ID="rfvIPK" ControlToValidate="ddlPoliceStation" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblPoliceStation" CssClass="col-md-4 control-label" Text="Balai Polis"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlPoliceStation" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                        <label style="color: red">*</label>
+                                                        <div>
+                                                            <asp:RequiredFieldValidator runat="server" ID="rfvPoliceStation" ControlToValidate="ddlPoliceStation" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </ContentTemplate>
                                             <Triggers>
                                                 <asp:AsyncPostBackTrigger ControlID="ddlState" />
                                                 <asp:AsyncPostBackTrigger ControlID="ddlDistrict" />
+                                                <asp:AsyncPostBackTrigger ControlID="ddlIPK" />
                                             </Triggers>
                                         </asp:UpdatePanel>
                                         <div class="form-group">
@@ -171,7 +188,7 @@
                                             <asp:Label runat="server" ID="lblPhoto1" CssClass="col-md-4 control-label" Text="Gambar Subjek (Muka)"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:Button runat="server" ID="btnPhoto1" Text="Select File" CssClass="btn blue " OnClientClick="fuPhoto1.click();return false;" />
-                                                <label style="color: red">*</label>
+                                                <%--<label style="color: red">*</label>--%>
                                                 <asp:Label runat="server" ID="lblPhoto1Validate" ForeColor="red" Visible="false"></asp:Label>
                                                 <asp:Image runat="server" ID="imgPhoto1Preview" src="../assets/img/No_Image.png" ClientIDMode="Static" Style="height: 150px; display: block; margin-top: 10px;" />
                                             </div>
@@ -180,7 +197,7 @@
                                             <asp:Label runat="server" ID="lblPhoto2" CssClass="col-md-4 control-label" Text="Gambar Subjek (Badan)"></asp:Label>
                                             <div class="col-md-8">
                                                 <asp:Button runat="server" ID="btnPhoto2" Text="Select File" CssClass="btn blue " OnClientClick="fuPhoto2.click();return false;" />
-                                                <label style="color: red">*</label>
+                                                <%--<label style="color: red">*</label>--%>
                                                 <asp:Label runat="server" ID="lblPhoto2Validate" ForeColor="red" Visible="false"></asp:Label>
                                                 <asp:Image runat="server" ID="imgPhoto2Preview" src="../assets/img/No_Image.png" ClientIDMode="Static" Style="height: 150px; display: block; margin-top: 10px;" />
                                             </div>
@@ -214,7 +231,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="col-md-8 col-md-offset-4">
+                                                    <asp:Label runat="server" ID="lblActsSection" CssClass="col-md-4 control-label" Text="Ketegori Perintah"></asp:Label>
+                                                    <div class="col-md-8">
                                                         <asp:DropDownList runat="server" ID="ddlActsSection" ClientIDMode="Static" CssClass="form-control input-inline input-large margin-top-10"></asp:DropDownList>
                                                         <label style="color: red">*</label><div>
                                                             <asp:RequiredFieldValidator runat="server" ID="rfvActsSection" ControlToValidate="ddlActsSection" InitialValue="-1" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
@@ -408,7 +426,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class=" col-md-6">
+                                            <%--<div class=" col-md-6">
                                                 <div class="form-group">
                                                     <asp:Label runat="server" ID="lblOverseerIPK" CssClass="col-md-4 control-label" Text="Kontinjen"></asp:Label>
                                                     <div class="col-md-8">
@@ -421,7 +439,7 @@
                                                         <asp:TextBox runat="server" ID="txtOverseerDept" CssClass="form-control input-inline input-large" Enabled="false" ReadOnly="true"></asp:TextBox>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </ContentTemplate>
                                     <Triggers>
@@ -459,31 +477,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Geofence -->
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <asp:Label runat="server" ID="lblGeofenceInfo" CssClass="caption-subject uppercase">Geo Pagar</asp:Label>
-                        </div>
-                    </div>
-                    <div class="portlet-body form">
-                        <div class="form-horizontal">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class=" col-md-6">
-                                        <div class="form-group">
-                                            <asp:Label runat="server" ID="lblGeofenceMukim" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
-                                            <div class="col-md-8">
-                                                <asp:DropDownList runat="server" ID="ddlGeofenceMukim" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
-                                                <label style="color: red">*</label><div>
-                                                    <asp:RequiredFieldValidator runat="server" ID="rfvGeofenceMukim" ControlToValidate="ddlGeofenceMukim" InitialValue="" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                        <asp:UpdatePanel runat="server">
+                                            <ContentTemplate>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblGeofenceDistrict" CssClass="col-md-4 control-label" Text="Daerah"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlGeofenceDistrict" ClientIDMode="Static" CssClass="form-control input-inline input-large" AutoPostBack="true" OnSelectedIndexChanged="ddlGeofenceDistrict_SelectedIndexChanged"></asp:DropDownList>
+                                                        <label style="color: red">*</label>
+                                                        <div>
+                                                            <asp:RequiredFieldValidator runat="server" ID="rfvGeofenceDistrict" ControlToValidate="ddlGeofenceDistrict" InitialValue="" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                                <div class="form-group">
+                                                    <asp:Label runat="server" ID="lblGeofenceMukim" CssClass="col-md-4 control-label" Text="Mukim"></asp:Label>
+                                                    <div class="col-md-8">
+                                                        <asp:DropDownList runat="server" ID="ddlGeofenceMukim" ClientIDMode="Static" CssClass="form-control input-inline input-large"></asp:DropDownList>
+                                                        <label style="color: red">*</label><div>
+                                                            <asp:RequiredFieldValidator runat="server" ID="rfvGeofenceMukim" ControlToValidate="ddlGeofenceMukim" InitialValue="" ErrorMessage="*cannot be blank" Display="Dynamic" ForeColor="red" ValidationGroup="opp"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ContentTemplate>
+                                            <Triggers>
+                                                <asp:AsyncPostBackTrigger ControlID="ddlGeofenceDistrict" />
+                                            </Triggers>
+                                        </asp:UpdatePanel>
                                     </div>
                                 </div>
                             </div>
@@ -506,6 +525,12 @@
                                                 <input id="txtEMDInstallDate" name="txtEMDInstallDate" class="DateFrom form-control input-inline input-large" type="text" onkeydown="return false;" onpaste="return false;" autocomplete="off" readonly="true" />
                                             </div>
                                             <asp:TextBox runat="server" ID="hfEMDInstallDate" ClientIDMode="Static" Style="display: none;"></asp:TextBox>
+                                        </div>
+                                        <div class="form-group">
+                                            <asp:Label runat="server" ID="lblEMDInstallTime" CssClass="col-md-4 control-label" Text="Masa"></asp:Label>
+                                            <div class="col-md-8">
+                                                <asp:DropDownList runat="server" ID="ddlEMDInstallTime" class="form-control input-inline input-large" ClientIDMode="Static"></asp:DropDownList>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <asp:Label runat="server" ID="lblEMD" CssClass="col-md-4 control-label" Text="IMEI"></asp:Label>

@@ -21,6 +21,8 @@ Public Class AAddEMD
         lblImei.Text = GetText("Imei")
         rfvImei.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("Imei"))
         lblName.Text = GetText("Marking")
+        lblSN.Text = GetText("SerialNum")
+        lblSize.Text = GetText("Size")
         lblSimNo.Text = GetText("SIMNo")
         'rfvSimNo.ErrorMessage = GetText("ErrorItemRequired").Replace("vITEM", GetText("SIMNo"))
         lblSimNo2.Text = GetText("SIMNo") & " 2"
@@ -37,6 +39,7 @@ Public Class AAddEMD
 #Region "Initialize"
 
     Private Sub Initialize()
+        GetSize()
         'GetStatus()
     End Sub
 
@@ -45,6 +48,15 @@ Public Class AAddEMD
     '    ddlStatus.Items.Add(New ListItem(GetText("Inactive"), "N", True))
     '    ddlStatus.SelectedIndex = 0
     'End Sub
+
+    Private Sub GetSize()
+        ddlSize.Items.Add(New ListItem(1, 1, True))
+        ddlSize.Items.Add(New ListItem(2, 2, True))
+        ddlSize.Items.Add(New ListItem(3, 3, True))
+        ddlSize.Items.Add(New ListItem(4, 4, True))
+        ddlSize.Items.Add(New ListItem(5, 5, True))
+        ddlSize.SelectedIndex = 0
+    End Sub
 
 #End Region
 
@@ -68,6 +80,15 @@ Public Class AAddEMD
         Return True
     End Function
 
+    Private Function VerifySerialNum(ByVal serialno As String, ByVal errormsg As Boolean, ByRef msg As String)
+        If Not String.IsNullOrWhiteSpace(serialno) AndAlso EMDDeviceManager.VerifySerialNum(serialno) > 0 Then
+            msg = GetText("ErrorDuplicateItem").Replace("vITEM", GetText("SerialNum"))
+            If errormsg Then ScriptManager.RegisterStartupScript(Me, Me.GetType, "javascript", "alert('" & msg & "');", True)
+            Return False
+        End If
+        Return True
+    End Function
+
     'Private Function VerifySIMNo(ByVal simno As String, ByVal errormsg As Boolean, ByRef msg As String)
     '    If Not String.IsNullOrWhiteSpace(simno) AndAlso EMDDeviceManager.VerifySimNo(simno) > 0 Then
     '        msg = GetText("ErrorDuplicateItem").Replace("vITEM", GetText("SIMNo"))
@@ -85,7 +106,11 @@ Public Class AAddEMD
             result = False
             errorMsg &= msg & "\n"
         End If
-        If Not VerifyName(txtImei.Text, False, msg) Then
+        If Not VerifyName(txtName.Text, False, msg) Then
+            result = False
+            errorMsg &= msg & "\n"
+        End If
+        If Not VerifySerialNum(txtSN.Text, False, msg) Then
             result = False
             errorMsg &= msg & "\n"
         End If
@@ -109,6 +134,8 @@ Public Class AAddEMD
             Dim device As EMDDeviceObj = New EMDDeviceObj
             device.fldImei = txtImei.Text
             device.fldName = txtName.Text
+            device.fldSN = txtSN.Text
+            device.fldSize = ddlSize.SelectedValue
             device.fldSimNo = txtSimNo.Text
             device.fldSimNo2 = txtSimNo2.Text
             device.fldStatus = "N" 'ddlStatus.SelectedValue

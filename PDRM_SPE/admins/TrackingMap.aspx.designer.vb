@@ -131,15 +131,6 @@ Partial Public Class ATrackingMap
     Protected WithEvents txtOverseerContactNo As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''txtPoliceStation control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txtPoliceStation As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''txtDepartment control.
     '''</summary>
     '''<remarks>
@@ -149,6 +140,24 @@ Partial Public Class ATrackingMap
     Protected WithEvents txtDepartment As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''txtIPK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtIPK As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtPoliceStation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtPoliceStation As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''txtPSContactNo control.
     '''</summary>
     '''<remarks>
@@ -156,6 +165,15 @@ Partial Public Class ATrackingMap
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txtPSContactNo As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''txtMukim control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txtMukim As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''txtIMEI control.

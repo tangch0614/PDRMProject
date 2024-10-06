@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/admins/Admin.Master" CodeBehind="AlertNotificationList.aspx.vb" Inherits="PDRM_SPE.AAlertNotificationList" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/admins/Admin.Master" CodeBehind="AlertNotificationList_Current.aspx.vb" Inherits="PDRM_SPE.AAlertNotificationList_Current" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -6,13 +6,14 @@
     <script type="text/javascript">
         function fetchAlerts(severity, limit) {
             const param = {
+                processstatus: 1,
                 severity: severity,
                 limit: limit
             };
             //get alert list
             $.ajax({
                 type: "POST",
-                url: "AlertNotificationList.aspx/GetAlertList",
+                url: "../GetData.aspx/GetAlertList",
                 data: JSON.stringify(param),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -39,8 +40,8 @@
                     //count unprocess alert
                     $.ajax({
                         type: "POST",
-                        url: "AlertNotificationList.aspx/GetAlertCount",
-                        data: JSON.stringify({ severity: severity }),
+                        url: "../GetData.aspx/GetAlertListCount",
+                        data: JSON.stringify({ processstatus: 1, severity: severity }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         success: function (response) {
@@ -83,7 +84,7 @@
             }
     </style>
     <!-- PAGE HEADER -->
-    <h3 class="page-title" style="display: none;">
+    <h3 class="page-title">
         <asp:Label runat="server" ID="lblPageTitle" Text="User List"></asp:Label></h3>
     <!-- PAGE HEADER -->
     <div class="clearfix">

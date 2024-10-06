@@ -69,6 +69,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlertManager.vb" />
+    <Compile Include="AlertDB.vb" />
     <Compile Include="Data\AccountStatusDB.vb" />
     <Compile Include="Data\AdminAuthenticationDB.vb" />
     <Compile Include="Data\AdminDB.vb" />

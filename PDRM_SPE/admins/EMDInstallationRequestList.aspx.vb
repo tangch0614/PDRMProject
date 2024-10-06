@@ -34,6 +34,8 @@ Public Class AEMDInstallationRequestList
         lblHeader.Text = GetText("InstallationRequestList")
         'Search
         lblSDate.Text = GetText("Date")
+        lblSIPK.Text = GetText("IPK")
+        lblSIPD.Text = GetText("IPD")
         lblSPoliceStation.Text = GetText("PoliceStation")
         lblSDepartment.Text = GetText("Department")
         lblSStatus.Text = GetText("Status")
@@ -114,7 +116,7 @@ Public Class AEMDInstallationRequestList
         'VENDOR file upload
         lblPAttachment2.Text = GetText("Picture")
         lblPFileInfo.Text = GetText("Picture")
-        btnPAttachment2.Text = GetText("SelectItem").Replace("vITEM", GetText("MultipleFile"))
+        btnPAttachment2.Text = GetText("UploadDocument")
         btnPSubmitAttachment2.Text = GetText("Submit")
         'Buttons/Message
         btnPUpdateStatus.Text = GetText("Update")
@@ -136,14 +138,15 @@ Public Class AEMDInstallationRequestList
     Private Sub Initialize()
         GetStatus()
         GetDepartment()
-        GetPoliceStation()
         GetState()
+        GetSIPK()
         GetIPK("")
         GetTime()
         Dim dateTime As DateTime = UtilityManager.GetServerDateTime()
         hfDateFrom.Text = dateTime.ToString("yyyy-MM-dd")
         hfDateTo.Text = dateTime.AddMonths(6).ToString("yyyy-MM-dd")
         hfDate.Text = dateTime.ToString("yyyy-MM-dd")
+        ddlSIPK_SelectedIndexChanged(Me.ddlSIPK, EventArgs.Empty)
         ddlIPK_SelectedIndexChanged(Me.ddlIPK, EventArgs.Empty)
         BindTable()
     End Sub
@@ -209,6 +212,38 @@ Public Class AEMDInstallationRequestList
         ddlMukim.SelectedIndex = 0
     End Sub
 
+    Private Sub GetSIPK()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "IPK", "", "", "", "Y")
+        ddlSIPK.DataSource = datatable
+        ddlSIPK.DataTextField = "fldName"
+        ddlSIPK.DataValueField = "fldID"
+        ddlSIPK.DataBind()
+        ddlSIPK.Items.Insert(0, New ListItem(GetText("All"), -1, True))
+        ddlSIPK.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetSIPD(ByVal ipkid As Long)
+        ddlSIPD.Items.Clear()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, ipkid, -1, "IPD", "", "", "", "Y")
+        ddlSIPD.DataSource = datatable
+        ddlSIPD.DataTextField = "fldName"
+        ddlSIPD.DataValueField = "fldID"
+        ddlSIPD.DataBind()
+        ddlSIPD.Items.Insert(0, New ListItem(GetText("All"), -1, True))
+        ddlSIPD.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetSPoliceStation(ByVal ipkid As Long, ByVal ipdid As Long)
+        ddlSPoliceStation.Items.Clear()
+        Dim datatable As DataTable = PoliceStationManager.GetPoliceStationList(-1, ipkid, ipdid, "Balai", "", "", "", "Y")
+        ddlSPoliceStation.DataSource = datatable
+        ddlSPoliceStation.DataTextField = "fldName"
+        ddlSPoliceStation.DataValueField = "fldID"
+        ddlSPoliceStation.DataBind()
+        ddlSPoliceStation.Items.Insert(0, New ListItem(GetText("All"), -1, True))
+        ddlSPoliceStation.SelectedIndex = 0
+    End Sub
+
     Private Sub GetIPK(ByVal state As String)
         ddlIPK.Items.Clear()
         ddlIPK.DataSource = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "IPK", state, "", "", "Y")
@@ -229,15 +264,6 @@ Public Class AEMDInstallationRequestList
         ddlPoliceStation.SelectedIndex = 0
     End Sub
 
-    Private Sub GetPoliceStation()
-        ddlSPoliceStation.DataSource = PoliceStationManager.GetPoliceStationList(-1, -1, -1, "", "", "", "", "Y")
-        ddlSPoliceStation.DataTextField = "fldName"
-        ddlSPoliceStation.DataValueField = "fldID"
-        ddlSPoliceStation.DataBind()
-        ddlSPoliceStation.Items.Insert(0, New ListItem(GetText("All"), -1, True))
-        ddlSPoliceStation.SelectedIndex = 0
-    End Sub
-
     Private Sub GetDepartment()
         Dim datatable As DataTable = PoliceStationManager.GetDepartmentList("Y")
         ddlDepartment.DataSource = datatable
@@ -253,6 +279,27 @@ Public Class AEMDInstallationRequestList
         ddlSDepartment.DataBind()
         ddlSDepartment.Items.Insert(0, New ListItem(GetText("All"), -1))
         ddlSDepartment.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetEMDDevice()
+        ddlPEMD.Items.Clear()
+        ddlPEMD.DataSource = EMDDeviceManager.GetDeviceList(-1, "", "", "Y")
+        ddlPEMD.DataTextField = "fldImei"
+        ddlPEMD.DataValueField = "fldID"
+        ddlPEMD.DataBind()
+        ddlPEMD.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("EMD")), 0))
+        ddlPEMD.SelectedIndex = 0
+    End Sub
+
+    Private Sub GetOPPList()
+        ddlPOPP.Items.Clear()
+        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "Y", "Y")
+        datatable.Columns.Add("fldNameIC", GetType(String), "fldName + '-' + fldICNo")
+        ddlPOPP.DataSource = datatable
+        ddlPOPP.DataTextField = "fldNameIC"
+        ddlPOPP.DataValueField = "fldID"
+        ddlPOPP.DataBind()
+        ddlPOPP.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("OPP")), 0))
     End Sub
 
     'Protected Sub ddlState_SelectedIndexChanged(sender As Object, e As EventArgs)
@@ -278,25 +325,13 @@ Public Class AEMDInstallationRequestList
         GetMukim(state, "")
     End Sub
 
-    Private Sub GetEMDDevice()
-        ddlPEMD.Items.Clear()
-        ddlPEMD.DataSource = EMDDeviceManager.GetDeviceList(-1, "", "", "Y")
-        ddlPEMD.DataTextField = "fldImei"
-        ddlPEMD.DataValueField = "fldID"
-        ddlPEMD.DataBind()
-        ddlPEMD.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("EMD")), 0))
-        ddlPEMD.SelectedIndex = 0
+    Protected Sub ddlSIPK_SelectedIndexChanged(sender As Object, e As EventArgs)
+        GetSIPD(ddlSIPK.SelectedValue)
+        ddlSIPD_SelectedIndexChanged(Me.ddlSIPD, EventArgs.Empty)
     End Sub
 
-    Private Sub GetOPPList()
-        ddlPOPP.Items.Clear()
-        Dim datatable As DataTable = OPPManager.GetOPPList(-1, "Y")
-        datatable.Columns.Add("fldNameIC", GetType(String), "fldName + '-' + fldICNo")
-        ddlPOPP.DataSource = datatable
-        ddlPOPP.DataTextField = "fldNameIC"
-        ddlPOPP.DataValueField = "fldID"
-        ddlPOPP.DataBind()
-        ddlPOPP.Items.Insert(0, New ListItem(GetText("SelectItem").Replace("vITEM", GetText("OPP")), 0))
+    Protected Sub ddlSIPD_SelectedIndexChanged(sender As Object, e As EventArgs)
+        GetSPoliceStation(ddlSIPK.SelectedValue, ddlSIPD.SelectedValue)
     End Sub
 
 #End Region
@@ -316,7 +351,7 @@ Public Class AEMDInstallationRequestList
         If AdminAuthentication.GetUserData(5) = 3 Then
             creatorid = AdminAuthentication.GetUserData(2)
         End If
-        Dim myDataTable As DataTable = EMDInstallRequestManager.GetInstallRequestList(-1, creatorid, ddlSDepartment.SelectedValue, -1, ddlSPoliceStation.SelectedValue, ddlSStatus.SelectedValue, hfDateFrom.Text, hfDateTo.Text, "", "")
+        Dim myDataTable As DataTable = EMDInstallRequestManager.GetInstallRequestList(-1, creatorid, ddlSDepartment.SelectedValue, ddlSIPK.SelectedValue, ddlSPoliceStation.SelectedValue, ddlSStatus.SelectedValue, hfDateFrom.Text, hfDateTo.Text, "", "")
         If Not myDataTable Is Nothing AndAlso myDataTable.Rows.Count > 0 Then
             rptTable.DataSource = myDataTable
             rptTable.DataBind()

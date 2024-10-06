@@ -95,6 +95,60 @@ Partial Public Class AEMDInstallationRequestList
     Protected WithEvents hfDateTo As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''lblSStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSStatus As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlSStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSStatus As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lblSIPK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSIPK As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlSIPK control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSIPK As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''lblSIPD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSIPD As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''ddlSIPD control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddlSIPD As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''lblSPoliceStation control.
     '''</summary>
     '''<remarks>
@@ -129,24 +183,6 @@ Partial Public Class AEMDInstallationRequestList
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddlSDepartment As Global.System.Web.UI.WebControls.DropDownList
-
-    '''<summary>
-    '''lblSStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSStatus As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''ddlSStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ddlSStatus As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''btnSearch control.

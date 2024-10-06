@@ -84,4 +84,13 @@ Partial Public Class AGeofenceMukim
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hfGeofence As Global.System.Web.UI.WebControls.HiddenField
+
+    '''<summary>
+    '''hfConfirm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hfConfirm As Global.System.Web.UI.WebControls.HiddenField
 End Class

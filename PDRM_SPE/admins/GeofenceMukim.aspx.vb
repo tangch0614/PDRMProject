@@ -55,6 +55,7 @@ Public Class AGeofenceMukim
 
     Private Sub SetText()
         btnSubmit.Text = GetText("Update")
+        hfConfirm.Value = GetText("MsgConfirmItem").Replace("vITEM", GetText("Update").ToLower)
     End Sub
 
     Private Sub GetState()
